@@ -733,27 +733,64 @@ _ALL_INTENTS = [
     "chat",
 ]
 
-# Ollama-native JSON Schema (constrains token decoding — no hallucinated intents)
+# ── Phase 6: Chain-of-Intent Schema & Semantic Slot-Filling ──────────────────
+# Ollama-native JSON Schema — forces the model to reason in `analysis` before
+# committing to an intent, then extract structured argument slots instead of
+# leaving callers to do fragile inline regex.
 _INTENT_JSON_SCHEMA = {
     "type": "object",
     "properties": {
+        "analysis": {
+            "type": "string",
+            "description": (
+                "A dense, one-sentence breakdown parsing verbs, core entities, "
+                "and the user's implicit operational goal. Reason here first."
+            ),
+        },
+        "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
         "intent":     {"type": "string", "enum": _ALL_INTENTS},
-        "target":     {"type": ["string", "null"]},
-        "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-        "tasks":      {"type": "array", "items": {"type": "string"}, "maxItems": 5},
+        "arguments":  {
+            "type": "object",
+            "description": (
+                "Extracted key-value parameter slots needed by the target tool. "
+                "Typed keys: path (file/dir path), query (search string), url (URL), "
+                "size_mb (integer MB threshold), days (integer age in days), "
+                "description (image prompt), target (generic fallback). "
+                "Omit keys that do not apply. Empty object {} is valid."
+            ),
+        },
     },
-    "required": ["intent", "target"],
+    "required": ["analysis", "confidence", "intent", "arguments"],
 }
 
 _INTENT_SYSTEM = (
-    "You are Adwi's intent classifier. Map the user message to ONE intent. Rules:\n"
-    "- 'memory_recall': user asks what you remember, know, or recall about something personal to their setup\n"
-    "- 'disk_usage': ONLY for storage/disk space questions, NOT general RAM/CPU questions\n"
-    "- 'chat': factual questions, general knowledge, hardware specs, anything not matching a specific tool\n"
-    "- 'web_search': explicitly requests internet/web search\n"
-    "- 'status': asks if services/systems are running or healthy\n"
-    "- Extract target as file path, URL, or search query when clearly present, else null.\n"
-    "- Return valid JSON only, no explanation."
+    "You are Adwi's intent classifier. Produce a JSON object with exactly 4 fields:\n"
+    "\n"
+    "1. analysis   — One dense sentence: parse the verbs, core entities, and the\n"
+    "                user's implicit operational goal. Reason here BEFORE choosing intent.\n"
+    "2. confidence — Float 0.0–1.0. Certainty of intent mapping.\n"
+    "3. intent     — ONE string from the allowed enum. Classification rules:\n"
+    "   'memory_recall'  : user asks what you remember or know about their personal setup\n"
+    "   'disk_usage'     : storage/disk space questions ONLY (not RAM/CPU)\n"
+    "   'large_files'    : find files exceeding a size threshold\n"
+    "   'old_files'      : find files older than a time period\n"
+    "   'gmail'          : questions about email, inbox, messages\n"
+    "   'generate_image' : generate/draw/create an image\n"
+    "   'web_search'     : explicit request for internet/web search\n"
+    "   'status'         : asks if services/systems are running or healthy\n"
+    "   'chat'           : factual questions, general knowledge, hardware specs,\n"
+    "                      anything not matching a more specific intent above\n"
+    "4. arguments  — Object of typed parameter slots the tool will consume:\n"
+    "   path        : absolute or relative file/directory path\n"
+    "   query       : search string or natural-language query for search/recall tools\n"
+    "   url         : full URL (http/https)\n"
+    "   size_mb     : integer megabyte threshold (e.g. 200 for '>200MB')\n"
+    "   days        : integer day count (e.g. 365 for 'older than a year')\n"
+    "   description : image generation prompt text\n"
+    "   target      : generic string fallback when no typed key fits\n"
+    "   Omit inapplicable keys. {} is valid.\n"
+    "\n"
+    "Return valid JSON only — no markdown fences, no prose explanation."
 )
 
 def classify_intent(text: str) -> dict:
@@ -779,7 +816,7 @@ def classify_intent(text: str) -> dict:
         ]
         req = _ollama_chat(
             MODEL_FAST, msgs,
-            stream=False, max_tokens=120, temperature=0, ctx=2048,
+            stream=False, max_tokens=300, temperature=0, ctx=2048,
             json_schema=_INTENT_JSON_SCHEMA,
         )
         try:
@@ -791,23 +828,37 @@ def classify_intent(text: str) -> dict:
                 result = json.loads(m.group(0))
                 if result.get("intent") not in _ALL_INTENTS:
                     result["intent"] = "chat"
-                t = result.get("target")
-                if t and not t.startswith("/") and not t.startswith("http"):
-                    guessed = Path(HOME / t).expanduser()
-                    if guessed.exists(): result["target"] = str(guessed)
+                # Ensure arguments is always a dict
+                args = result.get("arguments") or {}
+                if not isinstance(args, dict):
+                    args = {}
+                result["arguments"] = args
+                # Build backward-compat `target` from typed argument slots
+                target = (
+                    args.get("path") or args.get("url") or
+                    args.get("query") or args.get("description") or
+                    args.get("target")
+                )
+                if target and not str(target).startswith("/") and not str(target).startswith("http"):
+                    guessed = Path(HOME / str(target)).expanduser()
+                    if guessed.exists():
+                        target = str(guessed)
+                        args["path"] = target
+                result["target"] = target
+                result.setdefault("analysis", "")
                 result["_latency_ms"] = int((_time.monotonic() - _t0) * 1000)
                 return result
         except Exception:
             pass
 
-    # 4. Fallback: ultra-fast qwen3:0.6b
-    _fallback_schema = (
+    # 4. Fallback: ultra-fast qwen3:0.6b (minimal schema — no analysis block)
+    _fallback_prompt = (
         "Return JSON only: {\"intent\": one of [" +
         ", ".join(f'"{i}"' for i in _ALL_INTENTS[:20]) +
-        ", ...], \"target\": null or string}. User: " + text
+        ", ...], \"arguments\": {}}. User: " + text
     )
-    req2 = _ollama_chat(MODEL_NLU_FALLBACK, [{"role":"user","content":_fallback_schema}],
-                        stream=False, max_tokens=60, temperature=0, ctx=512)
+    req2 = _ollama_chat(MODEL_NLU_FALLBACK, [{"role":"user","content":_fallback_prompt}],
+                        stream=False, max_tokens=80, temperature=0, ctx=512)
     try:
         with urllib.request.urlopen(req2, timeout=8) as resp:
             raw = json.load(resp).get("message", {}).get("content", "{}")
@@ -816,12 +867,22 @@ def classify_intent(text: str) -> dict:
         if m:
             result = json.loads(m.group(0))
             if result.get("intent") in _ALL_INTENTS:
+                args = result.get("arguments") or {}
+                if not isinstance(args, dict):
+                    args = {}
+                result["arguments"] = args
+                result["target"] = (
+                    args.get("path") or args.get("url") or
+                    args.get("query") or args.get("target")
+                )
+                result.setdefault("analysis", "")
+                result.setdefault("confidence", 0.5)
                 result["_latency_ms"] = int((_time.monotonic() - _t0) * 1000)
                 return result
     except Exception:
         pass
 
-    return {"intent": "chat", "target": None}
+    return {"intent": "chat", "target": None, "arguments": {}, "analysis": "", "confidence": 0.0}
 
 # ── Local streaming (adwi:latest) ─────────────────────────────────────────────
 def stream_local(prompt, system=None, model=None):
@@ -4369,11 +4430,22 @@ def dispatch_natural(text: str):
     # Show a subtle "thinking" indicator for intent classification
     print(f"  {GRAY}…{RESET}", end="\r", flush=True)
     intent_data = classify_intent(text)
-    intent = intent_data.get("intent", "chat")
-    target = intent_data.get("target")
+    intent  = intent_data.get("intent", "chat")
+    target  = intent_data.get("target")
+    args    = intent_data.get("arguments") or {}
+    analysis = intent_data.get("analysis", "")
 
     # Clear the thinking indicator
     print("    ", end="\r", flush=True)
+
+    # Emit Chain-of-Intent analysis to OTEL span for observability
+    if analysis:
+        with _otel_span("dispatch_natural.analysis", {
+            "nlu.analysis": analysis[:300],
+            "nlu.intent": intent,
+            "nlu.confidence": str(intent_data.get("confidence", "")),
+        }):
+            pass
 
     # Activity stream — show what was understood (skip for pure chat)
     _ACTION_LABELS = {
@@ -4404,16 +4476,22 @@ def dispatch_natural(text: str):
 
     # Dispatch
     if intent == "disk_usage":
-        cmd_disk_usage(target)
+        cmd_disk_usage(args.get("path") or target)
     elif intent == "large_files":
-        # Extract size threshold from text if mentioned
-        m = re.search(r"(\d+)\s*(gb|mb|g|m)\b", text, re.I)
-        min_mb = int(m.group(1)) * (1024 if m.group(2).lower() in ("gb","g") else 1) if m else 200
-        cmd_large_files(target, min_mb=min_mb)
+        # Prefer structured slot; fall back to text regex for robustness
+        if args.get("size_mb"):
+            min_mb = int(args["size_mb"])
+        else:
+            m = re.search(r"(\d+)\s*(gb|mb|g|m)\b", text, re.I)
+            min_mb = int(m.group(1)) * (1024 if m.group(2).lower() in ("gb","g") else 1) if m else 200
+        cmd_large_files(args.get("path") or target, min_mb=min_mb)
     elif intent == "old_files":
-        m = re.search(r"(\d+)\s*(year|month|day)", text, re.I)
-        days = int(m.group(1)) * (365 if "year" in m.group(2) else 30 if "month" in m.group(2) else 1) if m else 365
-        cmd_old_files(target, days=days)
+        if args.get("days"):
+            days = int(args["days"])
+        else:
+            m = re.search(r"(\d+)\s*(year|month|day)", text, re.I)
+            days = int(m.group(1)) * (365 if "year" in m.group(2) else 30 if "month" in m.group(2) else 1) if m else 365
+        cmd_old_files(args.get("path") or target, days=days)
     elif intent == "duplicates":
         cmd_find_duplicates(target)
     elif intent == "organize":
@@ -4421,17 +4499,17 @@ def dispatch_natural(text: str):
     elif intent == "cleanup":
         cmd_cleanup_suggest(target)
     elif intent == "file_read":
-        if target:
-            cmd_read_file(target)
+        p = args.get("path") or target
+        if p:
+            cmd_read_file(p)
         else:
-            # Ask which file
             path_str = input(f"  {CYAN}Which file to read?{RESET} ").strip()
             if path_str: cmd_read_file(path_str)
     elif intent == "file_search":
-        q = target or text
+        q = args.get("query") or target or text
         cmd_file_search(q)
     elif intent == "file_list":
-        cmd_list_folder(target or str(HOME))
+        cmd_list_folder(args.get("path") or target or str(HOME))
     elif intent == "youtube":
         if target:
             youtube_menu(target)
@@ -4475,13 +4553,15 @@ def dispatch_natural(text: str):
         q = target or text
         cmd_rag_search(q)
     elif intent == "web_search":
-        q = target or re.sub(r"^(search the web for|web search|google|search online for|look up online|find online)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(search the web for|web search|google|search online for|look up online|find online)\s*", "", text, flags=re.I).strip())
         cmd_web_search(q or text)
     elif intent == "obsidian_search":
-        q = target or re.sub(r"^(obsidian|vault|my notes?|open|read|show)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(obsidian|vault|my notes?|open|read|show)\s*", "", text, flags=re.I).strip())
         cmd_obsidian_search(q or text)
     elif intent == "browse":
-        url = target or text
+        url = args.get("url") or target or text
         cmd_browse(url)
     elif intent == "github_visibility":
         cmd_github_visibility(text)
@@ -4490,8 +4570,8 @@ def dispatch_natural(text: str):
     elif intent == "git_status":
         cmd_git("status")
     elif intent == "generate_image":
-        # Extract the description (strip the verb trigger)
-        desc = re.sub(r"^(generate|create|draw|make|design)\s*(an?\s*)?(image|picture|photo|illustration|artwork)\s*(of|showing|with)?\s*", "", text, flags=re.I).strip()
+        desc = (args.get("description") or target or
+                re.sub(r"^(generate|create|draw|make|design)\s*(an?\s*)?(image|picture|photo|illustration|artwork)\s*(of|showing|with)?\s*", "", text, flags=re.I).strip())
         cmd_generate_image(desc or text)
     elif intent == "run_code":
         code = _extract_code(text)
@@ -4501,54 +4581,64 @@ def dispatch_natural(text: str):
     elif intent == "memory_scan":
         cmd_memory_scan()
     elif intent == "memory_recall":
-        q = target or re.sub(r"^(remember|recall|what do you know about)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(remember|recall|what do you know about)\s*", "", text, flags=re.I).strip())
         cmd_memory_recall(q)
     elif intent == "memory_stats":
         cmd_memory_stats()
     elif intent == "route":
-        q = target or re.sub(r"^(route|which tool).{0,30}?\s", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(route|which tool).{0,30}?\s", "", text, flags=re.I).strip())
         cmd_route(q)
     elif intent == "gmail":
-        # Only treat the text as a search query if it looks like one (not a general question)
-        is_question = bool(re.search(r"\b(is|are|how many|do i have|connected|working|latest|newest|recent)\b", text, re.I))
-        from_match  = re.search(r"\bfrom\s+(\w[\w\s]{0,30}?)(?:\s+about|\s+today|\s+yesterday|[?.]|$)", text, re.I)
-        about_match = re.search(r"\babout\s+(.+?)(?:\s+from|\s+today|\s+yesterday|[?.]|$)", text, re.I)
-        if from_match:
-            cmd_gmail(query=f"from:{from_match.group(1).strip()}")
-        elif about_match and not is_question:
-            cmd_gmail(query=about_match.group(1).strip())
-        elif "unread" in text.lower():
-            cmd_gmail(query="is:unread")
-        elif "today" in text.lower():
-            cmd_gmail(query="newer_than:1d")
-        elif "yesterday" in text.lower():
-            cmd_gmail(query="after:yesterday before:today")
+        # Prefer structured query slot from LLM; fall back to text heuristics
+        structured_q = args.get("query")
+        if structured_q:
+            cmd_gmail(query=structured_q)
         else:
-            cmd_gmail()
+            is_question = bool(re.search(r"\b(is|are|how many|do i have|connected|working|latest|newest|recent)\b", text, re.I))
+            from_match  = re.search(r"\bfrom\s+(\w[\w\s]{0,30}?)(?:\s+about|\s+today|\s+yesterday|[?.]|$)", text, re.I)
+            about_match = re.search(r"\babout\s+(.+?)(?:\s+from|\s+today|\s+yesterday|[?.]|$)", text, re.I)
+            if from_match:
+                cmd_gmail(query=f"from:{from_match.group(1).strip()}")
+            elif about_match and not is_question:
+                cmd_gmail(query=about_match.group(1).strip())
+            elif "unread" in text.lower():
+                cmd_gmail(query="is:unread")
+            elif "today" in text.lower():
+                cmd_gmail(query="newer_than:1d")
+            elif "yesterday" in text.lower():
+                cmd_gmail(query="after:yesterday before:today")
+            else:
+                cmd_gmail()
     elif intent == "memory_context":
-        q = target or re.sub(r"^(memory context|context for|show context)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(memory context|context for|show context)\s*", "", text, flags=re.I).strip())
         cmd_memory_context(q)
     elif intent == "nightly_status":
         cmd_nightly_status()
     elif intent == "nightly_run":
         cmd_nightly_run()
     elif intent == "patch_adwi":
-        hint = re.sub(r"^(patch|fix|repair|heal)\s*(adwi)?\s*", "", text, flags=re.I).strip()
+        hint = (args.get("query") or args.get("target") or
+                re.sub(r"^(patch|fix|repair|heal)\s*(adwi)?\s*", "", text, flags=re.I).strip())
         cmd_patch_adwi(hint)
     elif intent == "doctor":
         cmd_doctor()
     elif intent == "exa_search":
-        q = target or re.sub(r"^(exa|search exa)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(exa|search exa)\s*", "", text, flags=re.I).strip())
         cmd_exa_search(q)
     elif intent == "tavily_search":
-        q = target or re.sub(r"^(tavily|search tavily)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or target or
+             re.sub(r"^(tavily|search tavily)\s*", "", text, flags=re.I).strip())
         cmd_tavily_search(q)
     elif intent == "firecrawl":
-        cmd_firecrawl(target or "")
+        cmd_firecrawl(args.get("url") or args.get("query") or target or "")
     elif intent == "obsidian_read":
-        cmd_obsidian_read(target or "")
+        cmd_obsidian_read(args.get("path") or args.get("query") or target or "")
     elif intent == "obsidian_write":
-        cmd_obsidian_write(target or "")
+        cmd_obsidian_write(args.get("path") or args.get("query") or target or "")
     elif intent == "obsidian_daily":
         cmd_obsidian_daily()
     elif intent == "backup_now":
@@ -4560,10 +4650,11 @@ def dispatch_natural(text: str):
     elif intent == "voice_in":
         cmd_voice_in()
     elif intent == "voice_out":
-        q = target or re.sub(r"^(speak|say|read aloud|voice out)\s*", "", text, flags=re.I).strip()
+        q = (args.get("query") or args.get("description") or target or
+             re.sub(r"^(speak|say|read aloud|voice out)\s*", "", text, flags=re.I).strip())
         cmd_voice_out(q)
     elif intent == "extract_ideas":
-        cmd_extract_ideas(target or "")
+        cmd_extract_ideas(args.get("path") or args.get("query") or target or "")
     elif intent == "trusted_roots":
         cmd_trusted_roots()
     elif intent == "eval_routing":
