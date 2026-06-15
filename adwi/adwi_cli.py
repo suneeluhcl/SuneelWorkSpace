@@ -48,6 +48,7 @@ RAG_DB_DIR    = ADWI_DIR / "rag-db"
 IMG_GEN_DIR   = NOTES / "generated-images"
 MCP_CONFIG    = HOME / ".config" / "mcp" / "servers.json"
 CLI_FILE      = ADWI_DIR / "adwi_cli.py"     # self-reference for repair commands
+TRACE_DIR     = NOTES / "adwi-trace-logs"   # activity trace logs
 
 # Model identifiers
 MODEL_MAIN    = "adwi:latest"          # 30.5B MoE — reasoning, long context
@@ -94,6 +95,147 @@ PURPLE="\033[35m"; WHITE="\033[97m"; GRAY="\033[90m"; RED="\033[31m"
 def cprint(t, c="", bold=False): print(f"{BOLD if bold else ''}{c}{t}{RESET}")
 def adwi_say(t):                  print(f"\n{BOLD}{PURPLE}Adwi{RESET}  {t}\n")
 def adwi_head(t):                 cprint(f"\n  {t}", CYAN, bold=True)
+
+# ── Activity Stream + Trace Log ───────────────────────────────────────────────
+# Real-time progress display styled like Copilot/Claude Code activity panels.
+# Each action writes a structured trace to notes/adwi-trace-logs/.
+
+_TRACE: dict = {}   # accumulates steps for the current action; reset per action
+
+_STEP_ICONS = {
+    "inspecting": "📂", "running": "▶️ ", "testing": "🧪",
+    "retrying":   "🔁", "patching": "🔧", "syncing":  "🔄",
+    "reading":    "📖", "writing":  "✏️ ", "indexing": "🗂️ ",
+    "committing": "📦", "pushing":  "🚀", "scanning": "🔍",
+    "classifying":"🏷️ ", "staging":  "📋", "verifying":"🔎",
+}
+
+def activity_start(user_goal: str, selected_action: str) -> None:
+    """Begin a new activity: print intent header and reset trace accumulator."""
+    global _TRACE
+    _TRACE = {
+        "ts":             datetime.now().strftime("%Y%m%d-%H%M%S"),
+        "goal":           user_goal,
+        "action":         selected_action,
+        "steps":          [],
+        "files_inspected":[],
+        "files_changed":  [],
+        "commands":       [],
+        "result":         "",
+        "error":          "",
+        "logs":           [],
+    }
+    cprint(f"\n  🧭 Understanding: {user_goal[:120]}", CYAN)
+    cprint(f"  🛠️  Action: {selected_action}", CYAN)
+
+def activity_step(label: str, message: str) -> None:
+    """Print a labelled progress step and record it."""
+    icon = _STEP_ICONS.get(label.lower().split()[0], "  ·")
+    cprint(f"  {icon} {label}: {message}", GRAY)
+    if _TRACE:
+        _TRACE["steps"].append(f"{label}: {message}")
+
+def activity_running(command_or_action: str) -> None:
+    cprint(f"  ▶️  Running: {command_or_action}", GRAY)
+    if _TRACE:
+        _TRACE["commands"].append(command_or_action)
+        _TRACE["steps"].append(f"Running: {command_or_action}")
+
+def activity_inspecting(path: str) -> None:
+    cprint(f"  📂 Inspecting: {path}", GRAY)
+    if _TRACE:
+        _TRACE["files_inspected"].append(path)
+        _TRACE["steps"].append(f"Inspecting: {path}")
+
+def activity_changed(path: str) -> None:
+    if _TRACE:
+        _TRACE["files_changed"].append(path)
+
+def activity_success(summary: str, log_path=None) -> None:
+    cprint(f"  ✅ Done: {summary}", GREEN)
+    if log_path:
+        cprint(f"  📝 Log: {log_path}", GRAY)
+    if _TRACE:
+        _TRACE["result"] = summary
+        if log_path:
+            _TRACE["logs"].append(str(log_path))
+
+def activity_warning(summary: str) -> None:
+    cprint(f"  ⚠️  Issue: {summary}", YELLOW)
+    if _TRACE:
+        _TRACE["steps"].append(f"⚠ {summary}")
+
+def activity_error(summary: str, log_path=None) -> None:
+    cprint(f"  ❌ Error: {summary}", RED)
+    if log_path:
+        cprint(f"  📝 Log: {log_path}", GRAY)
+    if _TRACE:
+        _TRACE["error"] = summary
+        if log_path:
+            _TRACE["logs"].append(str(log_path))
+
+def activity_done(summary: str, log_path=None) -> None:
+    """Final success step — prints ✅ and flushes trace to disk."""
+    activity_success(summary, log_path)
+    _flush_trace()
+
+def _flush_trace() -> "Path | None":
+    """Write the current _TRACE accumulator to notes/adwi-trace-logs/ and reset."""
+    global _TRACE
+    if not _TRACE:
+        return None
+    t = dict(_TRACE)
+    _TRACE = {}
+    try:
+        TRACE_DIR.mkdir(parents=True, exist_ok=True)
+        slug = re.sub(r"[^a-z0-9]+", "-", t["action"].lower())[:28].strip("-")
+        path = TRACE_DIR / f"{t['ts']}-{slug}-trace.md"
+
+        steps_md  = "\n".join(f"{i+1}. {s}" for i, s in enumerate(t["steps"])) or "(none)"
+        inspected = "\n".join(f"- {f}" for f in t["files_inspected"])  or "- none"
+        changed   = "\n".join(f"- {f}" for f in t["files_changed"])    or "- none"
+        commands  = "\n".join(f"- `{c}`" for c in t["commands"])       or "- none"
+        logs      = "\n".join(f"- {l}" for l in t["logs"])             or "- none"
+
+        path.write_text(
+            f"# Adwi Activity Trace\n\n"
+            f"Generated: {t['ts']}\n\n"
+            f"## User Request\n\n{t['goal']}\n\n"
+            f"## Selected Action\n\n{t['action']}\n\n"
+            f"## Activity Steps\n\n{steps_md}\n\n"
+            f"## Files Inspected\n\n{inspected}\n\n"
+            f"## Files Changed\n\n{changed}\n\n"
+            f"## Commands / Built-in Actions\n\n{commands}\n\n"
+            f"## Result\n\n{t['result'] or '(no result recorded)'}\n\n"
+            f"## Error\n\n{t['error'] or 'none'}\n\n"
+            f"## Log Links\n\n{logs}\n\n"
+            f"## Redaction Note\n\n"
+            f"All API keys, tokens, JWTs, and bearer tokens are redacted from this trace.\n",
+            encoding="utf-8",
+        )
+        return path
+    except Exception:
+        return None
+
+def cmd_trace_log(n: int = 0) -> None:
+    """Show the most recent activity trace log (or the nth most recent)."""
+    adwi_head("Activity trace log")
+    if not TRACE_DIR.exists() or not list(TRACE_DIR.glob("*-trace.md")):
+        cprint("  No trace logs yet — they are created after each action.", GRAY)
+        return
+    logs = sorted(TRACE_DIR.glob("*-trace.md"))
+    try:
+        target = logs[-(n + 1)]
+    except IndexError:
+        target = logs[-1]
+    cprint(f"  {GRAY}{target.name}{RESET}", "")
+    cprint("", "")
+    for line in target.read_text(encoding="utf-8").splitlines()[:80]:
+        cprint(f"  {line}", "")
+    total = len(target.read_text(encoding="utf-8").splitlines())
+    if total > 80:
+        cprint(f"\n  {GRAY}... ({total-80} more lines){RESET}", "")
+    cprint(f"\n  All traces: {TRACE_DIR}", GRAY)
 
 # ── Safety ────────────────────────────────────────────────────────────────────
 def redact(t):
@@ -256,18 +398,26 @@ def log_mistake(asked, tried, error, fix, rule):
 
 # ── Shell runner ──────────────────────────────────────────────────────────────
 def run_cmd(name, cmd, timeout=900, quiet=False, input_data=None):
+    activity_running(name)
     env = {**os.environ, "PATH": f"{BIN}:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"}
     try:
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env,
                           input=input_data)
         out = redact(((r.stdout or "") + (("\n[stderr]\n" + r.stderr) if r.stderr else "")).strip())
+        lp = log_action(name, out)
         if not quiet:
-            print(out)
-            print(f"\n{GRAY}  logged: {log_action(name, out)}{RESET}")
+            # Show first 20 meaningful lines + summary line
+            lines = [l for l in out.splitlines() if l.strip()]
+            preview = "\n".join(lines[:20])
+            print(preview)
+            if len(lines) > 20:
+                cprint(f"  {GRAY}... ({len(lines)-20} more lines — see log){RESET}", "")
+            activity_success(f"{name} complete", lp)
         return out
     except Exception as e:
         out = f"ERROR: {e}"
-        if not quiet: print(out)
+        if not quiet:
+            activity_error(str(e))
         return out
 
 def run_shell(cmd_str, timeout=60) -> str:
@@ -1589,6 +1739,7 @@ def cmd_fix_error(error_text: str) -> None:
     """Parse a pasted error, identify root cause, patch file, test, log."""
     R = _repair()
     adwi_head("Fix error — self-repair mode")
+    activity_start(error_text[:120] if error_text.strip() else "fix error", "Fix Error / Self-Repair")
 
     if not error_text.strip():
         error_text = input(f"  {CYAN}Paste the error (or describe it):{RESET}\n  ").strip()
@@ -1596,47 +1747,50 @@ def cmd_fix_error(error_text: str) -> None:
         cprint("  No error provided.", YELLOW); return
 
     # 1. Classify
+    activity_step("classifying", "identifying error category")
     category, hints = R.classify_error(error_text)
     cprint(f"  Category  : {BOLD}{category}{RESET}", "")
     cprint(f"  Hints     : {GRAY}{' · '.join(hints[:2])}{RESET}", "")
 
-    # 2. Quick sanity check first (syntax compile)
-    cprint(f"\n  [1] Running syntax check...", BOLD)
+    # 2. Quick syntax check
+    activity_step("testing", "syntax check on adwi_cli.py")
     syn_ok, syn_out = R.syntax_check(R.CLI_FILE)
+    activity_inspecting(str(R.CLI_FILE))
     if syn_ok and category == "adwi_python":
         cprint(f"  adwi_cli.py syntax is {GREEN}OK{RESET} — error may already be fixed or runtime-only.", "")
 
-    # 3. Gather relevant context
+    # 3. Gather relevant context files
     files = R.CATEGORY_CONTEXT.get(category, [R.CLI_FILE])
+    for f in files:
+        activity_inspecting(str(f))
 
-    # 4. Confirm before patching (user must approve)
+    # 4. Confirm before patching
     cprint(f"\n  [2] Confirm before patching", BOLD)
     cprint(f"  Adwi will inspect relevant files and attempt a safe patch.", GRAY)
     cprint(f"  Backups are saved to: notes/adwi-repair-logs/backups/", GRAY)
     ans = input(f"\n  {YELLOW}Proceed with auto-fix attempt? (y/n):{RESET} ").strip().lower()
     if ans not in ("y", "yes"):
-        cprint("  Cancelled. No files modified.", GRAY); return
+        cprint("  Cancelled. No files modified.", GRAY)
+        _flush_trace(); return
 
     # 5. Attempt fix loop
-    cprint(f"\n  [3] Attempting fix (up to 2 retries)...", BOLD)
+    activity_step("patching", f"AI patch attempt (max 2 retries) for category={category}")
     result = R.fix_error_loop(error_text, category, files, SECRETS_DIR)
 
-    # 5. Display result
     print()
-    for step in result["steps"][-8:]:      # show last 8 steps
+    for step in result["steps"][-8:]:
         cprint(f"  {GRAY}{step}{RESET}", "")
 
     if result["success"]:
         cprint(f"\n  ✓ Fix applied: {result['patch_applied']}", GREEN, bold=True)
+        activity_changed(str(files[0]) if files else str(R.CLI_FILE))
 
-        # Run smoke tests
-        cprint(f"\n  [3] Running smoke tests...", BOLD)
+        activity_step("testing", "smoke tests after patch")
         tests = R.run_smoke_tests()
         for t in tests:
             icon = f"{GREEN}✓{RESET}" if t["ok"] else f"{RED}✗{RESET}"
             cprint(f"  {icon} {t['test']}: {t['output'][:80]}", "")
 
-        # 6. Update learning journal
         log_mistake(
             asked=error_text[:200],
             tried=f"Auto-fix via /fix-error, category={category}",
@@ -1644,17 +1798,17 @@ def cmd_fix_error(error_text: str) -> None:
             fix=result["patch_applied"],
             rule=f"Classify as '{category}', patch {R.CLI_FILE.name}"
         )
-        # Sync knowledge
         run_cmd("sync", ["sync-openwebui-knowledge"], quiet=True, timeout=120)
-        cprint(f"\n  Log: {result['log_path']}", GRAY)
+        activity_done(f"Fix applied — {result['patch_applied']}", result['log_path'])
     else:
         cprint(f"\n  ✗ Auto-fix failed: {result['final_error']}", RED, bold=True)
         cprint(f"  {GRAY}Manual hints:{RESET}", "")
         for h in hints:
             cprint(f"    • {h}", GRAY)
-        cprint(f"\n  Log: {result['log_path']}", GRAY)
+        activity_error(f"Auto-fix failed: {result['final_error']}", result['log_path'])
         if result.get("backup"):
             cprint(f"  Backup: {result['backup']}", GRAY)
+        _flush_trace()
 
 
 def cmd_repair_adwi() -> None:
@@ -2661,49 +2815,51 @@ def cmd_backup_now(message: str = "") -> None:
     """Run a full backup: secret scan → stage safe files → commit → push."""
     B = _backup()
     adwi_head("Backup now")
+    activity_start(message or "backup workspace to GitHub", "GitHub Backup")
 
-    # Show what will be staged
     cprint(f"  This will commit and push safe Adwi files to GitHub.", GRAY)
     cprint(f"  Secrets, credentials, and runtime data are excluded.", GRAY)
     cprint(f"  Secret scan runs before every commit.", GRAY)
     ans = input(f"\n  {YELLOW}Proceed with backup? (y/n):{RESET} ").strip().lower()
     if ans not in ("y", "yes"):
-        cprint("  Cancelled.", GRAY); return
+        cprint("  Cancelled.", GRAY); _flush_trace(); return
 
-    cprint(f"\n  [1] Initializing git and workspace files...", BOLD)
+    activity_step("running", "init git repo + workspace files")
     ok_init, init_msg = B.init_git_repo()
     cprint(f"  {'✓' if ok_init else '✗'} {init_msg}", GREEN if ok_init else RED)
 
-    cprint(f"\n  [2] Staging safe files...", BOLD)
+    activity_step("staging", "safe allowlisted files only")
     n, staged = B.stage_safe_files()
     cprint(f"  ✓ Staged {n} path(s)", GREEN)
 
-    cprint(f"\n  [3] Running secret scan...", BOLD)
+    activity_step("scanning", "secret scan on staged diff")
     secrets = B.scan_staged_for_secrets()
     if secrets:
-        B._git(["reset", "HEAD"])  # unstage everything
+        B._git(["reset", "HEAD"])
         cprint(f"  {RED}✗ Secret scan FAILED — aborting.{RESET}", "")
         for s in secrets:
             cprint(f"     {YELLOW}Found: {s['pattern']} in {s['file']}{RESET}", "")
-        cprint(f"\n  No commit made. Fix .gitignore and retry.", RED)
-        return
+        activity_error("Secret scan blocked the commit — no files modified")
+        _flush_trace(); return
 
-    cprint(f"  ✓ Secret scan passed", GREEN)
-    cprint(f"\n  [4] Committing and pushing...", BOLD)
+    activity_step("committing", "signing off and pushing to GitHub")
     result = B.do_backup(message or f"adwi backup {datetime.now().strftime('%Y-%m-%d %H:%M')}")
 
     if result["success"]:
         cprint(f"\n  {GREEN}✓ {result['message']}{RESET}", "", bold=True)
         if not result.get("pushed"):
             cprint(f"\n  {YELLOW}No remote configured.{RESET}", "")
-            cprint(f"  To push to GitHub, run:", GRAY)
             cprint(f"    gh repo create suneel-local-ai-adwi --private --source=. --push", CYAN)
     else:
         cprint(f"\n  {RED}✗ Backup failed: {result['message']}{RESET}", "")
 
     log_path = B.write_backup_log(result)
-    cprint(f"\n  Log: {log_path.name}", GRAY)
     log_action("backup-now", result.get("message",""))
+    if result["success"]:
+        activity_done(result["message"], log_path)
+    else:
+        activity_error(result["message"], log_path)
+        _flush_trace()
 
 
 def cmd_backup_enable() -> None:
@@ -2961,6 +3117,27 @@ def dispatch_natural(text: str):
     # Clear the thinking indicator
     print("    ", end="\r", flush=True)
 
+    # Activity stream — show what was understood (skip for pure chat)
+    _ACTION_LABELS = {
+        "disk_usage": "Disk Usage Analysis", "large_files": "Find Large Files",
+        "old_files": "Find Old Files", "duplicates": "Find Duplicate Files",
+        "organize": "Organize Suggestions", "cleanup": "Cleanup Suggestions",
+        "file_read": "Read File", "file_search": "File Search",
+        "file_list": "List Folder", "youtube": "YouTube Summary",
+        "image": "Image Analysis", "status": "Stack Status Check",
+        "self_heal": "Self-Heal", "what_next": "What to Build Next",
+        "daily_improve": "Daily Improvement Routine", "sync": "Sync Knowledge",
+        "model_status": "Model Status", "use_local": "Switch to Local Model",
+        "use_cloud": "Switch to Cloud Model", "capabilities": "Capabilities List",
+        "rag_search": "Semantic Notes Search", "browse": "Browse URL",
+        "git_status": "Git Status", "generate_image": "Generate Image",
+        "run_code": "Run Python Code", "benchmark": "Benchmark",
+        "gmail": "Gmail", "fix_error": "Fix Error / Self-Repair",
+        "backup": "GitHub Backup",
+    }
+    if intent != "chat" and intent in _ACTION_LABELS:
+        activity_start(text, _ACTION_LABELS[intent])
+
     # Dispatch
     if intent == "disk_usage":
         cmd_disk_usage(target)
@@ -3209,6 +3386,12 @@ def handle(line: str) -> bool:
     elif line == "/backup-disable": cmd_backup_disable()
     elif line == "/backup-log": cmd_backup_log()
     elif line == "/backup-audit": cmd_backup_audit()
+    # ── Activity trace ──
+    elif line == "/trace-log":
+        cmd_trace_log()
+    elif line.startswith("/trace-log "):
+        arg = line[11:].strip()
+        cmd_trace_log(int(arg) if arg.isdigit() else 0)
     # ── Nightly improvement ──
     elif line == "/nightly-status": cmd_nightly_status()
     elif line.startswith("/nightly-log"):
@@ -3325,6 +3508,10 @@ You can say things like:
   /extract-ideas [src]       Extract implementable ideas from URL/file/text
   /implement-idea [src]      Build plan + implement idea with confirmation
   /tool-roadmap              Show Phase 5 tool stack (active vs planned)
+
+{BOLD}Activity Stream + Traces:{RESET}
+  /trace-log [n]             Read most recent activity trace (or nth most recent)
+  (traces auto-saved to notes/adwi-trace-logs/ after every action)
 
 {BOLD}Nightly Improvement (2 AM auto-run):{RESET}
   /nightly-status            LaunchAgent status, last run, pending improvements
