@@ -205,12 +205,76 @@ def build_monitoring_section(snap: dict) -> str:
     return "\n".join(lines)
 
 
+def build_infra_ports_section(snap: dict) -> str:
+    """Complete port topology table — static definition enriched with live docker status."""
+    # Static port registry — authoritative source of truth
+    PORTS = [
+        (":11434", "Ollama",           "Host (brew)",   "Local LLM inference API"),
+        (":3000",  "Open WebUI",       "Docker",        "Browser chat UI + model switcher"),
+        (":5055",  "Safe Command API", "Host",          "n8n→shell bridge (8 allowlisted routes)"),
+        (":5056",  "Obsidian Bridge",  "Host",          "Vault HTTP CRUD API"),
+        (":5678",  "n8n",              "Docker",        "Workflow automation / webhooks"),
+        (":6006",  "Arize Phoenix",    "Docker",        "Agent observability UI (OTel)"),
+        (":6333",  "Qdrant",           "Docker",        "Vector database"),
+        (":8001",  "PrivateGPT",       "Host",          "Document Q&A (optional)"),
+        (":8123",  "Home Assistant",   "Docker",        "iPhone control plane"),
+        (":8888",  "SearXNG",          "Docker",        "Private local web search"),
+        (":9090",  "Prometheus",       "Docker",        "Metrics scraper"),
+        (":3100",  "Loki",             "Docker",        "Log aggregation"),
+        (":4000",  "Grafana",          "Docker",        "Monitoring dashboards"),
+        (":9100",  "node-exporter",    "Docker",        "Host system metrics"),
+        (":9101",  "cAdvisor",         "Docker",        "Container metrics"),
+        (":4317",  "Phoenix gRPC",     "Docker",        "OTLP gRPC ingestion"),
+        (":4318",  "Phoenix HTTP",     "Docker",        "OTLP HTTP ingestion"),
+    ]
+    lines = ["| Port | Service | Layer | Purpose |", "|---|---|---|---|"]
+    for port, svc, layer, purpose in PORTS:
+        lines.append(f"| {port} | {svc} | {layer} | {purpose} |")
+    return "\n".join(lines)
+
+
+def build_commands_section(snap: dict) -> str:
+    """Rich capability grid: command groups with descriptions parsed from HELP."""
+    cmds = snap["commands"]
+
+    # Try to load descriptions from adwi_cli.py HELP string
+    descriptions: dict[str, str] = {}
+    if CLI_PATH.exists():
+        src = CLI_PATH.read_text(errors="ignore")
+        # Extract HELP string
+        hs = src.find('HELP = f"""')
+        he = src.find('""".strip()', hs + 1) if hs != -1 else -1
+        if hs != -1 and he != -1:
+            help_text = re.sub(r'\{[A-Z_]+\}', '', src[hs + len('HELP = f"""'):he])
+            for line in help_text.splitlines():
+                s = line.strip()
+                if not s.startswith("/"): continue
+                parts = re.split(r"\s{2,}", s, maxsplit=1)
+                if len(parts) < 2: continue
+                for tok in re.findall(r"/[\w/-]+", parts[0]):
+                    if tok not in descriptions:
+                        descriptions[tok] = parts[1].strip()
+
+    # Group commands by first word segment
+    groups: dict[str, list[str]] = {}
+    for c in cmds:
+        key = c.lstrip("/").split("-")[0]
+        groups.setdefault(key, []).append(c)
+
+    lines = [f"**{len(cmds)} registered commands.** Key groups:\n"]
+    for grp, items in sorted(groups.items()):
+        lines.append(f"**{grp}**: " + "  ".join(f"`{i}`" for i in sorted(items)))
+
+    return "\n".join(lines)
+
+
 SECTION_BUILDERS = {
-    "SERVICES":    build_services_section,
-    "AGENTS":      build_agents_section,
-    "MODELS":      build_models_section,
-    "COMMANDS":    build_commands_section,
-    "MONITORING":  build_monitoring_section,
+    "SERVICES":     build_services_section,
+    "AGENTS":       build_agents_section,
+    "MODELS":       build_models_section,
+    "COMMANDS":     build_commands_section,
+    "MONITORING":   build_monitoring_section,
+    "INFRA_PORTS":  build_infra_ports_section,
 }
 
 
