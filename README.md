@@ -847,8 +847,10 @@ python3 -m py_compile adwi/adwi_cli.py && echo "still compiles"
 | 6 | Chain-of-Intent Schema & Semantic Slot-Filling | analysis+confidence+intent+arguments JSON schema; 29 structured arg reads in dispatch | `adwi/adwi_cli.py (_INTENT_JSON_SCHEMA)` |
 | 7 | Qdrant-Driven Dynamic Few-Shot Routing | 49-fixture nlu_fixtures collection; top-3 injected into llama3.1:8b system prompt | `adwi/memory.py · Qdrant :6333` |
 | 8 | LLM-Priming Documentation Update Invariants | auto-update-readme always runs before backup; PHASES+NLU sections auto-injected | `bin/auto-update-readme · adwi/backup.py` |
+| 9 | Security Core: PathValidator, OTel Telemetry, Fast NLU Bypass | deny-first path containment; OTLP→Phoenix traces with credential redaction; Qdrant ≥0.88 score skip of 8B LLM (43 ms → <5 ms fast path) | `adwi/path_validator.py · adwi/telemetry.py · adwi/nlu_fast_path.py` |
+| 10 | SimLab: Bounded Continuous Eval & Self-Improvement Harness | hardware/thermal gates; ephemeral sandbox; SHA-256 failure fingerprinting; Tier A/B/C improvement proposals; immutable golden baseline (100% required); auto git-rollback on regression; 41 unit tests, 0 warnings | `adwi/simlab/ (11 modules)` |
 
-All 8 phases verified on 2026-06-15. Each phase committed atomically as an independent transactional unit.
+All 10 phases verified on 2026-06-15. Each phase committed atomically as an independent transactional unit.
 *Auto-updated: 2026-06-15*
 <!-- /AUTO:PHASES -->
 

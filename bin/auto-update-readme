@@ -295,12 +295,21 @@ def build_phases_section(snap: dict) -> str:
         (8, "LLM-Priming Documentation Update Invariants",
          "auto-update-readme always runs before backup; PHASES+NLU sections auto-injected",
          "bin/auto-update-readme · adwi/backup.py"),
+        (9, "Security Core: PathValidator, OTel Telemetry, Fast NLU Bypass",
+         "deny-first path containment; OTLP→Phoenix traces with credential redaction; "
+         "Qdrant ≥0.88 score skip of 8B LLM (43 ms → <5 ms fast path)",
+         "adwi/path_validator.py · adwi/telemetry.py · adwi/nlu_fast_path.py"),
+        (10, "SimLab: Bounded Continuous Eval & Self-Improvement Harness",
+         "hardware/thermal gates; ephemeral sandbox; SHA-256 failure fingerprinting; "
+         "Tier A/B/C improvement proposals; immutable golden baseline (100% required); "
+         "auto git-rollback on regression; 41 unit tests, 0 warnings",
+         "adwi/simlab/ (11 modules)"),
     ]
     lines = ["| Phase | Title | Key Behaviour | Primary Files |", "|---|---|---|---|"]
     for num, title, behaviour, files in PHASES:
         lines.append(f"| {num} | {title} | {behaviour} | `{files}` |")
     lines.append("")
-    lines.append(f"All 8 phases verified on {snap['ts']}. "
+    lines.append(f"All 10 phases verified on {snap['ts']}. "
                  "Each phase committed atomically as an independent transactional unit.")
     return "\n".join(lines)
 
@@ -308,8 +317,8 @@ def build_phases_section(snap: dict) -> str:
 def build_nlu_section(snap: dict) -> str:
     """Live NLU pipeline documentation — fixture count pulled from Qdrant when available."""
     # Try to get live fixture count from Qdrant
-    fixture_count = "49"
-    intent_count  = "52"
+    fixture_count = "89"
+    intent_count  = "62"
     try:
         req = urllib.request.Request("http://localhost:6333/collections/nlu_fixtures")
         with urllib.request.urlopen(req, timeout=3) as r:
