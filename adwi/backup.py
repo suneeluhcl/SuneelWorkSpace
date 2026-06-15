@@ -365,18 +365,41 @@ def stage_safe_files() -> tuple[int, list[str]]:
     return len(staged), staged
 
 
-def _run_auto_readme(quiet: bool = True) -> None:
-    """Update README.md auto-sections before committing. Non-fatal."""
+def _run_auto_readme(quiet: bool = True, force: bool = True) -> bool:
+    """
+    Update README.md auto-sections before committing.
+    Always passes --force so ALL section builders run on every backup regardless
+    of snapshot hash — this ensures the README is always the authoritative system map.
+    Returns True if the script ran without exception.
+    """
     readme_script = WORKSPACE / "bin" / "auto-update-readme"
     venv_py       = WORKSPACE / "adwi" / ".venv" / "bin" / "python3"
     if not readme_script.exists():
-        return
-    py = str(venv_py) if venv_py.exists() else "python3"
-    args = [py, str(readme_script), "--quiet"] if quiet else [py, str(readme_script)]
+        return False
+    py   = str(venv_py) if venv_py.exists() else "python3"
+    args = [py, str(readme_script)]
+    if quiet:
+        args.append("--quiet")
+    if force:
+        args.append("--force")
     try:
         subprocess.run(args, cwd=str(WORKSPACE), timeout=60, capture_output=quiet)
+        return True
     except Exception:
-        pass  # never block backup for README update
+        return False  # never block backup for README update
+
+
+def _log_system_event(event: str, detail: str = "") -> None:
+    """Append a structured entry to logs/adwi_system_log.md."""
+    log_path = WORKSPACE / "logs" / "adwi_system_log.md"
+    try:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        entry = f"\n## [{stamp}] {event}\n{detail}\n" if detail else f"\n## [{stamp}] {event}\n"
+        with log_path.open("a", encoding="utf-8") as f:
+            f.write(entry)
+    except Exception:
+        pass
 
 
 def do_backup(message: str = "") -> dict:
@@ -392,8 +415,10 @@ def do_backup(message: str = "") -> dict:
         result["message"] = msg; return result
     write_workspace_files()
 
-    # Auto-update README before staging
-    _run_auto_readme(quiet=True)
+    # Auto-update README before staging — always forced so README stays authoritative
+    readme_updated = _run_auto_readme(quiet=True, force=True)
+    if readme_updated:
+        _log_system_event("README auto-update", "bin/auto-update-readme --force ran before backup commit")
 
     # Stage safe files
     n, staged = stage_safe_files()
@@ -418,6 +443,7 @@ def do_backup(message: str = "") -> dict:
             f"Possible secrets found in: {files}. "
             f"Check .gitignore and re-run /backup-now after fixing."
         )
+        _log_system_event("SECRET SCAN FAILED", f"Files: {files}")
         return result
 
     # Commit
@@ -435,8 +461,10 @@ def do_backup(message: str = "") -> dict:
         rc, out, err = _git(["push", status["remote_name"], status["branch"]], timeout=120)
         if rc == 0:
             result["pushed"] = True
+            _log_system_event("Backup pushed", f"Commit: {hash_out} · Branch: {status['branch']}")
         else:
             result["message"] = f"Committed but push failed: {err}"
+            _log_system_event("Backup push FAILED", err[:200])
     else:
         result["message"] = (
             "Committed locally. No remote configured. "

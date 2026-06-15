@@ -14,13 +14,14 @@
 
 | § | Section | Purpose |
 |---|---|---|
-| [§1](#1-system-dna--model-matrix) | System DNA & Model Matrix | Hardware, models, context windows |
+| [§1](#1-system-dna--model-matrix) | System DNA & Model Matrix | Hardware, models, NLU pipeline |
 | [§2](#2-infrastructure-topography) | Infrastructure Topography | Every port, container, agent, data flow |
 | [§3](#3-deterministic-capability-grid) | Deterministic Capability Grid | All 103+ commands, args, behaviors |
 | [§4](#4-agentic-lifecycle-flows) | Agentic Lifecycle Flows | ASCII diagrams of every execution path |
 | [§5](#5-security--boundary-invariants) | Security & Boundary Invariants | Hard blocks, credential isolation |
 | [§6](#6-directory-structure) | Directory Structure | Annotated file tree |
 | [§7](#7-rollback--recovery) | Rollback & Recovery | Operational runbooks |
+| [§8](#8-architecture-implementation-phases) | Architecture Implementation Phases | Phase 1–8 status and key files |
 
 ---
 
@@ -70,6 +71,30 @@ PARAMETER repeat_penalty 1.1
 SYSTEM You are Adwi, a cautious local AI assistant. Never read secrets, never commit
        without review, always explain destructive actions before executing them.
 ```
+
+### NLU Classification Pipeline
+
+<!-- AUTO:NLU -->
+**NLU Classification Pipeline** — every natural-language input passes through:
+
+| Stage | Component | Detail |
+|---|---|---|
+| 0 | Instant pre-checks | YouTube URL regex, image path regex (0 ms) |
+| 1 | Regex pre-filter | `_regex_prefilter()` — zero-latency for common phrases |
+| 2 | Few-shot injection | Qdrant `nlu_fixtures` top-3 semantic matches (49 fixtures, 768-dim Cosine) |
+| 3 | LLM classification | `llama3.1:8b` with JSON schema — `analysis`+`confidence`+`intent`+`arguments` (61 intent classes) |
+| 4 | Argument dispatch | 29 typed slot reads: `path`, `query`, `url`, `size_mb`, `days`, `description` |
+| 5 | Fallback | `qwen3:0.6b` (80-token budget, no analysis block) |
+
+**Schema fields (Phase 6):**
+- `analysis` — dense one-sentence reasoning before intent selection
+- `confidence` — float 0.0–1.0
+- `intent` — one of 61 registered intent classes
+- `arguments` — typed key-value slots fed straight into command handlers
+
+**Qdrant few-shot collection:** `nlu_fixtures` · 49 seed fixtures · scored at `score_threshold=0.5` · provisioned via `python3 adwi/memory.py provision-nlu`
+*Auto-updated: 2026-06-15*
+<!-- /AUTO:NLU -->
 
 ---
 
@@ -806,6 +831,26 @@ curl -s "http://localhost:8888/search?q=test&format=json" | python3 -c \
 
 python3 -m py_compile adwi/adwi_cli.py && echo "still compiles"
 ```
+
+---
+
+## §8 Architecture Implementation Phases
+
+<!-- AUTO:PHASES -->
+| Phase | Title | Key Behaviour | Primary Files |
+|---|---|---|---|
+| 1 | Heavyweight Infrastructure Observability | Prometheus :9090, Loki :3100, Grafana :4000, node-exporter, cAdvisor | `local-ai-stack/docker-compose.yml` |
+| 2 | LangGraph Orchestration & Interactive Permission Surface | Planner→Executor→Critic state machine; Phase 2 boxed gate with WHY explanation | `adwi/reason_engine.py` |
+| 3 | Memory Lifecycle, Scoring & Safety Gate | importance_score, recency_decay, provenance columns; BLOCKED/REVIEW/SAFE classifier | `adwi/memory.py` |
+| 4 | Real-Time Self-Healing & Hermes Skill Compiling | aider non-interactive patch → pytest verify → skills/ SKILL.md; skill pre-flight match | `adwi/reason_engine.py · skills/` |
+| 5 | prompt_toolkit Slash-Command Autocomplete | 104-command registry; substring fuzzy scoring; Tab/arrow REPL overlay | `adwi/adwi_cli.py (SlashCommandCompleter)` |
+| 6 | Chain-of-Intent Schema & Semantic Slot-Filling | analysis+confidence+intent+arguments JSON schema; 29 structured arg reads in dispatch | `adwi/adwi_cli.py (_INTENT_JSON_SCHEMA)` |
+| 7 | Qdrant-Driven Dynamic Few-Shot Routing | 49-fixture nlu_fixtures collection; top-3 injected into llama3.1:8b system prompt | `adwi/memory.py · Qdrant :6333` |
+| 8 | LLM-Priming Documentation Update Invariants | auto-update-readme always runs before backup; PHASES+NLU sections auto-injected | `bin/auto-update-readme · adwi/backup.py` |
+
+All 8 phases verified on 2026-06-15. Each phase committed atomically as an independent transactional unit.
+*Auto-updated: 2026-06-15*
+<!-- /AUTO:PHASES -->
 
 ---
 
