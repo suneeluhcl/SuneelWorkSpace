@@ -131,7 +131,7 @@
     [
       "n8n",
       "5678",
-      "Up 11 hours"
+      "Up 12 hours"
     ],
     [
       "searxng",
@@ -201,6 +201,6 @@
     "MODEL_EMBED": "nomic-embed-text",
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
-  "ts": "2026-06-15",
-  "_hash": "b7d3508a3661125c"
+  "ts": "2026-06-16",
+  "_hash": "b940af2e18b381ec"
 }

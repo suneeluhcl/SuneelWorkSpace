@@ -506,6 +506,8 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(big(gest)?|large(st)?|heavy|huge)\b.{0,30}\bfiles?\b", re.I), "large_files"),
     (re.compile(r"\bfiles?\b.{0,20}(over|bigger than|larger than|more than)\s*\d", re.I), "large_files"),
     (re.compile(r"\b(top \d+|find).{0,20}(big(gest)?|large(st)?|heavy).{0,20}files?\b", re.I), "large_files"),
+    # NHR-001: additional synonyms — beat file_search on "fat/oversized files"
+    (re.compile(r"\b(fat|oversize|oversized|bulky|enormous|massive|hefty)\b.{0,30}\bfiles?\b", re.I), "large_files"),
 
     # ── Disk / space (narrowed to disk/space/storage objects only) ───────────────
     (re.compile(r"(biggest|largest|heaviest|most space|taking up|using up|eating up).{0,40}(disk|storage|space)\b", re.I), "disk_usage"),
@@ -522,6 +524,8 @@ _REGEX_INTENTS = [
 
     # ── Duplicates ───────────────────────────────────────────────────────────────
     (re.compile(r"(duplicate|identical|same file|copy|copies|redundant)", re.I), "duplicates"),
+    # NHR-001: additional synonyms — beat file_search on "find cloned/deduped files"
+    (re.compile(r"\b(clone|cloned|dedup|deduplicat|same.content|bit.for.bit|identical.content)\b.{0,20}files?\b", re.I), "duplicates"),
 
     # ── Organize ─────────────────────────────────────────────────────────────────
     (re.compile(r"(organiz|tidy|restructure|better structure|sort out|clean up).{0,30}(folder|file|download|desktop|document)", re.I), "organize"),
@@ -529,6 +533,8 @@ _REGEX_INTENTS = [
     # ── Cleanup suggestions ──────────────────────────────────────────────────────
     (re.compile(r"(what|which).{0,20}(can|should|could|to).{0,20}(delete|remove|trash|clear|get rid)", re.I), "cleanup"),
     (re.compile(r"(safe to delete|safely delete|safely remove)", re.I), "cleanup"),
+    # NHR-001: "find junk/clutter/garbage files" — beat generic file_search
+    (re.compile(r"\b(junk|garbage|clutter|cruft)\b.{0,20}files?\b", re.I), "cleanup"),
 
     # ── RAG / knowledge search — BEFORE file_search (notes-specific guard) ───────
     (re.compile(r"(search|find|look up|recall|what do i know).{0,30}(my notes|my knowledge|local knowledge|knowledge base|from notes)", re.I), "rag_search"),
@@ -555,6 +561,10 @@ _REGEX_INTENTS = [
     (re.compile(r"(fix|repair|restart|broken|not working|isn.t working|crashed|down).{0,20}(setup|stack|service|ollama|docker)", re.I), "self_heal"),
     # Pattern B: subject-first — "docker/ollama/adwi ... not working/broken"
     (re.compile(r"(adwi|setup|stack|docker|ollama|service).{0,20}(not working|isn.t working|broken|crashed|crashing|failing)", re.I), "self_heal"),
+    # NHR-004: generic repair — "something is broken", "fix yourself", "self-heal"
+    (re.compile(r"(something|things|everything).{0,20}(broken|not working|failing|crashed)", re.I), "self_heal"),
+    (re.compile(r"\b(repair|fix|heal)\b.{0,15}\b(yourself|itself|adwi|setup|system|stack)(\s|$)", re.I), "self_heal"),
+    (re.compile(r"\bself.?heal\b", re.I), "self_heal"),
 
     # ── Status (Bug 1: word boundaries stop substring false positives) ────────────
     # \b prevents "is" matching in "list", "down" matching in "downloads", etc.
@@ -564,6 +574,13 @@ _REGEX_INTENTS = [
     # ── What next ────────────────────────────────────────────────────────────────
     (re.compile(r"(what|what.s).{0,20}(next|build|improve|add|create).{0,20}(adwi|setup|ai|local)", re.I), "what_next"),
     (re.compile(r"(suggest|recommend).{0,20}(next|improvement|feature|capability)", re.I), "what_next"),
+    # NHR-007: broader patterns — "adwi improvement ideas", "next feature for adwi"
+    (re.compile(r"\b(adwi|local.?ai|my.?ai).{0,30}(improvement|enhancement|feature|idea|roadmap)\b", re.I), "what_next"),
+    (re.compile(r"\bnext.{0,20}(feature|capability|improvement).{0,20}(adwi|ai|local|stack)\b", re.I), "what_next"),
+
+    # ── Daily improve — NHR-006: no regex existed; LLM was routing to status/chat ─
+    (re.compile(r"\b(daily.?improv|daily.?enhanc|daily.?routine)\b", re.I), "daily_improve"),
+    (re.compile(r"\brun.{0,10}daily.{0,10}(improve|maintenance|self.?improve)\b", re.I), "daily_improve"),
 
     # ── Web search ───────────────────────────────────────────────────────────────
     (re.compile(r"(search the web|web search|google|search online|look up online|find online|search internet).{0,50}", re.I), "web_search"),
@@ -578,6 +595,11 @@ _REGEX_INTENTS = [
     (re.compile(r"(open|read|show).{0,10}(obsidian|vault|note).{0,30}", re.I), "obsidian_search"),
     # Verb-first ordering: "search my obsidian vault / notes for ..."
     (re.compile(r"\bsearch\b.{0,20}\b(obsidian|vault)\b", re.I), "obsidian_search"),
+
+    # ── YouTube — NHR-002: non-URL phrasing (URL form handled by extract_youtube_url) ─
+    (re.compile(r"\byoutube\b.{0,40}(summar|transcri|watch|clip|video|channel|tutorial)\b", re.I), "youtube"),
+    (re.compile(r"(summar|transcri|explain).{0,20}\byoutube\b", re.I), "youtube"),
+    (re.compile(r"\b(yt\s+video|youtu\.be|youtube\.com)\b", re.I), "youtube"),
 
     # ── Browse / fetch URL ───────────────────────────────────────────────────────
     (re.compile(r"(browse|visit|open|fetch|go to|check out|navigate to).{0,15}(https?://|website|site|webpage|url|\.(com|io|org|dev|net))", re.I), "browse"),
@@ -605,6 +627,16 @@ _REGEX_INTENTS = [
     # ── Backup status / log ──────────────────────────────────────────────────────
     (re.compile(r"\b(backup.{0,10}(status|health|check|recent|current)|last.{0,10}backup|when.{0,15}(was.{0,5})?backup)\b", re.I), "backup_status"),
     (re.compile(r"\bbackup.{0,15}(log|history|logs)\b", re.I), "backup_log"),
+
+    # ── Patch adwi — NHR-003: code changes via aider ─────────────────────────────
+    (re.compile(r"\b(run|use|apply).{0,10}\baider\b", re.I), "patch_adwi"),
+    (re.compile(r"\b(self.?patch|auto.?patch)\b.{0,20}(adwi|code|codebase)", re.I), "patch_adwi"),
+    (re.compile(r"\bpatch\b.{0,15}\badwi\b", re.I), "patch_adwi"),
+
+    # ── Inspect code — NHR-008: code review of adwi source files ─────────────────
+    (re.compile(r"\b(inspect|review|look at|examine).{0,20}(adwi.{0,10}\.py|adwi.?code|adwi.?source)\b", re.I), "inspect_code"),
+    (re.compile(r"\b(inspect|review).{0,15}(adwi_cli|nightly\.py|memory\.py|backup\.py|grader\.py)\b", re.I), "inspect_code"),
+    (re.compile(r"\b(find bugs in|check for bugs in|code review).{0,20}\badwi\b", re.I), "inspect_code"),
 
     # ── Eval / test ──────────────────────────────────────────────────────────────
     (re.compile(r"\b(run|start|trigger).{0,15}(routing.?tests?|eval.?routing|routing eval)\b", re.I), "eval_routing"),
@@ -649,6 +681,8 @@ _REGEX_INTENTS = [
     (re.compile(r"(what do you (remember|know|recall)|do you remember|tell me what you know).{0,40}(about|regarding)\b", re.I), "memory_recall"),
     (re.compile(r"(remember|recall|what do you know about|memory).{0,30}\?", re.I), "memory_recall"),
     (re.compile(r"memory (stats|status|ledger|database|db)\b", re.I), "memory_stats"),
+    # NHR-009: additional synonyms — "memory statistics/metrics/entries" was going to memory_context
+    (re.compile(r"memory\s+(statistics|metrics|size|count|entries|records)\b", re.I), "memory_stats"),
 
     # ── Semantic router ──────────────────────────────────────────────────────────
     (re.compile(r"route (this|the|my)?\s*(query|question|request|command)\b", re.I), "route"),
@@ -869,7 +903,9 @@ _INTENT_SYSTEM = (
     "                user's implicit operational goal. Reason here BEFORE choosing intent.\n"
     "2. confidence — Float 0.0–1.0. Certainty of intent mapping.\n"
     "3. intent     — ONE string from the allowed enum. Classification rules:\n"
-    "   'memory_recall'  : user asks what YOU (adwi) remember or know about their personal setup\n"
+    "   'memory_recall'  : user asks what YOU (adwi) remember or know about their personal setup.\n"
+    "                      NOT for searching personal notes/Obsidian/vault — those are\n"
+    "                      'obsidian_search' or 'rag_search'. Only Adwi's own learned memory.\n"
     "   'disk_usage'     : storage/disk space questions ONLY (not RAM/CPU)\n"
     "   'large_files'    : find files exceeding a size threshold\n"
     "   'old_files'      : find files older than a time period\n"
@@ -890,7 +926,29 @@ _INTENT_SYSTEM = (
     "   'capabilities'   : user EXPLICITLY asks what ADWI/YOU can do — must mention 'you', 'adwi',\n"
     "                      'your features', 'your commands', or 'show help'. Questions about\n"
     "                      alternatives, comparisons, recommendations, or subscriptions are NOT this.\n"
-    "   'daily_improve'  : run daily self-improvement routine or make adwi better\n"
+    "   'daily_improve'  : run the daily self-improvement routine. Keywords: 'daily improve',\n"
+    "                      'daily improvement', 'daily routine', 'run daily maintenance'.\n"
+    "                      NOT 'patch_adwi' (which uses aider for code changes).\n"
+    "   'patch_adwi'     : apply code-level changes to adwi source via aider. ONLY when the\n"
+    "                      user says 'aider', 'patch adwi', 'apply patches', 'run aider',\n"
+    "                      'self-patch', or 'auto-patch'. NOT daily_improve (routine).\n"
+    "                      NOT fix_error (which handles pasted exception text).\n"
+    "   'what_next'      : user asks for AI-suggested next improvements or features to build.\n"
+    "                      'what should I build next', 'suggest adwi improvements',\n"
+    "                      'adwi roadmap', 'next feature ideas'. Advisory, not action.\n"
+    "   'inspect_code'   : read and explain an adwi source file. User says 'inspect', 'review',\n"
+    "                      'look at' or 'find bugs in' adwi source code or a specific .py file.\n"
+    "                      'code review adwi', 'inspect adwi_cli.py', 'find bugs in adwi'.\n"
+    "   'youtube'        : summarise or transcribe a YouTube video. User mentions 'youtube'\n"
+    "                      with a URL or with words like 'summarise', 'transcript', 'video'.\n"
+    "                      Also for youtu.be or youtube.com links without a verb.\n"
+    "   'obsidian_search': search the user's personal Obsidian vault (notes). PREFERRED over\n"
+    "                      'memory_recall' when the prompt contains 'vault', 'obsidian',\n"
+    "                      'my notes', or 'note search'. This is the USER's personal notes,\n"
+    "                      NOT Adwi's internal memory about the user's setup.\n"
+    "   'obsidian_daily' : open or append to today's Obsidian daily note or journal entry.\n"
+    "                      'daily note', 'today's note', 'open today's journal'.\n"
+    "                      NOT obsidian_search (which searches across all notes).\n"
     "   'fix_error'      : user pastes an EXACT exception string containing an error class\n"
     "                      (ModuleNotFoundError, TypeError, ValueError, AttributeError, KeyError,\n"
     "                      RuntimeError, etc.) OR an HTTP status code (404, 500, 502).\n"
@@ -898,7 +956,13 @@ _INTENT_SYSTEM = (
     "                      Vague 'why did this break' without error text → use 'self_heal' instead.\n"
     "   'self_heal'      : user says adwi/service is broken or wants general repair WITHOUT pasting\n"
     "                      an actual error message. 'fix my setup', 'adwi is broken', 'repair ollama'.\n"
-    "   'backup_now'     : backup workspace to GitHub, push backup\n"
+    "                      Also: 'something is broken', 'nothing is working', 'self-heal'.\n"
+    "                      'doctor' is ONLY for EXPLICIT deep health-check requests\n"
+    "                      ('run doctor', 'full health check', 'deep diagnostic').\n"
+    "   'backup_now'     : backup workspace to GitHub, push backup. Includes 'push to github',\n"
+    "                      'push my changes', 'save to github', 'commit and push' even when\n"
+    "                      phrased in git terms. Different from 'git_status' which only READS\n"
+    "                      repo state without committing or pushing anything.\n"
     "   'backup_status'  : check when the last backup ran, backup health, recent backup git log.\n"
     "   'backup_log'     : show the full backup history log file.\n"
     "   'image'          : analyze or describe an existing image file path\n"
