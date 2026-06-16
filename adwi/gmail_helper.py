@@ -1,16 +1,16 @@
 """
-Gmail helper for Adwi — Phase 2: read/search/thread/category + archive/trash/mark-read.
+Gmail helper for Adwi — Phase 3: read/search/thread/category + mutation + draft/send.
 Uses OAuth2 with client credentials from secrets.local.env.
 Token stored in secrets/gmail-token.json (never printed).
 
-Scope: gmail.modify — read + archive + trash + mark-read/unread (no send/compose).
+Scope: gmail.modify — covers ALL operations: read, archive, trash, mark-read,
+       create drafts, send drafts. No separate compose/send scope needed.
 
 Phase 2 scope change from readonly → modify:
-  The existing token (if any) has readonly scope and will be rejected.
-  Detection: get_service() checks token scopes and auto-prompts re-auth if needed.
-  User step: run /gmail-auth once to re-authorize with the new scope.
+  Run /gmail-auth once to re-authorize. Scope detection is automatic.
 
-Phase 3 scope expansion (when ready): gmail.compose + gmail.send for drafts/send.
+Phase 3 note: no additional scope change required beyond Phase 2.
+  gmail.modify already covers drafts.create, drafts.send, drafts.delete.
 """
 import json
 import os
@@ -134,7 +134,7 @@ def list_emails(max_results=10, query="", inbox_only=True):
 
 
 def read_email(msg_id: str) -> dict:
-    """Read full text of an email by ID. Includes thread_id."""
+    """Read full text of an email by ID. Includes thread_id and RFC-2822 message_id."""
     service = get_service()
     detail = service.users().messages().get(
         userId="me", id=msg_id, format="full"
@@ -142,13 +142,14 @@ def read_email(msg_id: str) -> dict:
     headers = {h["name"]: h["value"] for h in detail.get("payload", {}).get("headers", [])}
     body = _extract_body(detail.get("payload", {})) or detail.get("snippet", "")
     return {
-        "id":        msg_id,
-        "thread_id": detail.get("threadId", ""),
-        "subject":   headers.get("Subject", "(no subject)"),
-        "from":      headers.get("From", ""),
-        "to":        headers.get("To", ""),
-        "date":      headers.get("Date", ""),
-        "body":      body[:5000],
+        "id":         msg_id,
+        "thread_id":  detail.get("threadId", ""),
+        "subject":    headers.get("Subject", "(no subject)"),
+        "from":       headers.get("From", ""),
+        "to":         headers.get("To", ""),
+        "date":       headers.get("Date", ""),
+        "message_id": headers.get("Message-ID", ""),  # RFC-2822 ID for In-Reply-To threading
+        "body":       body[:5000],
     }
 
 
@@ -258,3 +259,195 @@ def mark_read(msg_ids: list) -> int:
 def mark_unread(msg_ids: list) -> int:
     """Mark messages as unread (add UNREAD label). Returns count modified."""
     return _batch_modify(msg_ids, add_labels=["UNREAD"])
+
+
+# ── Phase 3: draft / send helpers (gmail.modify scope covers all of these) ───
+
+def _build_raw_message(to: str, subject: str, body: str,
+                        in_reply_to: str = "", references: str = "") -> str:
+    """Build a base64url-encoded MIME message string for the Gmail API."""
+    from email.mime.text import MIMEText
+    msg = MIMEText(body, "plain", "utf-8")
+    msg["To"]      = to
+    msg["Subject"] = subject
+    if in_reply_to:
+        msg["In-Reply-To"] = in_reply_to
+        msg["References"]  = references or in_reply_to
+    return base64.urlsafe_b64encode(msg.as_bytes()).decode()
+
+
+def create_draft_reply(reply_to_msg_id: str, message_id_header: str,
+                        thread_id: str, to: str, subject: str, body: str) -> dict:
+    """Create a Gmail draft reply in the same thread. Returns draft context dict."""
+    service = get_service()
+    subj = subject if subject.lower().startswith("re:") else f"Re: {subject}"
+    raw  = _build_raw_message(to, subj, body,
+                               in_reply_to=message_id_header,
+                               references=message_id_header)
+    body_payload = {"message": {"raw": raw}}
+    if thread_id:
+        body_payload["message"]["threadId"] = thread_id
+    draft = service.users().drafts().create(userId="me", body=body_payload).execute()
+    return {
+        "draft_id":   draft["id"],
+        "thread_id":  thread_id,
+        "message_id": message_id_header,
+        "to":         to,
+        "subject":    subj,
+        "body":       body,
+        "mode":       "reply",
+    }
+
+
+def create_draft_compose(to: str, subject: str, body: str) -> dict:
+    """Create a Gmail draft for a new (non-reply) email. Returns draft context dict."""
+    service = get_service()
+    raw   = _build_raw_message(to, subject, body)
+    draft = service.users().drafts().create(
+        userId="me",
+        body={"message": {"raw": raw}}
+    ).execute()
+    return {
+        "draft_id":  draft["id"],
+        "thread_id": None,
+        "to":        to,
+        "subject":   subject,
+        "body":      body,
+        "mode":      "compose",
+    }
+
+
+def get_draft(draft_id: str) -> dict:
+    """Fetch draft details from Gmail. Returns subject/to/body dict."""
+    service = get_service()
+    d = service.users().drafts().get(userId="me", id=draft_id, format="full").execute()
+    msg = d.get("message", {})
+    headers = {h["name"]: h["value"]
+               for h in msg.get("payload", {}).get("headers", [])}
+    body = _extract_body(msg.get("payload", {})) or msg.get("snippet", "")
+    return {
+        "draft_id": d["id"],
+        "to":       headers.get("To", ""),
+        "subject":  headers.get("Subject", ""),
+        "body":     body[:3000],
+    }
+
+
+def send_draft(draft_id: str) -> dict:
+    """Send an existing Gmail draft. Returns sent message info dict."""
+    service = get_service()
+    return service.users().drafts().send(
+        userId="me",
+        body={"id": draft_id}
+    ).execute()
+
+
+def delete_draft(draft_id: str) -> None:
+    """Delete a Gmail draft (permanent — moves to Trash area, not inbox)."""
+    service = get_service()
+    service.users().drafts().delete(userId="me", id=draft_id).execute()
+
+
+def update_draft(draft_id: str, to: str, subject: str, body: str,
+                  thread_id: str = None, message_id_header: str = None) -> dict:
+    """Replace the content of an existing Gmail draft in-place. Returns updated context dict."""
+    service = get_service()
+    raw = _build_raw_message(to, subject, body,
+                              in_reply_to=message_id_header or "",
+                              references=message_id_header or "")
+    body_payload = {"message": {"raw": raw}}
+    if thread_id:
+        body_payload["message"]["threadId"] = thread_id
+    result = service.users().drafts().update(
+        userId="me", id=draft_id, body=body_payload
+    ).execute()
+    return {
+        "draft_id":   result["id"],
+        "to":         to,
+        "subject":    subject,
+        "body":       body,
+        "thread_id":  thread_id,
+        "message_id": message_id_header,
+    }
+
+
+# ── Phase 4: contact resolution ───────────────────────────────────────────────
+
+def resolve_contact(name: str, max_candidates: int = 5) -> list:
+    """
+    Resolve a display name to email addresses using Gmail sent/received history.
+    Returns list of dicts: [{"email": "...", "display": "...", "count": N}, ...]
+    sorted by frequency (most-emailed first).
+    """
+    import re as _re
+    from collections import Counter
+
+    service = get_service()
+    name_lower = name.lower()
+
+    def _parse_address(header_val: str) -> list:
+        """Parse one or more 'Display <email>' entries from a header value."""
+        found = []
+        for part in header_val.split(","):
+            part = part.strip()
+            email_m = _re.search(r"<([^>]+@[^>]+)>", part) or _re.search(r"(\S+@\S+\.\S+)", part)
+            if not email_m:
+                continue
+            email_addr = email_m.group(1).strip().lower()
+            disp_m = _re.match(r'^"?(.+?)"?\s*<', part.strip())
+            display = disp_m.group(1).strip() if disp_m else email_addr.split("@")[0]
+            # Only include if name word appears in display name or email prefix
+            if (_re.search(r'\b' + _re.escape(name_lower) + r'\b', display.lower()) or
+                    _re.search(r'\b' + _re.escape(name_lower) + r'\b', email_addr.split("@")[0])):
+                found.append((email_addr, display))
+        return found
+
+    email_counter: Counter = Counter()
+    email_display: dict    = {}
+
+    # Search sent mail
+    try:
+        sent = service.users().messages().list(
+            userId="me", q=f"to:{name} in:sent", maxResults=20
+        ).execute()
+        for msg in (sent.get("messages") or []):
+            detail = service.users().messages().get(
+                userId="me", id=msg["id"], format="metadata",
+                metadataHeaders=["To"]
+            ).execute()
+            headers = {h["name"]: h["value"]
+                       for h in detail.get("payload", {}).get("headers", [])}
+            for email_addr, display in _parse_address(headers.get("To", "")):
+                email_counter[email_addr] += 1
+                if email_addr not in email_display:
+                    email_display[email_addr] = display
+    except Exception:
+        pass
+
+    # Search received mail
+    try:
+        rcvd = service.users().messages().list(
+            userId="me", q=f"from:{name}", maxResults=15
+        ).execute()
+        for msg in (rcvd.get("messages") or []):
+            detail = service.users().messages().get(
+                userId="me", id=msg["id"], format="metadata",
+                metadataHeaders=["From"]
+            ).execute()
+            headers = {h["name"]: h["value"]
+                       for h in detail.get("payload", {}).get("headers", [])}
+            for email_addr, display in _parse_address(headers.get("From", "")):
+                email_counter[email_addr] += 1
+                if email_addr not in email_display:
+                    email_display[email_addr] = display
+    except Exception:
+        pass
+
+    candidates = []
+    for email_addr, count in email_counter.most_common(max_candidates):
+        candidates.append({
+            "email":   email_addr,
+            "display": email_display.get(email_addr, email_addr.split("@")[0]),
+            "count":   count,
+        })
+    return candidates

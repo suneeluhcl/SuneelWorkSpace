@@ -42,11 +42,17 @@
     "/gmail-archive",
     "/gmail-auth",
     "/gmail-cancel",
+    "/gmail-cancel-draft",
+    "/gmail-compose",
     "/gmail-confirm",
+    "/gmail-draft-reply",
     "/gmail-mark-read",
     "/gmail-mark-unread",
     "/gmail-promos",
     "/gmail-read",
+    "/gmail-rewrite",
+    "/gmail-send-draft",
+    "/gmail-show-draft",
     "/gmail-social",
     "/gmail-spam",
     "/gmail-summarize",
@@ -214,5 +220,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-16",
-  "_hash": "10bb5cb0004cc0c8"
+  "_hash": "21433558447190f9"
 }

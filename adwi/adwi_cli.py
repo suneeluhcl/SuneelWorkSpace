@@ -793,6 +793,31 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(bechmark|benchamrk|benchmarck)\b", re.I), "benchmark"),
     (re.compile(r"(benchmark|speed.?test|how fast|tokens? per second).{0,20}(adwi|model|local|ollama)\b", re.I), "benchmark"),
 
+    # ── Gmail Phase 4: rewrite intent — MUST precede Phase 3 send/cancel patterns ──────────
+    # Requires "it/the draft/the reply/this" + a style word, or "mention/add X to the draft"
+    (re.compile(r"\b(?:make|rewrite|revise|edit)\b.{0,20}\b(?:it|the\s+draft|the\s+reply|this|the\s+email)\b.{0,40}\b(?:shorter|longer|brief(?:er)?|concis(?:e|er)|professional(?:ly)?|formal(?:ly)?|casual(?:ly)?|warm(?:er|ly)?|friendli(?:er)?|direct(?:ly)?|clear(?:er)?)\b", re.I), "gmail_rewrite_draft"),
+    (re.compile(r"\b(?:mention|add|include)\b.{0,50}\b(?:in|to)\s+(?:the\s+)?(?:draft|reply|email|message)\b", re.I), "gmail_rewrite_draft"),
+
+    # ── Gmail Phase 3: draft / send intents — MUST precede Phase 2 mutation patterns ──────
+    # gmail_send_draft — anchored bare forms; also "send the draft" (requires "draft" word)
+    (re.compile(r"^send\s+(?:it|the\s+draft|that|this)\s*$", re.I), "gmail_send_draft"),
+    (re.compile(r"^(?:go\s+ahead\s+and\s+)?send(?:\s+it|\s+the\s+draft|\s+now)\s*$", re.I), "gmail_send_draft"),
+    (re.compile(r"\bsend\b.{0,20}\b(?:the\s+)?draft\b", re.I), "gmail_send_draft"),
+    (re.compile(r"\bsend\b.{0,15}\b(?:the\s+)?(?:reply|response)\b", re.I), "gmail_send_draft"),
+    # gmail_cancel_draft — requires "draft" qualifier (more specific than bare gmail_cancel)
+    (re.compile(r"\b(?:cancel|discard|delete|clear|abort)\b.{0,20}\b(?:the\s+)?draft\b", re.I), "gmail_cancel_draft"),
+    (re.compile(r"\b(?:forget|throw\s+away)\b.{0,20}\b(?:the\s+)?draft\b", re.I), "gmail_cancel_draft"),
+    # gmail_show_draft
+    (re.compile(r"\b(?:show|display|view|preview|read)\b.{0,20}\b(?:the\s+|my\s+)?draft\b", re.I), "gmail_show_draft"),
+    (re.compile(r"\bwhat(?:\s+does)?.{0,20}(?:the\s+)?draft\b", re.I), "gmail_show_draft"),
+    # gmail_draft_reply — "draft a reply", "reply saying X", "write back saying X"
+    (re.compile(r"\bdraft\b.{0,20}\b(?:a\s+)?reply\b", re.I), "gmail_draft_reply"),
+    (re.compile(r"\breply\b.{0,30}\b(?:saying|that|with|to\s+(?:it|this|that|the\s+email|the\s+thread))\b", re.I), "gmail_draft_reply"),
+    (re.compile(r"\b(?:respond|write\s+back)\b.{0,30}\b(?:saying|that|to\s+(?:it|this|that))\b", re.I), "gmail_draft_reply"),
+    # gmail_compose — "compose an email to X", "email X saying Y", "write an email to X"
+    (re.compile(r"\b(?:compose|write)\b.{0,20}\b(?:an?\s+)?(?:new\s+)?(?:email|mail|message)\b", re.I), "gmail_compose"),
+    (re.compile(r"\bemail\b.{0,40}\b(?:saying|to\s+say|to\s+tell|that)\b", re.I), "gmail_compose"),
+
     # ── Gmail Phase 2: mutation intents — MUST precede gmail_open / gmail_list_category ──
     # gmail_confirm — anchored bare inputs; dispatch checks _GMAIL_CTX["pending"] before acting
     (re.compile(r"^confirm\s*$", re.I), "gmail_confirm"),
@@ -1055,6 +1080,8 @@ _ALL_INTENTS = [
     "gmail", "gmail_read", "gmail_open", "gmail_thread", "gmail_summarize", "gmail_list_category",
     "gmail_archive", "gmail_trash", "gmail_mark_read", "gmail_mark_unread",
     "gmail_confirm", "gmail_cancel",
+    "gmail_draft_reply", "gmail_compose", "gmail_show_draft",
+    "gmail_send_draft", "gmail_cancel_draft", "gmail_rewrite_draft",
     # n8n / automation
     "sync",
     # Nightly
@@ -1132,6 +1159,17 @@ _INTENT_SYSTEM = (
     "   'gmail_confirm'  : ONLY if there is a pending Gmail mutation action to execute\n"
     "                      bare 'confirm', 'yes do it' — confirms archive/trash/mark-read\n"
     "   'gmail_cancel'   : cancel a pending Gmail mutation — 'cancel', 'never mind'\n"
+    "   'gmail_draft_reply': draft a reply to the current email — 'reply saying X', 'draft a reply'\n"
+    "                      ALWAYS draft-first, never auto-send. Requires 'send it' to send.\n"
+    "   'gmail_compose'  : compose a new email draft — 'email X saying Y', 'compose an email to X'\n"
+    "                      ALWAYS draft-first, never auto-send.\n"
+    "   'gmail_show_draft': show the current pending draft — 'show the draft', 'what does the draft say'\n"
+    "   'gmail_send_draft': send the current draft after user review — 'send it', 'send the draft'\n"
+    "                      Only valid when a draft is pending. Requires explicit confirmation.\n"
+    "   'gmail_cancel_draft': cancel/delete the current draft — 'cancel the draft', 'discard the draft'\n"
+    "   'gmail_rewrite_draft': rewrite/update the current draft body — 'make it shorter',\n"
+    "                      'rewrite it professionally', 'mention that I can do Friday'\n"
+    "                      Always requires a current draft. Shows updated preview after rewrite.\n"
     "   'generate_image' : ONLY when creating a brand-new image/picture/artwork/visual output.\n"
     "                      NEVER for explanations, comparisons, or code/model concepts.\n"
     "                      'generation' as a software concept (code generation, token generation,\n"
@@ -1441,6 +1479,20 @@ def quick_local(prompt, model=MODEL_FAST) -> str:
             return strip_think(json.load(resp).get("message",{}).get("content",""))
     except Exception as e:
         return f"ERROR: {e}"
+
+def _llm_generate(prompt: str, system: str = None, max_tokens: int = 600) -> str:
+    """Non-streaming main-model call for silent content generation. Returns text."""
+    m = load_routing().get("ADWI_LOCAL_MODEL", MODEL_MAIN)
+    sys_msg = system or "You are Adwi, Suneel's personal AI assistant. Be concise and practical."
+    msgs = [{"role": "system", "content": sys_msg},
+            {"role": "user",   "content": "/no_think\n" + prompt}]
+    req = _ollama_chat(m, msgs, stream=False, max_tokens=max_tokens, ctx=4096)
+    try:
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            return strip_think(redact(json.load(resp).get("message", {}).get("content", "")))
+    except Exception as e:
+        return f"[LLM error: {e}]"
+
 
 # ── Cloud (Open WebUI / Gemini) ───────────────────────────────────────────────
 def call_cloud(prompt, messages=None, model=None) -> str:
@@ -3169,12 +3221,13 @@ _GMAIL_IDS: list = []       # ephemeral id list for /gmail-read <n>
 _GMAIL_SUBJECTS: list = []  # parallel subject list for "open this email [subject]" lookup
 
 _GMAIL_CTX: dict = {
-    "current_email":  None,  # full email dict — set by cmd_gmail_read / cmd_gmail_open
-    "current_thread": None,  # full thread dict — set by cmd_gmail_thread
-    "thread_ids":     [],    # thread IDs parallel to _GMAIL_IDS
-    "candidates":     [],    # candidate email dicts from last list/category (Phase 2)
-    "draft":          None,  # current draft (Phase 3)
-    "pending":        None,  # pending mutation (Phase 2): {action, ids, count, description}
+    "current_email":    None,  # full email dict — set by cmd_gmail_read / cmd_gmail_open
+    "current_thread":   None,  # full thread dict — set by cmd_gmail_thread
+    "thread_ids":       [],    # thread IDs parallel to _GMAIL_IDS
+    "candidates":       [],    # candidate email dicts from last list/category (Phase 2)
+    "draft":            None,  # current draft (Phase 3): {draft_id, to, subject, body, mode, …}
+    "pending":          None,  # pending mutation (Phase 2): {action, ids, count, description}
+    "pending_recipient": None, # Phase 4: {name, instruction, candidates, mode, subject}
 }
 
 _GMAIL_ACTION_PAST = {
@@ -3570,6 +3623,328 @@ def cmd_gmail_cancel() -> None:
     desc = pending.get("description", "pending action")
     _GMAIL_CTX["pending"] = None
     cprint(f"  Cancelled: {desc}", GRAY)
+
+
+
+# ── Gmail Phase 3: draft / send commands ─────────────────────────────────────
+
+def _gmail_draft_preview(draft_ctx: dict) -> None:
+    """Render a draft preview box from a draft context dict."""
+    W = 60
+    mode    = draft_ctx.get("mode", "compose").title()
+    to      = (draft_ctx.get("to") or "")[:W-4]
+    subject = (draft_ctx.get("subject") or "")[:W-4]
+    body    = (draft_ctx.get("body") or "").strip()
+    lines   = body.splitlines()
+    cprint(f"\n  ┌{'─'*W}┐", GRAY)
+    cprint(f"  │  {BOLD}Draft {mode:<{W-10}}{RESET}│")
+    cprint(f"  ├{'─'*W}┤", GRAY)
+    cprint(f"  │  {CYAN}To:{RESET}      {to:<{W-11}}{RESET}│")
+    cprint(f"  │  {CYAN}Subject:{RESET} {subject:<{W-11}}{RESET}│")
+    cprint(f"  ├{'─'*W}┤", GRAY)
+    for ln in lines[:8]:
+        cprint(f"  │  {DIM}{ln[:W-4]:<{W-4}}{RESET}│")
+    if len(lines) > 8:
+        more = f"… {len(lines)-8} more lines"
+        cprint(f"  │  {GRAY}{more:<{W-4}}{RESET}│")
+    cprint(f"  ├{'─'*W}┤", GRAY)
+    hint = "Type 'send it' to send · 'cancel the draft' to discard"
+    cprint(f"  │  {YELLOW}{hint:<{W-2}}{RESET}│")
+    cprint(f"  └{'─'*W}┘\n", GRAY)
+
+
+def cmd_gmail_draft_reply(text: str = "") -> None:
+    """Draft a reply to the current email. LLM generates body; shows preview; waits for send."""
+    token = HOME / "SuneelWorkSpace" / "secrets" / "gmail-token.json"
+    if not token.exists():
+        cprint("  Gmail not authorized — run /gmail-auth first", RED); return
+    em = _GMAIL_CTX.get("current_email")
+    if not em:
+        cprint("  No current email — open an email first, then say 'reply saying X'.", YELLOW); return
+    adwi_head("Gmail — Draft Reply")
+    # Strip meta-preamble to get the reply instruction
+    instruction = re.sub(
+        r"^\s*(?:draft\s+a?\s*)?(?:reply|response|write\s+back)\s*(?:saying|that|with|to\s+(?:it|this|that))?\s*",
+        "", text, flags=re.I
+    ).strip()
+    if not instruction:
+        cprint("  What should the reply say?  e.g. 'reply saying I can do Friday'", YELLOW); return
+    cprint(f"  {GRAY}Generating draft…{RESET}")
+    prompt = (
+        f"Write a concise professional email reply.\n"
+        f"Original email:\n"
+        f"  From: {em.get('from','')}\n"
+        f"  Subject: {em.get('subject','')}\n"
+        f"  Body:\n{em.get('body','')[:800]}\n\n"
+        f"Reply instruction: {instruction}\n\n"
+        f"Output ONLY the email body text. No subject line. Start directly with the reply content."
+    )
+    body = _llm_generate(prompt, system="You are drafting a professional email reply for Suneel. Output only the email body. Be brief and natural.")
+    if not body or body.startswith("[LLM error"):
+        cprint(f"  Could not generate reply body: {body}", RED); return
+    try:
+        gh        = _gmail()
+        to        = em.get("from", "")
+        subject   = em.get("subject", "(no subject)")
+        msg_hdr   = em.get("message_id", "")
+        thread_id = em.get("thread_id", "")
+        draft_ctx = gh.create_draft_reply(
+            reply_to_msg_id   = em["id"],
+            message_id_header = msg_hdr,
+            thread_id         = thread_id,
+            to                = to,
+            subject           = subject,
+            body              = body,
+        )
+        _GMAIL_CTX["draft"] = draft_ctx
+        _gmail_draft_preview(draft_ctx)
+    except Exception as e:
+        cprint(f"  Error creating draft: {e}", RED)
+
+
+def cmd_gmail_compose(text: str = "") -> None:
+    """Compose a new email draft with contact-name resolution. Shows preview; waits for send."""
+    token = HOME / "SuneelWorkSpace" / "secrets" / "gmail-token.json"
+    if not token.exists():
+        cprint("  Gmail not authorized — run /gmail-auth first", RED); return
+    adwi_head("Gmail — Compose Draft")
+    # Extract recipient name/address and compose instruction from text
+    to_m   = re.search(r"\b(?:email|to|message)\s+(\w[\w\s.]{0,30}?)\s+(?:saying|about|that|to\s+say|regarding)", text, re.I)
+    inst_m = re.search(r"\b(?:saying|about|that|to\s+say|regarding)\s+(.+?)(?:[?.]|$)", text, re.I)
+    to_raw      = to_m.group(1).strip() if to_m else ""
+    instruction = inst_m.group(1).strip() if inst_m else re.sub(
+        r"^(?:compose|write|draft|email|message)\b.{0,25}?\s+", "", text, flags=re.I).strip()
+    if not to_raw:
+        to_raw = input(f"  {YELLOW}To (name or email):{RESET} ").strip()
+        if not to_raw:
+            cprint("  Cancelled.", GRAY); return
+    # Resolve recipient via Gmail history (Phase 4)
+    cprint(f"  {GRAY}Looking up {to_raw!r}…{RESET}")
+    resolved, candidates = _gmail_resolve_recipient(to_raw)
+    if resolved:
+        if not instruction:
+            instruction = input(f"  {YELLOW}What should the email say?{RESET} ").strip()
+            if not instruction:
+                cprint("  Cancelled.", GRAY); return
+        _gmail_do_compose(resolved, instruction[:60].rstrip(".,?!"), instruction)
+    elif candidates:
+        # Disambiguation — show numbered list, save state
+        cprint(f"\n  Multiple contacts named {to_raw!r}:", YELLOW)
+        for i, c in enumerate(candidates, 1):
+            cnt_str = f"  ({c['count']} messages)" if c.get("count") else ""
+            cprint(f"  {i}. {c['display']} <{c['email']}>{cnt_str}", "")
+        cprint(f"\n  {YELLOW}Type a number to choose{RESET}")
+        if not instruction:
+            instruction = input(f"  {YELLOW}What should the email say?{RESET} ").strip()
+        _GMAIL_CTX["pending_recipient"] = {
+            "name":        to_raw,
+            "instruction": instruction,
+            "candidates":  candidates,
+            "mode":        "compose",
+            "subject":     instruction[:60].rstrip(".,?!"),
+        }
+    else:
+        # No match — fall back to manual entry
+        cprint(f"  No contacts found for {to_raw!r} in your Gmail history.", YELLOW)
+        email = input(f"  {YELLOW}Enter email address:{RESET} ").strip()
+        if not email or "@" not in email:
+            cprint("  Need a valid email address. Cancelled.", YELLOW); return
+        if not instruction:
+            instruction = input(f"  {YELLOW}What should the email say?{RESET} ").strip()
+            if not instruction:
+                cprint("  Cancelled.", GRAY); return
+        _gmail_do_compose(email, instruction[:60].rstrip(".,?!"), instruction)
+
+
+
+# ── Gmail Phase 4: contact resolution + draft rewrite helpers ─────────────────
+
+def _extract_rewrite_instruction(text: str) -> str:
+    """Strip compose meta-preamble from a rewrite instruction string."""
+    cleaned = re.sub(
+        r"^\s*(?:make|rewrite|revise|edit|update)\s+(?:it|the\s+(?:draft|reply|email|message)|this)?\s*(?:to\s+(?:be\s+)?|more\s+)?",
+        "", text, flags=re.I
+    ).strip()
+    cleaned = re.sub(
+        r"\s+(?:in|to)\s+(?:the\s+)?(?:draft|reply|email|message)\s*$",
+        "", cleaned, flags=re.I
+    ).strip()
+    return cleaned or text.strip()
+
+
+def _gmail_resolve_recipient(name_or_email: str) -> tuple:
+    """
+    Resolve a recipient name to email addresses using Gmail history.
+    Returns (resolved_str_or_None, candidates_list).
+    resolved_str is set when exactly one match is found.
+    candidates_list is non-empty when the match is ambiguous.
+    """
+    if "@" in name_or_email:
+        return name_or_email, []
+    try:
+        gh         = _gmail()
+        candidates = gh.resolve_contact(name_or_email)
+    except Exception as e:
+        cprint(f"  {GRAY}Contact lookup failed: {e}{RESET}")
+        return None, []
+    if len(candidates) == 1:
+        return candidates[0]["email"], []
+    elif len(candidates) > 1:
+        return None, candidates
+    return None, []
+
+
+def _gmail_do_compose(to: str, subject: str, instruction: str) -> None:
+    """Core draft-creation step after recipient is fully resolved."""
+    cprint(f"  {GRAY}Generating draft…{RESET}")
+    prompt = (
+        f"Write a concise professional email.\n"
+        f"To: {to}\n"
+        f"Content instruction: {instruction}\n\n"
+        f"Output ONLY the email body text. No subject line. Be natural and brief."
+    )
+    body = _llm_generate(
+        prompt,
+        system="You are drafting a professional email for Suneel. Output only the body text, no subject line."
+    )
+    if not body or body.startswith("[LLM error"):
+        cprint(f"  Could not generate draft: {body}", RED); return
+    try:
+        gh        = _gmail()
+        draft_ctx = gh.create_draft_compose(to=to, subject=subject, body=body)
+        _GMAIL_CTX["draft"] = draft_ctx
+        _gmail_draft_preview(draft_ctx)
+    except Exception as e:
+        cprint(f"  Error creating draft: {e}", RED)
+
+
+def cmd_gmail_recipient_choice(selection: int) -> None:
+    """Handle a bare-number selection from recipient disambiguation list."""
+    pr = _GMAIL_CTX.get("pending_recipient")
+    if not pr:
+        cprint("  No active recipient disambiguation.", GRAY); return
+    candidates = pr.get("candidates", [])
+    idx = selection - 1
+    if idx < 0 or idx >= len(candidates):
+        cprint(f"  Please choose a number between 1 and {len(candidates)}.", YELLOW); return
+    chosen  = candidates[idx]
+    to      = chosen["email"]
+    display = chosen.get("display", to.split("@")[0])
+    cprint(f"  ✓ Recipient: {display} <{to}>", GREEN)
+    _GMAIL_CTX["pending_recipient"] = None
+    instruction = pr.get("instruction", "")
+    subject     = pr.get("subject", instruction[:60].rstrip(".,?!"))
+    if not instruction:
+        instruction = input(f"  {YELLOW}What should the email say?{RESET} ").strip()
+        if not instruction:
+            cprint("  Cancelled.", GRAY); return
+        subject = instruction[:60].rstrip(".,?!")
+    _gmail_do_compose(to, subject, instruction)
+
+
+def cmd_gmail_rewrite_draft(text: str = "") -> None:
+    """Rewrite the current draft body per instruction, update Gmail draft, show new preview."""
+    draft = _GMAIL_CTX.get("draft")
+    if not draft:
+        cprint("  No current draft. Create one with 'reply saying X' or 'compose an email to X'.", YELLOW); return
+    instruction = _extract_rewrite_instruction(text)
+    if not instruction or len(instruction) < 3:
+        instruction = input(f"  {YELLOW}Rewrite instruction (e.g. 'shorter', 'more professional'):{RESET} ").strip()
+        if not instruction:
+            cprint("  Cancelled.", GRAY); return
+    adwi_head("Gmail — Rewrite Draft")
+    cprint(f"  {GRAY}Rewriting: {instruction!r}…{RESET}")
+    current_body = draft.get("body", "")
+    prompt = (
+        f"Rewrite this email body according to the instruction.\n"
+        f"Keep the same factual content unless the instruction says to add or change specific information.\n\n"
+        f"Original email body:\n{current_body}\n\n"
+        f"Rewrite instruction: {instruction}\n\n"
+        f"Output ONLY the rewritten email body. No subject line."
+    )
+    new_body = _llm_generate(
+        prompt,
+        system="You are rewriting an email draft for Suneel. Output only the new body text. No subject line."
+    )
+    if not new_body or new_body.startswith("[LLM error"):
+        cprint(f"  Rewrite failed: {new_body}", RED); return
+    # Update draft in Gmail
+    try:
+        gh       = _gmail()
+        draft_id = draft["draft_id"]
+        gh.update_draft(
+            draft_id, draft["to"], draft["subject"], new_body,
+            thread_id=draft.get("thread_id"),
+            message_id_header=draft.get("message_id", ""),
+        )
+    except Exception as e:
+        cprint(f"  {YELLOW}Gmail draft update failed ({e}) — preview reflects new content.{RESET}")
+    # Always update local context and show preview
+    _GMAIL_CTX["draft"]["body"] = new_body
+    cprint(f"  ✓ Draft rewritten", GREEN)
+    _gmail_draft_preview(_GMAIL_CTX["draft"])
+
+
+def cmd_gmail_show_draft() -> None:
+    """Show the current pending draft."""
+    draft = _GMAIL_CTX.get("draft")
+    if not draft:
+        cprint("  No current draft. Use 'reply saying X' or 'compose an email to X'.", YELLOW); return
+    adwi_head("Gmail — Current Draft")
+    _gmail_draft_preview(draft)
+
+
+def cmd_gmail_send_draft() -> None:
+    """Send the current pending draft after one inline confirmation."""
+    draft = _GMAIL_CTX.get("draft")
+    if not draft:
+        if _GMAIL_CTX.get("pending"):
+            cprint("  No draft to send. Did you mean 'confirm' to apply your pending Gmail action?", YELLOW)
+        else:
+            cprint("  No draft. Create one with 'reply saying X' or 'compose an email to X'.", YELLOW)
+        return
+    draft_id = draft.get("draft_id")
+    to       = draft.get("to", "")
+    subject  = draft.get("subject", "")
+    adwi_head("Gmail — Send Draft")
+    cprint(f"  To:      {to}", "")
+    cprint(f"  Subject: {subject}", "")
+    ans = input(f"  {YELLOW}Send this email? (y/n){RESET} ").strip().lower()
+    if ans not in ("y", "yes"):
+        cprint("  Cancelled — draft still saved in Gmail.", GRAY); return
+    try:
+        gh     = _gmail()
+        result = gh.send_draft(draft_id)
+        _GMAIL_CTX["draft"] = None
+        cprint(f"  ✓ Sent (id: {result.get('id','?')[:16]}…)", GREEN)
+    except Exception as e:
+        cprint(f"  Send failed: {e}", RED)
+        if "403" in str(e) or "scope" in str(e).lower() or "Insufficient" in str(e):
+            cprint("  Scope issue — run /gmail-auth to re-authorize with gmail.modify.", YELLOW)
+
+
+def cmd_gmail_cancel_draft() -> None:
+    """Cancel and delete the current pending draft from Gmail."""
+    draft = _GMAIL_CTX.get("draft")
+    if not draft:
+        cprint("  No current draft.", GRAY); return
+    draft_id = draft.get("draft_id")
+    to       = (draft.get("to") or "")[:50]
+    subject  = (draft.get("subject") or "")[:50]
+    adwi_head("Gmail — Cancel Draft")
+    cprint(f"  Draft to: {to} — Subject: {subject}", GRAY)
+    ans = input(f"  {YELLOW}Delete this draft? (y/n){RESET} ").strip().lower()
+    if ans not in ("y", "yes"):
+        cprint("  Kept.", GRAY); return
+    try:
+        if draft_id:
+            gh = _gmail()
+            gh.delete_draft(draft_id)
+    except Exception as e:
+        cprint(f"  Error deleting draft from Gmail: {e}", RED)
+    finally:
+        _GMAIL_CTX["draft"] = None  # Always clear local state
+        cprint("  Draft cancelled.", GRAY)
 
 
 def cmd_gmail_summary(query: str = "") -> None:
@@ -5553,9 +5928,31 @@ def dispatch_natural(text: str):
     elif intent == "gmail_mark_unread":
         cmd_gmail_mark_unread(text)
     elif intent == "gmail_confirm":
-        cmd_gmail_confirm()
+        # Context-aware: confirm pending mutation (Phase 2) OR send pending draft (Phase 3)
+        if _GMAIL_CTX.get("pending"):
+            cmd_gmail_confirm()
+        elif _GMAIL_CTX.get("draft"):
+            cmd_gmail_send_draft()
+        else:
+            cprint("  No pending Gmail action or draft to confirm.", YELLOW)
     elif intent == "gmail_cancel":
         cmd_gmail_cancel()
+    elif intent == "gmail_draft_reply":
+        instruction = re.sub(
+            r"^\s*(?:draft\s+a?\s*)?(?:reply|response|write\s+back)\s*(?:saying|that|with|to\s+(?:it|this|that))?\s*",
+            "", text, flags=re.I
+        ).strip() or text
+        cmd_gmail_draft_reply(instruction)
+    elif intent == "gmail_compose":
+        cmd_gmail_compose(text)
+    elif intent == "gmail_show_draft":
+        cmd_gmail_show_draft()
+    elif intent == "gmail_send_draft":
+        cmd_gmail_send_draft()
+    elif intent == "gmail_cancel_draft":
+        cmd_gmail_cancel_draft()
+    elif intent == "gmail_rewrite_draft":
+        cmd_gmail_rewrite_draft(text)
     elif intent == "gmail_read":
         if re.search(r"\bthis\s+(email|mail|message)\b", text, re.I):
             frag = re.sub(r".*?\bthis\s+(email|mail|message)\s*", "", text, flags=re.I).strip()
@@ -5680,6 +6077,11 @@ def handle(line: str) -> bool:
     line = line.strip()
     if not line: return True
     low = line.lower()
+
+    # Phase 4: recipient disambiguation — bare digit selection when pending_recipient is set
+    if _GMAIL_CTX.get("pending_recipient") and re.match(r'^[1-9]$', line):
+        cmd_gmail_recipient_choice(int(line))
+        return True
 
     # Detect shell commands typed by mistake into the adwi prompt
     if _SHELL_CMD_RE.match(line) or _SOURCE_CMD_RE.match(line):
@@ -5827,6 +6229,15 @@ def handle(line: str) -> bool:
     elif line.startswith("/gmail-mark-unread "): cmd_gmail_mark_unread(line[19:].strip())
     elif line in ("/gmail-confirm", "/confirm"): cmd_gmail_confirm()
     elif line == "/gmail-cancel": cmd_gmail_cancel()
+    elif line == "/gmail-draft-reply": cmd_gmail_draft_reply("")
+    elif line.startswith("/gmail-draft-reply "): cmd_gmail_draft_reply(line[19:].strip())
+    elif line == "/gmail-compose": cmd_gmail_compose("")
+    elif line.startswith("/gmail-compose "): cmd_gmail_compose(line[15:].strip())
+    elif line == "/gmail-show-draft": cmd_gmail_show_draft()
+    elif line == "/gmail-send-draft": cmd_gmail_send_draft()
+    elif line == "/gmail-cancel-draft": cmd_gmail_cancel_draft()
+    elif line == "/gmail-rewrite": cmd_gmail_rewrite_draft("")
+    elif line.startswith("/gmail-rewrite "): cmd_gmail_rewrite_draft(line[15:].strip())
     # ── Self-repair commands (confirm before patching) ──
     elif line.startswith("/fix-error"): cmd_fix_error(line[10:].strip())
     elif line == "/repair-adwi": cmd_repair_adwi()
