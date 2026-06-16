@@ -1,8 +1,10 @@
 #!/bin/zsh
 # adwi launcher — uses venv python so instructor/markitdown/faster-whisper are available
+# Unset PYTHONSTARTUP so VS Code's Python extension (pythonrc.py) cannot inject
+# "source .../activate" into the terminal stdin via VS Code shell integration sequences.
 VENV="$HOME/SuneelWorkSpace/adwi/.venv/bin/python3"
 if [[ -x "$VENV" ]]; then
-    exec "$VENV" "$HOME/SuneelWorkSpace/adwi/adwi_cli.py" "$@"
+    exec env -u PYTHONSTARTUP "$VENV" "$HOME/SuneelWorkSpace/adwi/adwi_cli.py" "$@"
 else
-    exec python3 "$HOME/SuneelWorkSpace/adwi/adwi_cli.py" "$@"
+    exec env -u PYTHONSTARTUP python3 "$HOME/SuneelWorkSpace/adwi/adwi_cli.py" "$@"
 fi
