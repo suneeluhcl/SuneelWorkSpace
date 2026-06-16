@@ -1,0 +1,27 @@
+{
+  "iteration": 1,
+  "p1": {
+    "passed": 10,
+    "failed": 0,
+    "rate": 1.0,
+    "elapsed": 3.897840976715088,
+    "session_dir": "/Users/MAC/SuneelWorkSpace/logs/simeval/large-20260616-005334",
+    "output": "[large-eval] session: large-20260616-005334\n[large-eval] scenarios: 10 | workers: 2\n  [  10/10]  pass=10 fail=0 warn=0 (100.0%)  4s elapsed\n[large-eval] building reports \u2026\n\n============================================================\nDONE  3.8s  |  10 scenarios\nPass: 10 (100.0%)  Warn: 0  Fail: 0\nRegex: 8 (80.0%)  LLM: 2\nSafety breaches: 0\nReports: /Users/MAC/SuneelWorkSpace/logs/simeval/large-20260616-005334\n============================================================\n",
+    "script": "run_large_eval.py"
+  },
+  "p2": {
+    "passed": 346,
+    "failed": 89,
+    "rate": 0.7954022988505747,
+    "elapsed": 1552.3599939346313,
+    "session_dir": null,
+    "output": "[p2-eval] session: large-p2-20260616-005338  scenarios: 446\n  [ 100/446]  pass=91 fail=4 warn=5 (91.0%)  333s\n  [ 200/446]  pass=166 fail=29 warn=5 (83.0%)  718s\n  [ 300/446]  pass=230 fail=62 warn=8 (76.7%)  1086s\n  [ 400/446]  pass=312 fail=78 warn=10 (78.0%)  1367s\n  [ 446/446]  pass=346 fail=89 warn=11 (77.6%)  1552s\n\n============================================================\nPASS 2 DONE  1552.2s  |  446 scenarios\nPass: 346 (77.6%)  Fail: 89\nRegex: 84  Session: /Users/MAC/SuneelWorkSpace/logs/simeval/large-p2-20260616-005338\n============================================================\n",
+    "script": "run_large_eval_p2.py"
+  },
+  "combined": 0.8,
+  "analysis": {
+    "total_failures": 10,
+    "top_10": "[(('disk_usage', 'unknown'), 10)]"
+  },
+  "patches": []
+}
