@@ -578,6 +578,11 @@ _REGEX_INTENTS = [
     (re.compile(r"\bwhat\b.{0,15}\b(to|can|should)\s+(throw|trash|nuke|discard)\b", re.I), "cleanup"),
     (re.compile(r"\b(clear|clean)\s*out\b", re.I), "cleanup"),
     (re.compile(r"\b(cleaup|cleanup\s+suggestion|cleanup\s+idea)\b", re.I), "cleanup"),
+    # FIX-S3-007: "clean old cache files", "remove leftover installers", "files I no longer need"
+    (re.compile(r"\bclean\b.{0,15}\bold\b.{0,20}\b(cache|log|temp|junk|file)\b", re.I), "cleanup"),
+    (re.compile(r"\b(remove|delete|get rid of)\b.{0,20}\b(leftover|stale|old|outdated)\b.{0,20}\b(installer|cache|file|data)\b", re.I), "cleanup"),
+    (re.compile(r"\bfiles?\b.{0,15}\b(i\s+)?(no\s+longer\s+need|don.t\s+need|don.t\s+use)\b", re.I), "cleanup"),
+    (re.compile(r"\bhelp\b.{0,15}\bclean\s+up\b.{0,20}\b(my\s+)?(drive|disk|mac|machine|computer|system)\b", re.I), "cleanup"),
     (re.compile(r"\b(find|search for|locate|look for)\b.{0,20}\bfiles?\b", re.I), "file_search"),
     (re.compile(r"\bfind (all |every )?.{0,10}\.(py|js|ts|yaml|yml|json|txt|md|sh|toml)\b", re.I), "file_search"),
     (re.compile(r"\bls\b", re.I), "file_list"),
@@ -589,6 +594,9 @@ _REGEX_INTENTS = [
     # FIX-FR-001: "cat memory.py", "read the config file"
     (re.compile(r"\bcat\b.{0,25}\.(py|js|ts|md|yaml|yml|json|txt|sh|toml|cfg)\b", re.I), "file_read"),
     (re.compile(r"\bread\b.{0,30}\b(the\s+)?(main|config|configuration|settings?)\s+(python\s+)?(file|script)\b", re.I), "file_read"),
+    # FIX-S3-002: "show the nightly.py source", "show me adwi/__init__.py" → file_read not inspect_code
+    (re.compile(r"\b(show|display|print)\b.{0,30}\b\w+\.(py|js|ts|sh|md)\b", re.I), "file_read"),
+    (re.compile(r"\b(show|display)\b.{0,15}\b(adwi/|src/|logs?/)\b", re.I), "file_read"),
 
     # ── Doctor — BEFORE status (Bug 3 companion: deep check beats shallow) ───────
     (re.compile(r"\b(run doctor|doctor mode)\b", re.I), "doctor"),
@@ -685,6 +693,10 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(what|which)\b.{0,15}\bmodel\b.{0,20}\b(am i|are you|is active|running|using|current|loaded)\b", re.I), "model_status"),
     (re.compile(r"\bmodel\b.{0,15}\b(status|active|current|running|loaded|info)\b", re.I), "model_status"),
     (re.compile(r"\b(show|display)\b.{0,15}\bmodel\b.{0,20}\b(status|info|version)\b", re.I), "model_status"),
+    # FIX-S3-005: "what models are available", "what llm is running", "what version of llama"
+    (re.compile(r"\bwhat\s+(models?|llms?|ollama\s+models?)\s+(are\s+)?(available|loaded|running|installed)\b", re.I), "model_status"),
+    (re.compile(r"\bwhat\s+(llm|model|ai)\s+(is\s+)?(running|loaded|active|current|being\s+used)\b", re.I), "model_status"),
+    (re.compile(r"\bwhat\s+version\s+of\s+(llama|ollama|qwen|mistral|phi|gemma)\b", re.I), "model_status"),
     (re.compile(r"\b(switch|use|change)\b.{0,15}(to\s+)?(local model|local llm|local ai)\b", re.I), "use_local"),
     (re.compile(r"\buse\b.{0,10}\b(qwen|llama|mistral|phi|gemma)\b", re.I), "use_local"),
     (re.compile(r"\b(switch|change|use)\b.{0,15}(to\s+)?(cloud model|cloud api|cloud llm|gemini|openai)\b", re.I), "use_cloud"),
@@ -703,6 +715,9 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(run|use|apply).{0,10}\baider\b", re.I), "patch_adwi"),
     (re.compile(r"\b(self.?patch|auto.?patch)\b.{0,20}(adwi|code|codebase)", re.I), "patch_adwi"),
     (re.compile(r"\bpatch\b.{0,15}\badwi\b", re.I), "patch_adwi"),
+    # FIX-S3-009: typo "patcch adwi" + "apply adwi improvements" imperative
+    (re.compile(r"\bpat[ct]ch\b.{0,15}\badwi\b", re.I), "patch_adwi"),
+    (re.compile(r"\bapply\b.{0,20}\badwi\b.{0,20}\b(improvements?|patches?|fixes?|updates?)\b", re.I), "patch_adwi"),
 
     # ── Inspect code — NHR-008: code review of adwi source files ─────────────────
     (re.compile(r"\b(inspect|review|look at|examine).{0,20}(adwi.{0,10}\.py|adwi.?code|adwi.?source)\b", re.I), "inspect_code"),
@@ -711,6 +726,8 @@ _REGEX_INTENTS = [
 
     # ── Fix error / exception — catches pasted tracebacks and HTTP error codes ────
     (re.compile(r"\b(TypeError|ValueError|KeyError|AttributeError|SyntaxError|ImportError|ModuleNotFoundError|NameError|RuntimeError|IndexError|OSError|IOError|FileNotFoundError|PermissionError|ZeroDivisionError|StopIteration|AssertionError|RecursionError|MemoryError|TimeoutError|ConnectionError|UnicodeError|ValidationError)\b\s*:", re.I), "fix_error"),
+    # FIX-S3-003: exception class name without colon (e.g. "getting ModuleNotFoundError when I run")
+    (re.compile(r"\b(getting|seeing|got|had)\s+(a\s+)?(ModuleNotFoundError|TypeError|ValueError|KeyError|AttributeError|SyntaxError|ImportError|NameError|RuntimeError|IndexError|OSError|FileNotFoundError|PermissionError|ConnectionError|TimeoutError|ValidationError)\b", re.I), "fix_error"),
     (re.compile(r"\b(getting|seeing|got)\b.{0,20}\b(error|exception|traceback)\b", re.I), "fix_error"),
     (re.compile(r"\b\d{3}\s+(not found|bad gateway|forbidden|service unavailable|unauthorized|too many requests|internal server error)\b", re.I), "fix_error"),
     (re.compile(r"\bgetting\s+(a\s+)?\d{3}\b", re.I), "fix_error"),
@@ -753,6 +770,10 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(show|what|are|is)\b.{0,20}\b(recent commits?|unstaged|staged files?|uncommitted|current branch|repo clean)\b", re.I), "git_status"),
     (re.compile(r"\b(what.{0,10}(last|did).{0,10}commit|current branch|git\s+(stat|branch))\b", re.I), "git_status"),
     (re.compile(r"\brepo\b.{0,15}\b(clean|dirty|status|changes)\b", re.I), "git_status"),
+    # FIX-S3-008: "what did I change", "what's modified", "show me what's changed"
+    (re.compile(r"\bwhat\s+(did\s+i|have\s+i).{0,10}(change|modify|edit|commit)\b", re.I), "git_status"),
+    (re.compile(r"\bwhat.{0,5}(is|has|s)\s+(changed|modified|different|staged)\b", re.I), "git_status"),
+    (re.compile(r"\bshow\s+(me\s+)?(what.{0,5}changed|the\s+diff|changes?\s+since)\b", re.I), "git_status"),
 
     # ── Image generation ─────────────────────────────────────────────────────────
     (re.compile(r"(generate|create|draw|make|design).{0,20}(an? )?(image|picture|photo|illustration|artwork)", re.I), "generate_image"),
@@ -766,6 +787,11 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(run|execute|test)\b.{0,15}(this |the )?(python|code|script)\b", re.I), "run_code"),
 
     # ── Benchmark ────────────────────────────────────────────────────────────────
+    # FIX-S3-001: "how fast is llama3.1:8b", typo "bechmark", tokens/sec variants
+    (re.compile(r"\bhow\s+fast\s+(is|does|was|are)\b.{0,30}\b(llama|qwen|mistral|phi|gemma|ollama|adwi|model|llm)\b", re.I), "benchmark"),
+    (re.compile(r"\b(tokens?[/_]s|tok[/_]s|t[/_]s|tps)\b", re.I), "benchmark"),
+    (re.compile(r"\b(inference|llm|model|ollama).{0,20}\b(throughput|latency\s+benchmark|speed\s+test)\b", re.I), "benchmark"),
+    (re.compile(r"\b(bechmark|benchamrk|benchmarck)\b", re.I), "benchmark"),
     (re.compile(r"(benchmark|speed.?test|how fast|tokens? per second).{0,20}(adwi|model|local|ollama)\b", re.I), "benchmark"),
 
     # ── Gmail ────────────────────────────────────────────────────────────────────
@@ -800,6 +826,18 @@ _REGEX_INTENTS = [
     # ── Semantic router ──────────────────────────────────────────────────────────
     (re.compile(r"route (this|the|my)?\s*(query|question|request|command)\b", re.I), "route"),
     (re.compile(r"which tool (should|would|to) (handle|use for|run)\b", re.I), "route"),
+
+    # ── Capabilities ─────────────────────────────────────────────────────────────
+    # FIX-S3-004: "adwi feature list", typos, colloquial "wut can u do"
+    (re.compile(r"\badwi\b.{0,20}\b(feature\s+list|features|commands|abilities|capabilities)\b", re.I), "capabilities"),
+    (re.compile(r"\b(cpaabilit|capabilites|capabilty|capabilites|cabpabilities)\b", re.I), "capabilities"),
+    (re.compile(r"\bwut\s+can\s+(u|you)\b.{0,15}(do|help|offer)\b", re.I), "capabilities"),
+
+    # ── Sync knowledge base ──────────────────────────────────────────────────────
+    # FIX-S3-006: "sync/update knowledge to Open WebUI", "push notes to webui"
+    (re.compile(r"\b(sync|update|push)\b.{0,20}\b(knowledge|notes?)\b.{0,20}\b(open.?webui|openwebui|webui)\b", re.I), "sync"),
+    (re.compile(r"\bopen.?webui\b.{0,20}\b(sync|update|push|add|knowledge)\b", re.I), "sync"),
+    (re.compile(r"\bsync\b.{0,15}\b(knowledge\s+base|kb|knowledge)\b", re.I), "sync"),
 ]
 
 def _regex_prefilter(text: str):
