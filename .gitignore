@@ -98,8 +98,17 @@ bin/*.backup.*
 
 # ── Config env (API tokens) ──
 config/.env
+# config/.env.example is intentionally tracked (safe template, no real values)
 
 # ── Obsidian vault runtime files ──
 obsidian-vault/.obsidian/workspace.json
 obsidian-vault/.obsidian/workspace-mobile.json
-*.bak
+
+# ── Eval session result directories (large/regenerable) ──────────────────────
+# Tracked: MASTER_REPORT_v2.md, fix_backlog_v2.json, *.py harnesses
+# Ignored: large raw result dirs (thousands of jsonl rows, regenerable)
+logs/simeval/large-*/
+logs/simeval/large-p2-*/
+logs/simeval/session-*/
+logs/simeval/__pycache__/
+logs/simlab/

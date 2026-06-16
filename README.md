@@ -23,6 +23,8 @@
 | [§7](#7-rollback--recovery) | Rollback & Recovery | Operational runbooks |
 | [§8](#8-architecture-implementation-phases) | Architecture Implementation Phases | Phase 1–10 status and key files |
 | [§9](#9-simlab-operational-guide) | SimLab Operational Guide | Running the eval harness; improvement tiers; golden baseline |
+| [§10](#10-nlu-eval-status--repair-backlog) | NLU Eval Status & Repair Backlog | Current pass rates, 10 open repair items, projected improvement |
+| [§11](#11-new-machine-bootstrap) | New Machine Bootstrap | Clone to working Adwi in one session |
 
 ---
 
@@ -952,7 +954,143 @@ bin/adwi
 /doctor
 ```
 
-See `notes/ADWI-START-HERE.md` for detailed first-time setup.
+**New machine?** → See §11 below or `docs/SETUP_NEW_MACHINE.md` for the full bootstrap guide.
+**Validating after clone:** `python3 scripts/validate_adwi_env.py`
+
+---
+
+## §10 NLU Eval Status & Repair Backlog
+
+> **Last evaluated:** 2026-06-15 · 1,881 unique scenarios · unattended 1-hour session
+>
+> Full report: `logs/simeval/MASTER_REPORT_v2.md`
+> Machine-readable backlog: `logs/simeval/fix_backlog_v2.json`
+> Living repair list (human-readable, with code proposals): `docs/NLU_REPAIR_BACKLOG.md`
+
+### Current pass rates
+
+| Eval | Scenarios | Pass | Rate |
+|------|-----------|------|------|
+| Baseline (Phase A-F session) | 502 | 379 | 75.5% |
+| Large P1 (broad coverage) | 1,444 | 1,126 | 78.0% |
+| Large P2 (targeted weak families) | 446 | 306 | 68.6% |
+| **Combined (deduped)** | **1,881** | **1,426** | **75.8%** |
+| Projected after 10 NHR fixes | — | ~1,558 | **~83.1%** |
+
+### Category health (combined)
+
+| Category | Rate | Status |
+|----------|------|--------|
+| comms, model, security, file ops, voice | 93–100% | ✅ Healthy |
+| ambiguous, git, system | 82–87% | ✅ Good |
+| search, memory, repair | 74–79% | ⚠️ Watch |
+| disk | 71% | ⚠️ file_search regex over-reach |
+| chat, media, vault | 59–62% | ❌ Needs work |
+| planning, eval | 39–46% | ❌ High priority |
+
+### Top 10 repair items (open)
+
+| # | Item | Estimated gain |
+|---|------|---------------|
+| NHR-001 | `file_search` regex steals cleanup/duplicates/large_files | +35 passes |
+| NHR-003 | Add `patch_adwi` regex + INTENT_SYSTEM rule | +20 passes |
+| NHR-002 | Add `youtube` regex (currently 0% consistency) | +15 passes |
+| NHR-004 | Generic `self_heal` patterns (→ doctor misfire) | +14 passes |
+| NHR-005 | Disambiguate `obsidian_search` vs `memory_recall` | +13 passes |
+| NHR-006 | Add `daily_improve` regex | +12 passes |
+| NHR-007 | Expand `what_next` regex | +12 passes |
+| NHR-008 | Add `inspect_code` regex | +10 passes |
+| NHR-009 | Expand `memory_stats` regex | +6 passes |
+| NHR-010 | `backup_now` vs `git_status` disambiguation | +5 passes |
+
+See `docs/NLU_REPAIR_BACKLOG.md` for exact code-level fix proposals for each item.
+
+### Safety assessment
+
+All 24 injection, jailbreak, and DAN prompt attacks were handled correctly (0 production breaches). 24 "safety breach" flags in the eval report are NLU routing artifacts: the classifier correctly identifies blocked-path requests as `file_read` intents — safety is enforced at the execution layer by `PathValidator` + `BLOCKED_PATHS`. This is defense-in-depth working as designed.
+
+### How to run evals
+
+```bash
+# Requires: Ollama running + llama3.1:8b loaded
+python3 logs/simeval/run_large_eval.py --workers 10     # P1: 1,444 scenarios
+python3 logs/simeval/run_large_eval_p2.py --workers 10  # P2: 446 targeted
+```
+
+See `docs/EVAL_GUIDE.md` for the full eval workflow.
+
+---
+
+## §11 New Machine Bootstrap
+
+> **Goal:** clone → working Adwi in one session.
+> **Full guide:** `docs/SETUP_NEW_MACHINE.md`
+> **Checklist:** `docs/BOOTSTRAP_CHECKLIST.md`
+> **Validator:** `python3 scripts/validate_adwi_env.py`
+
+### What the repo contains vs. what you must set up per-machine
+
+| Asset | In repo? | Setup action |
+|-------|----------|--------------|
+| All source code, scripts, docs | ✅ Yes | `git clone` |
+| `config/.env.example` (key template) | ✅ Yes | Copy → `config/.env`, fill values |
+| `docs/` onboarding + eval guides | ✅ Yes | Read |
+| `CLAUDE.md` AI session orientation | ✅ Yes | Claude reads on session start |
+| `config/.env` (real API keys) | ❌ Gitignored | Fill from template |
+| `secrets/` (OAuth tokens, credentials) | ❌ Gitignored | Re-auth per machine |
+| `adwi/.venv/` (Python packages) | ❌ Gitignored | `uv venv` + pip |
+| Ollama models (~25–35 GB) | ❌ Not in repo | `ollama pull` each model |
+| `adwi/memory.db`, `knowledge.db` | ❌ Gitignored | `/memory-scan`, `overnight_learn.py` |
+| Docker runtime data | ❌ Gitignored | `docker compose up -d` |
+| LaunchAgent plists | ❌ System-level | `adwi → /backup-enable` |
+| Eval large result sessions | ❌ Gitignored | `python3 logs/simeval/run_large_eval.py` |
+
+### 10-step quick bootstrap
+
+```bash
+# 1 — Clone and PATH
+git clone <repo-url> ~/SuneelWorkSpace
+echo 'export PATH="$HOME/SuneelWorkSpace/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
+
+# 2 — Python venv
+cd ~/SuneelWorkSpace/adwi && uv venv --python 3.12
+.venv/bin/pip install prompt_toolkit instructor openai qdrant-client faster-whisper
+
+# 3 — Ollama + models (takes time — 25+ GB)
+brew install ollama && brew services start ollama
+ollama pull llama3.1:8b nomic-embed-text qwen3:0.6b qwen3:30b
+ollama create adwi:latest -f ~/SuneelWorkSpace/adwi/Modelfile
+
+# 4 — Secrets
+cp config/.env.example config/.env && $EDITOR config/.env
+
+# 5 — Docker stack
+cd ~/SuneelWorkSpace/local-ai-stack && docker compose up -d && cd ..
+
+# 6 — Supporting services
+bin/start-obsidian-bridge && bin/start-command-api
+
+# 7 — NLU fixtures
+python3 adwi/memory.py provision-nlu
+
+# 8 — Memory (optional, runs overnight)
+echo "/memory-scan\n/exit" | python3 adwi/adwi_cli.py
+
+# 9 — Validate
+python3 scripts/validate_adwi_env.py
+
+# 10 — Launch
+bin/adwi   →   /doctor
+```
+
+### AI session onboarding
+
+When a new Claude (or other AI) session opens this repo, it should read `CLAUDE.md` first. That file contains:
+- The NLU pipeline summary and current pass rates
+- The file responsibility map
+- All safety invariants that must not be weakened
+- The NHR repair workflow
+- What not to do
 
 ---
 
