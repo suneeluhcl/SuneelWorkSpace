@@ -126,42 +126,42 @@
     [
       "open-webui",
       "1",
-      "Up About an hour (healthy)"
+      "Up 2 hours (healthy)"
     ],
     [
       "n8n",
       "1",
-      "Up About an hour"
+      "Up 2 hours"
     ],
     [
       "searxng",
       "1",
-      "Up About an hour"
+      "Up 2 hours"
     ],
     [
       "prometheus",
       "1",
-      "Up About an hour"
+      "Up 2 hours"
     ],
     [
       "loki",
       "1",
-      "Up About an hour"
+      "Up 2 hours"
     ],
     [
       "grafana",
       "1",
-      "Up About an hour"
+      "Up 2 hours"
     ],
     [
       "node-exporter",
       "1",
-      "Up About an hour"
+      "Up 2 hours"
     ],
     [
       "cadvisor",
       "1",
-      "Up About an hour (healthy)"
+      "Up 2 hours (healthy)"
     ]
   ],
   "launchagents": [
@@ -202,5 +202,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-16",
-  "_hash": "ea0f956f80cffe4b"
+  "_hash": "a1250112c4dee185"
 }

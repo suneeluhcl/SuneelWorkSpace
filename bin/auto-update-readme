@@ -214,9 +214,8 @@ def build_infra_ports_section(snap: dict) -> str:
         (":5055",  "Safe Command API", "Host",          "n8n→shell bridge (8 allowlisted routes)"),
         (":5056",  "Obsidian Bridge",  "Host",          "Vault HTTP CRUD API"),
         (":5678",  "n8n",              "Docker",        "Workflow automation / webhooks"),
-        (":6006",  "Arize Phoenix",    "Docker",        "Agent observability UI (OTel)"),
+        (":6006",  "Arize Phoenix",    "Host (LaunchAgent)", "Agent observability UI (OTel)"),
         (":6333",  "Qdrant",           "Docker",        "Vector database"),
-        (":8001",  "PrivateGPT",       "Host",          "Document Q&A (optional)"),
         (":8123",  "Home Assistant",   "Docker",        "iPhone control plane"),
         (":8888",  "SearXNG",          "Docker",        "Private local web search"),
         (":9090",  "Prometheus",       "Docker",        "Metrics scraper"),
@@ -224,8 +223,8 @@ def build_infra_ports_section(snap: dict) -> str:
         (":4000",  "Grafana",          "Docker",        "Monitoring dashboards"),
         (":9100",  "node-exporter",    "Docker",        "Host system metrics"),
         (":9101",  "cAdvisor",         "Docker",        "Container metrics"),
-        (":4317",  "Phoenix gRPC",     "Docker",        "OTLP gRPC ingestion"),
-        (":4318",  "Phoenix HTTP",     "Docker",        "OTLP HTTP ingestion"),
+        (":4317",  "Phoenix gRPC",     "Host (LaunchAgent)", "OTLP gRPC ingestion"),
+        (":4318",  "Phoenix HTTP",     "Host (LaunchAgent)", "OTLP HTTP ingestion"),
     ]
     lines = ["| Port | Service | Layer | Purpose |", "|---|---|---|---|"]
     for port, svc, layer, purpose in PORTS:
