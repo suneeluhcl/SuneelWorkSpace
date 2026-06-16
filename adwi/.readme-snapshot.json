@@ -131,7 +131,7 @@
     [
       "n8n",
       "5678",
-      "Up 13 hours"
+      "Up 14 hours"
     ],
     [
       "searxng",
@@ -202,5 +202,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-16",
-  "_hash": "c7af8b5888d4c27c"
+  "_hash": "f2efd13fd53d0fe2"
 }

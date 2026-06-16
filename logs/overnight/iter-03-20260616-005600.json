@@ -1,0 +1,27 @@
+{
+  "iteration": 3,
+  "p1": {
+    "passed": 1211,
+    "failed": 206,
+    "rate": 0.8546224417784051,
+    "elapsed": 751.0899050235748,
+    "session_dir": "/Users/MAC/SuneelWorkSpace/logs/simeval/large-20260616-013720",
+    "output": "[large-eval] session: large-20260616-013720\n[large-eval] scenarios: 1444 | workers: 8\n  [ 100/1444]  pass=92 fail=8 warn=0 (92.0%)  42s elapsed\n  [ 200/1444]  pass=154 fail=36 warn=10 (77.0%)  78s elapsed\n  [ 300/1444]  pass=239 fail=51 warn=10 (79.7%)  107s elapsed\n  [ 400/1444]  pass=334 fail=56 warn=10 (83.5%)  153s elapsed\n  [ 500/1444]  pass=430 fail=60 warn=10 (86.0%)  192s elapsed\n  [ 600/1444]  pass=522 fail=64 warn=14 (87.0%)  227s elapsed\n  [ 700/1444]  pass=614 fail=72 warn=14 (87.7%)  265s elapsed\n  [ 800/1444]  pass=699 fail=87 warn=14 (87.4%)  316s elapsed\n  [ 900/1444]  pass=794 fail=90 warn=16 (88.2%)  365s elapsed\n  [1000/1444]  pass=880 fail=103 warn=17 (88.0%)  451s elapsed\n  [1100/1444]  pass=953 fail=130 warn=17 (86.6%)  531s elapsed\n  [1200/1444]  pass=1002 fail=173 warn=25 (83.5%)  616s elapsed\n  [1300/1444]  pass=1088 fail=187 warn=25 (83.7%)  692s elapsed\n  [1400/1444]  pass=1175 fail=198 warn=27 (83.9%)  718s elapsed\n  [1444/1444]  pass=1211 fail=206 warn=27 (83.9%)  751s elapsed\n[large-eval] building reports \u2026\n\n============================================================\nDONE  751.0s  |  1444 scenarios\nPass: 1211 (83.9%)  Warn: 27  Fail: 206\nRegex: 648 (44.9%)  LLM: 796\nSafety breaches: 25\nReports: /Users/MAC/SuneelWorkSpace/logs/simeval/large-20260616-013720\n============================================================\n",
+    "script": "run_large_eval.py"
+  },
+  "p2": {
+    "passed": 346,
+    "failed": 89,
+    "rate": 0.7954022988505747,
+    "elapsed": 348.3996810913086,
+    "session_dir": null,
+    "output": "[p2-eval] session: large-p2-20260616-014951  scenarios: 446\n  [ 100/446]  pass=91 fail=4 warn=5 (91.0%)  107s\n  [ 200/446]  pass=166 fail=29 warn=5 (83.0%)  184s\n  [ 300/446]  pass=233 fail=61 warn=6 (77.7%)  255s\n  [ 400/446]  pass=312 fail=78 warn=10 (78.0%)  310s\n  [ 446/446]  pass=346 fail=89 warn=11 (77.6%)  348s\n\n============================================================\nPASS 2 DONE  348.3s  |  446 scenarios\nPass: 346 (77.6%)  Fail: 89\nRegex: 84  Session: /Users/MAC/SuneelWorkSpace/logs/simeval/large-p2-20260616-014951\n============================================================\n",
+    "script": "run_large_eval_p2.py"
+  },
+  "combined": 0.8407127429805615,
+  "analysis": {
+    "total_failures": 1444,
+    "top_10": "[(('chat', 'unknown'), 129), (('status', 'unknown'), 68), (('disk_usage', 'unknown'), 65), (('git_status', 'unknown'), 59), (('web_search', 'unknown'), 56), (('fix_error', 'unknown'), 56), ((None, 'unknown'), 56), (('gmail', 'unknown'), 54), (('large_files', 'unknown'), 47), (('cleanup', 'unknown'), 43)]"
+  },
+  "patches": []
+}
