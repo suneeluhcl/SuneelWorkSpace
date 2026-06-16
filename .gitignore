@@ -112,3 +112,36 @@ logs/simeval/large-p2-*/
 logs/simeval/session-*/
 logs/simeval/__pycache__/
 logs/simlab/
+
+# ── Nightly eval session artifacts (large/regenerable) ───────────────────────
+# Tracked: 00_morning_brief.md, 01_repair_backlog.md (markdown reports)
+# Ignored: raw JSONL results, per-session dirs (too large, fully regenerable)
+logs/nightly/[0-9]*/nlu_results.jsonl
+logs/nightly/[0-9]*/scenarios.jsonl
+logs/nightly/[0-9]*/phoenix_upload.jsonl
+logs/nightly/__pycache__/
+logs/nightly-eval.stdout.log
+logs/nightly-eval.stderr.log
+logs/nightly-eval.lock
+
+# ── Eval tool generated output (not committed) ───────────────────────────────
+eval/scenarios/generated/
+eval/promptfoo/results/
+eval/playwright/results/
+eval/playwright/test-results/
+eval/k6/results/
+eval/promptfoo/node_modules/
+eval/playwright/node_modules/
+eval/__pycache__/
+eval/nightly/__pycache__/
+eval/giskard/__pycache__/
+eval/deepeval/__pycache__/
+eval/deepeval/.deepeval/
+
+# ── Langfuse (optional, runtime data) ────────────────────────────────────────
+# config/langfuse/docker-compose.langfuse.yml is tracked (template)
+# Runtime DB and credentials are not
+langfuse_db_data/
+
+# ── config/eval/nightly.local.yaml — machine-local overrides ─────────────────
+config/eval/nightly.local.yaml

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Adwi Nightly Eval LaunchAgent
+  Runs eval/nightly/orchestrator.py at 3:00 AM daily.
+  (nightly.py runs at 2:00 AM — 1hr gap avoids resource contention)
+
+  Install:
+    sed "s|__REPO_ROOT__|$HOME/SuneelWorkSpace|g; s|__PYTHON__|$HOME/SuneelWorkSpace/adwi/.venv/bin/python3|g" \
+      config/launchagents/com.suneel.adwi-nightly-eval.plist.template \
+      > ~/Library/LaunchAgents/com.suneel.adwi-nightly-eval.plist
+    launchctl load ~/Library/LaunchAgents/com.suneel.adwi-nightly-eval.plist
+
+  Uninstall:
+    launchctl unload ~/Library/LaunchAgents/com.suneel.adwi-nightly-eval.plist
+    rm ~/Library/LaunchAgents/com.suneel.adwi-nightly-eval.plist
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.suneel.adwi-nightly-eval</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>__PYTHON__</string>
+    <string>__REPO_ROOT__/eval/nightly/orchestrator.py</string>
+  </array>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>3</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+
+  <key>WorkingDirectory</key>
+  <string>__REPO_ROOT__</string>
+
+  <key>StandardOutPath</key>
+  <string>__REPO_ROOT__/logs/nightly-eval.stdout.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>__REPO_ROOT__/logs/nightly-eval.stderr.log</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin</string>
+    <key>PYTHONPATH</key>
+    <string>__REPO_ROOT__</string>
+    <key>ADWI_SANDBOX_MODE</key>
+    <string>1</string>
+  </dict>
+
+  <!-- Prevent launch if already running -->
+  <key>LaunchOnlyOnce</key>
+  <false/>
+
+  <!-- Do not restart on failure — wait for next 3 AM -->
+  <key>KeepAlive</key>
+  <false/>
+</dict>
+</plist>

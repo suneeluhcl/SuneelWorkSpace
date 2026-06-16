@@ -1,0 +1,51 @@
+# Langfuse — Optional, local-only, self-hosted
+# Only start this if you want prompt version tracking beyond Phoenix.
+# Phoenix (already at :6006) covers most of the same ground.
+#
+# Start: docker compose -f config/langfuse/docker-compose.langfuse.yml up -d
+# Stop:  docker compose -f config/langfuse/docker-compose.langfuse.yml down
+# UI:    http://localhost:3010
+#
+# Decision: start Langfuse ONLY if you need:
+#   - Prompt version management across Claude sessions
+#   - Multi-project experiment tracking
+#   - LangChain/LangGraph native tracing
+# Otherwise, Phoenix at :6006 is sufficient.
+
+services:
+  langfuse-db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: langfuse
+      POSTGRES_USER: langfuse
+      POSTGRES_PASSWORD: langfuse_local_only
+    volumes:
+      - langfuse_db_data:/var/lib/postgresql/data
+    networks:
+      - langfuse_net
+
+  langfuse-server:
+    image: langfuse/langfuse:latest
+    restart: unless-stopped
+    depends_on:
+      - langfuse-db
+    ports:
+      - "3010:3000"   # :3010 to avoid conflict with Open WebUI :3000
+    environment:
+      DATABASE_URL: postgresql://langfuse:langfuse_local_only@langfuse-db:5432/langfuse
+      NEXTAUTH_URL: http://localhost:3010
+      NEXTAUTH_SECRET: "local-only-secret-replace-on-shared-machine"
+      SALT: "local-only-salt-replace-on-shared-machine"
+      LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES: "true"
+      # No external API — local only
+      TELEMETRY_ENABLED: "false"
+    networks:
+      - langfuse_net
+
+volumes:
+  langfuse_db_data:
+
+networks:
+  langfuse_net:
+    driver: bridge

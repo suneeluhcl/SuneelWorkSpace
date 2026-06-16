@@ -1,0 +1,30 @@
+{"id":"disk_001","prompt":"how much disk space do I have","intent":"disk_usage","category":"disk","difficulty":"easy"}
+{"id":"disk_002","prompt":"check my disk space","intent":"disk_usage","category":"disk","difficulty":"easy"}
+{"id":"disk_003","prompt":"df -h","intent":"disk_usage","category":"disk","difficulty":"easy"}
+{"id":"disk_004","prompt":"what's my storage situation","intent":"disk_usage","category":"disk","difficulty":"medium"}
+{"id":"disk_005","prompt":"how full is my drive","intent":"disk_usage","category":"disk","difficulty":"easy"}
+{"id":"disk_006","prompt":"show disk utilization","intent":"disk_usage","category":"disk","difficulty":"easy"}
+{"id":"disk_007","prompt":"am i running out of space","intent":"disk_usage","category":"disk","difficulty":"medium"}
+{"id":"disk_008","prompt":"storage report","intent":"disk_usage","category":"disk","difficulty":"easy"}
+{"id":"large_001","prompt":"find my biggest files","intent":"large_files","category":"disk","difficulty":"easy"}
+{"id":"large_002","prompt":"what files take up the most space","intent":"large_files","category":"disk","difficulty":"easy"}
+{"id":"large_003","prompt":"show me files over 1GB","intent":"large_files","category":"disk","difficulty":"easy"}
+{"id":"large_004","prompt":"find fat files","intent":"large_files","category":"disk","difficulty":"medium"}
+{"id":"large_005","prompt":"top space consumers","intent":"large_files","category":"disk","difficulty":"medium"}
+{"id":"large_006","prompt":"what are my heaviest files","intent":"large_files","category":"disk","difficulty":"easy"}
+{"id":"large_007","prompt":"find files exceeding 500 megabytes","intent":"large_files","category":"disk","difficulty":"easy"}
+{"id":"large_008","prompt":"which files are bloating my drive","intent":"large_files","category":"disk","difficulty":"hard"}
+{"id":"dup_001","prompt":"find duplicate files","intent":"duplicates","category":"disk","difficulty":"easy"}
+{"id":"dup_002","prompt":"do I have any duplicate photos","intent":"duplicates","category":"disk","difficulty":"easy"}
+{"id":"dup_003","prompt":"deduplicate my workspace","intent":"duplicates","category":"disk","difficulty":"medium"}
+{"id":"dup_004","prompt":"find identical files","intent":"duplicates","category":"disk","difficulty":"easy"}
+{"id":"dup_005","prompt":"which files appear more than once","intent":"duplicates","category":"disk","difficulty":"medium"}
+{"id":"clean_001","prompt":"clean up my downloads folder","intent":"cleanup","category":"disk","difficulty":"easy"}
+{"id":"clean_002","prompt":"find junk files","intent":"cleanup","category":"disk","difficulty":"easy"}
+{"id":"clean_003","prompt":"remove temp files","intent":"cleanup","category":"disk","difficulty":"easy"}
+{"id":"clean_004","prompt":"what can I safely delete","intent":"cleanup","category":"disk","difficulty":"medium"}
+{"id":"clean_005","prompt":"clear clutter from my workspace","intent":"cleanup","category":"disk","difficulty":"medium"}
+{"id":"old_001","prompt":"find files I haven't used in a year","intent":"old_files","category":"disk","difficulty":"easy"}
+{"id":"old_002","prompt":"what old files can I archive","intent":"old_files","category":"disk","difficulty":"medium"}
+{"id":"old_003","prompt":"find abandoned files","intent":"old_files","category":"disk","difficulty":"medium"}
+{"id":"old_004","prompt":"what hasn't been accessed in months","intent":"old_files","category":"disk","difficulty":"medium"}

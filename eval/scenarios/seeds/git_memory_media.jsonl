@@ -1,0 +1,41 @@
+{"id":"git_001","prompt":"what's the git status","intent":"git_status","category":"git","difficulty":"easy"}
+{"id":"git_002","prompt":"show me uncommitted changes","intent":"git_status","category":"git","difficulty":"easy"}
+{"id":"git_003","prompt":"git status","intent":"git_status","category":"git","difficulty":"easy"}
+{"id":"git_004","prompt":"any untracked files","intent":"git_status","category":"git","difficulty":"medium"}
+{"id":"git_005","prompt":"show git diff","intent":"git_diff","category":"git","difficulty":"easy"}
+{"id":"git_006","prompt":"what changed in the last commit","intent":"git_log","category":"git","difficulty":"easy"}
+{"id":"backup_001","prompt":"push my changes to github","intent":"backup_now","category":"git","difficulty":"easy"}
+{"id":"backup_002","prompt":"backup now","intent":"backup_now","category":"git","difficulty":"easy"}
+{"id":"backup_003","prompt":"save to github","intent":"backup_now","category":"git","difficulty":"easy"}
+{"id":"backup_004","prompt":"commit and push","intent":"backup_now","category":"git","difficulty":"easy"}
+{"id":"backup_005","prompt":"push backup","intent":"backup_now","category":"git","difficulty":"easy"}
+{"id":"mem_001","prompt":"what do you remember about my setup","intent":"memory_recall","category":"memory","difficulty":"easy"}
+{"id":"mem_002","prompt":"what do you know about me","intent":"memory_recall","category":"memory","difficulty":"easy"}
+{"id":"mem_003","prompt":"recall my preferences","intent":"memory_recall","category":"memory","difficulty":"medium"}
+{"id":"mem_004","prompt":"what's in your memory about me","intent":"memory_recall","category":"memory","difficulty":"easy"}
+{"id":"memscan_001","prompt":"scan my terminal history","intent":"memory_scan","category":"memory","difficulty":"easy"}
+{"id":"memscan_002","prompt":"update memory from files","intent":"memory_scan","category":"memory","difficulty":"easy"}
+{"id":"memscan_003","prompt":"refresh memory index","intent":"memory_scan","category":"memory","difficulty":"medium"}
+{"id":"memstat_001","prompt":"how many entries in memory","intent":"memory_stats","category":"memory","difficulty":"easy"}
+{"id":"memstat_002","prompt":"memory statistics","intent":"memory_stats","category":"memory","difficulty":"easy"}
+{"id":"memstat_003","prompt":"memory size and count","intent":"memory_stats","category":"memory","difficulty":"easy"}
+{"id":"obs_001","prompt":"search my obsidian vault for meeting notes","intent":"obsidian_search","category":"vault","difficulty":"easy"}
+{"id":"obs_002","prompt":"find my notes about python","intent":"obsidian_search","category":"vault","difficulty":"easy"}
+{"id":"obs_003","prompt":"search obsidian for project ideas","intent":"obsidian_search","category":"vault","difficulty":"easy"}
+{"id":"obs_004","prompt":"look in my vault for task lists","intent":"obsidian_search","category":"vault","difficulty":"medium"}
+{"id":"daily_note_001","prompt":"open today's obsidian daily note","intent":"obsidian_daily","category":"vault","difficulty":"easy"}
+{"id":"daily_note_002","prompt":"show my daily journal","intent":"obsidian_daily","category":"vault","difficulty":"easy"}
+{"id":"daily_note_003","prompt":"add to today's note","intent":"obsidian_daily","category":"vault","difficulty":"medium"}
+{"id":"yt_001","prompt":"summarize this youtube video","intent":"youtube","category":"media","difficulty":"easy"}
+{"id":"yt_002","prompt":"transcribe a youtube video","intent":"youtube","category":"media","difficulty":"easy"}
+{"id":"yt_003","prompt":"get transcript from youtu.be/abc123","intent":"youtube","category":"media","difficulty":"easy"}
+{"id":"yt_004","prompt":"youtube video summary","intent":"youtube","category":"media","difficulty":"easy"}
+{"id":"yt_005","prompt":"explain this yt video to me","intent":"youtube","category":"media","difficulty":"medium"}
+{"id":"web_001","prompt":"search the web for llama3 benchmarks","intent":"web_search","category":"search","difficulty":"easy"}
+{"id":"web_002","prompt":"look up tailscale setup guide","intent":"web_search","category":"search","difficulty":"easy"}
+{"id":"web_003","prompt":"find information about qdrant","intent":"web_search","category":"search","difficulty":"easy"}
+{"id":"browse_001","prompt":"open the ollama website","intent":"browse","category":"search","difficulty":"easy"}
+{"id":"browse_002","prompt":"go to huggingface.co","intent":"browse","category":"search","difficulty":"easy"}
+{"id":"voice_001","prompt":"start voice recording","intent":"voice_record","category":"voice","difficulty":"easy"}
+{"id":"voice_002","prompt":"listen for my voice","intent":"voice_record","category":"voice","difficulty":"easy"}
+{"id":"voice_003","prompt":"record audio","intent":"voice_record","category":"voice","difficulty":"easy"}

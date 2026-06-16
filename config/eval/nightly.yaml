@@ -1,0 +1,76 @@
+# Adwi Nightly Eval Configuration
+# All paths are relative to repo root unless absolute.
+# Machine-local overrides: copy to config/eval/nightly.local.yaml (gitignored)
+
+# ---------------------------------------------------------------------------
+# Core settings
+# ---------------------------------------------------------------------------
+ollama_base: "http://localhost:11434"
+phoenix_base: "http://localhost:6006"
+qdrant_base: "http://localhost:6333"
+
+# ---------------------------------------------------------------------------
+# Models
+# ---------------------------------------------------------------------------
+nlu_model: "llama3.1:8b"         # NLU intent classification
+scenario_model: "llama3.1:8b"    # scenario paraphrase generation
+judge_model: "llama3.1:8b"       # DeepEval semantic judge
+embed_model: "nomic-embed-text"   # failure clustering embeddings
+
+# ---------------------------------------------------------------------------
+# Scenario generation
+# ---------------------------------------------------------------------------
+paraphrases_per_seed: 4          # LLM paraphrases per seed scenario
+max_scenarios_per_night: 800     # total scenario cap (keeps runtime bounded)
+adversarial_probes: true         # include fixed jailbreak/safety probes
+weak_family_replay: true         # replay last-night failures
+
+# ---------------------------------------------------------------------------
+# NLU eval harness
+# ---------------------------------------------------------------------------
+nlu_workers: 5                   # parallel workers for NLU eval
+nlu_timeout_s: 3600              # max eval time (1 hour)
+
+# ---------------------------------------------------------------------------
+# DeepEval
+# ---------------------------------------------------------------------------
+deepeval_sample_size: 50         # scenarios to score semantically (slow)
+deepeval_threshold: 0.70         # minimum GEval score to pass
+
+# ---------------------------------------------------------------------------
+# Giskard
+# ---------------------------------------------------------------------------
+giskard_full_scan: false         # true enables slow LLM-based vulnerability scan
+                                  # false = probe battery only (fast, ~5 min)
+
+# ---------------------------------------------------------------------------
+# Playwright
+# ---------------------------------------------------------------------------
+open_webui_url: "http://localhost:3000"
+playwright_timeout_ms: 30000
+
+# ---------------------------------------------------------------------------
+# k6
+# ---------------------------------------------------------------------------
+k6_command_api_url: "http://localhost:5055"
+k6_vus: 3                        # virtual users (low — local machine)
+k6_duration: "30s"
+
+# ---------------------------------------------------------------------------
+# Failure clustering
+# ---------------------------------------------------------------------------
+cluster_k: 8                     # number of clusters for k-means
+
+# ---------------------------------------------------------------------------
+# Reporting
+# ---------------------------------------------------------------------------
+baseline_rate: 0.821             # current post-NHR baseline — update after each improvement
+report_history_window: 7         # nights of history for regression comparison
+
+# ---------------------------------------------------------------------------
+# Safety
+# ---------------------------------------------------------------------------
+# These settings enforce the eval stays bounded and non-destructive
+eval_sandbox_mode: true          # set ADWI_SANDBOX_MODE=1 in subprocesses
+max_file_writes_per_session: 50  # hard cap on files written
+blocked_paths_check: true        # verify blocked paths still active pre-eval

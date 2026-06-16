@@ -1,0 +1,33 @@
+{"id":"status_001","prompt":"what's the status","intent":"status","category":"system","difficulty":"easy"}
+{"id":"status_002","prompt":"are all services running","intent":"status","category":"system","difficulty":"easy"}
+{"id":"status_003","prompt":"show me the system status","intent":"status","category":"system","difficulty":"easy"}
+{"id":"status_004","prompt":"is everything up","intent":"status","category":"system","difficulty":"medium"}
+{"id":"status_005","prompt":"check status","intent":"status","category":"system","difficulty":"easy"}
+{"id":"doctor_001","prompt":"run doctor","intent":"doctor","category":"system","difficulty":"easy"}
+{"id":"doctor_002","prompt":"run a full health check","intent":"doctor","category":"system","difficulty":"easy"}
+{"id":"doctor_003","prompt":"deep diagnostic please","intent":"doctor","category":"system","difficulty":"easy"}
+{"id":"doctor_004","prompt":"full system diagnostic","intent":"doctor","category":"system","difficulty":"easy"}
+{"id":"heal_001","prompt":"adwi is broken please fix it","intent":"self_heal","category":"system","difficulty":"easy"}
+{"id":"heal_002","prompt":"something is broken repair it","intent":"self_heal","category":"system","difficulty":"easy"}
+{"id":"heal_003","prompt":"services are down fix them","intent":"self_heal","category":"system","difficulty":"medium"}
+{"id":"heal_004","prompt":"nothing is working self heal","intent":"self_heal","category":"system","difficulty":"easy"}
+{"id":"heal_005","prompt":"repair yourself adwi","intent":"self_heal","category":"system","difficulty":"medium"}
+{"id":"daily_001","prompt":"run daily improvement","intent":"daily_improve","category":"system","difficulty":"easy"}
+{"id":"daily_002","prompt":"start daily self-improvement routine","intent":"daily_improve","category":"system","difficulty":"easy"}
+{"id":"daily_003","prompt":"run the daily enhancement","intent":"daily_improve","category":"system","difficulty":"easy"}
+{"id":"daily_004","prompt":"daily improve","intent":"daily_improve","category":"system","difficulty":"easy"}
+{"id":"patch_001","prompt":"apply aider patches to adwi","intent":"patch_adwi","category":"system","difficulty":"easy"}
+{"id":"patch_002","prompt":"run aider","intent":"patch_adwi","category":"system","difficulty":"easy"}
+{"id":"patch_003","prompt":"patch adwi code","intent":"patch_adwi","category":"system","difficulty":"easy"}
+{"id":"patch_004","prompt":"self-patch adwi","intent":"patch_adwi","category":"system","difficulty":"medium"}
+{"id":"what_001","prompt":"what should I improve in adwi next","intent":"what_next","category":"system","difficulty":"easy"}
+{"id":"what_002","prompt":"suggest next features for adwi","intent":"what_next","category":"system","difficulty":"easy"}
+{"id":"what_003","prompt":"what are some ideas for improving my ai","intent":"what_next","category":"system","difficulty":"medium"}
+{"id":"what_004","prompt":"adwi improvement ideas","intent":"what_next","category":"system","difficulty":"easy"}
+{"id":"inspect_001","prompt":"inspect adwi_cli.py","intent":"inspect_code","category":"system","difficulty":"easy"}
+{"id":"inspect_002","prompt":"review the nightly.py source","intent":"inspect_code","category":"system","difficulty":"easy"}
+{"id":"inspect_003","prompt":"find bugs in adwi code","intent":"inspect_code","category":"system","difficulty":"medium"}
+{"id":"inspect_004","prompt":"look at adwi source","intent":"inspect_code","category":"system","difficulty":"easy"}
+{"id":"model_001","prompt":"what models are loaded","intent":"model_status","category":"system","difficulty":"easy"}
+{"id":"model_002","prompt":"show ollama model list","intent":"model_status","category":"system","difficulty":"easy"}
+{"id":"model_003","prompt":"is llama3 running","intent":"model_status","category":"system","difficulty":"medium"}

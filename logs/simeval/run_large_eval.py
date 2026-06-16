@@ -1605,15 +1605,42 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=WORKERS)
     ap.add_argument("--max", type=int, default=None)
+    ap.add_argument("--scenarios", type=str, default=None,
+                    help="Path to external scenarios JSONL (from nightly generator). "
+                         "If provided, replaces the built-in corpus.")
+    ap.add_argument("--output", type=str, default=None,
+                    help="Path to write per-scenario results JSONL "
+                         "(default: SESSION_DIR/results.jsonl)")
     args = ap.parse_args()
 
-    scenarios = build_corpus()
+    if args.scenarios and Path(args.scenarios).exists():
+        # Load external scenarios from nightly generator
+        external = []
+        with open(args.scenarios) as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    try:
+                        row = json.loads(line)
+                        external.append(row)
+                    except json.JSONDecodeError:
+                        pass
+        scenarios = external
+        _print(f"[large-eval] loaded {len(scenarios)} external scenarios from {args.scenarios}")
+    else:
+        scenarios = build_corpus()
     if args.max:
         scenarios = scenarios[: args.max]
 
     total = len(scenarios)
     _print(f"[large-eval] session: {SESSION_DIR.name}")
     _print(f"[large-eval] scenarios: {total} | workers: {args.workers}")
+
+    # Override results output path if --output was specified
+    global RESULTS_JSONL
+    if args.output:
+        RESULTS_JSONL = Path(args.output)
+        RESULTS_JSONL.parent.mkdir(parents=True, exist_ok=True)
 
     # Save scenarios manifest
     with open(SCENARIOS_JSONL, "w") as f:
