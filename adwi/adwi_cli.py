@@ -643,6 +643,14 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(daily.?improv|daily.?enhanc|daily.?routine)\b", re.I), "daily_improve"),
     (re.compile(r"\brun.{0,10}daily.{0,10}(improve|maintenance|self.?improve)\b", re.I), "daily_improve"),
 
+    # ── Gmail Phase 15 early guards — MUST precede web_search and git_status ────
+    # "what changed in the last reply/thread" must beat git_status "what changed"
+    (re.compile(r"\bwhat\s+changed\b.{0,30}\b(?:reply|thread|email|message|conversation)\b", re.I), "gmail_thread_intel"),
+    # "latest reply/message/delta" are email-specific, safe before web_search
+    (re.compile(r"\blatest\s+(?:reply|message|delta)\b", re.I), "gmail_thread_intel"),
+    # "latest update in this thread/email" must beat web_search "latest ... update"
+    (re.compile(r"\blatest\s+update\b.{0,30}\b(?:thread|email|conversation|message)\b", re.I), "gmail_thread_intel"),
+
     # ── Browse — URL/domain visit patterns BEFORE web_search ─────────────────────
     (re.compile(r"\b(visit|browse\s+to|navigate\s+to)\b.{0,50}(https?://|\.(com|io|org|dev|net|ai|co|app))\b", re.I), "browse"),
     (re.compile(r"\bfetch\b.{0,40}(https?://|content\s+of\s+https?://)", re.I), "browse"),
@@ -816,7 +824,10 @@ _REGEX_INTENTS = [
     # ── Gmail Phase 14: subject update — MUST precede Phase 4 rewrite ───────────────────────
     # gmail_update_subject — "rewrite the subject", "make the subject clearer", "better subject"
     (re.compile(r"\b(?:rewrite|update|change|improve|fix)\b.{0,20}\bsubject\b", re.I), "gmail_update_subject"),
-    (re.compile(r"\b(?:make|write)\b.{0,20}\b(?:a\s+)?(?:better|clearer|shorter|stronger|good|clear|more\s+professional)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
+    # "make the subject clearer" — subject before style word
+    (re.compile(r"\b(?:make|write)\b.{0,20}\bsubject\b.{0,25}\b(?:better|clearer|shorter|stronger|cleaner|good|clear|more\s+professional|more\s+concise)\b", re.I), "gmail_update_subject"),
+    # "write a better subject" / "write a clearer subject line" — style before subject
+    (re.compile(r"\b(?:write|give\s+me)\b.{0,20}\b(?:a\s+)?(?:better|clearer|shorter|stronger|good|clear|more\s+professional)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
     (re.compile(r"\bsubject\b.{0,25}\b(?:is|feels?|seems?|sounds?)\b.{0,20}\b(?:weak|vague|unclear|bad|poor|generic|long|boring)\b", re.I), "gmail_update_subject"),
     (re.compile(r"\bgive\s+me\b.{0,20}\b(?:a\s+)?(?:better|clearer|different|new|good)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
 
@@ -903,6 +914,19 @@ _REGEX_INTENTS = [
     (re.compile(r"\bsend\b.{0,20}\b(?:this|it|the\s+(?:draft|email|message))\b.{0,30}\b(?:tomorrow|tonight|morning|afternoon|evening|monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b", re.I), "gmail_schedule_send"),
     (re.compile(r"\bsend\b.{0,30}at\s+\d{1,2}(?::\d{2})?\s*(?:am|pm)\b", re.I), "gmail_schedule_send"),
     (re.compile(r"\bschedule\b.{0,30}\b(?:this|it|the\s+(?:draft|email|message))\b", re.I), "gmail_schedule_send"),
+
+    # ── Gmail Phase 15: thread intel + forward — MUST precede Phase 3 (gmail_draft_reply / gmail_compose) ──
+    # gmail_thread_intel — action items, decisions, questions, reply-needed, latest-delta
+    (re.compile(r"\baction\s+items?\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bwhat\s+(?:action\s+items?|decisions?|questions?|changed|do\s+I\s+(?:owe|need\s+to\s+do))\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:do\s+I\s+owe|should\s+I\s+reply|is\s+a\s+reply\s+needed|reply\s+needed|need\s+to\s+respond)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:what\s+changed|latest\s+(?:reply|message|update|delta)|last\s+(?:reply|message|update))\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bdecisions?\b.{0,20}\b(?:in|from|this|the)\b.{0,20}\b(?:thread|conversation|email|chain)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bquestions?\s+(?:waiting|outstanding|for\s+me|pending)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bsummarize\b.{0,20}\blatest\b.{0,20}\b(?:reply|message|part|update)\b", re.I), "gmail_thread_intel"),
+    # gmail_forward — "forward to X", "fwd this to Y" — MUST precede gmail_compose
+    (re.compile(r"\b(?:forward|fwd)\b.{0,25}\bto\b", re.I), "gmail_forward"),
+    (re.compile(r"\b(?:forward|fwd)\b.{0,20}\b(?:this|it|the\s+(?:email|thread|message))\b", re.I), "gmail_forward"),
 
     # ── Gmail Phase 3: draft / send intents — MUST precede Phase 2 mutation patterns ──────
     # gmail_send_draft — anchored bare forms; also "send the draft" (requires "draft" word)
@@ -1215,6 +1239,7 @@ _ALL_INTENTS = [
     "gmail_followup_reminder", "gmail_list_followups", "gmail_cancel_followup",
     "gmail_reschedule_send", "gmail_open_scheduled_draft",
     "gmail_list_drafts", "gmail_open_draft", "gmail_delete_draft",
+    "gmail_thread_intel", "gmail_forward",
     # n8n / automation
     "sync",
     # Nightly
@@ -1378,6 +1403,13 @@ _INTENT_SYSTEM = (
     "   'gmail_delete_draft': delete a specific draft by ordinal or name — 'delete draft 2',\n"
     "                      'delete the Rahul draft', 'cancel the old draft', 'remove draft 1'.\n"
     "                      NEVER use for 'delete the draft' (plain → gmail_cancel_draft).\n"
+    "   'gmail_thread_intel': structured thread analysis — 'what action items are in this thread?',\n"
+    "                      'do I owe a reply here?', 'what changed in the last reply?',\n"
+    "                      'what decisions were made?', 'questions waiting on me?',\n"
+    "                      'summarize the latest part', 'should I reply?'. Requires thread context.\n"
+    "   'gmail_forward'  : forward current email to a new recipient — 'forward to Rahul',\n"
+    "                      'forward this to priya@example.com', 'forward with a summary',\n"
+    "                      'fwd this to the team'. Always creates a draft first.\n"
     "   'generate_image' : ONLY when creating a brand-new image/picture/artwork/visual output.\n"
     "                      NEVER for explanations, comparisons, or code/model concepts.\n"
     "                      'generation' as a software concept (code generation, token generation,\n"
@@ -3473,6 +3505,7 @@ _GMAIL_CTX: dict = {
     "last_sent":          None, # Phase 11: {thread_id, to, subject, sent_at_iso} — captured after send
     "followup_reminder":  None, # Phase 11: most recently created follow-up reminder entry
     "draft_list":         [],   # Phase 12: cached [{draft_id,to,subject,mode,has_attachment,…}] from list_drafts
+    "thread_intel":       None, # Phase 15: last thread intelligence result {mode, subject}
 }
 
 _GMAIL_ACTION_PAST = {
@@ -4849,6 +4882,220 @@ def cmd_gmail_thread(query: str = "") -> None:
         cprint(f"  Gmail error: {e}", RED)
 
 
+# ── Gmail Phase 15: thread helpers ───────────────────────────────────────────
+
+def _thread_latest_message(thread: dict) -> dict | None:
+    """Return the last message in a thread dict, or None if empty."""
+    msgs = thread.get("messages", [])
+    return msgs[-1] if msgs else None
+
+
+def _thread_build_context(thread: dict, max_chars: int = 3000) -> str:
+    """Assemble a condensed thread string (most-recent-first with budget) for LLM prompts."""
+    msgs = thread.get("messages", [])
+    if not msgs:
+        return ""
+    parts: list[str] = []
+    budget = max_chars
+    for msg in reversed(msgs):
+        block = (
+            f"From: {msg.get('from', '')}\n"
+            f"Date: {msg.get('date', '')}\n\n"
+            f"{msg.get('body', '')}"
+        )
+        if budget <= 0:
+            parts.append("[earlier messages omitted]")
+            break
+        parts.append(block[:budget])
+        budget -= len(block)
+    parts.reverse()
+    return "\n\n---\n\n".join(parts)
+
+
+def cmd_gmail_thread_intel(text: str = "") -> None:
+    """Thread intelligence: extract action items, decisions, reply-needed, latest delta."""
+    token = HOME / "SuneelWorkSpace" / "secrets" / "gmail-token.json"
+    if not token.exists():
+        cprint("  Gmail not authorized — run /gmail-auth first", RED); return
+
+    thread = _GMAIL_CTX.get("current_thread")
+    if not thread:
+        em = _GMAIL_CTX.get("current_email")
+        if em and em.get("thread_id"):
+            try:
+                gh = _gmail()
+                thread = gh.get_thread(em["thread_id"])
+                _GMAIL_CTX["current_thread"] = thread
+            except Exception as e:
+                cprint(f"  Gmail error: {e}", RED); return
+        else:
+            cprint("  No thread context. Open an email thread first.", YELLOW); return
+
+    if not thread.get("messages"):
+        cprint("  Thread has no messages.", YELLOW); return
+
+    text_l = text.lower()
+    if re.search(r"\baction\s+items?\b|\bto.?dos?\b|\btasks?\b", text_l):
+        mode, label = "action_items", "Action Items"
+    elif re.search(r"\bdecisions?\b|\bagreed?\b|\bresolved?\b|\bconclusions?\b", text_l):
+        mode, label = "decisions", "Decisions"
+    elif re.search(r"\bquestions?\s+(?:waiting|outstanding|for\s+me|pending)\b|\bwaiting\s+on\s+me\b", text_l):
+        mode, label = "questions", "Open Questions"
+    elif re.search(r"\b(?:do\s+I\s+owe|should\s+I\s+reply|is\s+a\s+reply\s+needed|reply\s+needed|need\s+to\s+respond)\b", text_l):
+        mode, label = "reply_needed", "Reply Analysis"
+    elif re.search(r"\bwhat\s+changed\b|\blatest\s+(?:reply|message|update|delta)\b|\blast\s+(?:reply|message|update)\b|\bsummarize\b.{0,20}\blatest\b", text_l):
+        mode, label = "latest_delta", "Latest Update"
+    else:
+        mode, label = "summary", "Thread Intelligence"
+
+    adwi_head(f"Gmail — {label}: {thread['subject'][:45]}")
+    subject = thread["subject"]
+    count   = thread["count"]
+    thread_ctx = _thread_build_context(thread)
+
+    if mode == "latest_delta":
+        latest = _thread_latest_message(thread)
+        if not latest:
+            cprint("  Thread is empty.", YELLOW); return
+        prompt = (
+            f"Thread subject: {subject} ({count} messages)\n\n"
+            f"Latest message:\nFrom: {latest.get('from','')}\nDate: {latest.get('date','')}\n\n"
+            f"{latest.get('body','')[:1500]}\n\n"
+            "Summarize what changed or was added in this latest message. "
+            "What is new compared to what came before? Be specific and concise (3-5 sentences)."
+        )
+    elif mode == "reply_needed":
+        latest = _thread_latest_message(thread)
+        last_from = (latest.get("from", "") if latest else "").lower()
+        last_is_mine = "suneel" in last_from or "suneeluhcl" in last_from
+        extra = "\nNote: the last message appears to be FROM Suneel." if last_is_mine else ""
+        prompt = (
+            f"Thread subject: {subject} ({count} messages)\n\n"
+            f"Thread:\n{thread_ctx}\n\n"
+            "Determine if Suneel owes a reply. Consider:\n"
+            "- Was the last message sent BY Suneel or TO Suneel?\n"
+            "- Are there unanswered questions directed at Suneel?\n"
+            "- Is the thread concluded or still open?\n"
+            f"Answer YES (reply needed) or NO (no reply needed), then explain in 2-3 sentences.{extra}"
+        )
+    elif mode == "action_items":
+        prompt = (
+            f"Thread subject: {subject} ({count} messages)\n\n"
+            f"Thread:\n{thread_ctx}\n\n"
+            "List all action items and to-dos mentioned in this thread. "
+            "For each, note who is responsible and any deadline. "
+            "Format as a bullet list. If none exist, say 'No action items found.'"
+        )
+    elif mode == "decisions":
+        prompt = (
+            f"Thread subject: {subject} ({count} messages)\n\n"
+            f"Thread:\n{thread_ctx}\n\n"
+            "List all decisions, agreements, or conclusions reached in this thread. "
+            "Format as a bullet list. If none exist, say 'No decisions found.'"
+        )
+    elif mode == "questions":
+        prompt = (
+            f"Thread subject: {subject} ({count} messages)\n\n"
+            f"Thread:\n{thread_ctx}\n\n"
+            "List all open questions that are waiting for a response from Suneel specifically. "
+            "Format as a bullet list. If none, say 'No open questions found.'"
+        )
+    else:
+        prompt = (
+            f"Thread subject: {subject} ({count} messages)\n\n"
+            f"Thread:\n{thread_ctx}\n\n"
+            "Provide a structured analysis:\n"
+            "1. Key decisions made\n"
+            "2. Action items and owners\n"
+            "3. Open questions\n"
+            "4. Does Suneel owe a reply? (yes/no + reason)\n"
+            "Be concise and practical."
+        )
+
+    stream_local(
+        prompt,
+        system="You are Adwi, Suneel's AI assistant, analyzing an email thread. Be practical and concise."
+    )
+    _GMAIL_CTX["thread_intel"] = {"mode": mode, "subject": subject}
+
+
+def cmd_gmail_forward(text: str = "") -> None:
+    """Forward the current email to a new recipient. Shows preview; waits for explicit send."""
+    token = HOME / "SuneelWorkSpace" / "secrets" / "gmail-token.json"
+    if not token.exists():
+        cprint("  Gmail not authorized — run /gmail-auth first", RED); return
+
+    em = _GMAIL_CTX.get("current_email")
+    if not em:
+        cprint("  No current email — open an email first, then say 'forward to X'.", YELLOW); return
+
+    adwi_head("Gmail — Forward Draft")
+
+    # Extract recipient name/email after "to"
+    to_m = re.search(
+        r"\b(?:forward|fwd)\b.{0,25}\bto\s+([\w][\w\s.@+-]{1,40}?)(?:\s+(?:with|saying|and|cc|including|about)|[.,?]|$)",
+        text, re.I
+    )
+    if not to_m:
+        cprint("  Who should I forward this to?  e.g. 'forward to Rahul'", YELLOW); return
+    to_raw = to_m.group(1).strip()
+
+    resolved, candidates = _gmail_resolve_recipient(to_raw)
+    if candidates:
+        cprint(f"  '{to_raw}' is ambiguous — {len(candidates)} matches:", YELLOW)
+        for i, c in enumerate(candidates, 1):
+            cprint(f"    {i}. {c.get('display','')} <{c['email']}>", "")
+        cprint("  Say 'forward to <full email>' to be explicit.", YELLOW); return
+    if not resolved:
+        cprint(f"  Could not resolve '{to_raw}' to an email address.", YELLOW)
+        cprint("  Try 'forward to rahul@example.com' with the full email address.", YELLOW); return
+    to_email = resolved
+
+    # Detect intro instruction
+    want_summary = bool(re.search(r"\bwith\s+(?:a\s+)?(?:summary|brief\s+note|note|intro|context)\b", text, re.I))
+    intro_m = re.search(r"\b(?:saying|mentioning|adding|with\s+a\s+note\s+that)\b\s+(.+?)(?:[.,?]|$)", text, re.I)
+    intro_instruction = intro_m.group(1).strip() if intro_m else ""
+
+    cprint(f"  {GRAY}Preparing forward draft…{RESET}")
+
+    intro_body = ""
+    if want_summary:
+        summary_prompt = (
+            f"Write a brief 1-2 sentence intro for a forwarded email.\n"
+            f"Original subject: {em.get('subject', '')}\n"
+            f"Original body:\n{em.get('body', '')[:600]}\n\n"
+            "Output only the intro paragraph. No greeting, no signature."
+        )
+        intro_body = _llm_generate(
+            summary_prompt,
+            system="You are drafting a brief forward intro for Suneel. Be concise. No greeting or signature."
+        )
+    elif intro_instruction:
+        intro_prompt = (
+            f"Write a 1-2 sentence forward intro based on this instruction: {intro_instruction}\n"
+            "No greeting or signature. Just the intro."
+        )
+        intro_body = _llm_generate(
+            intro_prompt,
+            system="You are drafting a brief forward intro for Suneel. Be concise. No greeting or signature."
+        )
+
+    try:
+        gh = _gmail()
+        draft_ctx = gh.create_draft_forward(
+            to            = to_email,
+            subject       = em.get("subject", "(no subject)"),
+            original_from = em.get("from", ""),
+            original_date = em.get("date", ""),
+            original_body = em.get("body", "")[:2000],
+            intro_body    = intro_body,
+        )
+        _GMAIL_CTX["draft"] = draft_ctx
+        _gmail_draft_preview(draft_ctx)
+    except Exception as e:
+        cprint(f"  Error creating forward draft: {e}", RED)
+
+
 def cmd_gmail_list_category(name: str) -> None:
     """List emails in a Gmail category: promotions, spam, social, updates, forums."""
     token = HOME / "SuneelWorkSpace" / "secrets" / "gmail-token.json"
@@ -5205,7 +5452,53 @@ def cmd_gmail_draft_reply(text: str = "") -> None:
     if not em:
         cprint("  No current email — open an email first, then say 'reply saying X'.", YELLOW); return
     adwi_head("Gmail — Draft Reply")
-    # Strip meta-preamble to get the reply instruction
+
+    # Detect context-aware mode: "reply to the latest ask", "draft a follow-up"
+    is_context_mode = bool(re.search(
+        r"\b(?:latest\s+(?:ask|question|request)|follow.?up|based\s+on\s+(?:the\s+)?thread|reply\s+to\s+the\s+thread)\b",
+        text, re.I
+    ))
+
+    if is_context_mode:
+        thread = _GMAIL_CTX.get("current_thread")
+        if not thread or not thread.get("messages"):
+            cprint("  No thread context. Load the thread first with 'show the thread'.", YELLOW); return
+        cprint(f"  {GRAY}Analyzing thread for latest ask…{RESET}")
+        thread_ctx = _thread_build_context(thread, max_chars=2500)
+        prompt = (
+            f"Thread subject: {thread['subject']}\n\n"
+            f"Thread:\n{thread_ctx}\n\n"
+            "1. Identify the most recent unanswered question or request directed at Suneel.\n"
+            "2. Write a concise, professional reply addressing it.\n"
+            "Output ONLY the reply body text. No subject line. No explanation."
+        )
+        body = _llm_generate(
+            prompt,
+            system="You are drafting a reply for Suneel. Identify the latest ask in the thread and reply to it. Output only the email body. Be brief and professional."
+        )
+        if not body or body.startswith("[LLM error"):
+            cprint(f"  Could not generate reply: {body}", RED); return
+        try:
+            gh        = _gmail()
+            to        = em.get("from", "")
+            subject   = em.get("subject", "(no subject)")
+            msg_hdr   = em.get("message_id", "")
+            thread_id = em.get("thread_id", "")
+            draft_ctx = gh.create_draft_reply(
+                reply_to_msg_id   = em["id"],
+                message_id_header = msg_hdr,
+                thread_id         = thread_id,
+                to                = to,
+                subject           = subject,
+                body              = body,
+            )
+            _GMAIL_CTX["draft"] = draft_ctx
+            _gmail_draft_preview(draft_ctx)
+        except Exception as e:
+            cprint(f"  Error creating draft: {e}", RED)
+        return
+
+    # Standard instruction-based path
     instruction = re.sub(
         r"^\s*(?:draft\s+a?\s*)?(?:reply|response|write\s+back)\s*(?:saying|that|with|to\s+(?:it|this|that))?\s*",
         "", text, flags=re.I
@@ -8314,6 +8607,10 @@ def dispatch_natural(text: str):
         cmd_gmail_open_draft(text)
     elif intent == "gmail_delete_draft":
         cmd_gmail_delete_draft(text)
+    elif intent == "gmail_thread_intel":
+        cmd_gmail_thread_intel(text)
+    elif intent == "gmail_forward":
+        cmd_gmail_forward(text)
     elif intent == "gmail_list_attachments":
         cmd_gmail_list_attachments(text)
     elif intent == "gmail_save_attachment":
@@ -8635,6 +8932,10 @@ def handle(line: str) -> bool:
     elif line == "/gmail-undo": cmd_gmail_undo()
     elif line == "/gmail-draft-reply": cmd_gmail_draft_reply("")
     elif line.startswith("/gmail-draft-reply "): cmd_gmail_draft_reply(line[19:].strip())
+    elif line == "/gmail-thread-intel": cmd_gmail_thread_intel("")
+    elif line.startswith("/gmail-thread-intel "): cmd_gmail_thread_intel(line[20:].strip())
+    elif line == "/gmail-forward": cmd_gmail_forward("")
+    elif line.startswith("/gmail-forward "): cmd_gmail_forward(line[15:].strip())
     elif line == "/gmail-compose": cmd_gmail_compose("")
     elif line.startswith("/gmail-compose "): cmd_gmail_compose(line[15:].strip())
     elif line == "/gmail-show-draft": cmd_gmail_show_draft()

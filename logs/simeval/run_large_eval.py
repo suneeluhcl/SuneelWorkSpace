@@ -44,6 +44,7 @@ ALL_INTENTS = [
     "gmail_followup_reminder", "gmail_list_followups", "gmail_cancel_followup",
     "gmail_reschedule_send", "gmail_open_scheduled_draft",
     "gmail_list_drafts", "gmail_open_draft", "gmail_delete_draft",
+    "gmail_thread_intel", "gmail_forward",
     "sync",
     "nightly_status","nightly_run",
     "fix_error","patch_adwi","inspect_code","test_adwi","eval_routing","eval_adwi",
@@ -241,6 +242,10 @@ REGEX_INTENTS = [
     # NHR-006: daily_improve regex
     (re.compile(r"\b(daily.?improv|daily.?enhanc|daily.?routine)\b", re.I), "daily_improve"),
     (re.compile(r"\brun.{0,10}daily.{0,10}(improve|maintenance|self.?improve)\b", re.I), "daily_improve"),
+    # gmail Phase 15 early guards — MUST precede web_search and git_status
+    (re.compile(r"\bwhat\s+changed\b.{0,30}\b(?:reply|thread|email|message|conversation)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\blatest\s+(?:reply|message|delta)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\blatest\s+update\b.{0,30}\b(?:thread|email|conversation|message)\b", re.I), "gmail_thread_intel"),
     # FIX-BROWSE-001: URL/domain visit patterns BEFORE web_search
     (re.compile(r"\b(visit|browse\s+to|navigate\s+to)\b.{0,50}(https?://|\.(com|io|org|dev|net|ai|co|app))\b", re.I), "browse"),
     (re.compile(r"\bfetch\b.{0,40}(https?://|content\s+of\s+https?://)", re.I), "browse"),
@@ -370,7 +375,8 @@ REGEX_INTENTS = [
     (re.compile(r"\battach\b.{0,30}\b(?:that|the|saved)\b.{0,20}\battachment\b", re.I), "gmail_attach_file"),
     # gmail Phase 14: subject update — MUST precede Phase 4 rewrite
     (re.compile(r"\b(?:rewrite|update|change|improve|fix)\b.{0,20}\bsubject\b", re.I), "gmail_update_subject"),
-    (re.compile(r"\b(?:make|write)\b.{0,20}\b(?:a\s+)?(?:better|clearer|shorter|stronger|good|clear|more\s+professional)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
+    (re.compile(r"\b(?:make|write)\b.{0,20}\bsubject\b.{0,25}\b(?:better|clearer|shorter|stronger|cleaner|good|clear|more\s+professional|more\s+concise)\b", re.I), "gmail_update_subject"),
+    (re.compile(r"\b(?:write|give\s+me)\b.{0,20}\b(?:a\s+)?(?:better|clearer|shorter|stronger|good|clear|more\s+professional)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
     (re.compile(r"\bsubject\b.{0,25}\b(?:is|feels?|seems?|sounds?)\b.{0,20}\b(?:weak|vague|unclear|bad|poor|generic|long|boring)\b", re.I), "gmail_update_subject"),
     (re.compile(r"\bgive\s+me\b.{0,20}\b(?:a\s+)?(?:better|clearer|different|new|good)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
     # gmail Phase 4: rewrite intent — MUST precede Phase 3 patterns
@@ -446,6 +452,16 @@ REGEX_INTENTS = [
     (re.compile(r"\b(?:forget|throw\s+away)\b.{0,20}\b(?:the\s+)?draft\b", re.I), "gmail_cancel_draft"),
     (re.compile(r"\b(?:show|display|view|preview|read)\b.{0,20}\b(?:the\s+|my\s+)?draft\b", re.I), "gmail_show_draft"),
     (re.compile(r"\bwhat(?:\s+does)?.{0,20}(?:the\s+)?draft\b", re.I), "gmail_show_draft"),
+    # gmail Phase 15: thread intel + forward — MUST precede gmail_draft_reply / gmail_compose
+    (re.compile(r"\baction\s+items?\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bwhat\s+(?:action\s+items?|decisions?|questions?|changed|do\s+I\s+(?:owe|need\s+to\s+do))\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:do\s+I\s+owe|should\s+I\s+reply|is\s+a\s+reply\s+needed|reply\s+needed|need\s+to\s+respond)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:what\s+changed|latest\s+(?:reply|message|update|delta)|last\s+(?:reply|message|update))\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bdecisions?\b.{0,20}\b(?:in|from|this|the)\b.{0,20}\b(?:thread|conversation|email|chain)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bquestions?\s+(?:waiting|outstanding|for\s+me|pending)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bsummarize\b.{0,20}\blatest\b.{0,20}\b(?:reply|message|part|update)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:forward|fwd)\b.{0,25}\bto\b", re.I), "gmail_forward"),
+    (re.compile(r"\b(?:forward|fwd)\b.{0,20}\b(?:this|it|the\s+(?:email|thread|message))\b", re.I), "gmail_forward"),
     (re.compile(r"\bdraft\b.{0,20}\b(?:a\s+)?reply\b", re.I), "gmail_draft_reply"),
     (re.compile(r"\breply\b.{0,30}\b(?:saying|that|with|to\s+(?:it|this|that|the\s+email|the\s+thread))\b", re.I), "gmail_draft_reply"),
     (re.compile(r"\b(?:respond|write\s+back)\b.{0,30}\b(?:saying|that|to\s+(?:it|this|that))\b", re.I), "gmail_draft_reply"),
@@ -1351,6 +1367,39 @@ def build_corpus() -> list[dict]:
         "open the scheduled email draft",
     ]:
         add(p, "comms", "gmail_open_scheduled_draft", "medium", fam="gmail_open_scheduled_draft")
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # GMAIL PHASE 15 — thread_intel / forward  (22 scenarios)
+    # ─────────────────────────────────────────────────────────────────────────
+    for p in [
+        "what action items are in this thread",
+        "action items in this email chain",
+        "what are the action items",
+        "what decisions were made in this thread",
+        "what decisions came out of this conversation",
+        "do I owe a reply here",
+        "should I reply to this",
+        "is a reply needed",
+        "what changed in the last reply",
+        "what changed in the latest message",
+        "what's the latest update in this thread",
+        "summarize the latest reply",
+        "summarize the latest message",
+        "questions waiting on me",
+        "questions outstanding for me",
+    ]:
+        add(p, "comms", "gmail_thread_intel", "easy", fam="gmail_thread_intel")
+
+    for p in [
+        "forward to Rahul",
+        "forward this to priya@example.com",
+        "fwd this to the team",
+        "forward the email to my manager",
+        "forward this with a summary",
+        "forward it to boss",
+        "fwd to noreply@example.com",
+    ]:
+        add(p, "comms", "gmail_forward", "easy", fam="gmail_forward")
 
     # ─────────────────────────────────────────────────────────────────────────
     # WEB SEARCH  (45 scenarios)

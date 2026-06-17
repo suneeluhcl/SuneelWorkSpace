@@ -57,6 +57,7 @@
     "/gmail-drafts",
     "/gmail-followup",
     "/gmail-followups",
+    "/gmail-forward",
     "/gmail-mark-read",
     "/gmail-mark-unread",
     "/gmail-open-draft",
@@ -76,6 +77,7 @@
     "/gmail-summarize-attachment",
     "/gmail-summary",
     "/gmail-thread",
+    "/gmail-thread-intel",
     "/gmail-trash",
     "/gmail-triage",
     "/gmail-undo",
@@ -173,22 +175,22 @@
     [
       "n8n",
       "1",
-      "Up 21 hours"
+      "Up 22 hours"
     ],
     [
       "searxng",
       "1",
-      "Up 21 hours"
+      "Up 22 hours"
     ],
     [
       "prometheus",
       "1",
-      "Up 21 hours"
+      "Up 22 hours"
     ],
     [
       "loki",
       "1",
-      "Up 21 hours"
+      "Up 22 hours"
     ],
     [
       "grafana",
@@ -198,12 +200,12 @@
     [
       "node-exporter",
       "1",
-      "Up 21 hours"
+      "Up 22 hours"
     ],
     [
       "cadvisor",
       "1",
-      "Up 21 hours (healthy)"
+      "Up 22 hours (healthy)"
     ]
   ],
   "launchagents": [
@@ -248,5 +250,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-17",
-  "_hash": "4a3be74ddef2c2b5"
+  "_hash": "2210f8af0c2873d7"
 }

@@ -1117,6 +1117,69 @@ class TestGmailRoutingPhase12(unittest.TestCase):
         self.assertNotEqual(result, "gmail_show_draft")
 
 
+class TestGmailRoutingPhase14(unittest.TestCase):
+    """Phase 14 — smart-compose polish: subject update + extended rewrite routing."""
+
+    # ── gmail_update_subject ───────────────────────────────────────────────────
+
+    def test_make_subject_clearer(self):
+        self.assertEqual(_classify("make the subject clearer"), "gmail_update_subject")
+
+    def test_rewrite_the_subject(self):
+        self.assertEqual(_classify("rewrite the subject"), "gmail_update_subject")
+
+    def test_update_subject(self):
+        self.assertEqual(_classify("update the subject"), "gmail_update_subject")
+
+    def test_give_me_better_subject(self):
+        self.assertEqual(_classify("give me a better subject"), "gmail_update_subject")
+
+    def test_subject_sounds_weak(self):
+        self.assertEqual(_classify("the subject sounds weak"), "gmail_update_subject")
+
+    def test_write_stronger_subject(self):
+        self.assertEqual(_classify("write a stronger subject"), "gmail_update_subject")
+
+    def test_improve_subject_line(self):
+        self.assertEqual(_classify("improve the subject line"), "gmail_update_subject")
+
+    def test_change_subject(self):
+        self.assertEqual(_classify("change the subject"), "gmail_update_subject")
+
+    def test_subject_not_body_rewrite(self):
+        # subject update must not bleed into rewrite_draft
+        result = _classify("make the subject clearer")
+        self.assertNotEqual(result, "gmail_rewrite_draft")
+
+    # ── gmail_rewrite_draft (extended) ────────────────────────────────────────
+
+    def test_make_it_more_polite(self):
+        self.assertEqual(_classify("make it more polite"), "gmail_rewrite_draft")
+
+    def test_make_it_less_robotic(self):
+        self.assertEqual(_classify("make it sound less robotic"), "gmail_rewrite_draft")
+
+    def test_make_it_more_natural(self):
+        self.assertEqual(_classify("make it more natural"), "gmail_rewrite_draft")
+
+    def test_turn_this_into_update(self):
+        self.assertEqual(_classify("turn this into a concise update"), "gmail_rewrite_draft")
+
+    def test_write_shorter_version(self):
+        self.assertEqual(_classify("write a shorter version"), "gmail_rewrite_draft")
+
+    def test_write_more_professional_reply(self):
+        self.assertEqual(_classify("write a more professional reply"), "gmail_rewrite_draft")
+
+    def test_make_it_less_formal(self):
+        self.assertEqual(_classify("make it less formal"), "gmail_rewrite_draft")
+
+    def test_update_subject_beats_rewrite_draft(self):
+        # "update the subject" → subject update, not body rewrite
+        self.assertEqual(_classify("update the subject"), "gmail_update_subject")
+        self.assertNotEqual(_classify("update the subject"), "gmail_rewrite_draft")
+
+
 class TestGmailRoutingPhase13(unittest.TestCase):
     """Phase 13 — reschedule/open scheduled sends NLU routing."""
 
@@ -1187,6 +1250,89 @@ class TestGmailRoutingPhase13(unittest.TestCase):
         # "open the scheduled invoice draft" must not go to list_scheduled
         result = _classify("open the scheduled invoice draft")
         self.assertNotEqual(result, "gmail_list_scheduled")
+
+
+class TestGmailRoutingPhase15(unittest.TestCase):
+    """Phase 15: gmail_thread_intel and gmail_forward NLU routing."""
+
+    # ── gmail_thread_intel ───────────────────────────────────────────────────
+
+    def test_action_items_bare(self):
+        self.assertEqual(_classify("what action items are in this thread"), "gmail_thread_intel")
+
+    def test_action_items_short(self):
+        self.assertEqual(_classify("action items in this email chain"), "gmail_thread_intel")
+
+    def test_decisions_in_thread(self):
+        self.assertEqual(_classify("what decisions were made in this thread"), "gmail_thread_intel")
+
+    def test_decisions_with_chain(self):
+        self.assertEqual(_classify("decisions made in this conversation"), "gmail_thread_intel")
+
+    def test_do_i_owe_reply(self):
+        self.assertEqual(_classify("do I owe a reply here"), "gmail_thread_intel")
+
+    def test_should_i_reply(self):
+        self.assertEqual(_classify("should I reply to this"), "gmail_thread_intel")
+
+    def test_is_reply_needed(self):
+        self.assertEqual(_classify("is a reply needed"), "gmail_thread_intel")
+
+    def test_what_changed(self):
+        self.assertEqual(_classify("what changed in the last reply"), "gmail_thread_intel")
+
+    def test_latest_reply(self):
+        self.assertEqual(_classify("what's the latest update in this thread"), "gmail_thread_intel")
+
+    def test_summarize_latest_reply(self):
+        self.assertEqual(_classify("summarize the latest reply"), "gmail_thread_intel")
+
+    def test_summarize_latest_message(self):
+        self.assertEqual(_classify("summarize the latest message"), "gmail_thread_intel")
+
+    def test_questions_waiting(self):
+        self.assertEqual(_classify("questions waiting on me"), "gmail_thread_intel")
+
+    def test_questions_outstanding(self):
+        self.assertEqual(_classify("questions outstanding for me"), "gmail_thread_intel")
+
+    def test_what_do_i_owe(self):
+        self.assertEqual(_classify("what do I owe in this thread"), "gmail_thread_intel")
+
+    def test_intel_beats_draft_reply(self):
+        # "do I owe a reply" must not go to gmail_draft_reply
+        result = _classify("do I owe a reply here")
+        self.assertNotEqual(result, "gmail_draft_reply")
+
+    def test_intel_beats_summarize(self):
+        # "summarize the latest reply" must not go to gmail_summarize
+        result = _classify("summarize the latest reply")
+        self.assertNotEqual(result, "gmail_summarize")
+
+    # ── gmail_forward ────────────────────────────────────────────────────────
+
+    def test_forward_to_name(self):
+        self.assertEqual(_classify("forward to Rahul"), "gmail_forward")
+
+    def test_forward_to_email(self):
+        self.assertEqual(_classify("forward this to priya@example.com"), "gmail_forward")
+
+    def test_fwd_to_team(self):
+        self.assertEqual(_classify("fwd this to the team"), "gmail_forward")
+
+    def test_forward_email_to_manager(self):
+        self.assertEqual(_classify("forward the email to my manager"), "gmail_forward")
+
+    def test_forward_with_summary(self):
+        self.assertEqual(_classify("forward this with a summary"), "gmail_forward")
+
+    def test_forward_beats_compose(self):
+        # "forward to Rahul" must not go to gmail_compose
+        result = _classify("forward to Rahul")
+        self.assertNotEqual(result, "gmail_compose")
+
+    def test_forward_it_to_boss(self):
+        self.assertEqual(_classify("forward it to boss"), "gmail_forward")
 
 
 if __name__ == "__main__":

@@ -379,6 +379,41 @@ def create_draft_compose(to: str, subject: str, body: str,
     }
 
 
+def create_draft_forward(to: str, subject: str, original_from: str, original_date: str,
+                          original_body: str, intro_body: str = "",
+                          cc: str = "", bcc: str = "") -> dict:
+    """Create a Gmail draft forwarding a message. Returns draft context dict."""
+    service = get_service()
+    fwd_subject = subject if subject.lower().startswith("fwd:") else f"Fwd: {subject}"
+    forwarded_block = (
+        "\n\n---------- Forwarded message ---------\n"
+        f"From: {original_from}\n"
+        f"Date: {original_date}\n"
+        f"Subject: {subject}\n\n"
+        f"{original_body}"
+    )
+    if intro_body.strip():
+        full_body = intro_body.strip() + "\n" + forwarded_block
+    else:
+        full_body = forwarded_block.lstrip("\n")
+    raw = _build_raw_message(to, fwd_subject, full_body, cc=cc, bcc=bcc)
+    draft = service.users().drafts().create(
+        userId="me",
+        body={"message": {"raw": raw}}
+    ).execute()
+    return {
+        "draft_id":             draft["id"],
+        "thread_id":            None,
+        "to":                   to,
+        "cc":                   cc,
+        "bcc":                  bcc,
+        "subject":              fwd_subject,
+        "body":                 full_body,
+        "mode":                 "forward",
+        "outbound_attachments": [],
+    }
+
+
 def get_my_email() -> str:
     """Return the authenticated Gmail account's email address."""
     service = get_service()

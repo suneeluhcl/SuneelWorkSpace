@@ -35,7 +35,7 @@ ALL_INTENTS = [
     "git_status","backup_now","backup_status","backup_log",
     "gmail","gmail_read","gmail_open","gmail_thread","gmail_summarize","gmail_list_category",
     "gmail_archive","gmail_trash","gmail_mark_read","gmail_mark_unread","gmail_confirm","gmail_cancel",
-    "gmail_draft_reply","gmail_compose","gmail_show_draft","gmail_send_draft","gmail_cancel_draft","gmail_rewrite_draft",
+    "gmail_draft_reply","gmail_compose","gmail_show_draft","gmail_send_draft","gmail_cancel_draft","gmail_rewrite_draft","gmail_update_subject",
     "gmail_add_cc","gmail_add_bcc",
     "gmail_list_attachments","gmail_save_attachment","gmail_summarize_attachment",
     "gmail_attach_file", "gmail_remove_attachment", "gmail_undo",
@@ -44,6 +44,7 @@ ALL_INTENTS = [
     "gmail_followup_reminder", "gmail_list_followups", "gmail_cancel_followup",
     "gmail_reschedule_send", "gmail_open_scheduled_draft",
     "gmail_list_drafts", "gmail_open_draft", "gmail_delete_draft",
+    "gmail_thread_intel", "gmail_forward",
     "sync",
     "nightly_status","nightly_run",
     "fix_error","patch_adwi","inspect_code","test_adwi","eval_routing","eval_adwi",
@@ -213,6 +214,10 @@ REGEX_INTENTS = [
     (re.compile(r"\bgenerate\b.{0,20}\b(todo|to.?do|task)\s+(list|items?)\b.{0,20}\badwi\b", re.I), "what_next"),
     (re.compile(r"\b(daily.?improv|daily.?enhanc|daily.?routine)\b", re.I), "daily_improve"),
     (re.compile(r"\brun.{0,10}daily.{0,10}(improve|maintenance|self.?improve)\b", re.I), "daily_improve"),
+    # gmail Phase 15 early guards — MUST precede web_search and git_status
+    (re.compile(r"\bwhat\s+changed\b.{0,30}\b(?:reply|thread|email|message|conversation)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\blatest\s+(?:reply|message|delta)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\blatest\s+update\b.{0,30}\b(?:thread|email|conversation|message)\b", re.I), "gmail_thread_intel"),
     # FIX-BROWSE-001: URL/domain visit patterns BEFORE web_search
     (re.compile(r"\b(visit|browse\s+to|navigate\s+to)\b.{0,50}(https?://|\.(com|io|org|dev|net|ai|co|app))\b", re.I), "browse"),
     (re.compile(r"\bfetch\b.{0,40}(https?://|content\s+of\s+https?://)", re.I), "browse"),
@@ -337,8 +342,16 @@ REGEX_INTENTS = [
     (re.compile(r"\battach\b.{0,50}\b(?:pdf|document|file|spreadsheet|invoice|report|deck|image|photo|attachment)\b", re.I), "gmail_attach_file"),
     (re.compile(r"\b(?:add|include)\b.{0,20}\b(?:the\s+)?(?:pdf|spreadsheet|invoice|report|deck|image|attachment)\b.{0,30}\b(?:(?:to|in)\s+(?:(?:this|the)\s+)?(?:draft|email|message|reply))\b", re.I), "gmail_attach_file"),
     (re.compile(r"\battach\b.{0,30}\b(?:that|the|saved)\b.{0,20}\battachment\b", re.I), "gmail_attach_file"),
+    # gmail Phase 14: subject update — MUST precede Phase 4 rewrite
+    (re.compile(r"\b(?:rewrite|update|change|improve|fix)\b.{0,20}\bsubject\b", re.I), "gmail_update_subject"),
+    (re.compile(r"\b(?:make|write)\b.{0,20}\bsubject\b.{0,25}\b(?:better|clearer|shorter|stronger|cleaner|good|clear|more\s+professional|more\s+concise)\b", re.I), "gmail_update_subject"),
+    (re.compile(r"\b(?:write|give\s+me)\b.{0,20}\b(?:a\s+)?(?:better|clearer|shorter|stronger|good|clear|more\s+professional)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
+    (re.compile(r"\bsubject\b.{0,25}\b(?:is|feels?|seems?|sounds?)\b.{0,20}\b(?:weak|vague|unclear|bad|poor|generic|long|boring)\b", re.I), "gmail_update_subject"),
+    (re.compile(r"\bgive\s+me\b.{0,20}\b(?:a\s+)?(?:better|clearer|different|new|good)\b.{0,10}\bsubject\b", re.I), "gmail_update_subject"),
     # gmail Phase 4: rewrite intent — MUST precede Phase 3 patterns
-    (re.compile(r"\b(?:make|rewrite|revise|edit)\b.{0,20}\b(?:it|the\s+draft|the\s+reply|this|the\s+email)\b.{0,40}\b(?:shorter|longer|brief(?:er)?|concis(?:e|er)|professional(?:ly)?|formal(?:ly)?|casual(?:ly)?|warm(?:er|ly)?|friendli(?:er)?|direct(?:ly)?|clear(?:er)?)\b", re.I), "gmail_rewrite_draft"),
+    (re.compile(r"\b(?:make|rewrite|revise|edit)\b.{0,20}\b(?:it|the\s+draft|the\s+reply|this|the\s+email)\b.{0,40}\b(?:shorter|longer|brief(?:er)?|concis(?:e|er)|professional(?:ly)?|formal(?:ly)?|casual(?:ly)?|warm(?:er|ly)?|friendli(?:er)?|direct(?:ly)?|clear(?:er)?|natural(?:ly)?|informal(?:ly)?|polite(?:ly)?|robotic|engaging)\b", re.I), "gmail_rewrite_draft"),
+    (re.compile(r"\bturn\s+(?:this|it)\b.{0,30}\binto\b.{0,30}\b(?:shorter|brief|concise|professional|update|summary|formal|casual|polite|warm|friendly|direct|natural)\b", re.I), "gmail_rewrite_draft"),
+    (re.compile(r"\bwrite\b.{0,10}(?:a|an)\s+(?:shorter|briefer|more\s+(?:concise|direct|professional|formal|casual|friendly|polite|natural|warm))\b.{0,20}\b(?:version|draft|email|message|reply)?\b", re.I), "gmail_rewrite_draft"),
     (re.compile(r"\b(?:mention|add|include)\b.{0,50}\b(?:in|to)\s+(?:the\s+)?(?:draft|reply|email|message)\b", re.I), "gmail_rewrite_draft"),
     # gmail Phase 5: add-cc / add-bcc — MUST precede Phase 3
     (re.compile(r"\badd\s+cc\b", re.I), "gmail_add_cc"),
@@ -408,6 +421,16 @@ REGEX_INTENTS = [
     (re.compile(r"\b(?:forget|throw\s+away)\b.{0,20}\b(?:the\s+)?draft\b", re.I), "gmail_cancel_draft"),
     (re.compile(r"\b(?:show|display|view|preview|read)\b.{0,20}\b(?:the\s+|my\s+)?draft\b", re.I), "gmail_show_draft"),
     (re.compile(r"\bwhat(?:\s+does)?.{0,20}(?:the\s+)?draft\b", re.I), "gmail_show_draft"),
+    # gmail Phase 15: thread intel + forward — MUST precede gmail_draft_reply / gmail_compose
+    (re.compile(r"\baction\s+items?\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bwhat\s+(?:action\s+items?|decisions?|questions?|changed|do\s+I\s+(?:owe|need\s+to\s+do))\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:do\s+I\s+owe|should\s+I\s+reply|is\s+a\s+reply\s+needed|reply\s+needed|need\s+to\s+respond)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:what\s+changed|latest\s+(?:reply|message|update|delta)|last\s+(?:reply|message|update))\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bdecisions?\b.{0,20}\b(?:in|from|this|the)\b.{0,20}\b(?:thread|conversation|email|chain)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bquestions?\s+(?:waiting|outstanding|for\s+me|pending)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\bsummarize\b.{0,20}\blatest\b.{0,20}\b(?:reply|message|part|update)\b", re.I), "gmail_thread_intel"),
+    (re.compile(r"\b(?:forward|fwd)\b.{0,25}\bto\b", re.I), "gmail_forward"),
+    (re.compile(r"\b(?:forward|fwd)\b.{0,20}\b(?:this|it|the\s+(?:email|thread|message))\b", re.I), "gmail_forward"),
     (re.compile(r"\bdraft\b.{0,20}\b(?:a\s+)?reply\b", re.I), "gmail_draft_reply"),
     (re.compile(r"\breply\b.{0,30}\b(?:saying|that|with|to\s+(?:it|this|that|the\s+email|the\s+thread))\b", re.I), "gmail_draft_reply"),
     (re.compile(r"\b(?:respond|write\s+back)\b.{0,30}\b(?:saying|that|to\s+(?:it|this|that))\b", re.I), "gmail_draft_reply"),
@@ -1177,6 +1200,44 @@ def build_p2_corpus() -> list[dict]:
         "open the scheduled email draft",
     ]:
         add(p, "comms", "gmail_open_scheduled_draft", "medium", fam="gmail_open_scheduled_draft")
+
+    # Phase 14 — extended rewrite + subject update
+    for p in [
+        "make it more polite","make it sound less robotic","make it more natural",
+        "turn this into a concise update","write a shorter version",
+        "write a more professional reply","make it less formal",
+    ]:
+        add(p, "comms", "gmail_rewrite_draft", "medium", fam="gmail_rewrite_draft")
+    for p in [
+        "make the subject clearer","rewrite the subject","update the subject",
+        "give me a better subject","the subject sounds weak","write a stronger subject",
+        "improve the subject line",
+    ]:
+        add(p, "comms", "gmail_update_subject", "medium", fam="gmail_update_subject")
+
+    # Phase 15 — thread intel + forward
+    for p in [
+        "what action items are in this thread",
+        "action items in this email chain",
+        "what decisions were made in this thread",
+        "do I owe a reply here",
+        "should I reply to this",
+        "what changed in the last reply",
+        "questions waiting on me",
+        "summarize the latest reply",
+        "is a reply needed",
+    ]:
+        add(p, "comms", "gmail_thread_intel", "easy", fam="gmail_thread_intel")
+
+    for p in [
+        "forward to Rahul",
+        "forward this to priya@example.com",
+        "fwd this to the team",
+        "forward the email to my manager",
+        "forward this with a summary",
+        "forward it to boss",
+    ]:
+        add(p, "comms", "gmail_forward", "easy", fam="gmail_forward")
 
     return sc
 
