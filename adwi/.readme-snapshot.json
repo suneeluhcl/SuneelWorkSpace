@@ -177,7 +177,7 @@
     [
       "open-webui",
       "1",
-      "Up 25 hours (healthy)"
+      "Up 26 hours (healthy)"
     ],
     [
       "n8n",
@@ -202,7 +202,7 @@
     [
       "grafana",
       "1",
-      "Up 25 hours"
+      "Up 26 hours"
     ],
     [
       "node-exporter",
@@ -257,5 +257,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-17",
-  "_hash": "32286b46bca41eb6"
+  "_hash": "a02cac50207e7371"
 }
