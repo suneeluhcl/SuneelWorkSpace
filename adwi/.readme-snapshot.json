@@ -66,6 +66,7 @@
     "/gmail-summary",
     "/gmail-thread",
     "/gmail-trash",
+    "/gmail-triage",
     "/gmail-undo",
     "/ha",
     "/help",
@@ -228,5 +229,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-16",
-  "_hash": "ee489defa13ab7fb"
+  "_hash": "dae153d441ce6519"
 }

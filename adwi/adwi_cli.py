@@ -881,6 +881,18 @@ _REGEX_INTENTS = [
     (re.compile(r"\btrash\b.{0,20}\b(?:from|about|older\s+than)\b", re.I), "gmail_trash"),
     (re.compile(r"\bdelete\b.{0,30}\b(?:emails?|mail|messages?|them|those|these|that|promos?|spam)\b", re.I), "gmail_trash"),
 
+    # ── Gmail Phase 9: triage — MUST precede gmail_open (triage beats bare "open") ──
+    (re.compile(r"\b(?:what|which)\b.{0,20}\b(?:needs?|need\s+my)\b.{0,20}\breply\b", re.I), "gmail_triage"),
+    (re.compile(r"\bwhat\s+(?:should|do)\s+I\s+(?:answer|respond|reply)\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:which|what)\b.{0,15}\bemails?\b.{0,20}\b(?:urg(?:ent|ently)|important|need\s+attention)\b", re.I), "gmail_triage"),
+    (re.compile(r"\btriage\b.{0,20}\b(?:my\s+)?(?:inbox|email|mail)\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:inbox\s+triage|email\s+triage)\b", re.I), "gmail_triage"),
+    (re.compile(r"\bwhat\b.{0,20}\b(?:needs?\s+(?:my\s+)?attention|action[-\s]?(?:needed|required|items?))\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:show|find)\b.{0,15}\b(?:action[-\s]?needed|urgent|important)\b.{0,15}\bemails?\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:which|what)\b.{0,20}\bthreads?\b.{0,20}\b(?:waiting|pending|unresponded|owe|reply)\b", re.I), "gmail_triage"),
+    (re.compile(r"\bwhat\b.{0,20}\b(?:from\s+today|today\b).{0,20}\b(?:needs?|attention|important|matters?)\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:emails?|inbox).{0,20}\b(?:waiting\s+on\s+me|waiting\s+for\s+me)\b", re.I), "gmail_triage"),
+
     # ── Gmail open (search + open first result) — MUST precede gmail_read ────────
     # "open latest email from Amazon", "open the email about the budget"
     (re.compile(r"\b(open|read)\b.{0,20}\b(email|mail|message)\b.{0,30}\b(from|about|regarding|by)\b", re.I), "gmail_open"),
@@ -1129,6 +1141,7 @@ _ALL_INTENTS = [
     "gmail_add_cc", "gmail_add_bcc",
     "gmail_list_attachments", "gmail_save_attachment", "gmail_summarize_attachment",
     "gmail_attach_file", "gmail_remove_attachment",
+    "gmail_triage",
     # n8n / automation
     "sync",
     # Nightly
@@ -1240,6 +1253,12 @@ _INTENT_SYSTEM = (
     "   'gmail_remove_attachment': remove an outbound attachment from the current draft —\n"
     "                      'remove the PDF from the draft', 'detach the attachment', 'drop the invoice',\n"
     "                      'remove attachment 1'. Only valid when a draft with attachments exists.\n"
+    "   'gmail_triage'   : analyze and rank the inbox — 'what needs my reply?', 'which emails are urgent?',\n"
+    "                      'triage my inbox', 'what needs attention today?', 'show action-needed emails',\n"
+    "                      'what should I answer?', 'which threads am I waiting on?', 'inbox triage',\n"
+    "                      'emails waiting on me'. ALWAYS read-only — no mutations.\n"
+    "                      Populates candidates for follow-up open/reply/archive after triage.\n"
+    "                      NEVER use gmail_archive/gmail_trash for triage requests.\n"
     "   'generate_image' : ONLY when creating a brand-new image/picture/artwork/visual output.\n"
     "                      NEVER for explanations, comparisons, or code/model concepts.\n"
     "                      'generation' as a software concept (code generation, token generation,\n"
@@ -3303,6 +3322,7 @@ _GMAIL_CTX: dict = {
     "current_attachment": None, # Phase 6: last selected/saved attachment dict
     "pending_attach":     None, # Phase 7: file disambiguation candidates [{path, filename, size}]
     "last_mutation":      None, # Phase 8: undo — {action, ids, count, description} of last confirmed op
+    "triage_results":     None, # Phase 9: {reply_needed, action_needed, fyi, noise} id lists
 }
 
 _GMAIL_ACTION_PAST = {
@@ -3325,6 +3345,238 @@ _GMAIL_CATEGORY_MAP = {
     "forums":     "CATEGORY_FORUMS",    "forum":      "CATEGORY_FORUMS",
     "spam":       "SPAM",
 }
+
+# ── Gmail Phase 9: triage signal patterns ──────────────────────────────────────
+
+_TRIAGE_NOISE_FROM = re.compile(
+    r"\b(?:noreply|no-reply|notifications?|newsletter|mailer(?:[-_]|daemon)?|"
+    r"bounce|automailer|alerts?|do-?not-?reply|support-ticket|info@)\b",
+    re.I,
+)
+_TRIAGE_NOISE_LABELS = {"CATEGORY_PROMOTIONS", "CATEGORY_SOCIAL", "CATEGORY_UPDATES", "CATEGORY_FORUMS", "SPAM"}
+_TRIAGE_ACTION_SUBJECT = re.compile(
+    r"\b(?:invoice|payment|due|deadline|urgent|asap|action\s+required|"
+    r"approval\s+(?:needed|required)|please\s+review|meeting\s+request|"
+    r"sign[-\s]off|by\s+(?:eod|eow|end\s+of\s+(?:day|week)|friday|monday|today|tomorrow))\b",
+    re.I,
+)
+_TRIAGE_REPLY_SNIPPET = re.compile(
+    r"(?:\?|can\s+you|could\s+you|please\s+(?:let\s+me\s+know|confirm|respond|reply|send)|"
+    r"let\s+me\s+know|do\s+you\s+have|are\s+you\s+able|would\s+you)",
+    re.I,
+)
+
+
+def _gmail_precheck_noise(em: dict) -> bool:
+    """Return True if email is likely noise from structural signals alone."""
+    label_ids = em.get("label_ids", [])
+    if _TRIAGE_NOISE_LABELS.intersection(label_ids):
+        return True
+    if _TRIAGE_NOISE_FROM.search(em.get("from", "")):
+        return True
+    return False
+
+
+def _gmail_triage_llm(emails: list) -> list:
+    """
+    Classify up to 20 emails via a single LLM batch call.
+    Returns [{id, triage, reason}, ...] or [] on LLM failure / JSON parse error.
+    triage values: reply_needed | action_needed | fyi | noise
+    """
+    if not emails:
+        return []
+    lines = []
+    for i, em in enumerate(emails, 1):
+        sender  = em.get("from", "")[:45]
+        subject = em.get("subject", "")[:70]
+        snippet = em.get("snippet", "")[:150]
+        eid     = em["id"][:8]
+        lines.append(
+            f"[{i}] id={eid}\n"
+            f"  From: {sender}\n"
+            f"  Subject: {subject}\n"
+            f"  Preview: {snippet}"
+        )
+    digest = "\n\n".join(lines)
+    prompt = (
+        "Classify each inbox email for inbox triage. Return ONLY a valid JSON array.\n"
+        "triage must be exactly one of: reply_needed, action_needed, fyi, noise\n"
+        "  reply_needed  — direct question or clearly expects Suneel's personal response\n"
+        "  action_needed — deadline, invoice, payment, approval needed, meeting request\n"
+        "  fyi           — informational only, no reply or action required\n"
+        "  noise         — newsletter, marketing, automated alert, social notification\n"
+        "reason: max 8 plain words, no quotes inside the string\n\n"
+        "Return ONLY valid JSON (no markdown, no code fences, no explanation outside the array):\n"
+        '[{"id":"12345678","triage":"reply_needed","reason":"direct question about timeline"}]\n\n'
+        "Emails:\n" + digest
+    )
+    raw = _llm_generate(
+        prompt,
+        system=(
+            "You are classifying inbox emails for a personal assistant. "
+            "Output ONLY a valid JSON array. No explanation, no markdown."
+        ),
+        max_tokens=1600,
+    )
+    try:
+        start = raw.index('[')
+        end   = raw.rindex(']') + 1
+        data  = json.loads(raw[start:end])
+        if isinstance(data, list):
+            return data
+    except (ValueError, json.JSONDecodeError):
+        pass
+    return []
+
+
+def cmd_gmail_triage(text: str = "") -> None:
+    """
+    Phase 9: Inbox triage — classify inbox emails into reply_needed / action_needed / fyi / noise.
+    Read-only: never mutates the mailbox.
+    """
+    token = HOME / "SuneelWorkSpace" / "secrets" / "gmail-token.json"
+    if not token.exists():
+        cprint("  Not authorized. Run: /gmail-auth", YELLOW); return
+
+    # ── Mode detection from natural language ──────────────────────────────────
+    txt_l = text.lower()
+    if re.search(r"\b(?:today|this\s+morning|this\s+afternoon)\b", txt_l):
+        query = "is:unread in:inbox newer_than:1d"
+        mode  = "today"
+    elif re.search(r"\b(?:reply|respond|answer|waiting\s+(?:on|for)\s+me)\b", txt_l):
+        query = "is:unread in:inbox newer_than:7d"
+        mode  = "reply"
+    elif re.search(r"\b(?:urgent|asap|critical|action\s+required|high\s+priority)\b", txt_l):
+        query = "is:unread in:inbox newer_than:7d"
+        mode  = "urgent"
+    else:
+        query = "is:unread in:inbox newer_than:7d"
+        mode  = "full"
+
+    adwi_head(f"Gmail — Inbox Triage ({mode})")
+    cprint("  Fetching inbox…", GRAY)
+
+    try:
+        gh = _gmail()
+        emails = gh.list_inbox_for_triage(max_results=20, query=query)
+    except Exception as e:
+        cprint(f"  Failed to fetch inbox: {e}", RED)
+        if "403" in str(e) or "scope" in str(e).lower():
+            cprint("  Scope error — run /gmail-auth to re-authorize.", YELLOW)
+        return
+
+    if not emails:
+        cprint("  No unread emails found for this query.", GRAY)
+        return
+
+    cprint(f"  Fetched {len(emails)} email{'s' if len(emails) != 1 else ''}. Classifying…", GRAY)
+
+    # ── Structural pre-filter: noise detection before LLM ────────────────────
+    structural_noise: list = []
+    to_classify: list      = []
+    for em in emails:
+        if _gmail_precheck_noise(em):
+            structural_noise.append(em)
+        else:
+            to_classify.append(em)
+
+    # ── LLM batch classification ──────────────────────────────────────────────
+    llm_results: dict = {}   # id[:8] → {triage, reason}
+    if to_classify:
+        raw_results = _gmail_triage_llm(to_classify)
+        for r in raw_results:
+            if isinstance(r, dict) and "id" in r and "triage" in r:
+                llm_results[r["id"][:8]] = {
+                    "triage": r.get("triage", "fyi"),
+                    "reason": r.get("reason", ""),
+                }
+
+    # ── Build buckets ─────────────────────────────────────────────────────────
+    buckets: dict = {"reply_needed": [], "action_needed": [], "fyi": [], "noise": []}
+
+    for em in structural_noise:
+        buckets["noise"].append(em)
+
+    for em in to_classify:
+        eid8   = em["id"][:8]
+        result = llm_results.get(eid8)
+        if result:
+            triage = result["triage"]
+            if triage not in buckets:
+                triage = "fyi"
+        else:
+            # Structural fallback when LLM didn't classify this one
+            if _TRIAGE_ACTION_SUBJECT.search(em.get("subject", "")):
+                triage = "action_needed"
+            elif _TRIAGE_REPLY_SNIPPET.search(em.get("snippet", "")):
+                triage = "reply_needed"
+            elif em.get("is_unread"):
+                triage = "fyi"
+            else:
+                triage = "noise"
+        buckets[triage].append(em)
+
+    # Urgent mode: elevate action_needed emails to top when user asks for urgent
+    if mode == "urgent":
+        buckets["reply_needed"] = buckets["action_needed"] + buckets["reply_needed"]
+        buckets["action_needed"] = []
+
+    # ── Render grouped output ─────────────────────────────────────────────────
+    display_list: list = []  # ordered list for follow-up (candidates)
+
+    _BUCKET_LABELS = [
+        ("reply_needed",  f"{RED}● Reply Needed{RESET}"),
+        ("action_needed", f"{YELLOW}▲ Action Needed{RESET}"),
+        ("fyi",           f"{CYAN}ℹ  FYI{RESET}"),
+        ("noise",         f"{GRAY}~ Noise{RESET}"),
+    ]
+
+    any_shown = False
+    for bucket_key, label in _BUCKET_LABELS:
+        items = buckets[bucket_key]
+        if not items:
+            continue
+        any_shown = True
+        cprint(f"\n  {label}  ({len(items)})", "")
+        cprint("  " + "─" * 60, GRAY)
+        for em in items:
+            display_list.append(em)
+            idx        = len(display_list)
+            eid8       = em["id"][:8]
+            result     = llm_results.get(eid8)
+            reason_str = f" — {result['reason']}" if result and result.get("reason") else ""
+            unread_dot = "•" if em.get("is_unread") else " "
+            sender     = em.get("from", "").split("<")[0].strip()[:22]
+            subject    = em.get("subject", "")[:48]
+            cprint(f"  {unread_dot} [{idx}] {sender:<23} {subject}{reason_str}", "")
+
+    if not any_shown:
+        cprint("  No emails to triage.", GRAY)
+        return
+
+    # ── Populate session context for follow-up commands ───────────────────────
+    global _GMAIL_IDS, _GMAIL_SUBJECTS
+    _GMAIL_IDS      = [em["id"] for em in display_list]
+    _GMAIL_SUBJECTS = [em.get("subject", "") for em in display_list]
+    _GMAIL_CTX["candidates"]     = display_list
+    _GMAIL_CTX["triage_results"] = {
+        "reply_needed":  [em["id"] for em in buckets["reply_needed"]],
+        "action_needed": [em["id"] for em in buckets["action_needed"]],
+        "fyi":           [em["id"] for em in buckets["fyi"]],
+        "noise":         [em["id"] for em in buckets["noise"]],
+        "mode":          mode,
+    }
+
+    # Summary footer
+    rn = len(buckets["reply_needed"])
+    an = len(buckets["action_needed"])
+    cprint(f"\n  {GRAY}Tip: 'open 1' reads an email · 'reply to 1' drafts a reply · 'archive those' · 'undo'{RESET}", "")
+    if rn + an > 0:
+        cprint(
+            f"  {YELLOW}{rn} needing reply · {an} needing action{RESET} — "
+            f"use 'show reply-needed' to refilter.", ""
+        )
+
 
 def cmd_gmail_read(ref: str) -> None:
     """Read a full email by its list number (from /gmail) or raw message ID."""
@@ -6742,6 +6994,8 @@ def dispatch_natural(text: str):
         cmd_gmail_attach_file(text)
     elif intent == "gmail_remove_attachment":
         cmd_gmail_remove_attachment(text)
+    elif intent == "gmail_triage":
+        cmd_gmail_triage(text)
     elif intent == "gmail_list_attachments":
         cmd_gmail_list_attachments(text)
     elif intent == "gmail_save_attachment":
@@ -7053,6 +7307,8 @@ def handle(line: str) -> bool:
     elif line.startswith("/gmail-attach "): cmd_gmail_attach_file(line[14:].strip())
     elif line == "/gmail-remove-attachment": cmd_gmail_remove_attachment("")
     elif line.startswith("/gmail-remove-attachment "): cmd_gmail_remove_attachment(line[25:].strip())
+    elif line == "/gmail-triage": cmd_gmail_triage("")
+    elif line.startswith("/gmail-triage "): cmd_gmail_triage(line[14:].strip())
     # ── Self-repair commands (confirm before patching) ──
     elif line.startswith("/fix-error"): cmd_fix_error(line[10:].strip())
     elif line == "/repair-adwi": cmd_repair_adwi()

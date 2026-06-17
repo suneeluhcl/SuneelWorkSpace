@@ -766,5 +766,75 @@ class TestGmailRoutingPhase8(unittest.TestCase):
         self.assertNotEqual(result, "gmail_archive")
 
 
+class TestGmailRoutingPhase9(unittest.TestCase):
+    """Phase 9: gmail_triage NLU routing — inbox triage intelligence."""
+
+    # ── Core triage phrases ───────────────────────────────────────────────────
+
+    def test_what_needs_my_reply(self):
+        self.assertEqual(_classify("what needs my reply"), "gmail_triage")
+
+    def test_which_emails_need_my_reply(self):
+        self.assertEqual(_classify("which emails need my reply"), "gmail_triage")
+
+    def test_triage_my_inbox(self):
+        self.assertEqual(_classify("triage my inbox"), "gmail_triage")
+
+    def test_inbox_triage_bare(self):
+        self.assertEqual(_classify("inbox triage"), "gmail_triage")
+
+    def test_email_triage_bare(self):
+        self.assertEqual(_classify("email triage"), "gmail_triage")
+
+    def test_what_needs_attention(self):
+        self.assertEqual(_classify("what needs attention"), "gmail_triage")
+
+    def test_what_needs_my_attention_today(self):
+        self.assertEqual(_classify("what needs my attention today"), "gmail_triage")
+
+    def test_show_urgent_emails(self):
+        self.assertEqual(_classify("show urgent emails"), "gmail_triage")
+
+    def test_show_action_needed_emails(self):
+        self.assertEqual(_classify("show action-needed emails"), "gmail_triage")
+
+    def test_what_should_i_answer(self):
+        self.assertEqual(_classify("what should I answer"), "gmail_triage")
+
+    def test_what_should_i_respond_to(self):
+        self.assertEqual(_classify("what should I respond to"), "gmail_triage")
+
+    def test_which_emails_are_urgent(self):
+        self.assertEqual(_classify("which emails are urgent"), "gmail_triage")
+
+    def test_emails_waiting_on_me(self):
+        self.assertEqual(_classify("emails waiting on me"), "gmail_triage")
+
+    def test_inbox_waiting_for_me(self):
+        self.assertEqual(_classify("inbox waiting for me"), "gmail_triage")
+
+    def test_which_threads_am_i_waiting_on(self):
+        self.assertEqual(_classify("which threads am I waiting on"), "gmail_triage")
+
+    # ── Ordering guards ───────────────────────────────────────────────────────
+
+    def test_triage_beats_gmail_open(self):
+        # "what needs my reply" must NOT go to gmail_read or gmail_open
+        result = _classify("what needs my reply")
+        self.assertNotEqual(result, "gmail_open")
+        self.assertNotEqual(result, "gmail_read")
+
+    def test_urgent_emails_not_archive(self):
+        # "show urgent emails" must NOT go to gmail_archive
+        result = _classify("show urgent emails")
+        self.assertEqual(result, "gmail_triage")
+        self.assertNotEqual(result, "gmail_archive")
+
+    def test_show_important_emails_not_gmail(self):
+        # "find important emails" must go to triage, not gmail bare
+        result = _classify("find important emails")
+        self.assertIn(result, ("gmail_triage", None))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

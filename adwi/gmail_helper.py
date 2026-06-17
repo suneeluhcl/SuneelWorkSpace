@@ -607,3 +607,42 @@ def save_attachment(msg_id: str, attachment_id: str, filename: str,
     data = fetch_attachment(msg_id, attachment_id)
     dest.write_bytes(data)
     return dest
+
+
+# ── Phase 9: triage — extended metadata fetch ─────────────────────────────────
+
+def list_inbox_for_triage(max_results: int = 20,
+                           query: str = "is:unread in:inbox newer_than:7d") -> list:
+    """
+    Fetch inbox emails with extended metadata for triage analysis.
+    Returns dicts that include is_unread, to_header, cc_header, and label_ids
+    in addition to the standard list_emails fields.
+    """
+    service = get_service()
+    params  = {"userId": "me", "maxResults": max_results * 2, "q": query}
+    results = service.users().messages().list(**params).execute()
+    messages = results.get("messages", [])
+    emails: list = []
+    for msg in messages:
+        detail = service.users().messages().get(
+            userId="me", id=msg["id"], format="metadata",
+            metadataHeaders=["Subject", "From", "Date", "To", "Cc"]
+        ).execute()
+        headers   = {h["name"]: h["value"]
+                     for h in detail.get("payload", {}).get("headers", [])}
+        label_ids = detail.get("labelIds", [])
+        emails.append({
+            "id":           msg["id"],
+            "thread_id":    detail.get("threadId", ""),
+            "subject":      headers.get("Subject", "(no subject)"),
+            "from":         headers.get("From", ""),
+            "to_header":    headers.get("To", ""),
+            "cc_header":    headers.get("Cc", ""),
+            "date":         headers.get("Date", ""),
+            "snippet":      detail.get("snippet", "")[:200],
+            "internalDate": int(detail.get("internalDate", 0)),
+            "is_unread":    "UNREAD" in label_ids,
+            "label_ids":    label_ids,
+        })
+    emails.sort(key=lambda e: e["internalDate"], reverse=True)
+    return emails[:max_results]

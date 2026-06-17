@@ -39,6 +39,7 @@ ALL_INTENTS = [
     "gmail_add_cc","gmail_add_bcc",
     "gmail_list_attachments","gmail_save_attachment","gmail_summarize_attachment",
     "gmail_attach_file", "gmail_remove_attachment", "gmail_undo",
+    "gmail_triage",
     "sync",
     "nightly_status","nightly_run",
     "fix_error","patch_adwi","inspect_code","test_adwi","eval_routing","eval_adwi",
@@ -413,6 +414,17 @@ REGEX_INTENTS = [
     (re.compile(r"\b(?:trash|move\s+to\s+trash)\b.{0,40}\b(?:emails?|mail|messages?|them|those|these|that|it|all|promos?|promotional|promotions?|newsletters?|social|updates?|forums?|spam)\b", re.I), "gmail_trash"),
     (re.compile(r"\btrash\b.{0,20}\b(?:from|about|older\s+than)\b", re.I), "gmail_trash"),
     (re.compile(r"\bdelete\b.{0,30}\b(?:emails?|mail|messages?|them|those|these|that|promos?|spam)\b", re.I), "gmail_trash"),
+    # gmail_triage — MUST precede gmail_open
+    (re.compile(r"\b(?:what|which)\b.{0,20}\b(?:needs?|need\s+my)\b.{0,20}\breply\b", re.I), "gmail_triage"),
+    (re.compile(r"\bwhat\s+(?:should|do)\s+I\s+(?:answer|respond|reply)\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:which|what)\b.{0,15}\bemails?\b.{0,20}\b(?:urg(?:ent|ently)|important|need\s+attention)\b", re.I), "gmail_triage"),
+    (re.compile(r"\btriage\b.{0,20}\b(?:my\s+)?(?:inbox|email|mail)\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:inbox\s+triage|email\s+triage)\b", re.I), "gmail_triage"),
+    (re.compile(r"\bwhat\b.{0,20}\b(?:needs?\s+(?:my\s+)?attention|action[-\s]?(?:needed|required|items?))\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:show|find)\b.{0,15}\b(?:action[-\s]?needed|urgent|important)\b.{0,15}\bemails?\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:which|what)\b.{0,20}\bthreads?\b.{0,20}\b(?:waiting|pending|unresponded|owe|reply)\b", re.I), "gmail_triage"),
+    (re.compile(r"\bwhat\b.{0,20}\b(?:from\s+today|today\b).{0,20}\b(?:needs?|attention|important|matters?)\b", re.I), "gmail_triage"),
+    (re.compile(r"\b(?:emails?|inbox).{0,20}\b(?:waiting\s+on\s+me|waiting\s+for\s+me)\b", re.I), "gmail_triage"),
     # gmail_open: search + open — MUST precede gmail_read
     (re.compile(r"\b(open|read)\b.{0,20}\b(email|mail|message)\b.{0,30}\b(from|about|regarding|by)\b", re.I), "gmail_open"),
     (re.compile(r"\b(open|read)\b.{0,15}\b(latest|newest|recent|last)\b.{0,25}\b(email|mail|message)\b.{0,30}\b(from|about)\b", re.I), "gmail_open"),
@@ -1149,6 +1161,19 @@ def build_corpus() -> list[dict]:
         "send an email to my boss saying I finished",
     ]:
         add(p, "comms", "gmail_compose", "medium", fam="gmail_compose")
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # GMAIL PHASE 9 — triage (14 scenarios)
+    # ─────────────────────────────────────────────────────────────────────────
+    for p in [
+        "what needs my reply","which emails need my reply","triage my inbox",
+        "inbox triage","email triage","what needs attention",
+        "what needs my attention today","what should I answer",
+        "what should I respond to","which emails are urgent",
+        "show urgent emails","show action-needed emails",
+        "which threads am I waiting on","emails waiting on me",
+    ]:
+        add(p, "comms", "gmail_triage", "medium", fam="gmail_triage")
 
     # ─────────────────────────────────────────────────────────────────────────
     # WEB SEARCH  (45 scenarios)
