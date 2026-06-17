@@ -396,10 +396,12 @@ REGEX_INTENTS = [
     (re.compile(r"\b(?:save|add|put|write|export)\b.{0,30}\b(?:tasks?|items?|checklist|action\s+items?|todos?)\b.{0,40}\b(?:to|in(?:to)?)\b.{0,20}\b(?:obsidian|daily\s+note|my\s+notes?|my\s+list)\b", re.I), "gmail_tasks_save"),
     (re.compile(r"\b(?:save|add|put|export)\b.{0,20}\b(?:those?|these?|them)\b.{0,20}\b(?:tasks?|items?|checklist|action\s+items?|todos?)\b", re.I), "gmail_tasks_save"),
     (re.compile(r"\b(?:save|export)\b.{0,20}\b(?:the\s+)?(?:extracted\s+)?(?:tasks?|checklist|action\s+items?)\b", re.I), "gmail_tasks_save"),
-    (re.compile(r"\bturn\b.{0,30}\b(?:this|the|it)\b.{0,20}\b(?:email|thread|message)\b.{0,20}\binto?\b.{0,20}\b(?:tasks?|todo|checklist|action\s+items?)\b", re.I), "gmail_extract_tasks"),
+    (re.compile(r"\b(?:turn|convert)\b.{0,30}\b(?:this|the|it)\b.{0,20}\b(?:email|thread|message)\b.{0,20}\b(?:into?|to)\b.{0,20}\b(?:tasks?|todo|checklist|action\s+items?)\b", re.I), "gmail_extract_tasks"),
     (re.compile(r"\bextract\b.{0,30}\b(?:action\s+items?|tasks?|deadlines?|decisions?|asks?|due\s+dates?)\b", re.I), "gmail_extract_tasks"),
+    (re.compile(r"\bextract\b.{0,30}\bdates?\b.{0,30}\b(?:from|in)\b.{0,20}\b(?:this|the)\b.{0,20}\b(?:email|thread|message)\b", re.I), "gmail_extract_tasks"),
     (re.compile(r"\bwhat\s+(?:deadlines?|due\s+dates?|dates?)\b.{0,30}\b(?:are\s+(?:in|mentioned)|(?:mentioned|are)\s+(?:here|in\s+(?:this|the)))\b", re.I), "gmail_extract_tasks"),
-    (re.compile(r"\b(?:make|create|build)\b.{0,25}\b(?:a\s+)?(?:follow.?up\s+checklist|task\s+list)\b", re.I), "gmail_extract_tasks"),
+    (re.compile(r"\b(?:make|create|build|write|generate)\b.{0,25}\b(?:a\s+)?(?:follow.?up\s+checklist|task\s+list|todo(?:\s+|-)list|to.?do\s+list)\b", re.I), "gmail_extract_tasks"),
+    (re.compile(r"\b(?:make|create|build|write|generate)\b.{0,30}\b(?:a\s+)?checklist\b.{0,50}\b(?:from|for|of)\b.{0,20}\b(?:this|the)\b.{0,20}\b(?:email|thread|message)\b", re.I), "gmail_extract_tasks"),
     (re.compile(r"\bsummarize\b.{0,30}\b(?:this|the)\b.{0,20}\b(?:email|thread)\b.{0,30}\bas\b.{0,20}\b(?:tasks?|todos?|action\s+items?|a?\s*checklist)\b", re.I), "gmail_extract_tasks"),
     (re.compile(r"\bwhat\s+follow.?ups?\s+(?:should|do)\s+I\b", re.I), "gmail_extract_tasks"),
     # gmail Phase 11: follow-up reminders — MUST precede Phase 10 patterns
@@ -504,6 +506,7 @@ REGEX_INTENTS = [
     (re.compile(r"\b(show|open|read|get|view)\b.{0,20}\b(thread|conversation|email\s+chain|message\s+chain)\b", re.I), "gmail_thread"),
     (re.compile(r"\bthread\b.{0,20}\b(about|from|with|on)\b", re.I), "gmail_thread"),
     # gmail_summarize
+    (re.compile(r"^(?:tldr|tl;dr|tl\.dr)\s*$", re.I), "gmail_summarize"),
     (re.compile(r"\b(summarize|tldr|tl;dr|tl\.dr|give\s+me\s+a\s+summary)\b.{0,30}\b(this|that|the|an?)?\b.{0,10}\b(email|mail|message|thread|conversation)\b", re.I), "gmail_summarize"),
     (re.compile(r"\b(summarize|tldr)\s+(that|this|it|the\s+thread)\b", re.I), "gmail_summarize"),
     # gmail_list_category
