@@ -182,22 +182,22 @@
     [
       "n8n",
       "1",
-      "Up 33 hours"
+      "Up 34 hours"
     ],
     [
       "searxng",
       "1",
-      "Up 33 hours"
+      "Up 34 hours"
     ],
     [
       "prometheus",
       "1",
-      "Up 33 hours"
+      "Up 34 hours"
     ],
     [
       "loki",
       "1",
-      "Up 33 hours"
+      "Up 34 hours"
     ],
     [
       "grafana",
@@ -207,12 +207,12 @@
     [
       "node-exporter",
       "1",
-      "Up 33 hours"
+      "Up 34 hours"
     ],
     [
       "cadvisor",
       "1",
-      "Up 33 hours (healthy)"
+      "Up 34 hours (healthy)"
     ]
   ],
   "launchagents": [
@@ -257,5 +257,5 @@
     "MODEL_NLU_FALLBACK": "qwen3:0.6b"
   },
   "ts": "2026-06-17",
-  "_hash": "9ce56904b62d6ef3"
+  "_hash": "7770b08efbe97d3b"
 }
