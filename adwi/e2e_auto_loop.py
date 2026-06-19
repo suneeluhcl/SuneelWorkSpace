@@ -1543,6 +1543,490 @@ KNOWN_REGEX_FIXES: list[dict] = [
         "minimum_examples": 1,
     },
     # FIX-E2E-041b: skipped — capabilities has no INTENT_SYSTEM description in P2
+
+    # ── FIX-E2E-042: voice_out regex before daily_brief — catch "speak the morning brief" ──
+    {
+        "id":             "FIX-E2E-042a",
+        "description":    "Add voice_out regex before daily_brief in P1 — 'speak the morning brief' → voice_out",
+        "target_intents": ["voice_out"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"# ── Daily brief \(BEFORE daily_improve\).*\n.*daily.?brief\|morning.?brief.*daily_brief",
+        "old_str": (
+            '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
+            '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
+        ),
+        "new_str": (
+            '    # voice_out wins over daily_brief when verb is speak/say-aloud/read-aloud\n'
+            '    (re.compile(r"\\b(speak|say\\s+aloud|read\\s+aloud)\\b.{0,25}\\b(morning.?brief|daily.?brief)\\b", re.I), "voice_out"),\n'
+            '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
+            '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-042b",
+        "description":    "Add voice_out regex before daily_brief in P2",
+        "target_intents": ["voice_out"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"# ── Daily brief \(BEFORE daily_improve\).*\n.*daily.?brief\|morning.?brief.*daily_brief",
+        "old_str": (
+            '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
+            '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
+        ),
+        "new_str": (
+            '    # voice_out wins over daily_brief when verb is speak/say-aloud/read-aloud\n'
+            '    (re.compile(r"\\b(speak|say\\s+aloud|read\\s+aloud)\\b.{0,25}\\b(morning.?brief|daily.?brief)\\b", re.I), "voice_out"),\n'
+            '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
+            '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-042c",
+        "description":    "Add voice_out regex before daily_brief in CLI",
+        "target_intents": ["voice_out"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"# ── Daily brief \(BEFORE daily_improve\).*\n.*daily.?brief\|morning.?brief.*daily_brief",
+        "old_str": (
+            '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
+            '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
+        ),
+        "new_str": (
+            '    # voice_out wins over daily_brief when verb is speak/say-aloud/read-aloud\n'
+            '    (re.compile(r"\\b(speak|say\\s+aloud|read\\s+aloud)\\b.{0,25}\\b(morning.?brief|daily.?brief)\\b", re.I), "voice_out"),\n'
+            '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
+            '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-043: memory_stats INTENT_SYSTEM description ──────────────────────
+    {
+        "id":             "FIX-E2E-043a",
+        "description":    "Add memory_stats INTENT_SYSTEM description in P1",
+        "target_intents": ["memory_stats"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"'memory_curate'.*curate memories.*\n.*'memory curation'.*\n.*'assistant_upgrade_status'",
+        "old_str": (
+            '    "   \'memory_curate\'  : review logs and propose durable memories. \'curate memories\',\\n"\n'
+            '    "                      \'memory curation\', \'propose new memories\'. NOT \'memory_scan\' or \'memory_recall\'.\\n"\n'
+            '    "   \'assistant_upgrade_status\': show Assistant Upgrade Pack status. \'upgrade pack status\',\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'memory_curate\'  : review logs and propose durable memories. \'curate memories\',\\n"\n'
+            '    "                      \'memory curation\', \'propose new memories\'. NOT \'memory_scan\' or \'memory_recall\'.\\n"\n'
+            '    "   \'memory_stats\'   : show memory database statistics (count, size, categories).\\n"\n'
+            '    "                      \'memory stats\', \'memory summary stats\', \'how many memories\', \'memory database size\'.\\n"\n'
+            '    "                      NOT \'memory_recall\' (recall facts). NOT \'memory_scan\' (scan/update).\\n"\n'
+            '    "   \'assistant_upgrade_status\': show Assistant Upgrade Pack status. \'upgrade pack status\',\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-044: browse INTENT_SYSTEM description ────────────────────────────
+    {
+        "id":             "FIX-E2E-044a",
+        "description":    "Add browse INTENT_SYSTEM description in P1",
+        "target_intents": ["browse"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"'browser_delegate'.*NOT bare 'browse'.*\n.*'daily_brief'",
+        "old_str": (
+            '    "   \'browser_delegate\': delegate a browsing task to a safe Playwright agent. \'browser delegate X\',\\n"\n'
+            '    "                      \'use browser to X\', \'use playwright to X\', \'browser task X\'. NOT bare \'browse\'.\\n"\n'
+            '    "   \'daily_brief\'    : proactive daily assistant brief. \'daily brief\', \'morning brief\',\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'browser_delegate\': delegate a browsing task to a safe Playwright agent. \'browser delegate X\',\\n"\n'
+            '    "                      \'use browser to X\', \'use playwright to X\', \'browser task X\'. NOT bare \'browse\'.\\n"\n'
+            '    "   \'browse\'         : navigate to a URL or open/view a local file in browser. \'browse X\',\\n"\n'
+            '    "                      \'browse obsidian.md\', \'browse http://...\', \'open in browser\', \'view in browser\'.\\n"\n'
+            '    "                      NOT browser_delegate (which automates). NOT file_read (which reads text).\\n"\n'
+            '    "   \'daily_brief\'    : proactive daily assistant brief. \'daily brief\', \'morning brief\',\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-045: cleanup — add "shrink my disk usage" ────────────────────────
+    {
+        "id":             "FIX-E2E-045a",
+        "description":    "Expand cleanup P1 — add 'shrink my disk usage', 'free up disk space'",
+        "target_intents": ["cleanup"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"'cleanup'.*delete/remove/purge.*\n.*'purge old downloads'.*\n.*NOT organize\. NOT old_files\.",
+        "old_str": (
+            '    "   \'cleanup\'        : delete/remove/purge unwanted files/data. \'can you help me delete stuff\',\\n"\n'
+            '    "                      \'purge old downloads\', \'remove leftover installers\', \'clean up junk\'.\\n"\n'
+            '    "                      Key: delete/remove/purge + files/data → cleanup. NOT organize. NOT old_files.\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'cleanup\'        : delete/remove/purge unwanted files/data. \'can you help me delete stuff\',\\n"\n'
+            '    "                      \'purge old downloads\', \'remove leftover installers\', \'clean up junk\'.\\n"\n'
+            '    "                      \'help me shrink my disk usage\', \'free up disk space\', \'reduce storage usage\'.\\n"\n'
+            '    "                      Key: delete/remove/purge/shrink + files/data → cleanup. NOT organize. NOT old_files.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-045b: cleanup P2 ─────────────────────────────────────────────────
+    {
+        "id":             "FIX-E2E-045b",
+        "description":    "Expand cleanup P2 — add 'shrink my disk usage'",
+        "target_intents": ["cleanup"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"'cleanup'.*delete/remove/purge.*\n.*'purge old downloads'.*\n.*NOT organize\. NOT old_files\.",
+        "old_str": (
+            '    "   \'cleanup\'        : delete/remove/purge unwanted files/data. \'can you help me delete stuff\',\\n"\n'
+            '    "                      \'purge old downloads\', \'remove leftover installers\', \'clean up junk\'.\\n"\n'
+            '    "                      Key: delete/remove/purge + files/data → cleanup. NOT organize. NOT old_files.\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'cleanup\'        : delete/remove/purge unwanted files/data. \'can you help me delete stuff\',\\n"\n'
+            '    "                      \'purge old downloads\', \'remove leftover installers\', \'clean up junk\'.\\n"\n'
+            '    "                      \'help me shrink my disk usage\', \'free up disk space\'.\\n"\n'
+            '    "                      Key: delete/remove/purge/shrink + files/data → cleanup. NOT organize. NOT old_files.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-046: chat — add explicit NOT research/git_status for generic queries ─
+    {
+        "id":             "FIX-E2E-046a",
+        "description":    "Expand chat P1 — add explicit examples of what NOT to misroute",
+        "target_intents": ["chat"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"'chat'.*DEFAULT for everything.*\n.*advisory/recommendation.*\n.*questions about tools",
+        "old_str": (
+            '    "   \'chat\'           : DEFAULT for everything else — use this for:\\n"\n'
+            '    "                      • advisory/recommendation questions (\'what is the best...\', \'should I...\')\\n"\n'
+            '    "                      • questions about tools, services, subscriptions NOT directly about adwi\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'chat\'           : DEFAULT for everything else — use this for:\\n"\n'
+            '    "                      • advisory/recommendation questions (\'what is the best...\', \'should I...\')\\n"\n'
+            '    "                      • \'list all installed packages\', \'generate insights from my logs\' (no adwi action)\\n"\n'
+            '    "                      • \'how do I debug my python\', \'my model is slow\', \'better AI responses\' (advice)\\n"\n'
+            '    "                      • questions about tools, services, subscriptions NOT directly about adwi\\n"\n'
+        ),
+        "minimum_examples": 4,
+    },
+    # ── FIX-E2E-046b: chat P2 ────────────────────────────────────────────────────
+    {
+        "id":             "FIX-E2E-046b",
+        "description":    "Expand chat P2 — same examples",
+        "target_intents": ["chat"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"'chat'.*DEFAULT for everything.*\n.*advisory/recommendation.*\n.*questions about tools",
+        "old_str": (
+            '    "   \'chat\'           : DEFAULT for everything else — use this for:\\n"\n'
+            '    "                      • advisory/recommendation questions (\'what is the best...\', \'should I...\')\\n"\n'
+            '    "                      • questions about tools, services, subscriptions NOT directly about adwi\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'chat\'           : DEFAULT for everything else — use this for:\\n"\n'
+            '    "                      • advisory/recommendation questions (\'what is the best...\', \'should I...\')\\n"\n'
+            '    "                      • \'list all installed packages\', \'generate insights from my logs\' (no adwi action)\\n"\n'
+            '    "                      • \'how do I debug my python\', \'my model is slow\', \'better AI responses\' (advice)\\n"\n'
+            '    "                      • questions about tools, services, subscriptions NOT directly about adwi\\n"\n'
+        ),
+        "minimum_examples": 3,
+    },
+    # ── FIX-E2E-047: patch_adwi regex before implement_idea ──────────────────────
+    {
+        "id":             "FIX-E2E-047a",
+        "description":    "Add 'improve/enhance adwi code' regex → patch_adwi before implement_idea in P1",
+        "target_intents": ["patch_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"# CYCLE-4: implement_idea patterns.*\n.*implement.*idea.*implement_idea",
+        "old_str": (
+            '    # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"\n'
+            '    (re.compile(r"\\bimplement\\b.{0,20}\\b(?:this|that|the)\\b.{0,15}\\b(?:idea|feature|plan|concept|improvement|suggestion)\\b", re.I), "implement_idea"),\n'
+        ),
+        "new_str": (
+            '    # patch_adwi wins over implement_idea for "improve/enhance adwi code"\n'
+            '    (re.compile(r"\\b(?:improve|enhance|upgrade|refactor)\\b.{0,10}\\badwi\\b.{0,20}\\b(?:code|source|scripts?|codebase)\\b", re.I), "patch_adwi"),\n'
+            '    (re.compile(r"\\badwi\\b.{0,10}\\b(?:code|source|scripts?|codebase)\\b.{0,20}\\b(?:improve|enhance|upgrade|refactor)\\b", re.I), "patch_adwi"),\n'
+            '    # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"\n'
+            '    (re.compile(r"\\bimplement\\b.{0,20}\\b(?:this|that|the)\\b.{0,15}\\b(?:idea|feature|plan|concept|improvement|suggestion)\\b", re.I), "implement_idea"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-047b",
+        "description":    "Add 'improve/enhance adwi code' regex → patch_adwi before implement_idea in P2",
+        "target_intents": ["patch_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"# CYCLE-4: implement_idea patterns.*\n.*implement.*idea.*implement_idea",
+        "old_str": (
+            '    # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"\n'
+            '    (re.compile(r"\\bimplement\\b.{0,20}\\b(?:this|that|the)\\b.{0,15}\\b(?:idea|feature|plan|concept|improvement|suggestion)\\b", re.I), "implement_idea"),\n'
+        ),
+        "new_str": (
+            '    # patch_adwi wins over implement_idea for "improve/enhance adwi code"\n'
+            '    (re.compile(r"\\b(?:improve|enhance|upgrade|refactor)\\b.{0,10}\\badwi\\b.{0,20}\\b(?:code|source|scripts?|codebase)\\b", re.I), "patch_adwi"),\n'
+            '    (re.compile(r"\\badwi\\b.{0,10}\\b(?:code|source|scripts?|codebase)\\b.{0,20}\\b(?:improve|enhance|upgrade|refactor)\\b", re.I), "patch_adwi"),\n'
+            '    # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"\n'
+            '    (re.compile(r"\\bimplement\\b.{0,20}\\b(?:this|that|the)\\b.{0,15}\\b(?:idea|feature|plan|concept|improvement|suggestion)\\b", re.I), "implement_idea"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-047c",
+        "description":    "Add 'improve/enhance adwi code' regex → patch_adwi before implement_idea in CLI",
+        "target_intents": ["patch_adwi"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"# CYCLE-4: implement_idea patterns.*\n.*implement.*idea.*implement_idea",
+        "old_str": (
+            '    # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"\n'
+            '    (re.compile(r"\\bimplement\\b.{0,20}\\b(?:this|that|the)\\b.{0,15}\\b(?:idea|feature|plan|concept|improvement|suggestion)\\b", re.I), "implement_idea"),\n'
+        ),
+        "new_str": (
+            '    # patch_adwi wins over implement_idea for "improve/enhance adwi code"\n'
+            '    (re.compile(r"\\b(?:improve|enhance|upgrade|refactor)\\b.{0,10}\\badwi\\b.{0,20}\\b(?:code|source|scripts?|codebase)\\b", re.I), "patch_adwi"),\n'
+            '    (re.compile(r"\\badwi\\b.{0,10}\\b(?:code|source|scripts?|codebase)\\b.{0,20}\\b(?:improve|enhance|upgrade|refactor)\\b", re.I), "patch_adwi"),\n'
+            '    # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"\n'
+            '    (re.compile(r"\\bimplement\\b.{0,20}\\b(?:this|that|the)\\b.{0,15}\\b(?:idea|feature|plan|concept|improvement|suggestion)\\b", re.I), "implement_idea"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-048: patch_adwi INTENT_SYSTEM — include improve/enhance ──────────
+    {
+        "id":             "FIX-E2E-048a",
+        "description":    "Expand patch_adwi INTENT_SYSTEM in P1 to include 'improve adwi code', 'enhance adwi'",
+        "target_intents": ["patch_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"'patch_adwi'.*code-level changes.*aider.*ONLY.*'aider'.*\n.*'patch adwi'.*'apply patches'",
+        "old_str": (
+            '    "   \'patch_adwi\'     : apply code-level changes to adwi source via aider. ONLY when user says \'aider\',\\n"\n'
+            '    "                      \'patch adwi\', \'apply patches\', \'run aider\', \'self-patch\', \'auto-patch\'.\\n"\n'
+            '    "                      NOT daily_improve (routine). NOT fix_error (pasted exception text).\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'patch_adwi\'     : apply code-level changes to adwi source via aider. \'aider\',\\n"\n'
+            '    "                      \'patch adwi\', \'apply patches\', \'run aider\', \'self-patch\', \'auto-patch\',\\n"\n'
+            '    "                      \'improve adwi code\', \'enhance adwi code\', \'upgrade adwi source\'.\\n"\n'
+            '    "                      NOT daily_improve (routine). NOT fix_error (pasted exception text).\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-048b",
+        "description":    "Expand patch_adwi INTENT_SYSTEM in P2 to include 'improve adwi code', 'enhance adwi'",
+        "target_intents": ["patch_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"'patch_adwi'.*code-level changes.*aider.*ONLY.*'aider', 'patch adwi'",
+        "old_str": (
+            '    "   \'patch_adwi\'     : apply code-level changes to adwi source via aider. ONLY \'aider\', \'patch adwi\',\\n"\n'
+            '    "                      \'apply patches\', \'run aider\', \'self-patch\'. NOT daily_improve or fix_error.\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'patch_adwi\'     : apply code-level changes to adwi source via aider. \'aider\',\\n"\n'
+            '    "                      \'patch adwi\', \'apply patches\', \'run aider\', \'self-patch\',\\n"\n'
+            '    "                      \'improve adwi code\', \'enhance adwi code\', \'upgrade adwi source\'.\\n"\n'
+            '    "                      NOT daily_improve. NOT fix_error.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-048c",
+        "description":    "Expand patch_adwi INTENT_SYSTEM in CLI to include 'improve adwi code', 'enhance adwi'",
+        "target_intents": ["patch_adwi"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"'patch_adwi'.*code-level changes.*ONLY when the.*\n.*user says 'aider'",
+        "old_str": (
+            '    "   \'patch_adwi\'     : apply code-level changes to adwi source via aider. ONLY when the\\n"\n'
+            '    "                      user says \'aider\', \'patch adwi\', \'apply patches\', \'run aider\',\\n"\n'
+            '    "                      \'self-patch\', or \'auto-patch\'. NOT daily_improve (routine).\\n"\n'
+            '    "                      NOT fix_error (which handles pasted exception text).\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'patch_adwi\'     : apply code-level changes to adwi source via aider. ONLY when the\\n"\n'
+            '    "                      user says \'aider\', \'patch adwi\', \'apply patches\', \'run aider\',\\n"\n'
+            '    "                      \'self-patch\', \'auto-patch\', \'improve adwi code\', \'enhance adwi code\',\\n"\n'
+            '    "                      \'upgrade adwi source\'. NOT daily_improve (routine).\\n"\n'
+            '    "                      NOT fix_error (which handles pasted exception text).\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-049: gmail sub-intents INTENT_SYSTEM descriptions ────────────────
+    {
+        "id":             "FIX-E2E-049a",
+        "description":    "Add gmail cc/bcc/save_attachment/tasks_save INTENT_SYSTEM descriptions in P1",
+        "target_intents": ["gmail_add_cc", "gmail_add_bcc", "gmail_save_attachment", "gmail_tasks_save"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"'gmail_list_category' : list emails in a Gmail category tab",
+        "old_str": (
+            '    "   \'gmail_list_category\' : list emails in a Gmail category tab.\\n"\n'
+            '    "                      \'show my promotions\', \'what\'s in my promotions\', \'check my spam\',\\n"\n'
+            '    "                      \'show spam\', \'social tab\', \'list my updates\'. NOT \'gmail\' (general).\\n"\n'
+            '    "   \'generate_image\' : ONLY when creating a brand-new image/picture/artwork/visual output.\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'gmail_list_category\' : list emails in a Gmail category tab.\\n"\n'
+            '    "                      \'show my promotions\', \'what\'s in my promotions\', \'check my spam\',\\n"\n'
+            '    "                      \'show spam\', \'social tab\', \'list my updates\'. NOT \'gmail\' (general).\\n"\n'
+            '    "   \'gmail_add_cc\'    : add a CC recipient to a draft/email being composed.\\n"\n'
+            '    "                      \'also cc X\', \'add X to CC\', \'cc my assistant\', \'copy X on this\'.\\n"\n'
+            '    "                      Context: user is composing/editing an email. NOT \'gmail\' (inbox).\\n"\n'
+            '    "   \'gmail_add_bcc\'   : add a BCC recipient to a draft/email being composed.\\n"\n'
+            '    "                      \'also bcc X\', \'add X to BCC\', \'bcc my boss\', \'blind copy X\'.\\n"\n'
+            '    "                      Context: user is composing/editing an email. NOT \'gmail\' (inbox).\\n"\n'
+            '    "   \'gmail_save_attachment\' : save/download an email attachment to disk.\\n"\n'
+            '    "                      \'save the attached file\', \'download the attachment\', \'save that pdf\',\\n"\n'
+            '    "                      \'download the invoice\'. NOT \'file_save\' (unrelated files).\\n"\n'
+            '    "   \'gmail_tasks_save\' : save email-extracted tasks/action-items to Obsidian or daily note.\\n"\n'
+            '    "                      \'save those tasks to my daily note\', \'add those to my daily note\',\\n"\n'
+            '    "                      \'export those action items\'. Context: following gmail_extract_tasks.\\n"\n'
+            '    "   \'generate_image\' : ONLY when creating a brand-new image/picture/artwork/visual output.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-049b",
+        "description":    "Add gmail cc/bcc/save_attachment/tasks_save INTENT_SYSTEM descriptions in P2",
+        "target_intents": ["gmail_add_cc", "gmail_add_bcc", "gmail_save_attachment", "gmail_tasks_save"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"'gmail'.*questions about email.*\n.*'any emails from X'",
+        "old_str": (
+            '    "   \'gmail\'          : questions about email, inbox, messages. \'new messages?\', \'check my email\',\\n"\n'
+            '    "                      \'any emails from X\', \'check my email then search for action items\'.\\n"\n'
+            '    "   \'generate_image\' : ONLY when creating a brand-new image/picture/artwork/visual output.\\n"\n'
+        ),
+        "new_str": (
+            '    "   \'gmail\'          : questions about email, inbox, messages. \'new messages?\', \'check my email\',\\n"\n'
+            '    "                      \'any emails from X\', \'check my email then search for action items\'.\\n"\n'
+            '    "   \'gmail_add_cc\'    : add a CC recipient to a draft/email being composed.\\n"\n'
+            '    "                      \'also cc X\', \'add X to CC\', \'cc my assistant\'.\\n"\n'
+            '    "   \'gmail_add_bcc\'   : add a BCC recipient — \'also bcc X\', \'bcc my boss\'.\\n"\n'
+            '    "   \'gmail_save_attachment\' : save an email attachment — \'save the attached file\', \'save that pdf\'.\\n"\n'
+            '    "   \'gmail_tasks_save\' : save extracted tasks to daily note — \'add those to my daily note\'.\\n"\n'
+            '    "   \'generate_image\' : ONLY when creating a brand-new image/picture/artwork/visual output.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-050: "also cc/bcc" regex → gmail_add_cc/bcc ─────────────────────
+    {
+        "id":             "FIX-E2E-050a",
+        "description":    "Expand gmail_add_cc regex to match 'also cc' in P1",
+        "target_intents": ["gmail_add_cc"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r'r"\\badd\\s\+cc\\b".*gmail_add_cc',
+        "old_str": (
+            '    (re.compile(r"\\badd\\s+cc\\b", re.I), "gmail_add_cc"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:add|also)\\s+cc\\b|\\bcc\\s+(?:my|the)\\b", re.I), "gmail_add_cc"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-050b",
+        "description":    "Expand gmail_add_cc regex to match 'also cc' in P2",
+        "target_intents": ["gmail_add_cc"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r'r"\\badd\\s\+cc\\b".*gmail_add_cc',
+        "old_str": (
+            '    (re.compile(r"\\badd\\s+cc\\b", re.I), "gmail_add_cc"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:add|also)\\s+cc\\b|\\bcc\\s+(?:my|the)\\b", re.I), "gmail_add_cc"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-050c",
+        "description":    "Expand gmail_add_cc regex to match 'also cc' in CLI",
+        "target_intents": ["gmail_add_cc"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r'r"\\badd\\s\+cc\\b".*gmail_add_cc',
+        "old_str": (
+            '    (re.compile(r"\\badd\\s+cc\\b", re.I), "gmail_add_cc"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:add|also)\\s+cc\\b|\\bcc\\s+(?:my|the)\\b", re.I), "gmail_add_cc"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-051: "also bcc" regex → gmail_add_bcc ────────────────────────────
+    {
+        "id":             "FIX-E2E-051a",
+        "description":    "Expand gmail_add_bcc regex to match 'also bcc' in P1",
+        "target_intents": ["gmail_add_bcc"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r'r"\\badd\\s\+bcc\\b".*gmail_add_bcc',
+        "old_str": (
+            '    (re.compile(r"\\badd\\s+bcc\\b", re.I), "gmail_add_bcc"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:add|also)\\s+bcc\\b|\\bbcc\\s+(?:my|the)\\b", re.I), "gmail_add_bcc"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-051b",
+        "description":    "Expand gmail_add_bcc regex to match 'also bcc' in P2",
+        "target_intents": ["gmail_add_bcc"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r'r"\\badd\\s\+bcc\\b".*gmail_add_bcc',
+        "old_str": (
+            '    (re.compile(r"\\badd\\s+bcc\\b", re.I), "gmail_add_bcc"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:add|also)\\s+bcc\\b|\\bbcc\\s+(?:my|the)\\b", re.I), "gmail_add_bcc"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-051c",
+        "description":    "Expand gmail_add_bcc regex to match 'also bcc' in CLI",
+        "target_intents": ["gmail_add_bcc"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r'r"\\badd\\s\+bcc\\b".*gmail_add_bcc',
+        "old_str": (
+            '    (re.compile(r"\\badd\\s+bcc\\b", re.I), "gmail_add_bcc"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:add|also)\\s+bcc\\b|\\bbcc\\s+(?:my|the)\\b", re.I), "gmail_add_bcc"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-052: gmail_save_attachment — add "attached file" to pattern ──────
+    {
+        "id":             "FIX-E2E-052a",
+        "description":    "Add 'attached file' to gmail_save_attachment regex in P1",
+        "target_intents": ["gmail_save_attachment"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"save\|download\|open.*attachment\|pdf\|document.*gmail_save_attachment",
+        "old_str": (
+            '    (re.compile(r"\\b(?:save|download|open)\\b.{0,30}\\b(?:the\\s+)?(?:attached\\s+)?(?:attachment|pdf|document|invoice|receipt|image|spreadsheet)\\b", re.I), "gmail_save_attachment"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:save|download|open)\\b.{0,30}\\b(?:the\\s+)?(?:attached\\s+)?(?:attachment|pdf|document|invoice|receipt|image|spreadsheet|file)\\b", re.I), "gmail_save_attachment"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-052b",
+        "description":    "Add 'attached file' to gmail_save_attachment regex in P2",
+        "target_intents": ["gmail_save_attachment"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"save\|download\|open.*attachment\|pdf\|document.*gmail_save_attachment",
+        "old_str": (
+            '    (re.compile(r"\\b(?:save|download|open)\\b.{0,30}\\b(?:the\\s+)?(?:attached\\s+)?(?:attachment|pdf|document|invoice|receipt|image|spreadsheet)\\b", re.I), "gmail_save_attachment"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:save|download|open)\\b.{0,30}\\b(?:the\\s+)?(?:attached\\s+)?(?:attachment|pdf|document|invoice|receipt|image|spreadsheet|file)\\b", re.I), "gmail_save_attachment"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-052c",
+        "description":    "Add 'attached file' to gmail_save_attachment regex in CLI",
+        "target_intents": ["gmail_save_attachment"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"save\|download\|open.*attachment\|pdf\|document.*gmail_save_attachment",
+        "old_str": (
+            '    (re.compile(r"\\b(?:save|download|open)\\b.{0,30}\\b(?:the\\s+)?(?:attached\\s+)?(?:attachment|pdf|document|invoice|receipt|image|spreadsheet)\\b", re.I), "gmail_save_attachment"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\b(?:save|download|open)\\b.{0,30}\\b(?:the\\s+)?(?:attached\\s+)?(?:attachment|pdf|document|invoice|receipt|image|spreadsheet|file)\\b", re.I), "gmail_save_attachment"),\n'
+        ),
+        "minimum_examples": 1,
+    },
     # ── FIX-E2E-041c: capabilities CLI ───────────────────────────────────────────
     {
         "id":             "FIX-E2E-041c",
