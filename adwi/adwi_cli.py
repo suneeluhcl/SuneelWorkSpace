@@ -627,6 +627,10 @@ _REGEX_INTENTS = [
     (re.compile(r"\bfiles?\b.{0,30}(haven.t|not).{0,5}(opened|used|accessed|touched)\b", re.I), "old_files"),
     # FIX-OLD-001: archaic/abandoned/leftover synonyms
     (re.compile(r"\b(archaic|abandoned|obsolete|leftover|outdated|legacy)\b.{0,30}(files?|data|stuff)?\b", re.I), "old_files"),
+    (re.compile(r"\bgathering\s+dust\b", re.I), "old_files"),
+    (re.compile(r"\b(?:neglect(?:ed)?|forgotten)\b.{0,20}\bfiles?\b", re.I), "old_files"),
+    (re.compile(r"\bfiles?\b.{0,20}\b(?:neglect(?:ed)?|forgotten|never\s+open(?:ed)?)\b", re.I), "old_files"),
+    (re.compile(r"\bfiles?\b.{0,30}\bnever\s+(?:open(?:ed)?|used|touched|accessed)\b", re.I), "old_files"),
     (re.compile(r"\bhaven.t.{0,10}(used|opened|accessed|touched)\b.{0,30}(this\s+year|in\s+(a|one|two|several)\s+year)\b", re.I), "old_files"),
 
     # ── Duplicates ───────────────────────────────────────────────────────────────
@@ -667,6 +671,10 @@ _REGEX_INTENTS = [
     # ── RAG / knowledge search — BEFORE file_search (notes-specific guard) ───────
     (re.compile(r"\b(search|find|look up|recall|what do i know).{0,30}(my notes|my knowledge|local knowledge|knowledge base|from notes)", re.I), "rag_search"),
     (re.compile(r"(in my notes|from my notes|check my notes).{0,30}(about|for|on)", re.I), "rag_search"),
+    # rag_search beats obsidian_search for note-summarize and bare-notes search
+    (re.compile(r"\bgenerate\s+(?:a\s+)?summary\s+of\s+(?:my\s+)?notes\b", re.I), "rag_search"),
+    (re.compile(r"\bsearch\s+(?:my\s+)?notes?\b.{0,30}(?:then|and)\s+summariz", re.I), "rag_search"),
+    (re.compile(r"\bser?a?rch\s+(?:my\s+)?notes?\b", re.I), "rag_search"),
 
     # ── File operations ──────────────────────────────────────────────────────────
     # file_search before file_list; both before file_read
@@ -749,6 +757,9 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(?:implement|build|code\s+up|develop)\b.{0,20}\b(?:the\s+)?(?:suggested|recommended|proposed)\b", re.I), "implement_idea"),
     # CYCLE-6: "adwi feature list" → capabilities (must beat what_next's "feature" match below)
     (re.compile(r"\badwi\b.{0,20}\bfeature\s+list\b", re.I), "capabilities"),
+    (re.compile(r"\blist\s+(?:all\s+)?(?:your|adwi.?s?)\s+commands?\b", re.I), "capabilities"),
+    (re.compile(r"\bshow\s+(?:all\s+)?(?:your|adwi.?s?)\s+commands?\b", re.I), "capabilities"),
+    (re.compile(r"\b(?:show|display|list)\s+(?:all\s+)?(?:available\s+)?commands?\b", re.I), "capabilities"),
 
     # ── What next ────────────────────────────────────────────────────────────────
     (re.compile(r"(what|what.s).{0,20}(next|build|improve|add|create).{0,20}(adwi|setup|ai|local)", re.I), "what_next"),
@@ -761,6 +772,8 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(how|what)\b.{0,15}\b(should|can|could|would)\b.{0,20}(improv|refactor|enhanc|optimiz).{0,20}\badwi\b", re.I), "what_next"),
     (re.compile(r"\bwhat\b.{0,15}\b(code\s+changes?|improvements?|refactors?)\b.{0,20}\b(adwi|better|make)\b", re.I), "what_next"),
     (re.compile(r"\bgenerate\b.{0,20}\b(todo|to.?do|task)\s+(list|items?)\b.{0,20}\badwi\b", re.I), "what_next"),
+    # voice_out wins over daily_brief when verb is speak/say-aloud/read-aloud
+    (re.compile(r"\b(speak|say\s+aloud|read\s+aloud)\b.{0,25}\b(morning.?brief|daily.?brief)\b", re.I), "voice_out"),
     # ── Daily brief (proactive user brief, BEFORE daily_improve dev routine) ────
     (re.compile(r"\b(daily.?brief|morning.?brief|today.{0,5}brief)\b", re.I), "daily_brief"),
     (re.compile(r"\b(give me|show me|run|start)\b.{0,15}\b(my\s+)?(daily|morning|today.{0,5})\s+(brief|summary|digest|rundown)\b", re.I), "daily_brief"),
@@ -935,6 +948,7 @@ _REGEX_INTENTS = [
     (re.compile(r"^(run|execute)\s+tests?\s*(please|pls)?\s*$", re.I), "test_adwi"),
     # CYCLE-6: "adwi run my tests" — adwi + run + tests (existing pattern misses "tests" plural)
     (re.compile(r"\badwi\b.{0,10}\brun\b.{0,15}\b(?:my\s+)?tests?\b", re.I), "test_adwi"),
+    (re.compile(r"\btest\s+the\s+(?:system|setup|install(?:ation)?)\b", re.I), "test_adwi"),
 
     # ── GitHub repo visibility — BEFORE git_status and github_connected ───────────
     (re.compile(r"(make|set|change|convert).{0,20}(git.?repo|repo|repository).{0,20}(public|private|open source)", re.I), "github_visibility"),
@@ -951,6 +965,9 @@ _REGEX_INTENTS = [
 
     # CYCLE-6: trusted_roots and tool_roadmap — LLM-only before, now regex-anchored
     (re.compile(r"\badwi\s+trusted\s+roots?\b", re.I), "trusted_roots"),
+    (re.compile(r"\ballowed\s+(?:directories?|paths?|folders?|files?)\b", re.I), "trusted_roots"),
+    (re.compile(r"\bwhat\s+(?:can|may|does)\s+(?:adwi|it)\s+(?:read|access|see|open)\b", re.I), "trusted_roots"),
+    (re.compile(r"\b(?:safe|permitted|authorized)\s+(?:directories?|paths?|folders?)\b", re.I), "trusted_roots"),
     (re.compile(r"\btrusted\s+roots?\b.{0,20}\b(?:list|show|what|paths?|directories?)\b", re.I), "trusted_roots"),
     (re.compile(r"\b(?:show|list|view|display)\b.{0,20}\b(?:the\s+)?tool\s+(?:plan|roadmap|list|map|overview)\b", re.I), "tool_roadmap"),
     (re.compile(r"\btool\s+(?:plan|roadmap|map|overview)\b", re.I), "tool_roadmap"),
@@ -1283,6 +1300,9 @@ _REGEX_INTENTS = [
     # FIX-SPRINT-007: "search web for X and summarize it" → web_search, not gmail_summarize
     # MUST precede the "summarize it" gmail_summarize pattern below
     (re.compile(r"\b(?:search|look\s+up|find)\b.{0,20}\b(?:web|internet|online|for)\b.{0,60}\b(?:summarize|tldr|summary)\b", re.I), "web_search"),
+    (re.compile(r"\b(?:search\s+for|look\s+up)\b.{0,25}\b(?:changelog|alternatives?|integrations?|plugins?|extensions?|updates?|docs?)\b", re.I), "web_search"),
+    (re.compile(r"\bsearch\s+for\b.{0,20}\b(?:adwi|ollama|docker|python|n8n|home\s+assistant)\b.{0,20}\b(?:alternatives?|equivalent|similar|replacement)\b", re.I), "web_search"),
+    (re.compile(r"\blook\s+up\b.{0,30}\b(?:home\s+assistant|homeassistant|ha)\b.{0,20}\b(?:integrations?|addons?|plugins?)\b", re.I), "web_search"),
     # ── Gmail summarize — MUST precede gmail_read (avoids "summarize" → gmail_read) ──
     # "summarize this email", "summarize the thread about X", "tldr"
     (re.compile(r"^(?:tldr|tl;dr|tl\.dr)\s*$", re.I), "gmail_summarize"),
@@ -1786,7 +1806,16 @@ _INTENT_SYSTEM = (
     "                      ONLY for Python/script execution. NOT conversational ('what's up', 'give me a random fact').\n"
     "                      NOT SQL/DB commands ('DROP TABLE users', 'SELECT *' → __none__). NOT 'run local model'.\n"
     "                      NOT 'do it', 'do this', 'why is X failing'. Code execution must be clearly implied.\n"
-    "   'web_search'     : explicit request for internet/web search\n"
+    "   'web_search'     : explicit request for internet/web search.\n"
+    "                      Examples: 'what's new in X', 'look up X', 'search for X online',\n"
+    "                      'find X on the web', 'google X', 'latest news on X'.\n"
+    "                      NOT 'chat' (opinion/advice). Use web_search when user needs\n"
+    "                      external/current info not available in local knowledge.\n"
+    "   'rag_search'     : search adwi's LOCAL knowledge base (RAG / vector store).\n"
+    "                      REQUIRES explicit search of stored knowledge/notes: 'search my notes on X',\n"
+    "                      'summarize my notes on X', 'find in my knowledge base', 'search stored info'.\n"
+    "                      NOT obsidian_search (vault files). NOT web_search (internet).\n"
+    "                      NOT chat — does NOT include general questions like 'what do you know about X'.\n"
     "   'status'         : asks if services/systems are running or healthy (shallow check).\n"
     "                      Includes: 'is everything online' (means RUNNING, NOT internet search),\n"
     "                      'what's wrong' (vague, no error text pasted), 'are services up', 'is X running'.\n"
@@ -1837,6 +1866,9 @@ _INTENT_SYSTEM = (
     "                      Vague 'why did this break' without error text → use 'self_heal' instead.\n"
     "                      Advisory questions about errors → 'chat': 'when does ValueError occur?',\n"
     "                      'help my code has a bug' (no traceback), 'what causes KeyError?' → 'chat'.\n"
+    "   'test_adwi'      : run adwi's built-in test suite. 'run tests', 'test the system',\n"
+    "                      'run adwi tests', 'verify adwi works', 'check if tests pass'.\n"
+    "                      NOT chat (general testing discussion). NOT fix_error (no error pasted).\n"
     "   'self_heal'      : user says adwi/service is broken or wants general repair WITHOUT pasting\n"
     "                      an actual error message. 'fix my setup', 'adwi is broken', 'repair ollama'.\n"
     "                      Also: 'something is broken', 'nothing is working', 'self-heal'.\n"
