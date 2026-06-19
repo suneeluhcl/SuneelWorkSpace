@@ -178,7 +178,48 @@
     "/what-next",
     "/youtube"
   ],
-  "services": [],
+  "services": [
+    [
+      "open-webui",
+      "3000",
+      "Up 2 days (healthy)"
+    ],
+    [
+      "n8n",
+      "5678",
+      "Up 2 days"
+    ],
+    [
+      "searxng",
+      "8888",
+      "Up 2 days"
+    ],
+    [
+      "prometheus",
+      "9090",
+      "Up 2 days"
+    ],
+    [
+      "loki",
+      "3100",
+      "Up 2 days"
+    ],
+    [
+      "grafana",
+      "4000",
+      "Up 2 days"
+    ],
+    [
+      "node-exporter",
+      "9100",
+      "Up 2 days"
+    ],
+    [
+      "cadvisor",
+      "9101",
+      "Up 2 days (healthy)"
+    ]
+  ],
   "launchagents": [
     [
       "adwi-git-backup",
@@ -223,5 +264,5 @@
   "fixture_count": 96,
   "intent_count": 115,
   "ts": "2026-06-19",
-  "_hash": "7d74cc5b79490b39"
+  "_hash": "480066094124147b"
 }

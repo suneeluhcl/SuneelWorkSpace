@@ -110,7 +110,22 @@ SYSTEM You are Adwi, a cautious local AI assistant. Never read secrets, never co
 <!-- AUTO:INFRA_PORTS -->
 | Port | Service | Layer | Purpose |
 |---|---|---|---|
-| — | config/infra_ports.json not found | — | run bin/generate-manifest |
+| :11434 | Ollama | Host (brew) | Local LLM inference API |
+| :3000 | Open WebUI | Docker | Browser chat UI + model switcher |
+| :5055 | Safe Command API | Host | n8n→shell bridge (8 allowlisted routes) |
+| :5056 | Obsidian Bridge | Host (LaunchAgent) | Vault HTTP CRUD API |
+| :5678 | n8n | Docker | Workflow automation / webhooks |
+| :6006 | Arize Phoenix | Host (LaunchAgent) | Agent observability UI (OTel) |
+| :6333 | Qdrant | Docker (LaunchAgent start) | Vector database — suneel-qdrant container, started by LaunchAgent |
+| :8123 | Home Assistant | Docker | iPhone control plane |
+| :8888 | SearXNG | Docker | Private local web search |
+| :9090 | Prometheus | Docker | Metrics scraper |
+| :3100 | Loki | Docker | Log aggregation |
+| :4000 | Grafana | Docker | Monitoring dashboards |
+| :9100 | node-exporter | Docker | Host system metrics |
+| :9101 | cAdvisor | Docker | Container metrics |
+| :4317 | Phoenix gRPC | Host (LaunchAgent) | OTLP gRPC ingestion |
+| :4318 | Phoenix HTTP | Host (LaunchAgent) | OTLP HTTP ingestion |
 *Auto-updated: 2026-06-19*
 <!-- /AUTO:INFRA_PORTS -->
 
@@ -119,6 +134,14 @@ SYSTEM You are Adwi, a cautious local AI assistant. Never read secrets, never co
 <!-- AUTO:SERVICES -->
 | Service | Port | Status |
 |---|---|---|
+| open-webui | :3000 | ✓ running |
+| n8n | :5678 | ✓ running |
+| searxng | :8888 | ✓ running |
+| prometheus | :9090 | ✓ running |
+| loki | :3100 | ✓ running |
+| grafana | :4000 | ✓ running |
+| node-exporter | :9100 | ✓ running |
+| cadvisor | :9101 | ✓ running |
 *Auto-updated: 2026-06-19*
 <!-- /AUTO:SERVICES -->
 
@@ -172,12 +195,12 @@ External World
 <!-- AUTO:MONITORING -->
 | Service | Port | Role | Status |
 |---|---|---|---|
-| prometheus | :9090 | Metrics scraper | not started |
-| loki | :3100 | Log aggregation | not started |
+| prometheus | :9090 | Metrics scraper | ✓ running |
+| loki | :3100 | Log aggregation | ✓ running |
 | promtail | — | Log shipper → Loki | not started |
-| grafana | :4000 | Dashboards UI | not started |
-| node-exporter | :9100 | System metrics | not started |
-| cadvisor | :9101 | Container metrics | not started |
+| grafana | :4000 | Dashboards UI | ✓ running |
+| node-exporter | :9100 | System metrics | ✓ running |
+| cadvisor | :9101 | Container metrics | ✓ running |
 
 Start: `cd local-ai-stack && docker compose up -d prometheus loki promtail grafana node-exporter cadvisor`
 Dashboard: http://localhost:4000 (user: suneel)
