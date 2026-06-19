@@ -1550,7 +1550,7 @@ KNOWN_REGEX_FIXES: list[dict] = [
         "description":    "Add voice_out regex before daily_brief in P1 — 'speak the morning brief' → voice_out",
         "target_intents": ["voice_out"],
         "target_file":    "adwi/logs/simeval/run_large_eval.py",
-        "check_pattern":  r"# ── Daily brief \(BEFORE daily_improve\).*\n.*daily.?brief\|morning.?brief.*daily_brief",
+        "check_pattern":  r"Daily brief \(BEFORE daily_improve\)",
         "old_str": (
             '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
             '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
@@ -1568,7 +1568,7 @@ KNOWN_REGEX_FIXES: list[dict] = [
         "description":    "Add voice_out regex before daily_brief in P2",
         "target_intents": ["voice_out"],
         "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
-        "check_pattern":  r"# ── Daily brief \(BEFORE daily_improve\).*\n.*daily.?brief\|morning.?brief.*daily_brief",
+        "check_pattern":  r"Daily brief \(BEFORE daily_improve\)",
         "old_str": (
             '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
             '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
@@ -1586,7 +1586,7 @@ KNOWN_REGEX_FIXES: list[dict] = [
         "description":    "Add voice_out regex before daily_brief in CLI",
         "target_intents": ["voice_out"],
         "target_file":    "adwi/adwi_cli.py",
-        "check_pattern":  r"# ── Daily brief \(BEFORE daily_improve\).*\n.*daily.?brief\|morning.?brief.*daily_brief",
+        "check_pattern":  r"Daily brief \(BEFORE daily_improve\)",
         "old_str": (
             '    # ── Daily brief (BEFORE daily_improve) ───────────────────────────────────────\n'
             '    (re.compile(r"\\b(daily.?brief|morning.?brief|today.{0,5}brief)\\b", re.I), "daily_brief"),\n'
@@ -1627,7 +1627,7 @@ KNOWN_REGEX_FIXES: list[dict] = [
         "description":    "Add browse INTENT_SYSTEM description in P1",
         "target_intents": ["browse"],
         "target_file":    "adwi/logs/simeval/run_large_eval.py",
-        "check_pattern":  r"'browser_delegate'.*NOT bare 'browse'.*\n.*'daily_brief'",
+        "check_pattern":  r"NOT bare 'browse'.*\n.*'daily_brief'",
         "old_str": (
             '    "   \'browser_delegate\': delegate a browsing task to a safe Playwright agent. \'browser delegate X\',\\n"\n'
             '    "                      \'use browser to X\', \'use playwright to X\', \'browser task X\'. NOT bare \'browse\'.\\n"\n'
@@ -2263,6 +2263,217 @@ KNOWN_REGEX_FIXES: list[dict] = [
             '    (re.compile(r"\\b(?:show|display|list)\\s+(?:all\\s+)?(?:available\\s+)?commands?\\b", re.I), "capabilities"),\n'
         ),
         "minimum_examples": 3,
+    },
+    # ── FIX-E2E-057: old_files — add "gathering dust", "neglected", "never open anymore" ──
+    {
+        "id":             "FIX-E2E-057a",
+        "description":    "Add old_files regex for dust/neglect/never-open in P1",
+        "target_intents": ["old_files"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"a.one.two.several.*old_files",
+        "old_str": (
+            '    (re.compile(r"\\bhaven.t.{0,10}(used|opened|accessed|touched)\\b.{0,30}(this\\s+year|in\\s+(a|one|two|several)\\s+year)\\b", re.I), "old_files"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\bgathering\\s+dust\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\b(?:neglect(?:ed)?|forgotten)\\b.{0,20}\\bfiles?\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bfiles?\\b.{0,20}\\b(?:neglect(?:ed)?|forgotten|never\\s+open(?:ed)?)\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bfiles?\\b.{0,30}\\bnever\\s+(?:open(?:ed)?|used|touched|accessed)\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bhaven.t.{0,10}(used|opened|accessed|touched)\\b.{0,30}(this\\s+year|in\\s+(a|one|two|several)\\s+year)\\b", re.I), "old_files"),\n'
+        ),
+        "minimum_examples": 2,
+    },
+    {
+        "id":             "FIX-E2E-057b",
+        "description":    "Add old_files regex for dust/neglect/never-open in P2",
+        "target_intents": ["old_files"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"a.one.two.several.*old_files",
+        "old_str": (
+            '    (re.compile(r"\\bhaven.t.{0,10}(used|opened|accessed|touched)\\b.{0,30}(this\\s+year|in\\s+(a|one|two|several)\\s+year)\\b", re.I), "old_files"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\bgathering\\s+dust\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\b(?:neglect(?:ed)?|forgotten)\\b.{0,20}\\bfiles?\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bfiles?\\b.{0,20}\\b(?:neglect(?:ed)?|forgotten|never\\s+open(?:ed)?)\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bfiles?\\b.{0,30}\\bnever\\s+(?:open(?:ed)?|used|touched|accessed)\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bhaven.t.{0,10}(used|opened|accessed|touched)\\b.{0,30}(this\\s+year|in\\s+(a|one|two|several)\\s+year)\\b", re.I), "old_files"),\n'
+        ),
+        "minimum_examples": 2,
+    },
+    {
+        "id":             "FIX-E2E-057c",
+        "description":    "Add old_files regex for dust/neglect/never-open in CLI",
+        "target_intents": ["old_files"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"a.one.two.several.*old_files",
+        "old_str": (
+            '    (re.compile(r"\\bhaven.t.{0,10}(used|opened|accessed|touched)\\b.{0,30}(this\\s+year|in\\s+(a|one|two|several)\\s+year)\\b", re.I), "old_files"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\bgathering\\s+dust\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\b(?:neglect(?:ed)?|forgotten)\\b.{0,20}\\bfiles?\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bfiles?\\b.{0,20}\\b(?:neglect(?:ed)?|forgotten|never\\s+open(?:ed)?)\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bfiles?\\b.{0,30}\\bnever\\s+(?:open(?:ed)?|used|touched|accessed)\\b", re.I), "old_files"),\n'
+            '    (re.compile(r"\\bhaven.t.{0,10}(used|opened|accessed|touched)\\b.{0,30}(this\\s+year|in\\s+(a|one|two|several)\\s+year)\\b", re.I), "old_files"),\n'
+        ),
+        "minimum_examples": 2,
+    },
+    # ── FIX-E2E-058: trusted_roots regex for "allowed directories", "what can adwi read" ──
+    {
+        "id":             "FIX-E2E-058a",
+        "description":    "Add trusted_roots regex + INTENT_SYSTEM for 'allowed directories' in P1",
+        "target_intents": ["trusted_roots"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"adwi.*trusted.*roots.*trusted_roots",
+        "old_str": (
+            '    (re.compile(r"\\badwi\\s+trusted\\s+roots?\\b", re.I), "trusted_roots"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\badwi\\s+trusted\\s+roots?\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\ballowed\\s+(?:directories?|paths?|folders?|files?)\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\bwhat\\s+(?:can|may|does)\\s+(?:adwi|it)\\s+(?:read|access|see|open)\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\b(?:safe|permitted|authorized)\\s+(?:directories?|paths?|folders?)\\b", re.I), "trusted_roots"),\n'
+        ),
+        "minimum_examples": 2,
+    },
+    {
+        "id":             "FIX-E2E-058b",
+        "description":    "Add trusted_roots regex for 'allowed directories' in P2",
+        "target_intents": ["trusted_roots"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"adwi.*trusted.*roots.*trusted_roots",
+        "old_str": (
+            '    (re.compile(r"\\badwi\\s+trusted\\s+roots?\\b", re.I), "trusted_roots"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\badwi\\s+trusted\\s+roots?\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\ballowed\\s+(?:directories?|paths?|folders?|files?)\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\bwhat\\s+(?:can|may|does)\\s+(?:adwi|it)\\s+(?:read|access|see|open)\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\b(?:safe|permitted|authorized)\\s+(?:directories?|paths?|folders?)\\b", re.I), "trusted_roots"),\n'
+        ),
+        "minimum_examples": 2,
+    },
+    {
+        "id":             "FIX-E2E-058c",
+        "description":    "Add trusted_roots regex for 'allowed directories' in CLI",
+        "target_intents": ["trusted_roots"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"adwi.*trusted.*roots.*trusted_roots",
+        "old_str": (
+            '    (re.compile(r"\\badwi\\s+trusted\\s+roots?\\b", re.I), "trusted_roots"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\badwi\\s+trusted\\s+roots?\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\ballowed\\s+(?:directories?|paths?|folders?|files?)\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\bwhat\\s+(?:can|may|does)\\s+(?:adwi|it)\\s+(?:read|access|see|open)\\b", re.I), "trusted_roots"),\n'
+            '    (re.compile(r"\\b(?:safe|permitted|authorized)\\s+(?:directories?|paths?|folders?)\\b", re.I), "trusted_roots"),\n'
+        ),
+        "minimum_examples": 2,
+    },
+    # ── FIX-E2E-059: test_adwi — add INTENT_SYSTEM + "test the system" regex ─────
+    {
+        "id":             "FIX-E2E-059a",
+        "description":    "Add test_adwi INTENT_SYSTEM description in P1",
+        "target_intents": ["test_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"REQUIRES actual error text.*self_heal",
+        "old_str": (
+            '    "                      REQUIRES actual error text in the prompt. NOT \'something is broken\' (→ self_heal).\\n"\n'
+            '    "   \'self_heal\'      : user says service is broken WITHOUT pasting an actual error message.\\n"\n'
+        ),
+        "new_str": (
+            '    "                      REQUIRES actual error text in the prompt. NOT \'something is broken\' (→ self_heal).\\n"\n'
+            '    "   \'test_adwi\'      : run adwi\'s built-in test suite. \'run tests\', \'test the system\',\\n"\n'
+            '    "                      \'run adwi tests\', \'verify adwi works\', \'check if tests pass\'.\\n"\n'
+            '    "                      NOT chat (general testing discussion). NOT fix_error (no error pasted).\\n"\n'
+            '    "   \'self_heal\'      : user says service is broken WITHOUT pasting an actual error message.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-059b",
+        "description":    "Add test_adwi INTENT_SYSTEM description in P2",
+        "target_intents": ["test_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"REQUIRES actual error text.*self_heal",
+        "old_str": (
+            '    "                      REQUIRES actual error text in the prompt. NOT \'something is broken\' (→ self_heal).\\n"\n'
+            '    "   \'self_heal\'      : user says service is broken WITHOUT pasting an actual error message.\\n"\n'
+        ),
+        "new_str": (
+            '    "                      REQUIRES actual error text in the prompt. NOT \'something is broken\' (→ self_heal).\\n"\n'
+            '    "   \'test_adwi\'      : run adwi\'s built-in test suite. \'run tests\', \'test the system\',\\n"\n'
+            '    "                      \'run adwi tests\', \'verify adwi works\', \'check if tests pass\'.\\n"\n'
+            '    "                      NOT chat (general testing discussion). NOT fix_error (no error pasted).\\n"\n'
+            '    "   \'self_heal\'      : user says service is broken WITHOUT pasting an actual error message.\\n"\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-059c",
+        "description":    "Add test_adwi INTENT_SYSTEM description in CLI",
+        "target_intents": ["test_adwi"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"what causes KeyError.*\n.*self_heal",
+        "old_str": (
+            "    \"                      'help my code has a bug' (no traceback), 'what causes KeyError?' → 'chat'.\\n\"\n"
+            "    \"   'self_heal'      : user says adwi/service is broken or wants general repair "
+        ),
+        "new_str": (
+            "    \"                      'help my code has a bug' (no traceback), 'what causes KeyError?' → 'chat'.\\n\"\n"
+            "    \"   'test_adwi'      : run adwi's built-in test suite. 'run tests', 'test the system',\\n\"\n"
+            "    \"                      'run adwi tests', 'verify adwi works', 'check if tests pass'.\\n\"\n"
+            "    \"                      NOT chat (general testing discussion). NOT fix_error (no error pasted).\\n\"\n"
+            "    \"   'self_heal'      : user says adwi/service is broken or wants general repair "
+        ),
+        "minimum_examples": 1,
+    },
+    # ── FIX-E2E-059d/e/f: "test the system" regex → test_adwi ────────────────────
+    {
+        "id":             "FIX-E2E-059d",
+        "description":    "Add regex for 'test the system' → test_adwi in P1",
+        "target_intents": ["test_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval.py",
+        "check_pattern":  r"adwi.*run.*tests.*test_adwi",
+        "old_str": (
+            '    (re.compile(r"\\badwi\\b.{0,10}\\brun\\b.{0,15}\\b(?:my\\s+)?tests?\\b", re.I), "test_adwi"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\badwi\\b.{0,10}\\brun\\b.{0,15}\\b(?:my\\s+)?tests?\\b", re.I), "test_adwi"),\n'
+            '    (re.compile(r"\\btest\\s+the\\s+(?:system|setup|install(?:ation)?)\\b", re.I), "test_adwi"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-059e",
+        "description":    "Add regex for 'test the system' → test_adwi in P2",
+        "target_intents": ["test_adwi"],
+        "target_file":    "adwi/logs/simeval/run_large_eval_p2.py",
+        "check_pattern":  r"adwi.*run.*tests.*test_adwi",
+        "old_str": (
+            '    (re.compile(r"\\badwi\\b.{0,10}\\brun\\b.{0,15}\\b(?:my\\s+)?tests?\\b", re.I), "test_adwi"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\badwi\\b.{0,10}\\brun\\b.{0,15}\\b(?:my\\s+)?tests?\\b", re.I), "test_adwi"),\n'
+            '    (re.compile(r"\\btest\\s+the\\s+(?:system|setup|install(?:ation)?)\\b", re.I), "test_adwi"),\n'
+        ),
+        "minimum_examples": 1,
+    },
+    {
+        "id":             "FIX-E2E-059f",
+        "description":    "Add regex for 'test the system' → test_adwi in CLI",
+        "target_intents": ["test_adwi"],
+        "target_file":    "adwi/adwi_cli.py",
+        "check_pattern":  r"adwi.*run.*tests.*test_adwi",
+        "old_str": (
+            '    (re.compile(r"\\badwi\\b.{0,10}\\brun\\b.{0,15}\\b(?:my\\s+)?tests?\\b", re.I), "test_adwi"),\n'
+        ),
+        "new_str": (
+            '    (re.compile(r"\\badwi\\b.{0,10}\\brun\\b.{0,15}\\b(?:my\\s+)?tests?\\b", re.I), "test_adwi"),\n'
+            '    (re.compile(r"\\btest\\s+the\\s+(?:system|setup|install(?:ation)?)\\b", re.I), "test_adwi"),\n'
+        ),
+        "minimum_examples": 1,
     },
 ]
 
