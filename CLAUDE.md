@@ -25,18 +25,18 @@ Adwi is a local AI operating system running on an Apple Silicon Mac. It is not a
 | `adwi/path_validator.py` | Deny-first path guard — understand before any file operation |
 | `adwi/adwi_cli.py` lines 503–660 | `_REGEX_INTENTS` — NLU fast path, ordering is critical |
 | `adwi/adwi_cli.py` lines 865–1020 | `_INTENT_SYSTEM` — LLM classification prompt |
-| `adwi/logs/simeval/MASTER_REPORT_v2.md` | Refreshed 2026-06-19 (trust-baseline repair pass, 98.4% combined dedup). Current state is in the table below. |
+| `adwi/logs/simeval/MASTER_REPORT_v2.md` | Refreshed 2026-06-20 (reliability-push session, 98.3% combined dedup). Current state is in the table below. |
 | `adwi/docs/NLU_REPAIR_BACKLOG.md` | Prioritized fix list with exact code proposals |
 
 ---
 
-## Current NLU quality (as of 2026-06-19)
+## Current NLU quality (as of 2026-06-20)
 
-| Eval | Scenarios | Pre-NHR | Stabilize sprint | CYCLE-5 | CYCLE-6 | CYCLE-7 | CYCLE-11 | Total gain |
-|------|-----------|---------|------------------|---------|---------|---------|----------|------------|
-| Large eval P1 | 1,834 | 78.0% | 92.6% | 96.3% | 96.7% | 95.7% | **98.6%** | +20.6pp |
-| Large eval P2 (weak-family targeting) | 570 | 68.6% | 88.8% | 97.0% | 98.2% | 97.0% | **98.1%** | +29.5pp |
-| **Combined (dedup)** | **~2,283** | **75.8%** | **~91.7%** | **~96.5%** | **~97.0%** | **~95.8%** | **98.4%** | **+22.6pp** |
+| Eval | Scenarios | Pre-NHR | Stabilize sprint | CYCLE-5 | CYCLE-6 | CYCLE-7 | CYCLE-11 | REL-S | Total gain |
+|------|-----------|---------|------------------|---------|---------|---------|----------|-------|------------|
+| Large eval P1 | 1,834 | 78.0% | 92.6% | 96.3% | 96.7% | 95.7% | **98.6%** | **98.4%** | +20.4pp |
+| Large eval P2 (weak-family targeting) | 570 | 68.6% | 88.8% | 97.0% | 98.2% | 97.0% | 98.1% | **98.2%** | +29.6pp |
+| **Combined (dedup)** | **~2,283** | **75.8%** | **~91.7%** | **~96.5%** | **~97.0%** | **~95.8%** | 98.4% | **98.3%** | **+22.5pp** |
 
 **Stop Condition B reached 2026-06-19: combined >98%. All 10 NHR items applied 2026-06-16. Sessions 2-4 applied 2026-06-16. Gmail burn-in + stabilization sprint applied 2026-06-17. CYCLE-5 (2026-06-17): 13 bare-command anchors, chat advisory fixes, status/advisory boundary, memory_scan/github_connected/web_search additions — synced to all 3 files. CYCLE-6 (2026-06-17): PermissionError guard before CYCLE-1, run-aider before self-heal, organize before chat, use_local/large_files/gmail_list_attachments/capabilities/trusted_roots/tool_roadmap/test_adwi targeted fixes — synced to all 3 files.**
 
@@ -54,7 +54,9 @@ Session-4 applied 8 false-positive hardening fixes. Gmail burn-in applied 12 FIX
 
 **Trust-baseline repair pass (2026-06-19): 3 NLU safety breaches fixed (~/Library/Passwords, /root/.bashrc, developer-mode social-engineering → __none__) + browse guard (fetch/summarize page). Patterns synced to P1+P2 harnesses. All env-path drift fixed (nightly.py, reason_engine.py, obsidian-bridge, adwi-sandbox, validate_adwi_env.py). reason_engine.py write guard expanded (12 entries). OpenTelemetry startup hang fixed (port-check gate). validate-docs paths fixed (now 20/20). MASTER_REPORT_v2.md regenerated from sessions large-20260619-103709 + large-p2-20260619-104828. P1: 98.6%, P2: 98.1%, Combined: 98.4%. Safety breaches: 0.**
 
-**Current baseline: 98.4% combined (dedup).** P1 failures (21): ~7 chat bleed, LLM variance, scattered single-intent misroutes. P2 failures (5): LLM variance only. upgrade_pack: 100% (35/35). Regex fast-path: 66.8%.
+**Reliability-push session (2026-06-20): 14 NLU regex fixes (FIX-REL-001 through FIX-REL-014) — disk_usage hogs/hasn't/capacity patterns, file_search locate/Dockerfile patterns, file_list list-contents patterns, backup_now commit-and-push patterns, use_local local-llm patterns, benchmark guard (FIX-REL-014) to prevent use_local false positive, fix_error StopIteration/UnicodeDecodeError/OverflowError/LookupError/ArithmeticError extensions. All 3 files synced. MASTER_REPORT_v2.md regenerated from sessions large-20260620-014026 + large-p2-20260620-020631. P1: 98.4%, P2: 98.2%, Combined: 98.3%. Safety breaches: 0. Regex fast-path: 67.8%. 481 NLU regression tests, 320 command registry tests.**
+
+**Current baseline: 98.3% combined (dedup).** P1 failures (24): 10 disk_usage (LLM __none__ misroute), 5 chat bleed, scattered single-intent LLM variance. P2 failures (4): LLM variance only. upgrade_pack: 100% (35/35). Regex fast-path: 67.8%.
 
 Changes are synchronized across all 3 files: `adwi/adwi_cli.py`, `adwi/logs/simeval/run_large_eval.py`, `adwi/logs/simeval/run_large_eval_p2.py`.
 

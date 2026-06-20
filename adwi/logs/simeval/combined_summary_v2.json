@@ -1,22 +1,27 @@
 {
   "sessions": [
-    "large-20260619-103709",
-    "large-p2-20260619-104828"
+    "large-20260620-014026",
+    "large-p2-20260620-020631"
   ],
-  "generated": "2026-06-19 10:53",
+  "generated": "2026-06-20 02:11",
   "total": 2283,
-  "passed": 2246,
+  "passed": 2244,
   "warned": 11,
-  "failed": 26,
-  "pass_rate_pct": 98.4,
-  "regex_hits": 1526,
-  "regex_hit_pct": 66.8,
-  "llm_calls": 756,
-  "avg_latency_ms": 3959.4,
-  "p95_latency_ms": 13846.4,
+  "failed": 28,
+  "pass_rate_pct": 98.3,
+  "regex_hits": 1549,
+  "regex_hit_pct": 67.8,
+  "llm_calls": 725,
+  "avg_latency_ms": 1323.8,
+  "p95_latency_ms": 4702.5,
   "safety_probes": 66,
   "safety_breaches": 0,
   "top_misroutes": [
+    {
+      "from": "disk_usage",
+      "to": "__none__",
+      "count": 9
+    },
     {
       "from": "chat",
       "to": "rag_search",
@@ -28,38 +33,8 @@
       "count": 2
     },
     {
-      "from": "large_files",
-      "to": "disk_usage",
-      "count": 1
-    },
-    {
-      "from": "old_files",
-      "to": "memory_scan",
-      "count": 1
-    },
-    {
-      "from": "old_files",
-      "to": "large_files",
-      "count": 1
-    },
-    {
       "from": "status",
       "to": "chat",
-      "count": 1
-    },
-    {
-      "from": "file_list",
-      "to": "file_search",
-      "count": 1
-    },
-    {
-      "from": "file_search",
-      "to": "obsidian_search",
-      "count": 1
-    },
-    {
-      "from": "file_search",
-      "to": "backup_now",
       "count": 1
     },
     {
@@ -88,23 +63,18 @@
       "count": 1
     },
     {
-      "from": "gmail",
-      "to": "gmail_thread_intel",
-      "count": 1
-    },
-    {
       "from": "nightly_run",
       "to": "nightly_status",
       "count": 1
     },
     {
-      "from": "use_local",
-      "to": "use_cloud",
+      "from": "gmail",
+      "to": "gmail_thread_intel",
       "count": 1
     },
     {
-      "from": "__none__",
-      "to": "__none__",
+      "from": "use_local",
+      "to": "use_cloud",
       "count": 1
     },
     {
@@ -114,12 +84,12 @@
     },
     {
       "from": "__none__",
-      "to": "doctor",
+      "to": "__none__",
       "count": 1
     },
     {
-      "from": "fix_error",
-      "to": "__none__",
+      "from": "__none__",
+      "to": "doctor",
       "count": 1
     },
     {
@@ -134,21 +104,16 @@
     }
   ],
   "fail_by_intent": {
+    "disk_usage": 10,
     "chat": 7,
-    "old_files": 2,
-    "file_search": 2,
     "__none__": 2,
-    "large_files": 1,
     "status": 1,
-    "file_list": 1,
     "gmail_tasks_save": 1,
     "gmail_confirm": 1,
-    "disk_usage": 1,
-    "gmail": 1,
     "nightly_run": 1,
+    "gmail": 1,
     "use_local": 1,
     "benchmark": 1,
-    "fix_error": 1,
     "web_search": 1,
     "obsidian_search": 1
   },
@@ -166,20 +131,6 @@
       "effort": "low",
       "confidence": "medium",
       "impact": "~1 scenarios would flip to pass"
-    },
-    {
-      "id": "FIX-004",
-      "title": "large_files \u2192 disk_usage regression for some prompts",
-      "count": 1,
-      "evidence": [
-        "size hogs on my disk"
-      ],
-      "root_cause": "Some large_files prompts contain 'disk' or 'space' keywords which trigger disk_usage regex. Example: 'what's the heaviest stuff on disk' \u2014 correctly routes to disk_usage, but 'heaviest files on disk' should route to large_files.",
-      "proposed_fix": "Add additional large_files pattern: `\\bfiles?\\b.{0,30}(heaviest|biggest|largest|most space).{0,20}(disk|drive|ssd)` \u2192 large_files BEFORE disk_usage patterns.",
-      "affected_file": "adwi/adwi_cli.py \u2014 _REGEX_INTENTS",
-      "effort": "low",
-      "confidence": "medium",
-      "impact": "~1 scenarios"
     },
     {
       "id": "FIX-006",
@@ -203,6 +154,13 @@
       "pass": 4,
       "fail": 1,
       "consistency_pct": 80.0
+    },
+    {
+      "family": "disk_usage",
+      "total": 51,
+      "pass": 42,
+      "fail": 9,
+      "consistency_pct": 82.4
     },
     {
       "family": "gmail_tasks_save",

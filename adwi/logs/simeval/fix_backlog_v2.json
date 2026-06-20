@@ -14,20 +14,6 @@
     "impact": "~1 scenarios would flip to pass"
   },
   {
-    "id": "FIX-004",
-    "title": "large_files \u2192 disk_usage regression for some prompts",
-    "count": 1,
-    "evidence": [
-      "size hogs on my disk"
-    ],
-    "root_cause": "Some large_files prompts contain 'disk' or 'space' keywords which trigger disk_usage regex. Example: 'what's the heaviest stuff on disk' \u2014 correctly routes to disk_usage, but 'heaviest files on disk' should route to large_files.",
-    "proposed_fix": "Add additional large_files pattern: `\\bfiles?\\b.{0,30}(heaviest|biggest|largest|most space).{0,20}(disk|drive|ssd)` \u2192 large_files BEFORE disk_usage patterns.",
-    "affected_file": "adwi/adwi_cli.py \u2014 _REGEX_INTENTS",
-    "effort": "low",
-    "confidence": "medium",
-    "impact": "~1 scenarios"
-  },
-  {
     "id": "FIX-006",
     "title": "benchmark regex too narrow \u2014 misses 'how fast is my model'",
     "count": 1,
