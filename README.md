@@ -212,14 +212,14 @@ Dashboard: http://localhost:4000 (user: suneel)
 ## §3 Deterministic Capability Grid
 
 <!-- AUTO:COMMANDS -->
-**177 registered commands.** Key groups:
+**184 registered commands.** Key groups:
 
 **add**: `/add-capability-plan`  `/add-root`
 **assistant**: `/assistant-upgrade-status`
 **backup**: `/backup-audit`  `/backup-disable`  `/backup-enable`  `/backup-log`  `/backup-now`  `/backup-status`
 **benchmark**: `/benchmark`
 **browse**: `/browse`
-**browser**: `/browser-delegate`
+**browser**: `/browser-delegate`  `/browser-delegate-dry-run`
 **capabilities**: `/capabilities`
 **capability**: `/capability-audit`  `/capability-status`
 **cleanup**: `/cleanup`
@@ -227,6 +227,7 @@ Dashboard: http://localhost:4000 (user: suneel)
 **cloud**: `/cloud`
 **cmd**: `/cmd`
 **confirm**: `/confirm`
+**context**: `/context-size`
 **daily**: `/daily-brief`  `/daily-improve`
 **disk**: `/disk`
 **doctor**: `/doctor`
@@ -243,7 +244,7 @@ Dashboard: http://localhost:4000 (user: suneel)
 **gh**: `/gh-status`
 **git**: `/git`
 **github**: `/github`  `/github-private`  `/github-public`  `/github-status`
-**gmail**: `/gmail`  `/gmail-add-bcc`  `/gmail-add-cc`  `/gmail-archive`  `/gmail-attach`  `/gmail-attachments`  `/gmail-auth`  `/gmail-cancel`  `/gmail-cancel-draft`  `/gmail-cancel-followup`  `/gmail-cancel-scheduled`  `/gmail-compose`  `/gmail-confirm`  `/gmail-delete-draft`  `/gmail-draft-reply`  `/gmail-drafts`  `/gmail-extract-tasks`  `/gmail-followup`  `/gmail-followups`  `/gmail-forward`  `/gmail-mark-read`  `/gmail-mark-unread`  `/gmail-open-draft`  `/gmail-open-scheduled`  `/gmail-promos`  `/gmail-read`  `/gmail-remove-attachment`  `/gmail-reschedule`  `/gmail-rewrite`  `/gmail-rule`  `/gmail-rule-apply`  `/gmail-rule-cancel`  `/gmail-rules`  `/gmail-save-attachment`  `/gmail-scheduled`  `/gmail-send-draft`  `/gmail-show-draft`  `/gmail-social`  `/gmail-spam`  `/gmail-summarize`  `/gmail-summarize-attachment`  `/gmail-summary`  `/gmail-tasks-remind`  `/gmail-tasks-save`  `/gmail-thread`  `/gmail-thread-intel`  `/gmail-trash`  `/gmail-triage`  `/gmail-undo`  `/gmail-update-subject`
+**gmail**: `/gmail`  `/gmail-add-bcc`  `/gmail-add-cc`  `/gmail-archive`  `/gmail-attach`  `/gmail-attachments`  `/gmail-auth`  `/gmail-cancel`  `/gmail-cancel-draft`  `/gmail-cancel-followup`  `/gmail-cancel-scheduled`  `/gmail-category`  `/gmail-compose`  `/gmail-confirm`  `/gmail-delete-draft`  `/gmail-draft-reply`  `/gmail-drafts`  `/gmail-extract-tasks`  `/gmail-followup`  `/gmail-followups`  `/gmail-forward`  `/gmail-mark-read`  `/gmail-mark-unread`  `/gmail-open`  `/gmail-open-draft`  `/gmail-open-scheduled`  `/gmail-promos`  `/gmail-read`  `/gmail-remove-attachment`  `/gmail-reschedule`  `/gmail-rewrite`  `/gmail-rule`  `/gmail-rule-apply`  `/gmail-rule-cancel`  `/gmail-rules`  `/gmail-save-attachment`  `/gmail-schedule`  `/gmail-scheduled`  `/gmail-send-draft`  `/gmail-show-draft`  `/gmail-social`  `/gmail-spam`  `/gmail-summarize`  `/gmail-summarize-attachment`  `/gmail-summary`  `/gmail-tasks-remind`  `/gmail-tasks-save`  `/gmail-thread`  `/gmail-thread-intel`  `/gmail-trash`  `/gmail-triage`  `/gmail-undo`  `/gmail-update-subject`
 **ha**: `/ha`
 **help**: `/help`
 **image**: `/image`  `/image-save`
@@ -275,7 +276,7 @@ Dashboard: http://localhost:4000 (user: suneel)
 **remote**: `/remote`  `/remote-status`
 **repair**: `/repair-adwi`
 **repo**: `/repo-private`  `/repo-public`
-**research**: `/research`
+**research**: `/research`  `/research-save`
 **reset**: `/reset-context`
 **review**: `/review-plan`
 **roadmap**: `/roadmap`
@@ -297,6 +298,7 @@ Dashboard: http://localhost:4000 (user: suneel)
 **tool**: `/tool-roadmap`
 **trace**: `/trace-log`
 **training**: `/training-plan`
+**trust**: `/trust-root`
 **trusted**: `/trusted-roots`
 **url**: `/url`
 **use**: `/use-cloud`  `/use-local`
@@ -1022,7 +1024,7 @@ python3 -m py_compile adwi/adwi_cli.py && echo "still compiles"
 | 2 | LangGraph Orchestration & Interactive Permission Surface | Planner→Executor→Critic state machine; Phase 2 boxed gate with WHY explanation | `adwi/reason_engine.py` |
 | 3 | Memory Lifecycle, Scoring & Safety Gate | importance_score, recency_decay, provenance columns; BLOCKED/REVIEW/SAFE classifier | `adwi/memory.py` |
 | 4 | Real-Time Self-Healing & Hermes Skill Compiling | aider non-interactive patch → pytest verify → skills/ SKILL.md; skill pre-flight match | `adwi/reason_engine.py · skills/` |
-| 5 | prompt_toolkit Slash-Command Autocomplete | 177-command registry; substring fuzzy scoring; Tab/arrow REPL overlay | `adwi/adwi_cli.py (SlashCommandCompleter)` |
+| 5 | prompt_toolkit Slash-Command Autocomplete | 184-command registry; substring fuzzy scoring; Tab/arrow REPL overlay | `adwi/adwi_cli.py (SlashCommandCompleter)` |
 | 6 | Chain-of-Intent Schema & Semantic Slot-Filling | analysis+confidence+intent+arguments JSON schema; 29 structured arg reads in dispatch | `adwi/adwi_cli.py (_INTENT_JSON_SCHEMA)` |
 | 7 | Qdrant-Driven Dynamic Few-Shot Routing | 96-fixture nlu_fixtures collection; top-3 injected into llama3.1:8b system prompt | `adwi/memory.py · Qdrant :6333` |
 | 8 | LLM-Priming Documentation Update Invariants | auto-update-readme always runs before backup; PHASES+NLU sections auto-injected | `bin/auto-update-readme · adwi/backup.py` |
