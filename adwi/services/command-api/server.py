@@ -47,6 +47,8 @@ ALLOWED_COMMANDS = {
     "/adwi-brief":             [VENV_PY, ADWI_CLI, "/what-next"],
     "/adwi-status":            [VENV_PY, ADWI_CLI, "/status"],
     "/adwi-doctor":            [VENV_PY, ADWI_CLI, "/doctor"],
+    "/adwi-models":            [VENV_PY, ADWI_CLI, "/models"],
+    "/adwi-watcher-status":    [os.path.join(BIN, "status-openwebui-knowledge-watcher")],
     # /adwi-daily-brief-n8n — emits a single JSON line; safe for n8n HTTP Request node.
     # n8n HTTP Request: GET http://127.0.0.1:5055/adwi-daily-brief-n8n
     # Header: X-Adwi-Secret: {{$env.ADWI_LOCAL_SECRET}}

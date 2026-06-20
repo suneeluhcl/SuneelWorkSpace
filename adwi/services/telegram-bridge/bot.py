@@ -63,12 +63,14 @@ TG_API_BASE   = "https://api.telegram.org"
 #            git-commit, gmail-send/confirm, implement-idea, notify, file-write.
 
 TELEGRAM_COMMANDS: dict[str, str | None] = {
-    "/help":        None,                      # handled locally — lists commands
-    "/status":      "/adwi-status",
-    "/doctor":      "/adwi-doctor",
-    "/brief":       "/adwi-brief",
-    "/daily-brief": "/adwi-daily-brief-n8n",
-    "/git-status":  "/git-status-workspace",
+    "/help":           None,                      # handled locally — lists commands
+    "/status":         "/adwi-status",
+    "/doctor":         "/adwi-doctor",
+    "/brief":          "/adwi-brief",
+    "/daily-brief":    "/adwi-daily-brief-n8n",
+    "/git-status":     "/git-status-workspace",
+    "/models":         "/adwi-models",
+    "/watcher-status": "/adwi-watcher-status",
 }
 
 _HELP_LINES = [

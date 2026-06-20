@@ -11,7 +11,7 @@ Long-polls the Telegram Bot API from this Mac (outbound HTTPS only — no inboun
 no public endpoint). When you send a command from your Telegram account, it routes
 through the Safe Command API at `localhost:5055` and replies with the result.
 
-v1 command surface: `/help` `/status` `/doctor` `/brief` `/daily-brief` `/git-status`
+v1 command surface: `/help` `/status` `/doctor` `/brief` `/daily-brief` `/git-status` `/models` `/watcher-status`
 
 Everything else is rejected. Only your configured Telegram user ID can issue commands.
 

@@ -149,6 +149,20 @@ class TestCommandAllowlist(unittest.TestCase):
         calls = _api_calls(_make_update(ALLOWED_UID, "/git-status"))
         self.assertIn("/git-status-workspace", calls)
 
+    def test_models_routes_to_adwi_models(self):
+        calls = _api_calls(_make_update(ALLOWED_UID, "/models"))
+        self.assertIn("/adwi-models", calls)
+
+    def test_watcher_status_routes_to_adwi_watcher_status(self):
+        calls = _api_calls(_make_update(ALLOWED_UID, "/watcher-status"))
+        self.assertIn("/adwi-watcher-status", calls)
+
+    def test_help_lists_models_and_watcher(self):
+        replies = _replies(_make_update(ALLOWED_UID, "/help"))
+        self.assertEqual(len(replies), 1)
+        self.assertIn("/models", replies[0])
+        self.assertIn("/watcher-status", replies[0])
+
 
 # ── 3. Dangerous commands rejected ───────────────────────────────────────────
 
