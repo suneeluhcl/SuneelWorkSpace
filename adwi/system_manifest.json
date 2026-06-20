@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-06-19T15:12:22.738998+00:00",
+  "generated_at": "2026-06-20T15:36:59.904331+00:00",
   "generated_by": "bin/generate-manifest",
   "system_identity": {
     "name": "Adwi",
@@ -238,8 +238,12 @@
       "adwi/services/mcp/workspace.db",
       "adwi/memory.db",
       "adwi/knowledge.db",
+      "adwi/knowledge.db-shm",
+      "adwi/knowledge.db-wal",
       ".env.local",
-      "adwi/config/.env"
+      "adwi/config/.env",
+      "adwi/logs/simlab_failures.db",
+      "logs/simlab_failures.db"
     ],
     "invariants": [
       "_REGEX_INTENTS ordering is load-bearing \u2014 first match wins",
@@ -252,12 +256,12 @@
     ]
   },
   "command_registry": {
-    "total_commands": 177,
+    "total_commands": 184,
     "source_files": [
       "adwi/adwi_cli.py",
       "adwi/capabilities.json"
     ],
-    "last_counted": "2026-06-19",
+    "last_counted": "2026-06-20",
     "commands": [
       "/add-capability-plan",
       "/add-root",
@@ -271,6 +275,7 @@
       "/benchmark",
       "/browse",
       "/browser-delegate",
+      "/browser-delegate-dry-run",
       "/capabilities",
       "/capability-audit",
       "/capability-status",
@@ -279,6 +284,7 @@
       "/cloud",
       "/cmd",
       "/confirm",
+      "/context-size",
       "/daily-brief",
       "/daily-improve",
       "/disk",
@@ -315,6 +321,7 @@
       "/gmail-cancel-draft",
       "/gmail-cancel-followup",
       "/gmail-cancel-scheduled",
+      "/gmail-category",
       "/gmail-compose",
       "/gmail-confirm",
       "/gmail-delete-draft",
@@ -326,6 +333,7 @@
       "/gmail-forward",
       "/gmail-mark-read",
       "/gmail-mark-unread",
+      "/gmail-open",
       "/gmail-open-draft",
       "/gmail-open-scheduled",
       "/gmail-promos",
@@ -338,6 +346,7 @@
       "/gmail-rule-cancel",
       "/gmail-rules",
       "/gmail-save-attachment",
+      "/gmail-schedule",
       "/gmail-scheduled",
       "/gmail-send-draft",
       "/gmail-show-draft",
@@ -401,6 +410,7 @@
       "/repo-private",
       "/repo-public",
       "/research",
+      "/research-save",
       "/reset-context",
       "/review-plan",
       "/roadmap",
@@ -424,6 +434,7 @@
       "/tool-roadmap",
       "/trace-log",
       "/training-plan",
+      "/trust-root",
       "/trusted-roots",
       "/url",
       "/use-cloud",

@@ -31,6 +31,8 @@ PORTS_JSON   = WORKSPACE / "adwi" / "config" / "infra_ports.json"
 COMPOSE      = WORKSPACE / "adwi" / "infra" / "docker" / "docker-compose.yml"
 MASTER_RPT   = WORKSPACE / "adwi" / "logs" / "simeval" / "MASTER_REPORT_v2.md"
 PRIMING_FILE = WORKSPACE / "adwi" / "docs" / "LLM_SYSTEM_PRIMING.md"
+NLU_TEST_FILE      = WORKSPACE / "adwi" / "simlab" / "tests" / "test_nlu_regex.py"
+REGISTRY_TEST_FILE = WORKSPACE / "adwi" / "tests" / "test_command_registry.py"
 
 STRICT = "--strict" in sys.argv
 
@@ -373,6 +375,40 @@ def run_checks() -> None:
         else:
             check("WARN", "PRIMEFILE-004",
                   "Could not find LAST VERIFIED date in LLM_SYSTEM_PRIMING.md")
+
+        # Test-count claims vs actual files
+        def _count_tests(path: Path) -> int:
+            return len(re.findall(r"^\s*def test_", path.read_text(), re.MULTILINE)) if path.exists() else 0
+
+        nlu_actual  = _count_tests(NLU_TEST_FILE)
+        reg_actual  = _count_tests(REGISTRY_TEST_FILE)
+        m_nlu = re.search(r"test_nlu_regex\.py.*?\*\*(\d+)\s*tests?\*\*", priming)
+        m_reg = re.search(r"test_command_registry\.py.*?\*\*(\d+)\s*tests?\*\*", priming)
+        if m_nlu and m_reg:
+            pr_nlu = int(m_nlu.group(1))
+            pr_reg = int(m_reg.group(1))
+            nlu_ok  = pr_nlu == nlu_actual
+            reg_ok  = pr_reg == reg_actual
+            if nlu_ok and reg_ok:
+                check("PASS", "PRIMEFILE-005",
+                      f"LLM_SYSTEM_PRIMING.md test counts match: NLU={pr_nlu}, registry={pr_reg}")
+            else:
+                mismatches = []
+                if not nlu_ok:
+                    mismatches.append(f"test_nlu_regex.py: priming says {pr_nlu} but file has {nlu_actual}")
+                if not reg_ok:
+                    mismatches.append(f"test_command_registry.py: priming says {pr_reg} but file has {reg_actual}")
+                check("FAIL", "PRIMEFILE-005",
+                      "LLM_SYSTEM_PRIMING.md test count mismatch: " + "; ".join(mismatches)
+                      + " — update COLD-START CHECKLIST")
+        else:
+            missing = []
+            if not m_nlu:
+                missing.append("test_nlu_regex.py")
+            if not m_reg:
+                missing.append("test_command_registry.py")
+            check("WARN", "PRIMEFILE-005",
+                  f"Could not find test-count claim(s) for {', '.join(missing)} in LLM_SYSTEM_PRIMING.md")
 
     else:
         check("WARN", "PRIMEFILE-001",
