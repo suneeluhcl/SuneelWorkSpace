@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""
+adwi-disk-summary — human-readable disk usage for key Adwi paths.
+
+Uses `du -sh` (fixed args, no user input) for speed; pure-Python shutil for the
+main volume stats. Safe for use via Safe Command API / Telegram bridge.
+"""
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+
+def _du(path: Path) -> str:
+    """Run du -sh on path. Returns size string like '18G' or '(error)'."""
+    if not path.exists():
+        return "(missing)"
+    try:
+        r = subprocess.run(
+            ["du", "-sh", str(path)],
+            capture_output=True, text=True, timeout=15,
+        )
+        if r.returncode == 0:
+            return r.stdout.split()[0] if r.stdout.strip() else "?"
+        return "(error)"
+    except (subprocess.TimeoutExpired, OSError):
+        return "(timeout)"
+
+
+def main() -> int:
+    home      = Path.home()
+    workspace = home / "SuneelWorkSpace"
+
+    usage = shutil.disk_usage(home)
+    pct   = usage.used / usage.total * 100
+
+    def fmt(n: int) -> str:
+        for unit in ("B", "KB", "MB", "GB", "TB"):
+            if n < 1024 or unit == "TB":
+                return f"{n:.1f} {unit}" if unit != "B" else f"{n} B"
+            n /= 1024
+
+    lines = [
+        "Disk Usage",
+        f"  Volume: {fmt(usage.total)} total — {pct:.1f}% used — {fmt(usage.free)} free",
+        "",
+        "Key paths:",
+        f"  {_du(home / '.ollama'):>8}  ~/.ollama (models)",
+        f"  {_du(workspace):>8}  SuneelWorkSpace",
+        f"  {_du(workspace / 'adwi' / 'logs'):>8}  adwi/logs",
+        f"  {_du(workspace / 'local-ai-stack'):>8}  local-ai-stack",
+    ]
+
+    print("\n".join(lines))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

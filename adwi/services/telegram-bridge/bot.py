@@ -72,11 +72,13 @@ def _strip_ansi(text: str) -> str:
 
 TELEGRAM_COMMANDS: dict[str, str | None] = {
     "/help":           None,                      # handled locally — lists commands
-    "/ping":           None,                      # handled locally — bridge health check
+    "/ping":           None,                          # handled locally — bridge health check
     "/status":         "/adwi-status",
     "/doctor":         "/adwi-doctor",
     "/brief":          "/adwi-brief",
     "/daily-brief":    "/adwi-daily-brief-n8n",
+    "/disk":           "/adwi-disk-summary",           # disk usage for key Adwi paths
+    "/eval-status":    "/adwi-eval-status",            # NLU eval pass rate from MASTER_REPORT
     "/git-status":     "/git-status-workspace",
     "/models":         "/adwi-models",
     "/watcher-status": "/adwi-watcher-status",

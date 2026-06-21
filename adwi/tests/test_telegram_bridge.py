@@ -462,7 +462,39 @@ class TestDailyBriefFormatter(unittest.TestCase):
         self.assertEqual(called_with, [], "Formatter must NOT be called for /doctor")
 
 
-# ── 9. /ping local handler ────────────────────────────────────────────────────
+# ── 9. New Wave 2 commands (/disk, /eval-status) ─────────────────────────────
+
+class TestWave2Commands(unittest.TestCase):
+    """Verify /disk and /eval-status route correctly to Safe Command API."""
+
+    def test_disk_routes_to_adwi_disk_summary(self):
+        calls = _api_calls(_make_update(ALLOWED_UID, "/disk"))
+        self.assertIn("/adwi-disk-summary", calls)
+
+    def test_eval_status_routes_to_adwi_eval_status(self):
+        calls = _api_calls(_make_update(ALLOWED_UID, "/eval-status"))
+        self.assertIn("/adwi-eval-status", calls)
+
+    def test_disk_in_command_table(self):
+        self.assertIn("/disk", bridge.TELEGRAM_COMMANDS)
+        self.assertEqual(bridge.TELEGRAM_COMMANDS["/disk"], "/adwi-disk-summary")
+
+    def test_eval_status_in_command_table(self):
+        self.assertIn("/eval-status", bridge.TELEGRAM_COMMANDS)
+        self.assertEqual(bridge.TELEGRAM_COMMANDS["/eval-status"], "/adwi-eval-status")
+
+    def test_disk_not_dangerous(self):
+        """Verify /disk is not in the DANGEROUS list of TestDangerousCommandsRejected."""
+        calls = _api_calls(_make_update(ALLOWED_UID, "/disk"))
+        self.assertGreater(len(calls), 0, "/disk must reach the API")
+
+    def test_help_lists_new_commands(self):
+        replies = _replies(_make_update(ALLOWED_UID, "/help"))
+        self.assertIn("/disk", replies[0])
+        self.assertIn("/eval-status", replies[0])
+
+
+# ── 10. /ping local handler ───────────────────────────────────────────────────
 
 class TestPingCommand(unittest.TestCase):
     """/ping must reply instantly without any API call."""

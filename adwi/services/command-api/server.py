@@ -54,6 +54,9 @@ ALLOWED_COMMANDS = {
     # Header: X-Adwi-Secret: {{$env.ADWI_LOCAL_SECRET}}
     # Parse response: response.body.stdout (trim trailing whitespace, parse as JSON)
     "/adwi-daily-brief-n8n":   [VENV_PY, ADWI_CLI, "/daily-brief", "--n8n"],
+    # ── Observability / quick-status routes ──────────────────────────────────
+    "/adwi-eval-status":          [os.path.join(BIN, "adwi-eval-status")],
+    "/adwi-disk-summary":         [os.path.join(BIN, "adwi-disk-summary")],
     # ── E2E Auto Loop (read-only routes use existing subprocess.run pattern) ────
     "/adwi-e2e-auto-loop-status": [VENV_PY, E2E_STATUS_READER, "--status"],
     "/adwi-e2e-auto-loop-report": [VENV_PY, E2E_STATUS_READER, "--report"],

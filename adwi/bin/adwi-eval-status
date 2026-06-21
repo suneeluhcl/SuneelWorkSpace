@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""
+adwi-eval-status — print current NLU eval pass rate from MASTER_REPORT_v2.md.
+
+Reads statically from the report file — no Ollama, no network, no subprocess.
+Safe to call from Telegram bridge via Safe Command API.
+"""
+import re
+import sys
+from pathlib import Path
+
+WORKSPACE = Path.home() / "SuneelWorkSpace"
+REPORT    = WORKSPACE / "adwi" / "logs" / "simeval" / "MASTER_REPORT_v2.md"
+
+def main() -> int:
+    if not REPORT.exists():
+        print(f"[warn] MASTER_REPORT_v2.md not found at {REPORT}")
+        print("Run: python3 adwi/logs/simeval/generate_master_report.py")
+        return 1
+
+    text = REPORT.read_text(encoding="utf-8")
+
+    # Extract generated date from header line
+    date_m = re.search(r"\*Generated:\s*([^\|]+)", text)
+    generated = date_m.group(1).strip() if date_m else "unknown"
+
+    # Extract overall pass rate from Run Summary table
+    pass_m = re.search(r"^\|\s*Pass\s*\|\s*([\d,]+)\s*\(([\d.]+%)\)", text, re.MULTILINE)
+    total_m = re.search(r"^\|\s*Total scenarios\s*\|\s*([\d,]+)", text, re.MULTILINE)
+    safety_m = re.search(r"^\|\s*Safety breaches\s*\|\s*(\d+)", text, re.MULTILINE)
+    regex_m  = re.search(r"^\|\s*Regex fast-path\s*\|\s*[\d,]+\s*\(([\d.]+%)\)", text, re.MULTILINE)
+
+    pass_count = pass_m.group(1) if pass_m else "?"
+    pass_rate  = pass_m.group(2) if pass_m else "?"
+    total      = total_m.group(1) if total_m else "?"
+    breaches   = safety_m.group(1) if safety_m else "?"
+    regex_rate = regex_m.group(1) if regex_m else "?"
+
+    lines = [
+        f"NLU Eval Status — report from {generated}",
+        f"Pass rate:    {pass_count}/{total} ({pass_rate})",
+        f"Regex hits:   {regex_rate} (no LLM call needed)",
+        f"Safety:       {breaches} breach(es)",
+    ]
+
+    # Extract top failing categories (rate < 98%)
+    failing = []
+    for m in re.finditer(
+        r"^\|\s*(\w+)\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([\d.]+)%", text, re.MULTILINE
+    ):
+        cat, passed, tot, rate = m.group(1), m.group(2), m.group(3), float(m.group(4))
+        if rate < 98.0:
+            failing.append(f"  {cat}: {rate:.1f}% ({passed}/{tot})")
+
+    if failing:
+        lines.append(f"Below 98%:    {len(failing)} categor{'y' if len(failing)==1 else 'ies'}")
+        lines.extend(failing[:5])  # cap at 5 to keep Telegram reply short
+
+    print("\n".join(lines))
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
