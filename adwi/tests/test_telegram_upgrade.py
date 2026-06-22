@@ -1203,6 +1203,151 @@ class TestSmokeScriptStructure(unittest.TestCase):
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# /telegram_smoke_full (Wave 7)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestTelegramSmokeFull(unittest.TestCase):
+    """Tests for the /telegram_smoke_full background command."""
+
+    def setUp(self):
+        self.mock_runner = MagicMock()
+        self.mock_runner.submit.return_value = "telegram-smoke-full-20260622-ab12"
+
+    def _run(self, text: str) -> list[str]:
+        sent: list[str] = []
+        with patch.object(bridge, "_JOB_RUNNER", self.mock_runner), \
+             patch.object(bridge, "_send_reply", lambda t, c, msg: sent.append(msg)):
+            bridge._handle_update(_make_update(ALLOWED_UID, text), TOKEN, ALLOWED_UID, SECRET)
+        return sent
+
+    def test_telegram_smoke_full_in_table(self):
+        self.assertIn("/telegram_smoke_full", bridge.TELEGRAM_COMMANDS)
+        self.assertIsNone(bridge.TELEGRAM_COMMANDS["/telegram_smoke_full"])
+
+    def test_telegram_smoke_full_submits_job(self):
+        self._run("/telegram_smoke_full")
+        self.mock_runner.submit.assert_called_once()
+        name, argv = self.mock_runner.submit.call_args[0]
+        self.assertEqual(name, "telegram-smoke-full")
+
+    def test_telegram_smoke_full_does_not_use_quick(self):
+        """Full smoke must NOT pass --quick so /test_all is included."""
+        self._run("/telegram_smoke_full")
+        _, argv = self.mock_runner.submit.call_args[0]
+        self.assertNotIn("--quick", argv)
+
+    def test_telegram_smoke_full_argv_includes_smoke_script(self):
+        self._run("/telegram_smoke_full")
+        _, argv = self.mock_runner.submit.call_args[0]
+        self.assertIn("smoke_telegram_jobs.py", " ".join(argv))
+
+    def test_telegram_smoke_full_reply_contains_job_id(self):
+        replies = self._run("/telegram_smoke_full")
+        job_id = self.mock_runner.submit.return_value
+        self.assertTrue(any(job_id in r for r in replies))
+
+    def test_telegram_smoke_full_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/telegram_smoke_full"))
+        self.assertEqual(routes, [])
+
+    def test_telegram_smoke_full_in_menu(self):
+        self.assertIn("/telegram_smoke_full", bridge.MENU_TEXT)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# /telegram_validate (Wave 7)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestTelegramValidateCommand(unittest.TestCase):
+    """Tests for the /telegram_validate background command."""
+
+    def setUp(self):
+        self.mock_runner = MagicMock()
+        self.mock_runner.submit.return_value = "telegram-validate-20260622-cd34"
+
+    def _run(self, text: str) -> list[str]:
+        sent: list[str] = []
+        with patch.object(bridge, "_JOB_RUNNER", self.mock_runner), \
+             patch.object(bridge, "_send_reply", lambda t, c, msg: sent.append(msg)):
+            bridge._handle_update(_make_update(ALLOWED_UID, text), TOKEN, ALLOWED_UID, SECRET)
+        return sent
+
+    def test_telegram_validate_in_table(self):
+        self.assertIn("/telegram_validate", bridge.TELEGRAM_COMMANDS)
+        self.assertIsNone(bridge.TELEGRAM_COMMANDS["/telegram_validate"])
+
+    def test_telegram_validate_submits_job(self):
+        self._run("/telegram_validate")
+        self.mock_runner.submit.assert_called_once()
+        name, argv = self.mock_runner.submit.call_args[0]
+        self.assertEqual(name, "telegram-validate")
+
+    def test_telegram_validate_argv_includes_validate_script(self):
+        self._run("/telegram_validate")
+        _, argv = self.mock_runner.submit.call_args[0]
+        self.assertIn("validate_telegram_bridge.py", " ".join(argv))
+
+    def test_telegram_validate_reply_contains_job_id(self):
+        replies = self._run("/telegram_validate")
+        job_id = self.mock_runner.submit.return_value
+        self.assertTrue(any(job_id in r for r in replies))
+
+    def test_telegram_validate_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/telegram_validate"))
+        self.assertEqual(routes, [])
+
+    def test_telegram_validate_in_menu(self):
+        self.assertIn("/telegram_validate", bridge.MENU_TEXT)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# Validator script structural checks (Wave 7)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestValidateScriptStructure(unittest.TestCase):
+    """Verify validate_telegram_bridge.py exists and has correct structure."""
+
+    _VALIDATE_PATH = _ROOT / "adwi" / "scripts" / "validate_telegram_bridge.py"
+
+    def test_validate_script_exists(self):
+        self.assertTrue(self._VALIDATE_PATH.exists(),
+                        f"validate_telegram_bridge.py not found at {self._VALIDATE_PATH}")
+
+    def test_validate_script_compiles(self):
+        import py_compile
+        try:
+            py_compile.compile(str(self._VALIDATE_PATH), doraise=True)
+        except py_compile.PyCompileError as exc:
+            self.fail(f"validate_telegram_bridge.py has syntax error: {exc}")
+
+    def test_validate_script_is_stdlib_only(self):
+        """Must not import third-party packages — only stdlib is available standalone."""
+        source = self._VALIDATE_PATH.read_text(encoding="utf-8")
+        third_party = ["requests", "flask", "aiohttp", "pydantic", "httpx"]
+        for pkg in third_party:
+            self.assertNotIn(f"import {pkg}", source,
+                             f"validate_telegram_bridge.py must not import {pkg!r}")
+
+    def test_validate_script_checks_telegram_commands(self):
+        source = self._VALIDATE_PATH.read_text(encoding="utf-8")
+        self.assertIn("TELEGRAM_COMMANDS", source)
+
+    def test_validate_script_checks_allowed_commands(self):
+        source = self._VALIDATE_PATH.read_text(encoding="utf-8")
+        self.assertIn("ALLOWED_COMMANDS", source)
+
+    def test_validate_script_checks_forbidden_routes(self):
+        source = self._VALIDATE_PATH.read_text(encoding="utf-8")
+        self.assertIn("run-bash", source,
+                      "validator must check for forbidden route patterns")
+
+    def test_validate_script_exits_nonzero_on_failure(self):
+        """Script must call sys.exit(1) or return non-zero on failure."""
+        source = self._VALIDATE_PATH.read_text(encoding="utf-8")
+        self.assertIn("sys.exit", source)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # Existing invariants still hold
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -1246,6 +1391,7 @@ class TestExistingInvariantsStillHold(unittest.TestCase):
             "/tests_status", "/jobs", "/repair_plan", "/repair_ok",
             "/git_backup", "/backup_ok",
             "/learn_plan", "/loop_status", "/telegram_smoke",
+            "/telegram_smoke_full", "/telegram_validate",
         ]
         for cmd in locally_handled:
             with self.subTest(cmd=cmd):

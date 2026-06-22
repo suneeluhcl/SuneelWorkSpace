@@ -11,7 +11,7 @@ Long-polls the Telegram Bot API from this Mac (outbound HTTPS only — no inboun
 no public endpoint). When you send a command from your Telegram account, it routes
 through the Safe Command API at `localhost:5055` and replies with the result.
 
-**Wave 6 (2026-06-22) — 48 commands total.** Full reference: `obsidian-vault/knowledge/Telegram Control Plane.md`
+**Wave 7 (2026-06-22) — 50 commands total.** Full reference: `obsidian-vault/knowledge/Telegram Control Plane.md`
 
 Everything else is rejected. Only your configured Telegram user ID can issue commands.
 

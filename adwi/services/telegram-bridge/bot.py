@@ -187,7 +187,9 @@ TELEGRAM_COMMANDS: dict[str, str | None] = {
     "/implement_ok":      None,
     "/loop_status":       None,
     # ── Operational health (local) ────────────────────────────────────────────
-    "/telegram_smoke":    None,
+    "/telegram_smoke":      None,   # quick smoke — skips /test_all
+    "/telegram_smoke_full": None,   # full smoke  — includes /test_all (~2 min)
+    "/telegram_validate":   None,   # static bridge validator
 }
 
 _HELP_LINES = [
@@ -238,9 +240,11 @@ LEARN LOOP (confirmation required)
   /loop_status      →  recent learn/implement jobs
 
 OPERATIONAL HEALTH
-  /telegram_smoke  →  run bridge smoke test (all 4 test-job argv, background)
-  /tests_status    →  latest test job status
-  /loop_status     →  latest learn/implement job status
+  /telegram_smoke       →  quick smoke (/test_quick, /test_nlu, /test_obsidian — skips /test_all)
+  /telegram_smoke_full  →  full smoke including /test_all (~2 min; use after upgrades)
+  /telegram_validate    →  static validator (structure, routes, argv — fast, no subprocesses)
+  /tests_status         →  latest test job status
+  /loop_status          →  latest learn/implement job status
 
 INFO
   /brief  /daily-brief  /config  /watcher-status  /help  /ping"""
@@ -943,7 +947,35 @@ def _handle_local_cmd(
             [VENV_PY, smoke_script, "--quick"],
         )
         _send_reply(tg_token, chat_id,
-                    f"Bridge smoke test started (--quick, skips /test_all).\n"
+                    f"Quick smoke test started (skips /test_all).\n"
+                    f"ID: {job_id}\nCheck: /job {job_id}  or  /tests_status")
+        return
+
+    if cmd == "/telegram_smoke_full":
+        if _JOB_RUNNER is None:
+            _send_reply(tg_token, chat_id, "[error] Job runner not available.")
+            return
+        smoke_script = str(WORKSPACE / "adwi" / "scripts" / "smoke_telegram_jobs.py")
+        job_id = _JOB_RUNNER.submit(
+            "telegram-smoke-full",
+            [VENV_PY, smoke_script],
+        )
+        _send_reply(tg_token, chat_id,
+                    f"Full smoke test started (includes /test_all, ~2 min).\n"
+                    f"ID: {job_id}\nCheck: /job {job_id}  or  /tests_status")
+        return
+
+    if cmd == "/telegram_validate":
+        if _JOB_RUNNER is None:
+            _send_reply(tg_token, chat_id, "[error] Job runner not available.")
+            return
+        validate_script = str(WORKSPACE / "adwi" / "scripts" / "validate_telegram_bridge.py")
+        job_id = _JOB_RUNNER.submit(
+            "telegram-validate",
+            [VENV_PY, validate_script],
+        )
+        _send_reply(tg_token, chat_id,
+                    f"Bridge validator started (structure + routes + argv).\n"
                     f"ID: {job_id}\nCheck: /job {job_id}  or  /tests_status")
         return
 

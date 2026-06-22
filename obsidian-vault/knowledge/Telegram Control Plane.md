@@ -130,19 +130,23 @@ Token expires in **5 minutes**. Each token is single-use.
 
 | Command | What it does |
 |---------|-------------|
-| `/telegram_smoke` | Run bridge smoke test (Phase 1: runner plumbing; Phase 2: real test-job argv; uses `--quick` so `/test_all` is skipped) |
+| `/telegram_smoke` | Quick smoke — Phase 1: runner plumbing; Phase 2: /test_quick, /test_nlu, /test_obsidian. Skips /test_all (~15 s) |
+| `/telegram_smoke_full` | Full smoke — same as above but includes /test_all (~2 min; use after upgrades) |
+| `/telegram_validate` | Static bridge validator — 12 structural checks (routes, argv, dispatch) — fast, no subprocesses |
 | `/tests_status` | Latest test job status + log tail |
 | `/loop_status` | Latest learn/implement job status |
 
-**Difference between `/test_*` and `/telegram_smoke`:**
+**Difference between `/test_*`, `/telegram_smoke`, and `/telegram_validate`:**
 - `/test_quick`, `/test_nlu`, etc. submit each test suite directly. Use these when you want to run one specific suite.
-- `/telegram_smoke` validates all four test-job argv in sequence, loading `_TEST_JOBS` from bot.py itself. Use this to verify the bridge is wired correctly after an upgrade.
+- `/telegram_smoke` validates all four test-job argv in sequence, loading `_TEST_JOBS` from bot.py itself. Use this to verify the bridge is wired correctly after an upgrade (quick mode skips `/test_all`).
+- `/telegram_validate` runs 12 static checks (bot.py loads, routes in ALLOWED_COMMANDS, no forbidden routes, all local cmds dispatched, argv sanity). Fast — no subprocess jobs needed. Run first after any bridge edit.
 
-**Recommended Telegram health workflow:**
-1. `/telegram_smoke` — proves all test-job argv still work end-to-end
-2. `/tests_status` — check whether the smoke job succeeded
-3. `/job <id>` — full log if something failed
-4. `/loop_status` — check learn/implement loop status
+**Recommended Telegram health workflow (post-upgrade):**
+1. `/telegram_validate` — fast structural sanity (< 2 s, 12 checks)
+2. `/telegram_smoke` — proves test-job argv end-to-end (~15 s)
+3. `/tests_status` — check whether the smoke job succeeded
+4. `/job <id>` — full log if something failed
+5. `/loop_status` — check learn/implement loop status
 
 ### UX
 
@@ -238,9 +242,11 @@ Or via LaunchAgent (see `adwi/docs/TELEGRAM_BRIDGE_SETUP.md`).
 | `adwi/bin/adwi-services` | Service port health probe |
 | `adwi/bin/adwi-git-diff` | Git diff stat |
 | `adwi/bin/adwi-git-log` | Recent commits |
-| `adwi/tests/test_telegram_bridge.py` | 97 safety + routing tests |
+| `adwi/tests/test_telegram_bridge.py` | Safety + routing tests |
 | `adwi/tests/test_remote_control_surface.py` | Structural invariant tests |
-| `adwi/tests/test_telegram_upgrade.py` | 111 Wave 4 feature tests |
+| `adwi/tests/test_telegram_upgrade.py` | Wave 4–7 feature tests (166 tests) |
+| `adwi/scripts/smoke_telegram_jobs.py` | Phase 1+2 smoke: real _TEST_JOBS argv via JobRunner |
+| `adwi/scripts/validate_telegram_bridge.py` | 12-check static bridge validator (stdlib-only) |
 | `adwi/logs/telegram-jobs/` | Job state + logs (gitignored) |
 
 ---
@@ -251,7 +257,11 @@ Or via LaunchAgent (see `adwi/docs/TELEGRAM_BRIDGE_SETUP.md`).
 adwi/.venv/bin/python3 -m unittest adwi.tests.test_telegram_bridge \
                                     adwi.tests.test_remote_control_surface \
                                     adwi.tests.test_telegram_upgrade
-# Ran 243 tests — OK
+# Ran 263 tests — OK
+
+# Static validator (12 structural checks — fast, no subprocesses):
+adwi/.venv/bin/python3 adwi/scripts/validate_telegram_bridge.py
+# 12/12 checks passed  PASS
 
 # Smoke test: validates real _TEST_JOBS argv through JobRunner (no Telegram token needed)
 adwi/.venv/bin/python3 adwi/scripts/smoke_telegram_jobs.py --quick
