@@ -29,6 +29,7 @@ updated: 2026-06-21
 | NLU Reliability | 🟢 98.3% combined | [[knowledge/Eval and Reliability Map]] |
 | Obsidian as thinking layer | 🟡 In progress | this file |
 | Telegram Bridge | ✅ Wave 9 (57 cmds) | [[knowledge/Telegram Control Plane]] |
+| Headroom (Claude) | ✅ Active (v0.27.0) | [[knowledge/Claude Headroom Setup]] |
 | CommandRegistry migration | ✅ Phases 7–23 complete | [[knowledge/Automation Map]] |
 
 ---

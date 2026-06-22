@@ -159,3 +159,32 @@ After making any change:
 1. Update `adwi/notes/adwi-mistakes-and-fixes.md` if you fixed a bug.
 2. Update `adwi/docs/NLU_REPAIR_BACKLOG.md` if you applied an NHR item.
 3. Do NOT create loose analysis files in the root — put them in `adwi/docs/` (persistent) or `adwi/logs/simeval/` (eval artifacts).
+
+---
+
+## Headroom Usage
+
+Headroom (headroom-ai 0.27.0, installed via pipx, Python 3.12) is a local context compression layer for Claude. It reduces tokens sent to Anthropic by 60–95% with no accuracy loss. Installed 2026-06-22.
+
+**How to launch Claude through Headroom:**
+```bash
+headroom wrap claude          # starts proxy on :8787 + launches Claude with ANTHROPIC_BASE_URL set
+```
+This is the recommended way to start Claude Code sessions from a terminal. Without `headroom wrap`, Claude runs normally (direct Anthropic API) — Headroom is additive, not required.
+
+**Claude session guidelines when Headroom is active:**
+- Prefer compact command outputs; avoid printing large blobs unnecessarily.
+- Use `rtk <cmd>` prefix for shell commands when available (e.g. `rtk git status`) — RTK filters output before it reaches context.
+- Use raw commands (without rtk) only when debugging filter behavior.
+- Never print secrets, tokens, or `.env` values.
+- If Headroom proxy is unreachable, fall back to normal Claude and report the failure.
+
+**Validation scripts (stdlib-only, read-only):**
+```bash
+adwi/.venv/bin/python3 adwi/scripts/validate_claude_headroom.py   # 8 checks
+adwi/.venv/bin/python3 adwi/scripts/claude_headroom_status.py     # compact status
+headroom doctor                                                     # proxy + routing health
+headroom perf                                                       # savings stats (after sessions)
+```
+
+**Rollback:** Stop the headroom wrap session (Ctrl+C or close terminal). `headroom unwrap` removes any persistent config changes from `~/.claude/settings.json` if needed. The project-local `.claude/settings.local.json` entry is automatically cleaned up when the wrap session exits.
