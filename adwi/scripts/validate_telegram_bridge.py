@@ -30,10 +30,13 @@ import sys
 from pathlib import Path
 
 WORKSPACE    = Path(__file__).resolve().parent.parent.parent
-BOT_PATH     = WORKSPACE / "adwi" / "services" / "telegram-bridge" / "bot.py"
-SERVER_PATH  = WORKSPACE / "adwi" / "services" / "command-api" / "server.py"
-JR_PATH      = WORKSPACE / "adwi" / "services" / "telegram-bridge" / "job_runner.py"
-SMOKE_PATH   = WORKSPACE / "adwi" / "scripts" / "smoke_telegram_jobs.py"
+BOT_PATH      = WORKSPACE / "adwi" / "services" / "telegram-bridge" / "bot.py"
+SERVER_PATH   = WORKSPACE / "adwi" / "services" / "command-api" / "server.py"
+JR_PATH       = WORKSPACE / "adwi" / "services" / "telegram-bridge" / "job_runner.py"
+SMOKE_PATH    = WORKSPACE / "adwi" / "scripts" / "smoke_telegram_jobs.py"
+E2E_LOOP_PATH = WORKSPACE / "adwi" / "e2e_auto_loop.py"
+E2E_SUMM_PATH = WORKSPACE / "adwi" / "scripts" / "telegram_e2e_summary.py"
+E2E_STAT_PATH = WORKSPACE / "adwi" / "bin" / "adwi-e2e-status-reader"
 
 _EXPECTED_TEST_JOBS = {"/test_quick", "/test_nlu", "/test_obsidian", "/test_all"}
 _PYTEST_ONLY_FLAGS  = ("--tb=", "--cov=", "--cov-report", "--cache-show",
@@ -199,11 +202,14 @@ def main() -> int:
     venv_py  = Path(getattr(bot_mod, "VENV_PY",  ""))
     adwi_cli = Path(getattr(bot_mod, "ADWI_CLI", ""))
     required = [
-        ("VENV_PY",              venv_py),
-        ("ADWI_CLI",             adwi_cli),
-        ("job_runner.py",        JR_PATH),
-        ("smoke_telegram_jobs.py", SMOKE_PATH),
-        ("validate_telegram_bridge.py", Path(__file__).resolve()),
+        ("VENV_PY",                       venv_py),
+        ("ADWI_CLI",                      adwi_cli),
+        ("job_runner.py",                 JR_PATH),
+        ("smoke_telegram_jobs.py",        SMOKE_PATH),
+        ("validate_telegram_bridge.py",   Path(__file__).resolve()),
+        ("e2e_auto_loop.py",              E2E_LOOP_PATH),
+        ("telegram_e2e_summary.py",       E2E_SUMM_PATH),
+        ("adwi-e2e-status-reader",        E2E_STAT_PATH),
     ]
     missing_paths = [(lbl, p) for lbl, p in required if not p.exists()]
     _check(

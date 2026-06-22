@@ -55,12 +55,12 @@ LaunchAgent fires → adwi/nightly.py
     Step 10: Write morning_brief.md
 ```
 
-## Flow D — Telegram Bridge (Wave 7, 50 commands)
+## Flow D — Telegram Bridge (Wave 8, 55 commands)
 
 ```
 /cmd on Telegram
     → sender allowlist (TELEGRAM_ALLOWED_USER_ID)
-    → command allowlist (TELEGRAM_COMMANDS — 50 entries)
+    → command allowlist (TELEGRAM_COMMANDS — 55 entries)
     ├── route = None (locally handled):
     │     /help /menu /ping → static reply
     │     /test_* /obsidian_* /memory_scan → job_runner.submit()
@@ -73,7 +73,12 @@ LaunchAgent fires → adwi/nightly.py
     │     /learn_ok <token> → _consume_token() → job_runner.submit(NLU test suite)
     │     /implement_plan <goal> → plan + _make_token("implement")
     │     /implement_ok <token> → _consume_token() → job_runner.submit(obsidian-capture approval)
-    │     /loop_status → job_runner.list_recent() filtered to learn-/implement- jobs
+    │     /loop_status → job_runner.list_recent() filtered to learn-/implement-/e2e- jobs
+    │     /e2e_plan [mode] [target] [cycles] → _make_token("e2e") + plan preview
+    │     /e2e_ok <token> → _consume_token() → job_runner.submit(e2e_auto_loop.py)
+    │     /e2e_report → _run_quick(telegram_e2e_summary.py) — read-only
+    │     /e2e_cancel_plan → _make_token("e2e_cancel") + cancel preview
+    │     /e2e_cancel_ok <token> → _consume_token() → _run_quick(adwi-e2e-status-reader --cancel)
     │     /telegram_smoke → job_runner.submit(smoke_telegram_jobs.py --quick)
     │     /telegram_smoke_full → job_runner.submit(smoke_telegram_jobs.py) [no --quick]
     │     /telegram_validate → job_runner.submit(validate_telegram_bridge.py)

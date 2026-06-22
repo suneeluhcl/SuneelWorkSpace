@@ -1392,12 +1392,385 @@ class TestExistingInvariantsStillHold(unittest.TestCase):
             "/git_backup", "/backup_ok",
             "/learn_plan", "/loop_status", "/telegram_smoke",
             "/telegram_smoke_full", "/telegram_validate",
+            "/e2e_plan", "/e2e_ok", "/e2e_report",
+            "/e2e_cancel_plan", "/e2e_cancel_ok",
         ]
         for cmd in locally_handled:
             with self.subTest(cmd=cmd):
                 routes = _api_calls(_make_update(ALLOWED_UID, cmd))
                 self.assertEqual(routes, [],
                                  f"{cmd} must not dispatch to Safe API")
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# /e2e_plan command (Wave 8)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestE2EPlanCommand(unittest.TestCase):
+    """Tests for /e2e_plan — read-only, generates confirmation token."""
+
+    def _plan_reply(self, args: str = "") -> str:
+        return _local_reply("/e2e_plan", args)
+
+    def test_e2e_plan_in_table(self):
+        self.assertIn("/e2e_plan", bridge.TELEGRAM_COMMANDS)
+        self.assertIsNone(bridge.TELEGRAM_COMMANDS["/e2e_plan"])
+
+    def test_e2e_plan_default_mode_is_analyze(self):
+        reply = self._plan_reply()
+        self.assertIn("ANALYZE", reply)
+
+    def test_e2e_plan_reply_contains_confirm_token(self):
+        reply = self._plan_reply()
+        self.assertIn("/e2e_ok", reply)
+        # Token pattern: /e2e_ok followed by 8 hex chars
+        self.assertRegex(reply, r"/e2e_ok\s+[0-9a-f]{8}")
+
+    def test_e2e_plan_default_target_98(self):
+        reply = self._plan_reply()
+        self.assertIn("98", reply)
+
+    def test_e2e_plan_default_cycles_1(self):
+        reply = self._plan_reply()
+        self.assertIn("Max cycles: 1", reply)
+
+    def test_e2e_plan_dry_run_mode(self):
+        reply = self._plan_reply("dry-run 95 2")
+        self.assertIn("DRY-RUN", reply)
+        self.assertIn("95", reply)
+        self.assertIn("Max cycles: 2", reply)
+
+    def test_e2e_plan_full_mode_warns_mutating(self):
+        reply = self._plan_reply("full 98 3")
+        self.assertIn("FULL", reply)
+        self.assertIn("WARNING", reply)
+        self.assertIn("MUTATING", reply)
+
+    def test_e2e_plan_analyze_no_warning(self):
+        reply = self._plan_reply("analyze")
+        self.assertNotIn("WARNING", reply)
+
+    def test_e2e_plan_target_clamped_high(self):
+        """Target above 100 is clamped to 100."""
+        mode, target, _ = bridge._parse_e2e_args("analyze 999 1")
+        self.assertEqual(target, 100.0)
+
+    def test_e2e_plan_target_clamped_low(self):
+        """Target below 80 is clamped to 80."""
+        mode, target, _ = bridge._parse_e2e_args("analyze 10 1")
+        self.assertEqual(target, 80.0)
+
+    def test_e2e_plan_cycles_clamped_high(self):
+        mode, _, cycles = bridge._parse_e2e_args("analyze 98 99")
+        self.assertEqual(cycles, 5)
+
+    def test_e2e_plan_cycles_clamped_low(self):
+        mode, _, cycles = bridge._parse_e2e_args("analyze 98 0")
+        self.assertEqual(cycles, 1)
+
+    def test_e2e_plan_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/e2e_plan"))
+        self.assertEqual(routes, [])
+
+    def test_e2e_plan_in_menu(self):
+        self.assertIn("/e2e_plan", bridge.MENU_TEXT)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# /e2e_ok command (Wave 8)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestE2EConfirm(unittest.TestCase):
+    """Tests for /e2e_ok — token validation and job submission."""
+
+    def _make_e2e_token(self, mode="analyze", target=98.0, cycles=1) -> str:
+        return bridge._make_token("e2e", {"mode": mode, "target": target, "max_cycles": cycles})
+
+    def _confirm(self, token_val: str, mock_runner=None) -> str:
+        return _local_reply("/e2e_ok", token_val, mock_runner=mock_runner)
+
+    def test_e2e_ok_rejects_empty_token(self):
+        reply = self._confirm("")
+        self.assertIn("Usage", reply)
+
+    def test_e2e_ok_rejects_invalid_token(self):
+        reply = self._confirm("deadbeef")
+        self.assertIn("Invalid or expired", reply)
+
+    def test_e2e_ok_rejects_expired_token(self):
+        token = bridge._make_token("e2e", {"mode": "analyze", "target": 98.0, "max_cycles": 1})
+        bridge._PENDING[token]["expires_at"] = time.time() - 1
+        reply = self._confirm(token)
+        self.assertIn("Invalid or expired", reply)
+
+    def test_e2e_ok_rejects_wrong_action_token(self):
+        token = bridge._make_token("repair", {})
+        reply = self._confirm(token)
+        self.assertIn("different action", reply)
+
+    def test_e2e_ok_analyze_argv_has_analyze_only(self):
+        token      = self._make_e2e_token(mode="analyze")
+        mock_r     = MagicMock()
+        mock_r.submit.return_value = "e2e-analyze-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        _, argv = mock_r.submit.call_args[0]
+        self.assertIn("--analyze-only", argv)
+        self.assertNotIn("--dry-run", argv)
+
+    def test_e2e_ok_dry_run_argv_has_dry_run(self):
+        token  = self._make_e2e_token(mode="dry-run")
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-dry-run-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        _, argv = mock_r.submit.call_args[0]
+        self.assertIn("--dry-run", argv)
+        self.assertNotIn("--analyze-only", argv)
+
+    def test_e2e_ok_full_argv_has_no_flag(self):
+        token  = self._make_e2e_token(mode="full")
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-full-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        _, argv = mock_r.submit.call_args[0]
+        self.assertNotIn("--analyze-only", argv)
+        self.assertNotIn("--dry-run", argv)
+
+    def test_e2e_ok_job_name_analyze(self):
+        token  = self._make_e2e_token(mode="analyze")
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-analyze-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        name, _ = mock_r.submit.call_args[0]
+        self.assertEqual(name, "e2e-analyze")
+
+    def test_e2e_ok_job_name_dry_run(self):
+        token  = self._make_e2e_token(mode="dry-run")
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-dry-run-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        name, _ = mock_r.submit.call_args[0]
+        self.assertEqual(name, "e2e-dry-run")
+
+    def test_e2e_ok_job_name_full(self):
+        token  = self._make_e2e_token(mode="full")
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-full-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        name, _ = mock_r.submit.call_args[0]
+        self.assertEqual(name, "e2e-full")
+
+    def test_e2e_ok_argv_includes_target(self):
+        token  = self._make_e2e_token(mode="analyze", target=95.0)
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-analyze-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        _, argv = mock_r.submit.call_args[0]
+        self.assertIn("95.0", argv)
+
+    def test_e2e_ok_argv_includes_max_cycles(self):
+        token  = self._make_e2e_token(mode="analyze", cycles=3)
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-analyze-test-id"
+        self._confirm(token, mock_runner=mock_r)
+        _, argv = mock_r.submit.call_args[0]
+        self.assertIn("3", argv)
+
+    def test_e2e_ok_reply_contains_job_id(self):
+        token  = self._make_e2e_token()
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "e2e-analyze-abc12345"
+        reply  = self._confirm(token, mock_runner=mock_r)
+        self.assertIn("e2e-analyze-abc12345", reply)
+
+    def test_e2e_ok_token_is_single_use(self):
+        """After consuming a token, a second /e2e_ok with the same token is rejected."""
+        token  = self._make_e2e_token()
+        mock_r = MagicMock()
+        mock_r.submit.return_value = "some-id"
+        self._confirm(token, mock_runner=mock_r)    # first: OK
+        reply2 = self._confirm(token, mock_runner=mock_r)   # second: rejected
+        self.assertIn("Invalid or expired", reply2)
+
+    def test_e2e_ok_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/e2e_ok"))
+        self.assertEqual(routes, [])
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# /e2e_report command (Wave 8)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestE2EReport(unittest.TestCase):
+    """Tests for /e2e_report — read-only summary."""
+
+    def test_e2e_report_in_table(self):
+        self.assertIn("/e2e_report", bridge.TELEGRAM_COMMANDS)
+        self.assertIsNone(bridge.TELEGRAM_COMMANDS["/e2e_report"])
+
+    def test_e2e_report_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/e2e_report"))
+        self.assertEqual(routes, [])
+
+    def test_e2e_report_calls_summary_script(self):
+        """_e2e_report runs telegram_e2e_summary.py via _run_quick."""
+        calls: list[list] = []
+        with patch.object(bridge, "_run_quick",
+                          side_effect=lambda argv, **kw: calls.append(argv) or "ok"), \
+             patch.object(bridge, "_send_reply", lambda *a: None):
+            bridge._do_e2e_report(TOKEN, ALLOWED_UID)
+        self.assertTrue(any("telegram_e2e_summary.py" in " ".join(a) for a in calls),
+                        "e2e_report must invoke telegram_e2e_summary.py")
+
+    def test_e2e_report_in_menu(self):
+        self.assertIn("/e2e_report", bridge.MENU_TEXT)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# /e2e_cancel_plan and /e2e_cancel_ok (Wave 8)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestE2ECancelFlow(unittest.TestCase):
+    """Tests for the E2E cancel gate."""
+
+    def _cancel_plan_reply(self) -> str:
+        return _local_reply("/e2e_cancel_plan", "")
+
+    def _cancel_ok_reply(self, token_val: str) -> str:
+        with patch.object(bridge, "_run_quick", return_value='{"ok": true, "message": "Sentinel written."}'), \
+             patch.object(bridge, "_send_reply", lambda t, c, msg: setattr(self, "_last", msg)):
+            bridge._do_e2e_cancel_confirm(token_val, TOKEN, ALLOWED_UID)
+        return getattr(self, "_last", "")
+
+    def test_e2e_cancel_plan_in_table(self):
+        self.assertIn("/e2e_cancel_plan", bridge.TELEGRAM_COMMANDS)
+        self.assertIsNone(bridge.TELEGRAM_COMMANDS["/e2e_cancel_plan"])
+
+    def test_e2e_cancel_ok_in_table(self):
+        self.assertIn("/e2e_cancel_ok", bridge.TELEGRAM_COMMANDS)
+        self.assertIsNone(bridge.TELEGRAM_COMMANDS["/e2e_cancel_ok"])
+
+    def test_e2e_cancel_plan_generates_token(self):
+        reply = self._cancel_plan_reply()
+        self.assertIn("/e2e_cancel_ok", reply)
+        self.assertRegex(reply, r"/e2e_cancel_ok\s+[0-9a-f]{8}")
+
+    def test_e2e_cancel_ok_rejects_empty_token(self):
+        reply = _local_reply("/e2e_cancel_ok", "")
+        self.assertIn("Usage", reply)
+
+    def test_e2e_cancel_ok_rejects_invalid_token(self):
+        reply = _local_reply("/e2e_cancel_ok", "deadbeef")
+        self.assertIn("Invalid or expired", reply)
+
+    def test_e2e_cancel_ok_rejects_wrong_action(self):
+        """An e2e (non-cancel) token must be rejected by /e2e_cancel_ok."""
+        wrong_token = bridge._make_token("e2e", {"mode": "analyze"})
+        reply = _local_reply("/e2e_cancel_ok", wrong_token)
+        self.assertIn("different action", reply)
+
+    def test_e2e_cancel_ok_valid_writes_sentinel(self):
+        token = bridge._make_token("e2e_cancel", {})
+        reply = self._cancel_ok_reply(token)
+        self.assertIn("cancel", reply.lower())
+
+    def test_e2e_cancel_ok_token_is_single_use(self):
+        token = bridge._make_token("e2e_cancel", {})
+        self._cancel_ok_reply(token)
+        second_reply = _local_reply("/e2e_cancel_ok", token)
+        self.assertIn("Invalid or expired", second_reply)
+
+    def test_e2e_cancel_plan_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/e2e_cancel_plan"))
+        self.assertEqual(routes, [])
+
+    def test_e2e_cancel_ok_does_not_call_safe_api(self):
+        routes = _api_calls(_make_update(ALLOWED_UID, "/e2e_cancel_ok"))
+        self.assertEqual(routes, [])
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# /loop_status with e2e jobs (Wave 8)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestLoopStatusE2E(unittest.TestCase):
+    """Verify /loop_status surfaces e2e- prefixed jobs."""
+
+    def _make_job(self, type_: str) -> dict:
+        return {"id": f"{type_}-test", "type": type_, "status": "succeeded",
+                "start_time": "2026-06-22T10:00:00", "end_time": None}
+
+    def test_loop_status_includes_e2e_analyze(self):
+        mock_r = MagicMock()
+        mock_r.list_recent.return_value = [self._make_job("e2e-analyze")]
+        with patch.object(bridge, "_JOB_RUNNER", mock_r):
+            result = bridge._format_loop_status()
+        self.assertIn("e2e-analyze", result)
+
+    def test_loop_status_includes_e2e_dry_run(self):
+        mock_r = MagicMock()
+        mock_r.list_recent.return_value = [self._make_job("e2e-dry-run")]
+        with patch.object(bridge, "_JOB_RUNNER", mock_r):
+            result = bridge._format_loop_status()
+        self.assertIn("e2e-dry-run", result)
+
+    def test_loop_status_hints_e2e_report_when_e2e_job_present(self):
+        mock_r = MagicMock()
+        mock_r.list_recent.return_value = [self._make_job("e2e-full")]
+        with patch.object(bridge, "_JOB_RUNNER", mock_r):
+            result = bridge._format_loop_status()
+        self.assertIn("/e2e_report", result)
+
+    def test_loop_status_no_e2e_report_hint_for_learn_only(self):
+        mock_r = MagicMock()
+        mock_r.list_recent.return_value = [self._make_job("learn-nlu")]
+        with patch.object(bridge, "_JOB_RUNNER", mock_r):
+            result = bridge._format_loop_status()
+        self.assertNotIn("/e2e_report", result)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# E2E summary script structure (Wave 8)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+class TestE2ESummaryScript(unittest.TestCase):
+    """Verify telegram_e2e_summary.py exists and has correct structure."""
+
+    _SUMMARY_PATH = _ROOT / "adwi" / "scripts" / "telegram_e2e_summary.py"
+
+    def test_summary_script_exists(self):
+        self.assertTrue(self._SUMMARY_PATH.exists())
+
+    def test_summary_script_compiles(self):
+        import py_compile
+        try:
+            py_compile.compile(str(self._SUMMARY_PATH), doraise=True)
+        except py_compile.PyCompileError as exc:
+            self.fail(f"telegram_e2e_summary.py syntax error: {exc}")
+
+    def test_summary_script_is_stdlib_only(self):
+        source = self._SUMMARY_PATH.read_text(encoding="utf-8")
+        for pkg in ("requests", "flask", "aiohttp", "httpx"):
+            self.assertNotIn(f"import {pkg}", source)
+
+    def test_summary_script_exits_0_when_no_job(self):
+        """Script must exit 0 (not crash) when no status.json exists."""
+        import subprocess as _sub
+        result = _sub.run(
+            [str(_ROOT / "adwi" / ".venv" / "bin" / "python3"),
+             str(self._SUMMARY_PATH)],
+            capture_output=True, text=True,
+            env={**__import__("os").environ,
+                 "HOME": str(_ROOT)},   # point HOME to workspace — no status.json there
+        )
+        self.assertEqual(result.returncode, 0,
+                         f"script exited {result.returncode}: {result.stderr}")
+        self.assertIn("No E2E", result.stdout)
+
+    def test_summary_script_does_not_print_secrets(self):
+        source = self._SUMMARY_PATH.read_text(encoding="utf-8")
+        for pattern in ("TOKEN", "SECRET", "PASSWORD", "API_KEY"):
+            # printing of these patterns should not appear
+            self.assertNotIn(f'print({pattern}', source.replace(" ", ""))
 
 
 if __name__ == "__main__":

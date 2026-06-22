@@ -61,6 +61,15 @@ ADWI_CLI     = str(WORKSPACE / "adwi" / "adwi_cli.py")
 ADWI_BIN     = str(WORKSPACE / "adwi" / "bin")
 ADWI_SCRIPTS = str(WORKSPACE / "adwi" / "scripts")
 
+# ── E2E loop paths and clamp bounds ──────────────────────────────────────────
+_E2E_LOOP_PY    = str(WORKSPACE / "adwi" / "e2e_auto_loop.py")
+_E2E_STATUS_BIN = str(WORKSPACE / "adwi" / "bin" / "adwi-e2e-status-reader")
+_E2E_SUMMARY_PY = str(WORKSPACE / "adwi" / "scripts" / "telegram_e2e_summary.py")
+
+_E2E_MODES      = {"analyze", "dry-run", "full"}
+_E2E_TARGET_MIN, _E2E_TARGET_MAX = 80, 100
+_E2E_CYCLES_MIN, _E2E_CYCLES_MAX = 1, 5
+
 REPLY_MAX_LEN = 4000   # Telegram hard limit is 4096; headroom for ellipsis suffix
 POLL_TIMEOUT  = 30     # seconds — getUpdates long-poll window
 ADWI_API_HOST = "127.0.0.1"
@@ -186,6 +195,12 @@ TELEGRAM_COMMANDS: dict[str, str | None] = {
     "/implement_plan":    None,
     "/implement_ok":      None,
     "/loop_status":       None,
+    # ── E2E eval loop (local, gated) ─────────────────────────────────────────
+    "/e2e_plan":          None,   # read-only; generates token (analyze/dry-run/full)
+    "/e2e_ok":            None,   # consumes token, starts e2e_auto_loop.py
+    "/e2e_report":        None,   # compact report from telegram_e2e_summary.py
+    "/e2e_cancel_plan":   None,   # generates cancel token
+    "/e2e_cancel_ok":     None,   # consumes cancel token, writes cancel sentinel
     # ── Operational health (local) ────────────────────────────────────────────
     "/telegram_smoke":      None,   # quick smoke — skips /test_all
     "/telegram_smoke_full": None,   # full smoke  — includes /test_all (~2 min)
@@ -237,7 +252,16 @@ LEARN LOOP (confirmation required)
   /learn_ok <token>
   /implement_plan <goal>  →  shows plan + token
   /implement_ok <token>
-  /loop_status      →  recent learn/implement jobs
+  /loop_status      →  recent learn/implement/e2e jobs
+
+E2E EVAL LOOP (confirmation required)
+  /e2e_plan [analyze|dry-run|full] [target] [max_cycles]
+  /e2e_ok <token>       →  starts loop with chosen mode
+  /e2e_report           →  compact status/result summary
+  /e2e_cancel_plan      →  preview cancel + token
+  /e2e_cancel_ok <tok>  →  write cancel sentinel
+  Default: analyze (read-only, no code changes)
+  Modes: analyze=eval+report  dry-run=simulate  full=MUTATING
 
 OPERATIONAL HEALTH
   /telegram_smoke       →  quick smoke (/test_quick, /test_nlu, /test_obsidian — skips /test_all)
@@ -762,18 +786,164 @@ def _do_implement_confirm(token_val: str, tg_token: str, chat_id: int) -> None:
                 f"ID: {job_id}\nCheck: /job {job_id}")
 
 
+# ── E2E loop helpers ─────────────────────────────────────────────────────────
+
+def _parse_e2e_args(args: str) -> tuple[str, float, int]:
+    """Parse '[mode] [target] [max_cycles]' from args. Returns (mode, target, max_cycles)."""
+    tokens = args.strip().split()
+    mode = "analyze"
+    target: float = 98.0
+    max_cycles = 1
+
+    if tokens and tokens[0].lower() in _E2E_MODES:
+        mode   = tokens[0].lower()
+        tokens = tokens[1:]
+
+    numerics: list[float] = []
+    for t in tokens:
+        try:
+            numerics.append(float(t))
+        except ValueError:
+            pass
+
+    if numerics:
+        target = max(float(_E2E_TARGET_MIN), min(float(_E2E_TARGET_MAX), numerics[0]))
+    if len(numerics) >= 2:
+        max_cycles = max(_E2E_CYCLES_MIN, min(_E2E_CYCLES_MAX, int(numerics[1])))
+
+    return mode, target, max_cycles
+
+
+def _do_e2e_plan(args: str, tg_token: str, chat_id: int) -> None:
+    mode, target, max_cycles = _parse_e2e_args(args)
+
+    _MODE_LABELS = {
+        "analyze": "Analyze only — runs eval, writes failure report, NO code changes",
+        "dry-run": "Dry run     — simulates patches, NO actual file changes",
+        "full":    "FULL LOOP   — applies NLU patches and reruns eval (MUTATING)",
+    }
+
+    token_val = _make_token("e2e", {"mode": mode, "target": target, "max_cycles": max_cycles})
+
+    lines = [
+        f"E2E Loop Plan — mode: {mode.upper()}",
+        f"  {_MODE_LABELS[mode]}",
+        f"  Target:     {target}%",
+        f"  Max cycles: {max_cycles}",
+        "",
+    ]
+    if mode == "full":
+        lines += [
+            "WARNING: full mode applies code patches to adwi_cli.py.",
+            "Only run after reviewing analyze or dry-run output.",
+            "",
+        ]
+    lines += [
+        f"Confirm: /e2e_ok {token_val}",
+        "Expires in 5 minutes.",
+    ]
+    _send_reply(tg_token, chat_id, "\n".join(lines))
+
+
+def _do_e2e_confirm(token_val: str, tg_token: str, chat_id: int) -> None:
+    if not token_val:
+        _send_reply(tg_token, chat_id,
+                    "Usage: /e2e_ok <token>  (get token from /e2e_plan)")
+        return
+    entry = _consume_token(token_val)
+    if entry is None:
+        _send_reply(tg_token, chat_id,
+                    "Invalid or expired token. Run /e2e_plan for a new one.")
+        return
+    if entry["action"] != "e2e":
+        _send_reply(tg_token, chat_id, "Token is for a different action.")
+        return
+    if _JOB_RUNNER is None:
+        _send_reply(tg_token, chat_id, "[error] Job runner not available.")
+        return
+
+    meta       = entry.get("meta", {})
+    mode       = meta.get("mode", "analyze")
+    target     = meta.get("target", 98.0)
+    max_cycles = meta.get("max_cycles", 1)
+
+    if mode == "analyze":
+        job_name = "e2e-analyze"
+        argv = [VENV_PY, _E2E_LOOP_PY,
+                "--analyze-only", "--target", str(target), "--max-cycles", str(max_cycles)]
+    elif mode == "dry-run":
+        job_name = "e2e-dry-run"
+        argv = [VENV_PY, _E2E_LOOP_PY,
+                "--dry-run", "--target", str(target), "--max-cycles", str(max_cycles)]
+    else:   # full
+        job_name = "e2e-full"
+        argv = [VENV_PY, _E2E_LOOP_PY,
+                "--target", str(target), "--max-cycles", str(max_cycles)]
+
+    job_id = _JOB_RUNNER.submit(job_name, argv)
+    _send_reply(tg_token, chat_id,
+                f"E2E loop started ({mode} mode).\n"
+                f"ID: {job_id}\n"
+                f"Check: /job {job_id}  or  /loop_status\n"
+                f"Report: /e2e_report")
+
+
+def _do_e2e_report(tg_token: str, chat_id: int) -> None:
+    result = _run_quick([VENV_PY, _E2E_SUMMARY_PY], timeout=10)
+    _send_reply(tg_token, chat_id, result or "(no E2E report available)")
+
+
+def _do_e2e_cancel_plan(tg_token: str, chat_id: int) -> None:
+    token_val = _make_token("e2e_cancel", {})
+    _send_reply(tg_token, chat_id, "\n".join([
+        "E2E Cancel Plan",
+        "Action: write cancel sentinel — running loop stops after current operation.",
+        "No eval or patch in progress will be aborted mid-step.",
+        "",
+        f"Confirm: /e2e_cancel_ok {token_val}",
+        "Expires in 5 minutes.",
+    ]))
+
+
+def _do_e2e_cancel_confirm(token_val: str, tg_token: str, chat_id: int) -> None:
+    if not token_val:
+        _send_reply(tg_token, chat_id,
+                    "Usage: /e2e_cancel_ok <token>  (get token from /e2e_cancel_plan)")
+        return
+    entry = _consume_token(token_val)
+    if entry is None:
+        _send_reply(tg_token, chat_id,
+                    "Invalid or expired token. Run /e2e_cancel_plan for a new one.")
+        return
+    if entry["action"] != "e2e_cancel":
+        _send_reply(tg_token, chat_id, "Token is for a different action.")
+        return
+    result = _run_quick([VENV_PY, _E2E_STATUS_BIN, "--cancel"], timeout=10)
+    try:
+        data = json.loads(result)
+        msg  = data.get("message", "Cancel sentinel written.")
+        _send_reply(tg_token, chat_id, f"E2E cancel requested.\n{msg}")
+    except Exception:
+        _send_reply(tg_token, chat_id, f"E2E cancel result:\n{result}")
+
+
 def _format_loop_status() -> str:
     if _JOB_RUNNER is None:
         return "[error] Job runner not available."
-    jobs = [j for j in _JOB_RUNNER.list_recent(20)
-            if j.get("type", "").startswith(("learn-", "implement-"))]
+    jobs = [j for j in _JOB_RUNNER.list_recent(30)
+            if j.get("type", "").startswith(("learn-", "implement-", "e2e-"))]
     if not jobs:
-        return "No learn or implement jobs yet.\n/learn_plan to start a learn cycle."
-    lines = ["Learn / Implement jobs (newest first):"]
-    for j in jobs[:6]:
+        return ("No learn, implement, or E2E jobs yet.\n"
+                "/learn_plan or /e2e_plan to start.")
+    lines = ["Learn / Implement / E2E jobs (newest first):"]
+    for j in jobs[:8]:
         start = (j.get("start_time") or "?")[:16]
-        lines.append(f"  {j['status']:<10} {j['type']:<22} {start}  id={j['id']}")
-    lines.append("\n/job <id> for details")
+        lines.append(f"  {j['status']:<10} {j['type']:<24} {start}  id={j['id']}")
+    e2e_jobs = [j for j in jobs if j.get("type", "").startswith("e2e-")]
+    if e2e_jobs:
+        lines.append("\n/e2e_report for analysis  •  /job <id> for full log")
+    else:
+        lines.append("\n/job <id> for details")
     return "\n".join(lines)
 
 
@@ -933,6 +1103,28 @@ def _handle_local_cmd(
 
     if cmd == "/loop_status":
         _send_reply(tg_token, chat_id, _format_loop_status())
+        return
+
+    # ── E2E eval loop ─────────────────────────────────────────────────────────
+
+    if cmd == "/e2e_plan":
+        _do_e2e_plan(args, tg_token, chat_id)
+        return
+
+    if cmd == "/e2e_ok":
+        _do_e2e_confirm(args.strip(), tg_token, chat_id)
+        return
+
+    if cmd == "/e2e_report":
+        _do_e2e_report(tg_token, chat_id)
+        return
+
+    if cmd == "/e2e_cancel_plan":
+        _do_e2e_cancel_plan(tg_token, chat_id)
+        return
+
+    if cmd == "/e2e_cancel_ok":
+        _do_e2e_cancel_confirm(args.strip(), tg_token, chat_id)
         return
 
     # ── Operational health ────────────────────────────────────────────────────

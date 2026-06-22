@@ -107,7 +107,31 @@ Token expires in **5 minutes**. Each token is single-use.
 | `/learn_ok <token>` | Validates token → runs NLU regression test suite (background) |
 | `/implement_plan <goal>` | Shows goal + plan + generates token (no code changes yet) |
 | `/implement_ok <token>` | Validates token → captures goal to Obsidian Pending Approval |
-| `/loop_status` | Recent learn/implement job status |
+| `/loop_status` | Recent learn/implement/e2e job status |
+
+### E2E Eval Loop (locally handled, gated)
+
+| Command | What it does |
+|---------|-------------|
+| `/e2e_plan [analyze\|dry-run\|full] [target] [max_cycles]` | Shows plan + generates token |
+| `/e2e_ok <token>` | Validates token → starts `e2e_auto_loop.py` in chosen mode |
+| `/e2e_report` | Compact status/result summary (reads status.json + reports) |
+| `/e2e_cancel_plan` | Shows cancel preview + generates cancel token |
+| `/e2e_cancel_ok <token>` | Validates token → writes cancel sentinel |
+
+**Modes:**
+- `analyze` (default) — runs eval, writes failure report, **no code changes**
+- `dry-run` — simulates which patches would be applied, **no file changes**
+- `full` — applies NLU patches and reruns eval (**MUTATING** — use only after reviewing analyze output)
+
+**Defaults:** target=98%, max_cycles=1. Target clamped to [80–100], cycles clamped to [1–5].
+
+**Recommended E2E workflow:**
+1. `/e2e_plan analyze 98 1` — safe read-only scan
+2. `/e2e_ok <token>` — start the analyze job
+3. `/e2e_report` — see combined%, unfixed clusters
+4. `/e2e_plan dry-run 98 1` — rehearse without touching files
+5. `/e2e_plan full 98 3` — only after reviewing dry-run output
 
 ### Job Management
 
@@ -247,6 +271,9 @@ Or via LaunchAgent (see `adwi/docs/TELEGRAM_BRIDGE_SETUP.md`).
 | `adwi/tests/test_telegram_upgrade.py` | Wave 4–7 feature tests (166 tests) |
 | `adwi/scripts/smoke_telegram_jobs.py` | Phase 1+2 smoke: real _TEST_JOBS argv via JobRunner |
 | `adwi/scripts/validate_telegram_bridge.py` | 12-check static bridge validator (stdlib-only) |
+| `adwi/scripts/telegram_e2e_summary.py` | Compact E2E summary formatter for Telegram |
+| `adwi/e2e_auto_loop.py` | Bounded NLU eval → analyze → fix → retest loop |
+| `adwi/bin/adwi-e2e-status-reader` | E2E status/report/cancel helper (--status/--report/--cancel) |
 | `adwi/logs/telegram-jobs/` | Job state + logs (gitignored) |
 
 ---
@@ -257,7 +284,7 @@ Or via LaunchAgent (see `adwi/docs/TELEGRAM_BRIDGE_SETUP.md`).
 adwi/.venv/bin/python3 -m unittest adwi.tests.test_telegram_bridge \
                                     adwi.tests.test_remote_control_surface \
                                     adwi.tests.test_telegram_upgrade
-# Ran 263 tests — OK
+# Ran 315 tests — OK
 
 # Static validator (12 structural checks — fast, no subprocesses):
 adwi/.venv/bin/python3 adwi/scripts/validate_telegram_bridge.py
@@ -267,8 +294,22 @@ adwi/.venv/bin/python3 adwi/scripts/validate_telegram_bridge.py
 adwi/.venv/bin/python3 adwi/scripts/smoke_telegram_jobs.py --quick
 # 7/7 checks passed  PASS
 
+# E2E summary (shows no-job state when no loop has run):
+adwi/.venv/bin/python3 adwi/scripts/telegram_e2e_summary.py
+
 # Full smoke (includes /test_all — ~2 min):
 adwi/.venv/bin/python3 adwi/scripts/smoke_telegram_jobs.py
+```
+
+**Operator daily health workflow:**
+```
+1. /telegram_validate     → fast structural sanity (12 checks, < 2 s)
+2. /telegram_smoke        → test-job argv smoke (~15 s)
+3. /tests_status          → check smoke result
+4. /e2e_plan analyze 98 1 → read-only NLU eval scan
+5. /e2e_ok <token>        → start the analyze job
+6. /e2e_report            → see results after job completes
+7. /loop_status           → all loop job status
 ```
 
 ---
