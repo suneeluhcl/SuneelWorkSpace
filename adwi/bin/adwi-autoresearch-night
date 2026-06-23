@@ -1,0 +1,187 @@
+#!/bin/bash
+# adwi-autoresearch-night — start overnight Adwi improvement sessions
+#
+# Usage:
+#   adwi-autoresearch-night                  (1 session, tag = today e.g. jun23)
+#   adwi-autoresearch-night 2                (2 parallel sessions: jun23-1, jun23-2)
+#   adwi-autoresearch-night --dry-run [N]    (show what would launch; warns on dirty tree)
+#   adwi-autoresearch-night --preflight-only (all real-launch checks, exit 0 if clean)
+#
+# Each session runs Claude autonomously in a detached screen window.
+# Morning results: adwi-autoresearch-morning
+
+set -euo pipefail
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export HOME="/Users/MAC"
+
+WORKSPACE="$HOME/SuneelWorkSpace"
+LOG_DIR="$WORKSPACE/logs/autoresearch/adwi"
+PROGRAM_FILE="$WORKSPACE/adwi/autoresearch-program.md"
+BASE_TAG=$(date +%b%-d | tr '[:upper:]' '[:lower:]')  # e.g., jun23
+
+DRY_RUN=0
+PREFLIGHT_ONLY=0
+NUM_SESSIONS=1
+
+# Parse args
+for arg in "$@"; do
+    case "$arg" in
+        --dry-run)        DRY_RUN=1 ;;
+        --preflight-only) PREFLIGHT_ONLY=1 ;;
+        [0-9]*)           NUM_SESSIONS="$arg" ;;
+        *) echo "Unknown arg: $arg" ;;
+    esac
+done
+
+# ── Preflight checks ──────────────────────────────────────────────────────────
+
+echo "[$(date '+%H:%M')] Adwi autoresearch preflight..."
+
+# Must be on main branch
+cd "$WORKSPACE"
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "UNKNOWN")
+if [ "$CURRENT_BRANCH" != "main" ]; then
+    echo "ERROR: Workspace is on branch '$CURRENT_BRANCH', not 'main'. Aborting."
+    echo "       Stash or commit work on main before starting autoresearch."
+    exit 1
+fi
+echo "  [✓] On main branch"
+
+# Program file must exist
+if [ ! -f "$PROGRAM_FILE" ]; then
+    echo "ERROR: $PROGRAM_FILE not found."
+    exit 1
+fi
+echo "  [✓] Program file present: adwi/autoresearch-program.md"
+
+# screen must be installed
+if ! command -v screen &>/dev/null; then
+    echo "ERROR: 'screen' not found. Install: brew install screen"
+    exit 1
+fi
+echo "  [✓] screen available: $(screen --version 2>&1 | head -1)"
+
+# claude must be in PATH
+if ! command -v claude &>/dev/null; then
+    echo "ERROR: 'claude' not found in PATH."
+    exit 1
+fi
+echo "  [✓] claude available: $(claude --version 2>/dev/null | head -1 || echo 'claude found')"
+
+# Require a fully clean working tree for real sessions.
+# Autoresearch branches must start from a committed main — any dirty state risks
+# contaminating the branch diff and makes morning review ambiguous.
+STAGED=$(git diff --cached --name-only 2>/dev/null)
+MODIFIED=$(git diff --name-only 2>/dev/null)
+UNTRACKED=$(git ls-files --others --exclude-standard 2>/dev/null)
+DIRTY=""
+[ -n "$STAGED" ]   && DIRTY="${DIRTY}staged changes\n"
+[ -n "$MODIFIED" ] && DIRTY="${DIRTY}modified tracked files\n"
+[ -n "$UNTRACKED" ] && DIRTY="${DIRTY}untracked files\n"
+
+if [ -n "$DIRTY" ]; then
+    if [ "$DRY_RUN" -eq 1 ]; then
+        printf "  [!] WARNING: dirty working tree (would block real launch):\n"
+        [ -n "$STAGED" ]   && echo "$STAGED"   | while read -r f; do printf "        staged:    %s\n" "$f"; done
+        [ -n "$MODIFIED" ] && echo "$MODIFIED"  | while read -r f; do printf "        modified:  %s\n" "$f"; done
+        [ -n "$UNTRACKED" ] && echo "$UNTRACKED" | head -5 | while read -r f; do printf "        untracked: %s\n" "$f"; done
+    else
+        echo "ERROR: Working tree is not clean. Commit, stash, or remove all changes before starting autoresearch."
+        echo "       Dirty:"
+        [ -n "$STAGED" ]   && echo "$STAGED"   | while read -r f; do printf "         staged:    %s\n" "$f"; done
+        [ -n "$MODIFIED" ] && echo "$MODIFIED"  | while read -r f; do printf "         modified:  %s\n" "$f"; done
+        [ -n "$UNTRACKED" ] && echo "$UNTRACKED" | head -5 | while read -r f; do printf "         untracked: %s\n" "$f"; done
+        exit 1
+    fi
+else
+    echo "  [✓] Working tree clean"
+fi
+
+# NLU syntax fast-check
+python3 -m py_compile "$WORKSPACE/adwi/adwi_cli.py" 2>/dev/null \
+    && echo "  [✓] adwi_cli.py syntax OK" \
+    || { echo "  [!] WARNING: adwi_cli.py has a syntax error — experiments will likely fail"; }
+
+mkdir -p "$LOG_DIR"
+echo "  [✓] Log dir ready: $LOG_DIR"
+
+# ── Preflight-only exits here (all real-launch checks passed) ────────────────
+
+if [ "$PREFLIGHT_ONLY" -eq 1 ]; then
+    echo ""
+    echo "Preflight passed — working tree is clean and all checks OK."
+    echo "Ready to launch: adwi-autoresearch-night $NUM_SESSIONS"
+    exit 0
+fi
+
+# ── Dry run exits here ────────────────────────────────────────────────────────
+
+if [ "$DRY_RUN" -eq 1 ]; then
+    echo ""
+    echo "DRY RUN — no sessions started. Would launch:"
+    for i in $(seq 1 "$NUM_SESSIONS"); do
+        if [ "$NUM_SESSIONS" -eq 1 ]; then TAG="$BASE_TAG"; else TAG="${BASE_TAG}-${i}"; fi
+        SESSION="adwi-ar-${TAG}"
+        BRANCH="adwi-autoresearch/${TAG}"
+        echo "  Session: $SESSION"
+        echo "    Branch:   $BRANCH"
+        echo "    Log:      $LOG_DIR/${TAG}.log"
+        echo "    Command:  screen -dmS $SESSION -L -Logfile $LOG_DIR/${TAG}.log \\"
+        echo "              bash -c \"cd '$WORKSPACE' && exec claude --dangerously-skip-permissions\""
+    done
+    echo ""
+    echo "To start for real:  adwi-autoresearch-night $NUM_SESSIONS"
+    exit 0
+fi
+
+# ── Launch sessions ───────────────────────────────────────────────────────────
+
+echo ""
+echo "[$(date '+%H:%M')] Starting $NUM_SESSIONS Adwi autoresearch session(s) — tag: $BASE_TAG"
+
+for i in $(seq 1 "$NUM_SESSIONS"); do
+    if [ "$NUM_SESSIONS" -eq 1 ]; then
+        TAG="$BASE_TAG"
+    else
+        TAG="${BASE_TAG}-${i}"
+    fi
+
+    SESSION="adwi-ar-${TAG}"
+    LOG_FILE="$LOG_DIR/${TAG}.log"
+    BRANCH="adwi-autoresearch/${TAG}"
+
+    # Skip if already running
+    if screen -ls 2>/dev/null | grep -q "\.${SESSION}"; then
+        echo "  [!] Session $SESSION already running. Skipping."
+        continue
+    fi
+
+    # Skip if branch already exists (prevents duplicate runs on same tag)
+    if git branch --list "$BRANCH" | grep -q "$BRANCH"; then
+        echo "  [!] Branch '$BRANCH' already exists. Skipping to avoid overwrite."
+        echo "      Use a different tag or delete the branch first."
+        continue
+    fi
+
+    # Start detached screen session with Claude in the workspace root
+    screen -dmS "$SESSION" -L -Logfile "$LOG_FILE" \
+        bash -c "cd '$WORKSPACE' && exec claude --dangerously-skip-permissions"
+
+    # Wait for claude TUI to initialize
+    sleep 6
+
+    KICKOFF="Read adwi/autoresearch-program.md carefully before doing anything else — it is your complete instruction set for tonight. Run tag: ${TAG}. Branch: ${BRANCH}. Follow the program exactly: orientation → baseline → branch → loop. Do not pause to ask questions. I will be asleep. Run autonomously until manually interrupted."
+
+    screen -S "$SESSION" -X stuff "${KICKOFF}$(printf '\r')"
+
+    echo "  [✓] Session '$SESSION' started → branch: $BRANCH"
+    echo "      Live view:  screen -r $SESSION"
+    echo "      Log file:   $LOG_FILE"
+    echo "      Detach:     Ctrl-A D (while attached)"
+done
+
+echo ""
+echo "Morning results:  adwi-autoresearch-morning"
+echo "All sessions:     screen -ls"
+echo "Attach to one:    screen -r adwi-ar-<tag>"

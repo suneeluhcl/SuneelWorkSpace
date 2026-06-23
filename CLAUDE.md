@@ -183,11 +183,105 @@ This is the recommended way to start Claude Code sessions from a terminal. Witho
 
 **Validation scripts (stdlib-only, read-only):**
 ```bash
-adwi/.venv/bin/python3 adwi/scripts/smoke_claude_headroom.py      # install smoke check
-adwi/.venv/bin/python3 adwi/scripts/validate_claude_headroom.py   # 8 static checks
-adwi/.venv/bin/python3 adwi/scripts/claude_headroom_status.py     # compact status
-headroom doctor                                                     # proxy + routing health
-headroom perf                                                       # savings stats (after sessions)
+python3 adwi/scripts/smoke_claude_headroom.py      # install smoke check
+python3 adwi/scripts/validate_claude_headroom.py   # 8 static checks
+python3 adwi/scripts/claude_headroom_status.py     # compact status
+headroom doctor                                     # proxy + routing health
+headroom perf                                       # savings stats (after sessions)
 ```
 
 **Rollback:** Stop the headroom wrap session (Ctrl+C or close terminal). `headroom unwrap` removes any persistent config changes from `~/.claude/settings.json` if needed. The project-local `.claude/settings.local.json` entry is automatically cleaned up when the wrap session exits.
+
+---
+
+## Autoresearch — Overnight LLM Experiment Loop
+
+`autoresearch-mlx/` is an Apple Silicon port of Karpathy's autoresearch. Claude autonomously modifies `train.py`, runs 5-minute training experiments, measures `val_bpb`, keeps improvements, reverts failures — overnight, unattended.
+
+**The only file Claude edits:** `autoresearch-mlx/train.py`
+**The metric:** `val_bpb` (validation bits per byte) — lower is better.
+**Each experiment:** ~7 minutes (5 min train + compile/eval overhead).
+
+### Quick commands
+
+```bash
+ar-night          # kick off one overnight session (starts at 11pm via LaunchAgent too)
+ar-night 2        # start TWO parallel sessions (branches: autoresearch/jun22-1 and -2)
+ar-morning        # morning briefing: experiments run, val_bpb improvement, best changes
+screen -r autoresearch-<tag>   # attach to a live or finished session
+```
+
+### How a session works
+
+1. `ar-night` starts a detached `screen` session with Claude running in `autoresearch-mlx/`
+2. Claude reads `program.md` (auto-loaded via `CLAUDE.md` → `@program.md`)
+3. Claude creates branch `autoresearch/<tag>`, establishes baseline, then loops forever:
+   - Edit `train.py` with an idea → commit → `uv run train.py` (5 min) → read `val_bpb`
+   - If improved: keep the commit, log to `results.tsv`
+   - If not: `git reset --hard` to discard, log as discarded
+4. `ar-morning` reads all `autoresearch/*` branches and shows the overnight delta
+
+### Logs and results
+
+- Per-session log: `logs/autoresearch/<tag>.log`
+- Experiment history: `autoresearch-mlx/results.tsv` (on the branch, not main)
+- LaunchAgent log: `logs/autoresearch/launchd.log`
+
+### LaunchAgent
+
+`com.suneel.autoresearch-night` fires at **11:00 PM** nightly.
+Manual override any time: `ar-night` (or `ar-night 2` for parallel runs).
+
+### Data and dependencies
+
+Training data and tokenizer live in `~/.cache/autoresearch/` (already prepared).
+Re-run data prep only if cache is deleted: `cd autoresearch-mlx && uv run prepare.py`
+
+---
+
+## Adwi Autoresearch — Overnight NLU + Test Improvement Loop
+
+`adwi/autoresearch-program.md` is the instruction file for Claude when running overnight as an autonomous Adwi improvement agent. Claude targets NLU fixes, test repairs, doc consistency, and bin-script robustness — not MLX training.
+
+**Metric:** No regression on NLU regex tests (481+/481), validate-docs (25/25), security surface tests (17/17), registry tests (867+/897 excluding known-failing `test_search_orchestrator.py`).
+**Branch naming:** `adwi-autoresearch/<tag>` (separate from `autoresearch/<tag>` used by MLX).
+**Each experiment:** One focused change + full test gate; revert on any regression.
+
+### Quick commands
+
+```bash
+adwi-autoresearch-night           # 1 session, tag = today (e.g. jun23)
+adwi-autoresearch-night 2         # 2 parallel sessions
+adwi-autoresearch-night --dry-run # preflight checks only — no session started
+adwi-autoresearch-morning         # morning briefing: experiments, metrics, diffs
+screen -r adwi-ar-<tag>           # attach to live session
+```
+
+### How a session works
+
+1. `adwi-autoresearch-night` runs preflight (main branch? syntax OK? no staged changes?), then starts a detached `screen` session.
+2. Claude reads `adwi/autoresearch-program.md` — runs orientation, baseline checks, creates branch `adwi-autoresearch/<tag>`, then loops:
+   - Pick one improvement (priority: fix failing test → open NHR → add test coverage → fix doc → improve script)
+   - Edit allowlisted files → fast gate → full gate → keep or revert → log to `adwi/autoresearch-results.tsv`
+3. `adwi-autoresearch-morning` reads all `adwi-autoresearch/*` branches and shows NLU deltas and recent experiments.
+
+### Logs and results
+
+- Per-session log: `logs/autoresearch/adwi/<tag>.log`
+- Results TSV: `adwi/autoresearch-results.tsv` (on the branch, not main)
+- LaunchAgent log: `logs/autoresearch/adwi/launchd.log`
+
+### LaunchAgent
+
+`com.suneel.adwi-autoresearch-night` fires at **11:00 PM** nightly (same time as MLX; both run as separate screen sessions).
+Plist stored at: `adwi/infra/launchd/com.suneel.adwi-autoresearch-night.plist`
+Install: `cp adwi/infra/launchd/com.suneel.adwi-autoresearch-night.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.suneel.adwi-autoresearch-night.plist`
+Manual override any time: `adwi-autoresearch-night`
+
+### Allowlist (what Claude can touch)
+
+`adwi/*.py`, `adwi/bin/`, `adwi/docs/`, `adwi/scripts/`, `adwi/services/command-api/`, `adwi/services/mcp/`, `adwi/services/telegram-bridge/`, `adwi/simlab/`, `adwi/tests/`, `adwi/automation/workflows/`, `README.md`, `CLAUDE.md`
+
+### Denylist (never touched by autoresearch Claude)
+
+`adwi/config/.env`, `secrets/`, `adwi/infra/docker/n8n-data/`, `obsidian-vault/`, `adwi/memory.db`, `adwi/knowledge.db`, `adwi/training-data/`, `adwi/logs/simeval/` (writes), `~/Library/LaunchAgents/`, any `*.db` or `*.sqlite`

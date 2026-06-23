@@ -46,6 +46,7 @@ Thumbs.db
 # ── Docker runtime data (large, contains runtime secrets) ───────────
 adwi/infra/docker/open-webui-data/
 adwi/infra/docker/n8n-data/
+adwi/infra/docker/n8n-data-backup-*/
 adwi/infra/docker/searxng-data/
 adwi/infra/docker/qdrant-data/
 adwi/infra/docker/data/
@@ -56,6 +57,7 @@ local-ai-stack/n8n-data/
 adwi/infra/docker/homeassistant-data/
 
 # ── High-volume log directories ──────────────────────────────────────
+adwi/notes/research/
 adwi/notes/clipboard-command-logs/
 adwi/notes/open-webui-sync-logs/
 adwi/notes/adwi-action-logs/
@@ -114,10 +116,16 @@ adwi/bin/*.backup.*
 adwi/config/.env
 # adwi/config/.env.example is intentionally tracked (safe template, no real values)
 
+# ── Autoresearch ─────────────────────────────────────────────────────
+# autoresearch-mlx is a nested git repo (separate project) — ignore the whole tree
+autoresearch-mlx/
+logs/autoresearch/
+
 # ── Obsidian vault runtime files ──
 # workspace.json / graph.json — volatile UI state (open files, window layout, graph positions)
 # app.json / appearance.json — empty defaults, not meaningful to track
 # core-plugins.json is tracked (stable plugin list useful for new machines)
+obsidian-vault/daily-notes/
 obsidian-vault/.obsidian/workspace.json
 obsidian-vault/.obsidian/workspace-mobile.json
 obsidian-vault/.obsidian/graph.json
