@@ -3097,5 +3097,71 @@ class TestFIXII001AddThisFeature(unittest.TestCase):
         self.assertEqual(_classify("create this capability"), "implement_idea")
 
 
+class TestFIXOD001ObsidianDailyVerbs(unittest.TestCase):
+    """FIX-OD-001: 'check/view/update/write in/add to my daily note' → obsidian_daily."""
+
+    def test_check_my_daily_note(self):
+        self.assertEqual(_classify("check my daily note"), "obsidian_daily")
+
+    def test_view_my_daily_log(self):
+        self.assertEqual(_classify("view my daily log"), "obsidian_daily")
+
+    def test_update_my_daily_note(self):
+        self.assertEqual(_classify("update my daily note"), "obsidian_daily")
+
+    def test_write_in_my_daily_journal(self):
+        self.assertEqual(_classify("write in my daily journal"), "obsidian_daily")
+
+    def test_add_to_my_daily_note(self):
+        self.assertEqual(_classify("add to my daily note"), "obsidian_daily")
+
+    def test_add_something_to_my_daily_log(self):
+        self.assertEqual(_classify("add something to my daily log"), "obsidian_daily")
+
+
+class TestFIXVI001MicrophoneDictate(unittest.TestCase):
+    """FIX-VI-001: 'use microphone/mic', 'dictate', 'turn on voice' → voice_in."""
+
+    def test_use_microphone(self):
+        self.assertEqual(_classify("use microphone"), "voice_in")
+
+    def test_use_mic(self):
+        self.assertEqual(_classify("use mic"), "voice_in")
+
+    def test_enable_microphone(self):
+        self.assertEqual(_classify("enable microphone"), "voice_in")
+
+    def test_activate_mic(self):
+        self.assertEqual(_classify("activate mic"), "voice_in")
+
+    def test_turn_on_voice_input(self):
+        self.assertEqual(_classify("turn on voice input"), "voice_in")
+
+    def test_dictate(self):
+        self.assertEqual(_classify("dictate"), "voice_in")
+
+    def test_dictate_a_note(self):
+        self.assertEqual(_classify("dictate a note"), "voice_in")
+
+
+class TestFIXMC002MemoryContextView(unittest.TestCase):
+    """FIX-MC-002: 'view/check/print context', 'what's loaded in context' → memory_context."""
+
+    def test_view_context(self):
+        self.assertEqual(_classify("view context"), "memory_context")
+
+    def test_check_context(self):
+        self.assertEqual(_classify("check context"), "memory_context")
+
+    def test_print_context(self):
+        self.assertEqual(_classify("print context"), "memory_context")
+
+    def test_whats_in_context(self):
+        self.assertEqual(_classify("what's in context"), "memory_context")
+
+    def test_whats_loaded_in_context(self):
+        self.assertEqual(_classify("what's loaded in context"), "memory_context")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

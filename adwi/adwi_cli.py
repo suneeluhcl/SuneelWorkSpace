@@ -971,6 +971,9 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(show|read|open)\b.{0,15}\bmy\s+daily\s+(log|note|journal|entry|notes?)\b", re.I), "obsidian_daily"),
     (re.compile(r"\btoday.{0,5}\b(obsidian\s+)?(entry|journal|log)\b", re.I), "obsidian_daily"),
     (re.compile(r"\bda[il]{2,4}y\s+(note|entry|journal|log)\b", re.I), "obsidian_daily"),
+    # FIX-OD-001: "check/view/update/write in my daily note" — check/update verbs were missing
+    (re.compile(r"\b(?:check|view|update|write\s+(?:in|to))\b.{0,15}\bmy\s+daily\b.{0,15}\b(?:note|log|journal|entry|notes?)\b", re.I), "obsidian_daily"),
+    (re.compile(r"\badd\b.{0,20}\b(?:to\s+)?my\s+daily\s+(?:note|log|journal|entry)\b", re.I), "obsidian_daily"),
 
     # ── Obsidian vault ───────────────────────────────────────────────────────────
     # FIX-OBS-003: bare "notes" alone → obsidian_search (anchored to prevent false positives)
@@ -1043,6 +1046,9 @@ _REGEX_INTENTS = [
     (re.compile(r"^voice\s+out\s*$", re.I), "voice_out"),
     (re.compile(r"\b(voice input|voice mode|voice.{0,10}recording|start.{0,10}voice|listen.{0,10}voice)\b", re.I), "voice_in"),
     (re.compile(r"\bstart.{0,15}(recording|listening)\b", re.I), "voice_in"),
+    # FIX-VI-001: "use microphone/mic", "dictate", "turn on voice" → voice_in
+    (re.compile(r"\b(?:use|enable|activate|turn\s+on)\b.{0,15}\b(?:microphone|mic|voice\s+input)\b", re.I), "voice_in"),
+    (re.compile(r"\bdictate\b", re.I), "voice_in"),
     (re.compile(r"\b(text.to.speech|tts\b|speak.{0,15}this|say.{0,20}(aloud|out loud)|read.{0,10}aloud|read.{0,10}this.{0,10}out)\b", re.I), "voice_out"),
     # FIX-VOC-001: "narrate this", "vocalize this" → voice_out
     (re.compile(r"\b(?:narrate|vocalize)\b.{0,20}\b(?:this|that|it|the\s+response|the\s+answer|the\s+text)\b", re.I), "voice_out"),
@@ -1608,6 +1614,9 @@ _REGEX_INTENTS = [
     # FIX-MEMCTX-001: show/what context → memory_context (NO regex existed before)
     (re.compile(r"\b(show|display|what.{0,10}(is|do\s+you\s+have))\b.{0,20}\b(session\s+)?context\b(?!\s+(window|length|limit|size))", re.I), "memory_context"),
     (re.compile(r"\bcontext\b.{0,20}\b(summary|dump|snapshot|right\s+now|currently)\b", re.I), "memory_context"),
+    # FIX-MC-002: "view/check/print context", "what's in/loaded in context" → memory_context
+    (re.compile(r"\b(?:view|check|print)\b.{0,15}\b(?:session\s+)?context\b(?!\s+(?:window|length|limit|size))", re.I), "memory_context"),
+    (re.compile(r"\bwhat.{0,10}\b(?:in|loaded|stored)\b.{0,20}\bcontext\b", re.I), "memory_context"),
 
     # ── Semantic router ──────────────────────────────────────────────────────────
     (re.compile(r"route (this|the|my)?\s*(query|question|request|command)\b", re.I), "route"),
