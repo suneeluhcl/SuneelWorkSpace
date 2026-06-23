@@ -20,3 +20,4 @@ ff10395	528	528	25	25	17	17	keep	FIX-CHAT-003: anchored conversational continuat
 fbae2bc	535	535	25	25	17	17	keep	FIX-CHAT-004: comparison question guards → chat (difference between, compare vs, which is better)
 ae504c6	545	545	25	25	17	17	keep	FIX-CHAT-005: what's-difference, compare-for-my, 5 conversational continuations (+10 tests)
 8911fc7	554	554	25	25	17	17	keep	FIX-CHAT-006: ok-but, explain-differently, interesting-continue, rephrase (+9 tests)
+bc0b245	554	554	25	25	17	17	keep	FIX-EVAL-LABEL-001: relabel 'what else can adwi do' chat→capabilities in P1 harness
