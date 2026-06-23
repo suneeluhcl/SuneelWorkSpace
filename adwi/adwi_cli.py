@@ -844,6 +844,10 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(?:pull|extract|get)\b.{0,25}\b(?:ideas?|insights?|actionable\s+items?|key\s+(?:points?|takeaways?|findings?)|main\s+(?:points?|ideas?))\b", re.I), "extract_ideas"),
     # Pattern 2: "key takeaways" / "main insights" — advisory vocabulary, not gmail tasks
     (re.compile(r"\b(?:key\s+takeaways?|main\s+insights?|summarize\s+and\s+extract)\b.{0,30}\b(?:from|in|this|the)\b", re.I), "extract_ideas"),
+    # FIX-EXT-001: "identify the key points/ideas", "what are the main ideas here", "highlight the takeaways"
+    (re.compile(r"\bidentify\b.{0,20}\b(?:key|main|core|primary)\b.{0,15}\b(?:points?|ideas?|insights?|takeaways?|themes?|findings?)\b", re.I), "extract_ideas"),
+    (re.compile(r"\bwhat\s+(?:are|were)\s+(?:the\s+)?(?:main|key|core|primary)\s+(?:ideas?|points?|insights?|themes?|takeaways?)\b", re.I), "extract_ideas"),
+    (re.compile(r"\bhighlight\b.{0,20}\b(?:the\s+)?(?:key|main|important)\b.{0,15}\b(?:points?|ideas?|takeaways?|insights?)\b", re.I), "extract_ideas"),
     # CYCLE-4: implement_idea patterns — "implement this idea/feature/plan"
     (re.compile(r"\bimplement\b.{0,20}\b(?:this|that|the)\b.{0,15}\b(?:idea|feature|plan|concept|improvement|suggestion)\b", re.I), "implement_idea"),
     (re.compile(r"\bbuild\b.{0,15}\b(?:this|that|the)\b.{0,15}\bfeature\b", re.I), "implement_idea"),
@@ -1003,6 +1007,9 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(switch|change)\b.{0,20}\bmodel\b.{0,15}\bto\b.{0,10}\blocal\b", re.I), "use_local"),
     (re.compile(r"\b(switch|change|use)\b.{0,15}(to\s+)?(cloud model|cloud api|cloud llm|gemini|openai)\b", re.I), "use_cloud"),
     (re.compile(r"\bswitch to cloud\b", re.I), "use_cloud"),
+    # FIX-UC-001: "use cloud for this", "fallback to cloud", "offload to cloud" → use_cloud
+    (re.compile(r"\b(?:use|try)\b.{0,10}\bcloud\b.{0,20}\b(?:for\s+this|model|api|llm|inference|instead)\b", re.I), "use_cloud"),
+    (re.compile(r"\b(?:fallback|fall\s+back|offload|route)\b.{0,15}\b(?:to\s+)?cloud\b", re.I), "use_cloud"),
 
     # ── Voice I/O ────────────────────────────────────────────────────────────────
     # CYCLE-4: bare "voice" and "voice in" anchored commands
@@ -1571,6 +1578,9 @@ _REGEX_INTENTS = [
     # ── Semantic router ──────────────────────────────────────────────────────────
     (re.compile(r"route (this|the|my)?\s*(query|question|request|command)\b", re.I), "route"),
     (re.compile(r"which tool (should|would|to) (handle|use for|run)\b", re.I), "route"),
+    # FIX-ROUTE-001: "how would you route this", "what intent does this match/become"
+    (re.compile(r"\bhow\b.{0,20}\b(?:would|do)\b.{0,10}\b(?:you|adwi)\b.{0,15}\b(?:route|classify|handle)\b.{0,15}\b(?:this|that)\b", re.I), "route"),
+    (re.compile(r"\bwhat\s+intent\b.{0,30}\b(?:this|that)\b.{0,20}\b(?:match|map|resolve|classify|become)\b", re.I), "route"),
 
     # FIX-SPRINT-002: "generate/suggest ideas for adwi features" / "low-hanging fruit" → what_next
     # MUST precede capabilities \badwi\b...features pattern

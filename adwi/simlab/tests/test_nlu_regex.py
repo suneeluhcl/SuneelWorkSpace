@@ -2803,5 +2803,71 @@ class TestFIXTR003ToolRoadmapPlanned(unittest.TestCase):
         self.assertEqual(_classify("future tools for adwi"), "tool_roadmap")
 
 
+class TestFIXEXT001ExtractIdeas(unittest.TestCase):
+    """FIX-EXT-001: 'identify key points', 'what are the main ideas', 'highlight takeaways' → extract_ideas."""
+
+    def test_identify_key_points(self):
+        self.assertEqual(_classify("identify the key points in this article"), "extract_ideas")
+
+    def test_identify_main_ideas(self):
+        self.assertEqual(_classify("identify the main ideas from this text"), "extract_ideas")
+
+    def test_what_are_the_main_ideas(self):
+        self.assertEqual(_classify("what are the main ideas here"), "extract_ideas")
+
+    def test_what_are_the_key_insights(self):
+        self.assertEqual(_classify("what are the key insights from this"), "extract_ideas")
+
+    def test_highlight_key_points(self):
+        self.assertEqual(_classify("highlight the key points from this document"), "extract_ideas")
+
+    def test_highlight_main_takeaways(self):
+        self.assertEqual(_classify("highlight the main takeaways please"), "extract_ideas")
+
+    def test_identify_core_themes(self):
+        self.assertEqual(_classify("identify the core themes in this paper"), "extract_ideas")
+
+
+class TestFIXUC001UseCloud(unittest.TestCase):
+    """FIX-UC-001: 'use cloud for this', 'fallback to cloud', 'offload to cloud' → use_cloud."""
+
+    def test_use_cloud_for_this(self):
+        self.assertEqual(_classify("use cloud for this"), "use_cloud")
+
+    def test_use_cloud_api(self):
+        self.assertEqual(_classify("use cloud api instead"), "use_cloud")
+
+    def test_try_cloud_inference(self):
+        self.assertEqual(_classify("try cloud inference for this"), "use_cloud")
+
+    def test_fallback_to_cloud(self):
+        self.assertEqual(_classify("fallback to cloud"), "use_cloud")
+
+    def test_fall_back_to_cloud(self):
+        self.assertEqual(_classify("fall back to cloud model"), "use_cloud")
+
+    def test_offload_to_cloud(self):
+        self.assertEqual(_classify("offload to cloud"), "use_cloud")
+
+
+class TestFIXROUTE001RouteDebug(unittest.TestCase):
+    """FIX-ROUTE-001: 'how would you route this', 'what intent does this match' → route."""
+
+    def test_how_would_you_route_this(self):
+        self.assertEqual(_classify("how would you route this query"), "route")
+
+    def test_how_would_adwi_handle_this(self):
+        self.assertEqual(_classify("how would adwi handle this"), "route")
+
+    def test_how_do_you_classify_this(self):
+        self.assertEqual(_classify("how do you classify this"), "route")
+
+    def test_what_intent_does_this_match(self):
+        self.assertEqual(_classify("what intent does this match"), "route")
+
+    def test_what_intent_would_this_become(self):
+        self.assertEqual(_classify("what intent would that become"), "route")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
