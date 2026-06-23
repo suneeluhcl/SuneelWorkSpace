@@ -1757,8 +1757,7 @@ class TestE2ESummaryScript(unittest.TestCase):
         """Script must exit 0 (not crash) when no status.json exists."""
         import subprocess as _sub
         result = _sub.run(
-            [str(_ROOT / "adwi" / ".venv" / "bin" / "python3"),
-             str(self._SUMMARY_PATH)],
+            [sys.executable, str(self._SUMMARY_PATH)],
             capture_output=True, text=True,
             env={**__import__("os").environ,
                  "HOME": str(_ROOT)},   # point HOME to workspace — no status.json there

@@ -18,13 +18,25 @@ from pathlib import Path
 from unittest.mock import MagicMock
 
 # Stub out search_orchestrator so reason_engine loads without the real dep installed.
-for _stub in ("adwi.search_orchestrator", "search_orchestrator"):
+# Save originals so we can restore them after loading — prevents sys.modules pollution
+# that would contaminate test_search_orchestrator.py when tests run in the same process.
+_STUBS = ("adwi.search_orchestrator", "search_orchestrator")
+_saved_modules = {k: sys.modules.get(k) for k in _STUBS}
+for _stub in _STUBS:
     sys.modules.setdefault(_stub, MagicMock())
 
 _RE_PATH = Path(__file__).parent.parent / "reason_engine.py"
 _spec    = importlib.util.spec_from_file_location("reason_engine_paths_test", _RE_PATH)
 _re_mod  = importlib.util.module_from_spec(_spec)   # type: ignore[arg-type]
 _spec.loader.exec_module(_re_mod)                   # type: ignore[union-attr]
+
+# Restore sys.modules to original state so real search_orchestrator remains importable.
+for _k, _v in _saved_modules.items():
+    if _v is None:
+        sys.modules.pop(_k, None)
+    else:
+        sys.modules[_k] = _v
+del _STUBS, _saved_modules, _k, _v
 
 GATE      = _re_mod._FILE_GATE
 HOME      = Path.home()
