@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+"""
+adwi-model-check — read-only Ollama model inventory check.
+
+Compares installed Ollama models against adwi/config/recommended_models.json.
+Emits a single JSON object to stdout. No network calls, no writes, no pulls.
+
+Exit codes:
+  0 — success (action_needed may be true or false)
+  1 — config or execution error
+"""
+import json
+import subprocess
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+CONFIG_PATH = Path(__file__).parent.parent / "config" / "recommended_models.json"
+
+
+def _load_config() -> dict:
+    if not CONFIG_PATH.exists():
+        raise FileNotFoundError(f"Config not found: {CONFIG_PATH}")
+    return json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
+
+
+def _parse_ollama_list() -> list[dict]:
+    """Run `ollama list` and parse tabular output into model dicts."""
+    try:
+        result = subprocess.run(
+            ["ollama", "list"],
+            capture_output=True, text=True, timeout=15,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired) as exc:
+        raise RuntimeError(f"ollama list failed: {exc}") from exc
+
+    if result.returncode != 0:
+        raise RuntimeError(f"ollama list exited {result.returncode}: {result.stderr.strip()}")
+
+    lines = result.stdout.strip().splitlines()
+    if not lines:
+        return []
+
+    # Header line: NAME  ID  SIZE  MODIFIED
+    # Skip header, parse each model row
+    models = []
+    for line in lines[1:]:
+        parts = line.split()
+        if not parts:
+            continue
+        name = parts[0]
+        # MODIFIED column: "X hours/days/weeks/months ago" — last 2+ tokens
+        # ollama list format: NAME ID SIZE MODIFIED_VAL MODIFIED_UNIT ago
+        modified_days: int | None = None
+        try:
+            line_lower = line.lower()
+            if " hours ago" in line_lower or " hour ago" in line_lower:
+                n = int([p for p in parts if p.isdigit()][-1])
+                modified_days = 0  # less than 1 day
+            elif " days ago" in line_lower or " day ago" in line_lower:
+                n = int([p for p in parts if p.isdigit()][-1])
+                modified_days = n
+            elif " weeks ago" in line_lower or " week ago" in line_lower:
+                n = int([p for p in parts if p.isdigit()][-1])
+                modified_days = n * 7
+            elif " months ago" in line_lower or " month ago" in line_lower:
+                n = int([p for p in parts if p.isdigit()][-1])
+                modified_days = n * 30
+            elif " years ago" in line_lower or " year ago" in line_lower:
+                n = int([p for p in parts if p.isdigit()][-1])
+                modified_days = n * 365
+        except (ValueError, IndexError):
+            modified_days = None  # unparseable age — skip staleness check for this model
+
+        models.append({"name": name, "modified_days": modified_days})
+
+    return models
+
+
+def main() -> int:
+    try:
+        cfg = _load_config()
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        print(json.dumps({"error": str(exc)}))
+        return 1
+
+    try:
+        installed = _parse_ollama_list()
+    except RuntimeError as exc:
+        print(json.dumps({"error": str(exc)}))
+        return 1
+
+    installed_names = {m["name"] for m in installed}
+    installed_by_name = {m["name"]: m for m in installed}
+    stale_days = cfg.get("stale_threshold_days", 60)
+    model_specs = cfg.get("models", {})
+
+    current = [m["name"] for m in installed]
+    missing = []
+    stale = []
+    candidates = []
+
+    for model_name, spec in model_specs.items():
+        required = spec.get("required", False)
+        if model_name not in installed_names:
+            if required:
+                missing.append({
+                    "name": model_name,
+                    "role": spec.get("role", ""),
+                })
+            else:
+                candidates.append({
+                    "name": model_name,
+                    "role": spec.get("role", ""),
+                    "notes": spec.get("notes", ""),
+                })
+        else:
+            info = installed_by_name[model_name]
+            age = info.get("modified_days")
+            if required and age is not None and age > stale_days:
+                stale.append({
+                    "name": model_name,
+                    "role": spec.get("role", ""),
+                    "modified_days": age,
+                    "stale_threshold_days": stale_days,
+                })
+
+    action_needed = bool(missing or stale)
+
+    parts = []
+    if missing:
+        names = ", ".join(m["name"] for m in missing)
+        parts.append(f"Missing required: {names}")
+    if stale:
+        names = ", ".join(f"{m['name']} ({m['modified_days']}d)" for m in stale)
+        parts.append(f"Stale (>{stale_days}d): {names}")
+    if not action_needed:
+        parts.append(f"All {len(current)} required models present and fresh")
+
+    summary = "; ".join(parts)
+
+    result = {
+        "current": current,
+        "missing": missing,
+        "stale": stale,
+        "candidates": candidates,
+        "action_needed": action_needed,
+        "summary": summary,
+        "checked_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+    print(json.dumps(result, indent=2))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

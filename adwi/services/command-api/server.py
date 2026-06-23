@@ -67,6 +67,8 @@ ALLOWED_COMMANDS = {
     "/adwi-e2e-auto-loop-report": [VENV_PY, E2E_STATUS_READER, "--report"],
     "/adwi-e2e-auto-loop-cancel": [VENV_PY, E2E_STATUS_READER, "--cancel"],
     # Note: /adwi-e2e-auto-loop-start is handled separately via Popen (see _handle_e2e_start)
+    # ── Model inventory (G-11) ───────────────────────────────────────────────────
+    "/adwi-model-check":       [os.path.join(BIN, "adwi-model-check")],
     # ── Extended Telegram routes (Wave 4) ────────────────────────────────────
     "/adwi-services":          [os.path.join(BIN, "adwi-services")],
     "/adwi-obsidian-status":   [VENV_PY, ADWI_CLI, "/obsidian-status"],

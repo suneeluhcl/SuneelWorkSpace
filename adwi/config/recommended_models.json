@@ -1,0 +1,31 @@
+{
+  "_comment": "Source of truth for Ollama model inventory checks. Edit here — do not hardcode in scripts.",
+  "stale_threshold_days": 60,
+  "models": {
+    "adwi:latest": {
+      "role": "Primary REPL model (qwen3:30b Modelfile)",
+      "required": true
+    },
+    "llama3.1:8b": {
+      "role": "NLU intent classifier",
+      "required": true
+    },
+    "nomic-embed-text:latest": {
+      "role": "Embeddings for memory/RAG/Qdrant",
+      "required": true
+    },
+    "qwen3:30b": {
+      "role": "Reasoning base model (used by adwi:latest Modelfile)",
+      "required": true
+    },
+    "codellama:7b": {
+      "role": "Code assistance and aider integration",
+      "required": true
+    },
+    "deepseek-r1:32b": {
+      "role": "Reasoning specialist — candidate for future routing",
+      "required": false,
+      "notes": "~20 GB; pull manually after disk check. See ADWI-START-HERE.md item 4."
+    }
+  }
+}
