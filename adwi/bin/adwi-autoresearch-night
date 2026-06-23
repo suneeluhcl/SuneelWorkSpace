@@ -173,9 +173,15 @@ for i in $(seq 1 "$NUM_SESSIONS"); do
     # Wait for claude TUI to initialize
     sleep 6
 
+    # Claude Code shows a bypass-permissions warning on fresh sessions. This is
+    # the same mode requested explicitly for unattended autoresearch. Screen
+    # 4.00.03 requires an explicit window target for injected input.
+    screen -S "$SESSION" -p 0 -X stuff "2$(printf '\r')" || true
+    sleep 2
+
     KICKOFF="Read adwi/autoresearch-program.md carefully before doing anything else — it is your complete instruction set for tonight. Run tag: ${TAG}. Branch: ${BRANCH}. Follow the program exactly: orientation → baseline → branch → loop. Do not pause to ask questions. I will be asleep. Run autonomously until manually interrupted."
 
-    screen -S "$SESSION" -X stuff "${KICKOFF}$(printf '\r')"
+    screen -S "$SESSION" -p 0 -X stuff "${KICKOFF}$(printf '\r')"
 
     echo "  [✓] Session '$SESSION' started → branch: $BRANCH"
     echo "      Live view:  screen -r $SESSION"
