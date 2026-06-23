@@ -120,6 +120,8 @@ adwi/config/.env
 # autoresearch-mlx is a nested git repo (separate project) — ignore the whole tree
 autoresearch-mlx/
 logs/autoresearch/
+# Adwi autoresearch isolated worktrees (created per-session, never committed)
+.worktrees/
 
 # ── Obsidian vault runtime files ──
 # workspace.json / graph.json — volatile UI state (open files, window layout, graph positions)

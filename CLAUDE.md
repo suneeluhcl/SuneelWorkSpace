@@ -245,6 +245,7 @@ Re-run data prep only if cache is deleted: `cd autoresearch-mlx && uv run prepar
 
 **Metric:** No regression on NLU regex tests (481+/481), validate-docs (25/25), security surface tests (17/17), registry tests (867+/897 excluding known-failing `test_search_orchestrator.py`).
 **Branch naming:** `adwi-autoresearch/<tag>` (separate from `autoresearch/<tag>` used by MLX).
+**Worktree isolation:** Each session runs in its own clean git worktree (`.worktrees/adwi-autoresearch/<tag>`), not the root repo. Root runtime-dirty files (obsidian vault, system log) are irrelevant to session startup.
 **Each experiment:** One focused change + full test gate; revert on any regression.
 
 ### Quick commands

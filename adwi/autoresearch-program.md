@@ -1,42 +1,69 @@
 # Adwi Autoresearch — Overnight Improvement Program
 
-You are running as an autonomous agent in the Adwi repository overnight.
-Your job is to run a loop of small, safe, targeted experiments that improve
-Adwi quality. The operator is asleep. Do not pause to ask questions.
+You are running as an autonomous agent in an **isolated git worktree**.
+Your working directory is NOT the root repo — it is a clean branch checkout.
+Your job is to loop through small, safe, targeted experiments that improve Adwi quality.
+The operator is asleep. Do NOT pause to ask questions. Do NOT wait for user input.
+
+---
+
+## Hook warnings — DO NOT STOP for these
+
+You may see messages like:
+- `PreToolUse:Bash hook error`
+- `Failed with non-blocking status code`
+- `hook error`
+
+These come from background monitoring tools (headroom, RTK). They do NOT mean your
+command failed. The tool result immediately after the hook message is the real outcome.
+If the actual command output looks correct, continue the loop. Only stop if the
+command itself (not the hook) produced an unexpected result that blocks progress.
 
 ---
 
 ## Step 0 — Orientation (do this first, every time)
 
-1. Read `CLAUDE.md` — understand the repo structure and current NLU baseline.
-2. Read `adwi/docs/NLU_REPAIR_BACKLOG.md` — prioritized fix list with exact proposals.
-3. Run the baseline checks to establish YOUR current numbers on this session:
+1. Confirm your location:
+
+```bash
+pwd         # must be inside .worktrees/adwi-autoresearch/<tag>
+git branch  # must show adwi-autoresearch/<tag>
+git status  # must be clean (no uncommitted changes yet)
+```
+
+2. Set the ROOT variable for commands that need the shared venv or root-only tools:
+
+```bash
+ROOT=/Users/MAC/SuneelWorkSpace
+```
+
+3. Read `CLAUDE.md` (present in this worktree) for NLU baseline and repo structure.
+4. Read `adwi/docs/NLU_REPAIR_BACKLOG.md` for the prioritized fix list.
+
+5. Run baseline checks to establish YOUR numbers for this session:
 
 ```bash
 python3 -m py_compile adwi/adwi_cli.py && echo "syntax OK"
 python3 -m unittest adwi/simlab/tests/test_nlu_regex.py 2>&1 | tail -2
 adwi/bin/validate-docs 2>&1 | tail -3
-adwi/.venv/bin/python3 -m pytest adwi/tests/test_remote_control_surface.py -q 2>&1 | tail -2
-adwi/.venv/bin/python3 -m pytest adwi/tests/ --ignore=adwi/tests/test_search_orchestrator.py -q 2>&1 | tail -3
+$ROOT/adwi/.venv/bin/python3 -m pytest adwi/tests/test_remote_control_surface.py -q 2>&1 | tail -2
+$ROOT/adwi/.venv/bin/python3 -m pytest adwi/tests/ --ignore=adwi/tests/test_search_orchestrator.py -q 2>&1 | tail -3
 ```
 
-4. Create the results file with a baseline row:
+Note: `adwi/.venv/` lives in the root repo, not in this worktree. Always use `$ROOT/adwi/.venv/` for pytest.
+
+6. Create the results TSV with a baseline row (replace `<values>` with actual numbers):
 
 ```bash
-printf 'commit\tnlu_pass\tnlu_total\tdocs_pass\tdocs_total\tsec_pass\tsec_total\tstatus\tdescription\n' > adwi/autoresearch-results.tsv
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
-  "$(git rev-parse --short HEAD)" \
-  <nlu_pass> <nlu_total> <docs_pass> <docs_total> <sec_pass> <sec_total> \
-  "keep" "baseline" >> adwi/autoresearch-results.tsv
+printf 'commit\tnlu_pass\tnlu_total\tdocs_pass\tdocs_total\tsec_pass\tsec_total\tstatus\tdescription\n' \
+    > adwi/autoresearch-results.tsv
+printf '%s\t%d\t%d\t%d\t%d\t%d\t%d\t%s\t%s\n' \
+    "$(git rev-parse --short HEAD)" \
+    <nlu_pass> <nlu_total> <docs_pass> <docs_total> <sec_pass> <sec_total> \
+    "keep" "baseline" >> adwi/autoresearch-results.tsv
 ```
 
-5. Create the experiment branch (do this ONCE per session):
-
-```bash
-git checkout -b adwi-autoresearch/<TAG>
-```
-
-6. Commit the baseline TSV:
+7. Commit the baseline (this creates the first commit on your branch):
 
 ```bash
 git add adwi/autoresearch-results.tsv
@@ -45,17 +72,29 @@ git commit -m "autoresearch: baseline — session <TAG>"
 
 ---
 
-## What you CAN do
+## Isolation rules — your worktree vs the root repo
 
-Edit only files in the following allowlist:
+**You are in:** `.worktrees/adwi-autoresearch/<tag>`
+**Root repo is at:** `/Users/MAC/SuneelWorkSpace`
+
+- Do NOT `cd /Users/MAC/SuneelWorkSpace` or modify any root-repo runtime files.
+- Do NOT modify `logs/adwi_system_log.md`, `obsidian-vault/`, or any `logs/` file.
+- Do NOT read or modify `/Users/MAC/SuneelWorkSpace/adwi/memory.db` or `.knowledge.db`.
+- Use `$ROOT/adwi/.venv/bin/python3` (absolute) for pytest; other commands work relatively.
+- Your git operations (checkout, commit, reset) affect only YOUR branch in YOUR worktree.
+- The root repo's `main` branch may receive auto-backup commits overnight — this does NOT affect your worktree.
+
+---
+
+## What you CAN edit (allowlist)
+
+Files in your worktree, matching these paths:
 
 ```
 adwi/*.py                         (adwi_cli.py, reason_engine.py, memory.py, etc.)
 adwi/bin/                         (bin scripts — shell and Python)
-adwi/commands/                    (command modules if they exist)
 adwi/config/*.example             (safe example/template configs only)
 adwi/docs/                        (documentation)
-adwi/eval/                        (eval harnesses)
 adwi/scripts/                     (utility scripts)
 adwi/services/command-api/        (Command API — read-only routes only)
 adwi/services/mcp/                (MCP servers)
@@ -63,184 +102,153 @@ adwi/services/telegram-bridge/    (Telegram bridge)
 adwi/simlab/                      (SimLab modules and tests)
 adwi/tests/                       (test files)
 adwi/automation/workflows/        (n8n workflow JSON files — source only)
-adwi/autoresearch-results.tsv     (your results log on this branch)
+adwi/autoresearch-results.tsv     (your session log — this branch only)
+adwi/logs/simeval/run_large_eval.py       (NLU sync ONLY)
+adwi/logs/simeval/run_large_eval_p2.py    (NLU sync ONLY)
 README.md
 CLAUDE.md
 ```
 
 ---
 
-## What you CANNOT do
-
-**Hard denylist — never touch these:**
+## What you CANNOT touch (denylist)
 
 ```
 adwi/config/.env                  (live secrets)
 secrets/                          (credentials)
-adwi/infra/docker/n8n-data/       (live n8n DB)
-adwi/infra/docker/n8n-data-backup-*/
+adwi/infra/docker/n8n-data*/      (live n8n DB)
 obsidian-vault/                   (personal notes)
-adwi/memory.db                    (live runtime DB)
-adwi/knowledge.db                 (live runtime DB)
-adwi/training-data/               (captured training data — do not alter)
+adwi/memory.db                    (live runtime DB — root repo only)
+adwi/knowledge.db                 (live runtime DB — root repo only)
+adwi/training-data/               (captured training data)
 logs/                             (runtime log files)
-adwi/logs/simeval/                (eval evidence chain — read is OK, write is NOT)
-                                  EXCEPTION: adwi/logs/simeval/run_large_eval.py and
-                                  adwi/logs/simeval/run_large_eval_p2.py MAY be edited
-                                  ONLY to mirror NLU changes from adwi_cli.py. Do not
-                                  touch any other file under adwi/logs/simeval/.
+adwi/logs/simeval/                (except the two sync files listed above)
 *.sqlite *.db                     (any database file)
 ~/Library/LaunchAgents/           (LaunchAgent plists)
-adwi/config/infra_ports.json      (only touch if validate-docs explicitly requires)
 ```
 
-**Never run these:**
-- `ollama pull` or `ollama rm` or any model management command
-- `launchctl load/unload` — do not touch running services
-- `docker compose up/down/restart` — do not restart containers
-- `git push` — do not push to remote
-- `git add -A` or `git add .` — never use blanket add; always name specific files
-- `rm -rf` on anything outside your branch's experiment files
-- Any command that requires sudo
+**Never run:**
+- `ollama pull/rm`, `launchctl`, `docker compose up/down`, `git push`
+- `git add -A` or `git add .` — always name specific files
+- `rm -rf` outside this worktree's experiment files
+- `sudo`
 
 ---
 
 ## Experiment loop
 
-Once setup is complete, run this loop indefinitely until manually interrupted:
+Once orientation is complete, run this loop indefinitely:
 
 ### 1. Choose one narrow experiment
 
-Pick ONE improvement from this priority list (in order):
+Priority order:
 1. Fix a known failing test in `adwi/tests/` (especially `test_search_orchestrator.py` — 13 failures)
 2. Apply an open NHR item from `adwi/docs/NLU_REPAIR_BACKLOG.md`
 3. Add missing test coverage for an untested command or edge case
-4. Fix a stale doc reference caught by validate-docs
-5. Improve a bin script for robustness (error handling, missing exit codes)
-6. Add a new NLU eval scenario to the test harnesses (must be synced to all 3 files)
+4. Fix a stale doc reference (run `adwi/bin/validate-docs` to find them)
+5. Improve a bin script for robustness
+6. Add a new NLU eval scenario (sync to all 3 files)
 
-Do NOT attempt:
-- Large refactors
-- Multi-file architectural changes in one commit
-- Anything that touches the denylist
+Do NOT: large refactors, multi-file architectural changes, anything touching the denylist.
 
 ### 2. Make the change
 
 Edit only allowlisted files. Keep the diff small and focused.
 
-### 3. Run the fast gate (always first)
+### 3. Fast gate (always run first)
 
 ```bash
 python3 -m py_compile adwi/adwi_cli.py 2>&1 && echo "syntax OK"
 python3 -m unittest adwi/simlab/tests/test_nlu_regex.py 2>&1 | tail -2
 ```
 
-If the fast gate fails: revert immediately, log as `crash`, move on.
+If fast gate fails → revert immediately, log as `crash`, continue the loop.
+If you see hook warnings during these commands → ignore the warnings; read the actual test output.
 
-### 4. Run the full gate (before keeping)
+### 4. Full gate (before keeping)
 
 ```bash
 adwi/bin/validate-docs 2>&1 | tail -3
-adwi/.venv/bin/python3 -m pytest adwi/tests/test_remote_control_surface.py -q 2>&1 | tail -2
-adwi/.venv/bin/python3 -m pytest adwi/tests/ --ignore=adwi/tests/test_search_orchestrator.py -q 2>&1 | tail -3
+$ROOT/adwi/.venv/bin/python3 -m pytest adwi/tests/test_remote_control_surface.py -q 2>&1 | tail -2
+$ROOT/adwi/.venv/bin/python3 -m pytest adwi/tests/ --ignore=adwi/tests/test_search_orchestrator.py -q 2>&1 | tail -3
 ```
 
 ### 5. Pre-commit denylist check (required before every keep)
-
-Before staging anything, run:
 
 ```bash
 git diff --name-only
 git diff --cached --name-only
 ```
 
-Verify that NO changed file matches these patterns:
-- `adwi/config/.env` or any `.env` file
-- `secrets/`
-- `adwi/infra/docker/n8n-data*`
-- `obsidian-vault/`
-- `adwi/memory.db` or `adwi/knowledge.db` or any `*.db` / `*.sqlite`
-- `adwi/training-data/`
-- `logs/` (runtime logs)
-- `adwi/logs/simeval/` except `run_large_eval.py` or `run_large_eval_p2.py`
-- `~/Library/LaunchAgents/`
-
-If ANY denylist file appears in the diff → treat as crash, revert, do not commit.
-
-Only then proceed to stage using explicit file names.
+Verify NO changed file matches the denylist patterns above. If any denylist file appears → treat as crash, revert.
 
 ### 6. Commit or revert
 
-**Keep (improvement or no regression with net-positive change):**
+**Keep:**
 ```bash
-git add <specific files only — never -A>
+git add <specific files — never -A or .>
 git commit -m "autoresearch: <short description>"
 ```
 
-**Discard (regression or neutral with no net gain):**
+**Discard:**
 ```bash
 git reset --hard <last kept commit hash>
 ```
 
 ### 7. Log the result
 
-Append to `adwi/autoresearch-results.tsv`:
 ```bash
 printf '%s\t%d\t%d\t%d\t%d\t%d\t%d\t%s\t%s\n' \
-  "$(git rev-parse --short HEAD)" \
-  <nlu_pass> <nlu_total> <docs_pass> <docs_total> <sec_pass> <sec_total> \
-  "keep|discard|crash" "<description>" >> adwi/autoresearch-results.tsv
+    "$(git rev-parse --short HEAD)" \
+    <nlu_pass> <nlu_total> <docs_pass> <docs_total> <sec_pass> <sec_total> \
+    "keep|discard|crash" "<description>" >> adwi/autoresearch-results.tsv
 git add adwi/autoresearch-results.tsv
 git commit --amend --no-edit
 ```
 
-For discards, record the hash that was reverted away from, then reset to the last kept commit.
+For discards: record the attempted commit hash, then reset to the last kept commit. Append a discard row using the PRE-reset HEAD hash.
 
 ### 8. Repeat
 
 Go back to step 1. Do NOT stop. Do NOT ask if you should continue.
-If you run out of obvious improvements: re-read `NLU_REPAIR_BACKLOG.md`,
-look at the 13 failing `test_search_orchestrator.py` tests, or add more eval coverage.
+If you run out of ideas: re-read `NLU_REPAIR_BACKLOG.md`, look at the 13 failing `test_search_orchestrator.py` tests, or add more eval scenarios.
 
 ---
 
 ## Keep / Discard criteria
 
-**Keep if ALL of these hold:**
-- `python3 -m py_compile adwi/adwi_cli.py` → OK
-- NLU tests: pass count >= baseline (no regressions introduced)
-- validate-docs: pass count >= baseline (no doc check newly failing)
-- Security surface tests: pass count >= baseline
-- Non-search_orchestrator registry tests: pass count >= baseline
-- The change has a clear positive purpose (not noise)
+**Keep if ALL hold:**
+- Syntax check OK
+- NLU pass count ≥ baseline (no regressions)
+- validate-docs pass count ≥ baseline
+- Security surface tests pass count ≥ baseline
+- Registry tests pass count ≥ baseline (excl. test_search_orchestrator.py)
+- Change has a clear positive purpose
 
-**Discard if ANY of these:**
+**Discard if ANY:**
 - Syntax error in any Python file
 - Any previously-passing NLU test now fails
-- validate-docs FAIL count > baseline
+- validate-docs fail count > baseline
 - Security surface test regression
-- The experiment produced no improvement and no learning
+- The experiment produced no improvement
 
 **Crash if:**
-- A test suite fails to even run (import error, missing dependency, timeout)
-- Treat as discard and revert
+- A test suite fails to run (import error, missing dep, timeout)
+- Treat as discard, revert, continue
 
 ---
 
-## Safety rules (non-negotiable)
+## NLU sync rule
 
-1. **Never modify denylist files.** If your experiment requires touching a denylist file, skip it and choose a different experiment.
-2. **Never `git add -A`.** Always name the exact files you intend to commit.
-3. **Never push.** Branches accumulate locally; the operator reviews them in the morning.
-4. **Never restart services.** Adwi nightly, command-api, Telegram bridge, n8n, Obsidian bridge — all running live. Do not touch them.
-5. **Never read `.env` or `secrets/`.** You do not need them; if an experiment requires live API calls, skip it.
-6. **Sync NLU changes across all 3 files.** Any change to `_REGEX_INTENTS` or `_INTENT_SYSTEM` in `adwi_cli.py` must be mirrored to `adwi/logs/simeval/run_large_eval.py` and `adwi/logs/simeval/run_large_eval_p2.py` before the commit is kept. These two files are the only permitted writes under `adwi/logs/simeval/`. All other files in that directory are read-only.
-7. **One experiment = one commit.** Do not bundle unrelated changes.
-8. **If you are confused or stuck:** log a `crash` entry, `git reset --hard` to the last kept commit, and try a different experiment type.
+Any edit to `_REGEX_INTENTS` or `_INTENT_SYSTEM` in `adwi_cli.py` must be mirrored to:
+- `adwi/logs/simeval/run_large_eval.py`
+- `adwi/logs/simeval/run_large_eval_p2.py`
+
+These are the ONLY permitted writes under `adwi/logs/simeval/`. Do not touch any other file there.
 
 ---
 
-## Session timeout
+## Per-experiment timeout
 
 If a single experiment (edit + test cycle) exceeds **10 minutes wall clock**, treat it as a crash. Revert and move on.
 
@@ -249,8 +257,7 @@ If a single experiment (edit + test cycle) exceeds **10 minutes wall clock**, tr
 ## What a good overnight session looks like
 
 ```
-baseline → fix search_orchestrator test → +1 fix → +1 NLU scenario → +1 doc fix → ...
+baseline commit → fix search_orchestrator test → +1 NLU scenario → +1 doc fix → ...
 ```
 
-Morning: operator runs `adwi-autoresearch-morning` and sees which branches have improvements,
-reviews diffs, cherry-picks or merges what looks good.
+The operator runs `adwi-autoresearch-morning` to review diffs and cherry-pick improvements.

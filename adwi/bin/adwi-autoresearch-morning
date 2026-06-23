@@ -1,12 +1,14 @@
 #!/bin/bash
 # adwi-autoresearch-morning — overnight Adwi autoresearch results briefing
-# Shows what Claude improved while you slept.
 
-export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/MAC/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export HOME="/Users/MAC"
 
 WORKSPACE="$HOME/SuneelWorkSpace"
+WORKTREE_BASE="$WORKSPACE/.worktrees/adwi-autoresearch"
 LOG_DIR="$WORKSPACE/logs/autoresearch/adwi"
+
+DENYLIST_PATTERNS="adwi/config/\.env|^secrets/|adwi/infra/docker/n8n-data|^obsidian-vault/|adwi/memory\.db|adwi/knowledge\.db|adwi/training-data/|\.db$|\.sqlite$"
 
 echo "============================================="
 echo "  Adwi Autoresearch Morning Briefing"
@@ -14,35 +16,42 @@ echo "  $(date '+%A, %B %-d %Y')"
 echo "============================================="
 echo ""
 
-# Active sessions
+# Active screen sessions
 ACTIVE=$(screen -ls 2>/dev/null | grep "adwi-ar-" | awk '{print $1}' || true)
 if [ -n "$ACTIVE" ]; then
     echo "ACTIVE SESSIONS (still running):"
-    echo "$ACTIVE" | while read -r s; do
-        echo "  • $s  →  screen -r $s"
-    done
+    echo "$ACTIVE" | while read -r s; do echo "  • $s  →  screen -r $s"; done
     echo ""
 fi
 
-# Results from all adwi-autoresearch branches
+# Discover branches
 cd "$WORKSPACE"
-
 BRANCHES=$(git branch --list "adwi-autoresearch/*" 2>/dev/null | sed 's/^[* ]*//' | sort -r | head -10)
 
 if [ -z "$BRANCHES" ]; then
-    echo "No adwi-autoresearch branches found yet."
+    echo "No adwi-autoresearch branches found."
     echo "Run: adwi-autoresearch-night [N]"
+    # Still check for orphaned worktrees
+    if [ -d "$WORKTREE_BASE" ] && [ "$(ls -A "$WORKTREE_BASE" 2>/dev/null)" ]; then
+        echo ""
+        echo "Orphaned worktrees (no matching branch):"
+        ls "$WORKTREE_BASE" | while read -r t; do
+            echo "  $WORKTREE_BASE/$t"
+            echo "  Remove: git worktree remove '$WORKTREE_BASE/$t'"
+        done
+    fi
     exit 0
 fi
 
-DENYLIST_PATTERNS="adwi/config/.env|secrets/|adwi/infra/docker/n8n-data|obsidian-vault/|adwi/memory.db|adwi/knowledge.db|adwi/training-data/|\.db$|\.sqlite$"
-
 for BRANCH in $BRANCHES; do
     TAG="${BRANCH#adwi-autoresearch/}"
-    echo "──────────────────────────────────────────────"
-    echo "Branch: $BRANCH"
+    WORKTREE="$WORKTREE_BASE/${TAG}"
 
-    # Denylist path audit — warn if any commit on this branch touched restricted paths
+    echo "──────────────────────────────────────────────"
+    echo "Branch:   $BRANCH"
+    [ -d "$WORKTREE" ] && echo "Worktree: $WORKTREE" || echo "Worktree: (removed)"
+
+    # Denylist path audit
     DENYLIST_HITS=$(git diff --name-only "main...${BRANCH}" 2>/dev/null \
         | grep -E "$DENYLIST_PATTERNS" || true)
     if [ -n "$DENYLIST_HITS" ]; then
@@ -50,63 +59,53 @@ for BRANCH in $BRANCHES; do
         echo "$DENYLIST_HITS" | while read -r f; do printf "      %s\n" "$f"; done
     fi
 
+    # Results TSV
     TSV=$(git show "${BRANCH}:adwi/autoresearch-results.tsv" 2>/dev/null || true)
     if [ -z "$TSV" ]; then
-        echo "  No results yet (session may still be setting up)"
-        # Show recent commits on the branch anyway
+        echo "  No results yet (session may still be in orientation)"
         COMMITS=$(git log "main..${BRANCH}" --oneline 2>/dev/null | head -5)
         if [ -n "$COMMITS" ]; then
-            echo "  Recent commits:"
+            echo "  Commits:"
             echo "$COMMITS" | while read -r line; do echo "    $line"; done
         fi
-        continue
+    else
+        TOTAL=$(printf "%s\n" "$TSV"     | tail -n +2 | wc -l | tr -d ' ')
+        KEPT=$(printf "%s\n" "$TSV"      | tail -n +2 | awk -F'\t' '$8=="keep"'    | wc -l | tr -d ' ')
+        DISCARDED=$(printf "%s\n" "$TSV" | tail -n +2 | awk -F'\t' '$8=="discard"' | wc -l | tr -d ' ')
+        CRASHED=$(printf "%s\n" "$TSV"   | tail -n +2 | awk -F'\t' '$8=="crash"'   | wc -l | tr -d ' ')
+        BASE_NLU=$(printf "%s\n" "$TSV"  | tail -n +2 | awk -F'\t' 'NR==1 {print $2"/"$3}')
+        BEST_NLU=$(printf "%s\n" "$TSV"  | tail -n +2 | awk -F'\t' '$8=="keep" {best=$2; tot=$3} END {if(best) print best"/"tot}')
+
+        echo "  Experiments: $TOTAL total  ($KEPT kept / $DISCARDED discarded / $CRASHED crashed)"
+        [ -n "$BASE_NLU" ] && echo "  NLU tests:   $BASE_NLU (baseline) → ${BEST_NLU:-no kept experiments}"
+
+        COMMITS_AHEAD=$(git rev-list "main..${BRANCH}" --count 2>/dev/null || echo "?")
+        FILES_CHANGED=$(git diff --stat "main...${BRANCH}" 2>/dev/null | tail -1 || true)
+        echo "  Commits ahead of main: $COMMITS_AHEAD"
+        [ -n "$FILES_CHANGED" ] && echo "  Files changed: $FILES_CHANGED"
+
+        echo ""
+        echo "  Recent experiments:"
+        printf "%s\n" "$TSV" | tail -n +2 | tail -5 \
+            | while IFS=$'\t' read -r commit nlu_p nlu_t docs_p docs_t sec_p sec_t status desc; do
+                ICON="✓"; [ "$status" = "discard" ] && ICON="✗"; [ "$status" = "crash" ] && ICON="!"
+                printf "    %s [%s] NLU=%s/%s docs=%s/%s  %s\n" \
+                    "$ICON" "$commit" "$nlu_p" "$nlu_t" "$docs_p" "$docs_t" "$desc"
+              done
     fi
 
-    TOTAL=$(echo "$TSV"    | tail -n +2 | wc -l | tr -d ' ')
-    KEPT=$(echo "$TSV"     | tail -n +2 | awk -F'\t' '$8=="keep"'    | wc -l | tr -d ' ')
-    DISCARDED=$(echo "$TSV"| tail -n +2 | awk -F'\t' '$8=="discard"' | wc -l | tr -d ' ')
-    CRASHED=$(echo "$TSV"  | tail -n +2 | awk -F'\t' '$8=="crash"'   | wc -l | tr -d ' ')
-
-    # Baseline and best NLU pass counts (column 2 and 3)
-    BASE_NLU=$(echo "$TSV"  | tail -n +2 | awk -F'\t' 'NR==1 {print $2"/"$3}')
-    BEST_NLU=$(echo "$TSV"  | tail -n +2 | awk -F'\t' '$8=="keep" {best=$2; tot=$3} END {print best"/"tot}')
-    BEST_DESC=$(echo "$TSV" | tail -n +2 | awk -F'\t' '$8=="keep" {desc=$9} END {print desc}')
-
-    echo "  Experiments: $TOTAL total  ($KEPT kept / $DISCARDED discarded / $CRASHED crashed)"
-    if [ -n "$BASE_NLU" ] && [ -n "$BEST_NLU" ]; then
-        echo "  NLU tests:   $BASE_NLU (baseline)  →  $BEST_NLU (best kept)"
-        [ -n "$BEST_DESC" ] && echo "  Best change: $BEST_DESC"
-    fi
-
-    # Changes vs main
-    COMMITS_AHEAD=$(git rev-list "main..${BRANCH}" --count 2>/dev/null || echo "?")
-    FILES_CHANGED=$(git diff --stat "main...${BRANCH}" 2>/dev/null | tail -1 || true)
-    echo "  Commits ahead of main: $COMMITS_AHEAD"
-    [ -n "$FILES_CHANGED" ] && echo "  Files changed: $FILES_CHANGED"
-
-    echo ""
-    echo "  Recent experiments:"
-    echo "$TSV" | tail -n +2 | tail -5 | while IFS=$'\t' read -r commit nlu_p nlu_t docs_p docs_t sec_p sec_t status desc; do
-        ICON="✓"
-        [ "$status" = "discard" ] && ICON="✗"
-        [ "$status" = "crash" ]   && ICON="!"
-        printf "    %s [%s] NLU=%s/%s docs=%s/%s  %s\n" \
-            "$ICON" "$commit" "$nlu_p" "$nlu_t" "$docs_p" "$docs_t" "$desc"
-    done
-    echo ""
-
-    # Log file
     LOG_FILE="$LOG_DIR/${TAG}.log"
-    if [ -f "$LOG_FILE" ]; then
-        echo "  Log: $LOG_FILE  ($(wc -l < "$LOG_FILE") lines)"
+    [ -f "$LOG_FILE" ] && echo "  Log: $LOG_FILE  ($(wc -c < "$LOG_FILE" | tr -d ' ') bytes)"
+
+    echo ""
+    echo "  Cleanup:"
+    if [ -d "$WORKTREE" ]; then
+        echo "    git worktree remove '$WORKTREE'"
     fi
+    echo "    git branch -d '$BRANCH'"
     echo ""
 done
 
 echo "============================================="
-echo "To review a branch diff:"
-echo "  git diff main...adwi-autoresearch/<tag>"
-echo "To cherry-pick a good commit to main:"
-echo "  git cherry-pick <commit-hash>"
-echo "To delete a branch after review:"
-echo "  git branch -d adwi-autoresearch/<tag>"
+echo "Review diff:       git diff main...adwi-autoresearch/<tag>"
+echo "Cherry-pick:       git cherry-pick <hash>"
