@@ -25,3 +25,4 @@ c6bd063	573	573	25	25	17	17	keep	CYCLE-7 test coverage (19 tests) + FIX-TR-001 t
 8c1120e	591	591	25	25	17	17	keep	Coverage for 7 uncovered intents: cleanup/duplicates/daily_improve/what_next/youtube/memory_scan/memory_stats (591 total)
 3df3d6a	612	612	25	25	17	17	keep	All remaining 10 zero-coverage intents now have tests (612 total — full coverage)
 7cfb84d	614	614	25	25	17	17	keep	FIX-DI-001: daily_improve stem patterns fixed (improv\w*) — eval scenarios now match (614 tests)
+69c35a1	616	616	25	25	17	17	keep	FIX-DI-002: route improvement continuation loop/experiment phrasing
