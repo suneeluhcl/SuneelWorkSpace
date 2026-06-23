@@ -805,6 +805,9 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(run doctor|doctor mode)\b", re.I), "doctor"),
     (re.compile(r"\b(full|deep|thorough|complete)\b.{0,15}\b(health.?check|diagnostic)\b", re.I), "doctor"),
     (re.compile(r"\brun\b.{0,15}\b(full\s+)?(diagnostic|health.?check)\b", re.I), "doctor"),
+    # FIX-DOC-001: "self-diagnostic", "run self-check", "comprehensive system check" → doctor
+    (re.compile(r"\b(?:run\s+)?self.?(?:diagnos\w*|check)\b", re.I), "doctor"),
+    (re.compile(r"\bcomprehensive\b.{0,20}\b(?:system\s+)?(?:check|diagnostic|health)\b", re.I), "doctor"),
 
     # ── Self-heal — BEFORE status (Bug 3: service-error superset fix) ────────────
     # Pattern A: verb-first  — "fix/repair/broken/not working ... service"
@@ -1113,6 +1116,9 @@ _REGEX_INTENTS = [
     (re.compile(r"(make|set|change|convert).{0,20}(git.?repo|repo|repository).{0,20}(public|private|open source)", re.I), "github_visibility"),
     (re.compile(r"(make|set).{0,15}(public|private).{0,15}(repo|repository|github)", re.I), "github_visibility"),
     (re.compile(r"(repo|repository).{0,20}(visibility|public|private)", re.I), "github_visibility"),
+    # FIX-GV-001: "toggle repo visibility", "change github visibility" → github_visibility
+    (re.compile(r"\b(?:toggle|flip|switch)\b.{0,20}\b(?:repo|repository|github)\b.{0,20}\bvisibility\b", re.I), "github_visibility"),
+    (re.compile(r"\bchange\b.{0,15}\bgithub\b.{0,20}\bvisibility\b", re.I), "github_visibility"),
 
     # ── GitHub connectivity — BEFORE git_status ───────────────────────────────────
     (re.compile(r"(is|are).{0,20}(github|git hub).{0,20}(connected|linked|set up|configured|working|authenticated|logged in)", re.I), "github_connected"),
@@ -1175,6 +1181,8 @@ _REGEX_INTENTS = [
     # CYCLE-4: "generate code for X" → run_code; bare "run" is ambiguous but context-strong
     (re.compile(r"\bgenerate\s+(?:a\s+)?(?:python\s+)?code\b.{0,30}\b(?:for|to|that)\b", re.I), "run_code"),
     (re.compile(r"^run\s*$", re.I), "run_code"),
+    # FIX-RC-002: "run/try/execute this snippet/function/cell/block" → run_code
+    (re.compile(r"\b(?:run|execute|try|test)\b.{0,15}\b(?:this|the)\b.{0,15}\b(?:snippet|function|block|cell|chunk|method)\b", re.I), "run_code"),
 
     # ── Benchmark ────────────────────────────────────────────────────────────────
     # FIX-S3-001: "how fast is llama3.1:8b", typo "bechmark", tokens/sec variants

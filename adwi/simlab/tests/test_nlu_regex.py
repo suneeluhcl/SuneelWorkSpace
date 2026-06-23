@@ -2869,5 +2869,59 @@ class TestFIXROUTE001RouteDebug(unittest.TestCase):
         self.assertEqual(_classify("what intent would that become"), "route")
 
 
+class TestFIXRC002RunCodeSnippet(unittest.TestCase):
+    """FIX-RC-002: 'run/execute/try/test this snippet/function/block/cell' → run_code."""
+
+    def test_run_this_snippet(self):
+        self.assertEqual(_classify("run this snippet"), "run_code")
+
+    def test_execute_this_function(self):
+        self.assertEqual(_classify("execute this function"), "run_code")
+
+    def test_try_this_block(self):
+        self.assertEqual(_classify("try this block"), "run_code")
+
+    def test_test_this_method(self):
+        self.assertEqual(_classify("test this method"), "run_code")
+
+    def test_run_this_cell(self):
+        self.assertEqual(_classify("run this cell"), "run_code")
+
+
+class TestFIXDOC001SelfDiagnostic(unittest.TestCase):
+    """FIX-DOC-001: 'self-diagnostic', 'run self-check', 'comprehensive system check' → doctor."""
+
+    def test_run_self_diagnostic(self):
+        self.assertEqual(_classify("run self-diagnostic"), "doctor")
+
+    def test_self_check(self):
+        self.assertEqual(_classify("self-check"), "doctor")
+
+    def test_run_self_check(self):
+        self.assertEqual(_classify("run self-check"), "doctor")
+
+    def test_comprehensive_system_check(self):
+        self.assertEqual(_classify("comprehensive system check"), "doctor")
+
+    def test_comprehensive_diagnostic(self):
+        self.assertEqual(_classify("comprehensive diagnostic"), "doctor")
+
+
+class TestFIXGV001GithubVisibility(unittest.TestCase):
+    """FIX-GV-001: 'toggle repo visibility', 'change github visibility' → github_visibility."""
+
+    def test_toggle_repo_visibility(self):
+        self.assertEqual(_classify("toggle repo visibility"), "github_visibility")
+
+    def test_flip_repository_visibility(self):
+        self.assertEqual(_classify("flip repository visibility"), "github_visibility")
+
+    def test_change_github_visibility(self):
+        self.assertEqual(_classify("change github visibility"), "github_visibility")
+
+    def test_switch_github_visibility(self):
+        self.assertEqual(_classify("switch github repo visibility"), "github_visibility")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
