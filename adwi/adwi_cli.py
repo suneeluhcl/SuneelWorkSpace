@@ -678,6 +678,10 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(?:disk|drive|ssd|hdd|storage)\b.{0,20}\b(?:filling|fill\s+up|nearly\s+full|getting\s+full)\b", re.I), "disk_usage"),
     (re.compile(r"\bfilling\s+up\b.{0,20}\b(?:disk|drive|ssd|storage)\b", re.I), "disk_usage"),
     (re.compile(r"\bhow\s+many\b.{0,20}\b(?:GB|TB|MB|gigabytes?|terabytes?)\b.{0,30}\b(?:left|remaining|available|free)\b", re.I), "disk_usage"),
+    # FIX-DU-007: "almost/nearly out of space", "low on disk/space", "not much space" forms
+    (re.compile(r"\b(?:almost|nearly)\b.{0,10}\bout\s+of\b.{0,15}\b(?:space|storage|room)\b", re.I), "disk_usage"),
+    (re.compile(r"\blow\s+on\b.{0,15}\b(?:space|disk|storage)\b", re.I), "disk_usage"),
+    (re.compile(r"\bnot\s+much\b.{0,10}\b(?:space|storage)\b", re.I), "disk_usage"),
     (re.compile(r"(free up|clean up).{0,20}(space|disk|storage|room)", re.I), "cleanup"),
 
     # FIX-SPRINT-004: "purge old X", "remove leftover X" → cleanup BEFORE old_files steals them

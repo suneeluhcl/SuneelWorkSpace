@@ -3544,5 +3544,33 @@ class TestFIXGFB001ShowMeCodeFalsePositive(unittest.TestCase):
         self.assertEqual(_classify("what rule would you make for spam"), "gmail_filter_build")
 
 
+class TestFIXDU007AlmostOutOfSpace(unittest.TestCase):
+    """FIX-DU-007: 'almost out of space', 'low on disk/space', 'not much space' → disk_usage."""
+
+    def test_almost_out_of_space(self):
+        self.assertEqual(_classify("almost out of space"), "disk_usage")
+
+    def test_almost_out_of_disk_space(self):
+        self.assertEqual(_classify("almost out of disk space"), "disk_usage")
+
+    def test_nearly_out_of_storage(self):
+        self.assertEqual(_classify("nearly out of storage"), "disk_usage")
+
+    def test_low_on_space(self):
+        self.assertEqual(_classify("low on space"), "disk_usage")
+
+    def test_low_on_disk(self):
+        self.assertEqual(_classify("low on disk"), "disk_usage")
+
+    def test_low_on_storage(self):
+        self.assertEqual(_classify("low on storage"), "disk_usage")
+
+    def test_not_much_space(self):
+        self.assertEqual(_classify("not much space left"), "disk_usage")
+
+    def test_not_almost_out_of_time(self):
+        self.assertNotEqual(_classify("almost out of time"), "disk_usage")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
