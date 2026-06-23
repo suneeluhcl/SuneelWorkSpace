@@ -16,3 +16,4 @@ e48af95	512	512	25	25	17	17	keep	FIX-OBS-003/META-002/CHAT-002: bare notes→obs
 dd6dc1e	515	515	25	25	17	17	keep	FIX-BENCH-002: benchmark patterns for 'test speed of adwi', 'perf test ollama'
 f485b43	522	522	25	25	17	17	keep	FIX-PATCH-003/INSPECT-001: patch_adwi 'apply patches to adwi'/'adwi improve itself', inspect_code module/source patterns
 ff10395	528	528	25	25	17	17	keep	FIX-CHAT-003: anchored conversational continuation guards → chat (and then what, tell me more, elaborate, what do you mean)
+87cfa4d	531	531	25	25	17	17	keep	FIX-DU-005: free space remaining + storage remaining → disk_usage
