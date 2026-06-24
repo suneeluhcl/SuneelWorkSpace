@@ -640,6 +640,8 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(top|bulk|biggest|heaviest)\b.{0,20}\bspace\s+(consumer|user|hog)s?\b", re.I), "large_files"),
     (re.compile(r"\bfiles?\b.{0,30}(take\s+up|taking\s+up|using)\b.{0,20}(the\s+)?most\s+(room|space|storage)\b", re.I), "large_files"),
     (re.compile(r"\b(which|what)\b.{0,10}files?\b.{0,30}(use|take|using|taking).{0,10}(the\s+)?most\s+(space|room)\b", re.I), "large_files"),
+    (re.compile(r"\b(?:which|what|show|list|find)\b.{0,30}\b(?:videos?|downloads?|archives?|folders?|files?)\b.{0,30}\b(?:taking|using|eating|consuming)\b.{0,20}\b(?:most|lots?\s+of|too\s+much)\b.{0,10}\b(?:disk\s+)?space\b", re.I), "large_files"),
+    (re.compile(r"\b(?:largest|biggest|huge|large)\b.{0,25}\b(?:videos?|downloads?|archives?|folders?|files?)\b.{0,30}\b(?:on|in)\b.{0,20}\b(?:my\s+)?(?:machine|computer|mac|downloads?|disk|drive)\b", re.I), "large_files"),
     (re.compile(r"\bfiles?\b.{0,20}exceed(ing)?\b.{0,10}\d+\s*(gb|mb|gigabyte|megabyte)\b", re.I), "large_files"),
     # FIX-REL-001: "size hogs on my disk" — disk/size hog phrasing
     (re.compile(r"\b(size|disk|space)\s*hogs?\b", re.I), "large_files"),
@@ -712,6 +714,7 @@ _REGEX_INTENTS = [
     (re.compile(r"\bfiles?\b.{0,20}\b(?:neglect(?:ed)?|forgotten|never\s+open(?:ed)?)\b", re.I), "old_files"),
     (re.compile(r"\bfiles?\b.{0,30}\bnever\s+(?:open(?:ed)?|used|touched|accessed)\b", re.I), "old_files"),
     (re.compile(r"\bhaven.t.{0,10}(used|opened|accessed|touched)\b.{0,30}(this\s+year|in\s+(a|one|two|several)\s+year)\b", re.I), "old_files"),
+    (re.compile(r"\b(?:show|find|list)\b.{0,25}\b(?:untouched|unopened|stale|old)\b.{0,25}\b(?:pdfs?|documents?|files?)\b.{0,30}\b(?:last\s+year|this\s+year|in\s+\w+\s+months?|in\s+\w+\s+years?)\b", re.I), "old_files"),
     # FIX-REL-002: "files untouched for months" — untouched keyword
     (re.compile(r"\buntouched\b.{0,30}(for|in)\b.{0,20}(months?|years?|weeks?)", re.I), "old_files"),
     (re.compile(r"\bfiles?\b.{0,20}\buntouched\b", re.I), "old_files"),
@@ -813,6 +816,8 @@ _REGEX_INTENTS = [
     (re.compile(r"\bfind\b.{0,30}\bscripts?\b", re.I), "file_search"),
     # FIX-REL-005: "find all dockerfile variants" — extensionless canonical file names
     (re.compile(r"\bfind\b.{0,20}(all\s+|every\s+)?(dockerfile|makefile|vagrantfile|jenkinsfile|procfile|requirements)\b", re.I), "file_search"),
+    (re.compile(r"\b(?:find|locate|search)\b.{0,30}\b(?:my\s+)?(?:files?|documents?|folder|drive)\b.{0,40}\b(?:invoice|receipt|statement|warranty|contract|pdf|document)\b", re.I), "file_search"),
+    (re.compile(r"\b(?:find|locate|where\s+is|show\s+me(?!\s+all\b))\b.{0,40}\b(?:invoice|receipt|statement|warranty|contract|pdf|document)\b", re.I), "file_search"),
     # FIX-REL-010: "locate requirements.txt", "locate yaml configs", "locate Dockerfile"
     (re.compile(r"\blocate\b.{0,50}\.(py|js|ts|yml|yaml|json|txt|sh|md|go|rb|java|sql|toml|cfg|ini|xml|csv|env)\b", re.I), "file_search"),
     (re.compile(r"\blocate\b.{0,30}\b(files?|scripts?|configs?|folders?|dirs?)\b", re.I), "file_search"),
@@ -947,6 +952,7 @@ _REGEX_INTENTS = [
     (re.compile(r"(what|what.s).{0,20}(next|build|improve|add|create).{0,20}(adwi|setup|ai|local)", re.I), "what_next"),
     (re.compile(r"(suggest|recommend).{0,20}(next|improvement|feature|capability)", re.I), "what_next"),
     # NHR-007: broader patterns — "adwi improvement ideas", "next feature for adwi"
+    (re.compile(r"\brun\b.{0,20}\b(?:the\s+)?(?:adwi\s+)?(?:improvement|self.?improvement|improve\w*)\b.{0,20}\b(?:cycle|loop|experiment|routine)\b.{0,20}\b(?:overnight|tonight|daily)\b", re.I), "daily_improve"),
     (re.compile(r"\b(adwi|local.?ai|my.?ai).{0,30}(improvement|enhancement|feature|idea|roadmap)\b", re.I), "what_next"),
     (re.compile(r"\bnext.{0,20}(feature|capability|improvement).{0,20}(adwi|ai|local|stack)\b", re.I), "what_next"),
 
@@ -985,6 +991,7 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(daily.?improv\w*|daily.?enhanc\w*|daily.?routine)\b", re.I), "daily_improve"),
     (re.compile(r"\brun.{0,10}daily.{0,10}(improve\w*|maintenance|self.?improve\w*)\b", re.I), "daily_improve"),
     (re.compile(r"\b(continue|resume|keep|run)\b.{0,20}\b(adwi\s+)?(improvement|self.?improvement|improve\w*)\b.{0,20}\b(loop|cycle|experiment)\b", re.I), "daily_improve"),
+    (re.compile(r"\brun\b.{0,20}\b(adwi\s+)?(improvement|self.?improvement|improve\w*)\b.{0,20}\b(?:cycle|loop|experiment|routine)\b.{0,20}\b(?:overnight|tonight|daily)\b", re.I), "daily_improve"),
     # FIX-DI-003: "do/trigger/kick off daily maintenance/improvement/routine" → daily_improve
     (re.compile(r"\b(?:do|trigger|kick\s+off|start)\b.{0,15}\bdaily\b.{0,20}\b(?:maintenance|improve\w*|enhance\w*|routine|loop)\b", re.I), "daily_improve"),
 
@@ -1023,6 +1030,7 @@ _REGEX_INTENTS = [
     # research beats web_search for "research latest/recent X"
     (re.compile(r"\bresearch\b.{0,20}\b(latest|recent|current|new)\b.{0,30}\b(changes?|updates?|protocol|spec|release|version)", re.I), "research"),
     (re.compile(r"\bresearch\b.{0,10}\b(MCP|LLM|AI|ML|API|protocol|framework)\b", re.I), "research"),
+    (re.compile(r"\b(?:investigate|look\s+into|research)\b.{0,30}\b(?:latest|recent|current|new)\b.{0,30}\b(?:changes?|updates?|protocol|spec|release|version|frameworks?)\b", re.I), "research"),
     (re.compile(r"\b(deep.?dive|deep.?research|research.?brief|cited\s+report|research\s+report)\b", re.I), "research"),
     # FIX-RES-001: expand window {0,15}→{0,25} — "investigate this topic deeply for me" has 19 chars between verb and "for me"
     (re.compile(r"\bresearch\b.{0,40}\b(?:latest|recent|current|new|updated)\b.{0,60}\b(?:benchmarks?|docs?|documentation|release\s+notes?|changes?|updates?|versions?|specs?|auth|protocols?)\b", re.I), "research"),
@@ -1056,6 +1064,9 @@ _REGEX_INTENTS = [
     # FIX-WEB-001: "look up X guide/version/performance" patterns — BEFORE model_status
     (re.compile(r"\blook\s+up\b.{0,40}(version|guide|tutorial|how[\s-]to|docs?|documentation|performance|benchmark|comparison|ranking|list)\b", re.I), "web_search"),
     (re.compile(r"\bfind\b.{0,20}(the\s+)?(current|latest)\b.{0,20}\bversion\b.{0,30}\b(llama|ollama|qwen|mistral|phi|gemma|python|node)\b", re.I), "web_search"),
+    (re.compile(r"\bsearch\b.{0,20}\b(?:the\s+)?(?:internet|web|online)\b.{0,20}\bfor\b.{0,40}\b(?:version|release\s+notes?|changelog|updates?|documentation|benchmark|comparison)\b", re.I), "web_search"),
+    (re.compile(r"\b(?:check|what\s+is|search)\b.{0,30}\b(?:latest|current|recent|new)\b.{0,30}\b(?:version|release\s+notes?|changelog|updates?)\b.{0,40}\b(?:online|on\s+the\s+web|internet|web)\b", re.I), "web_search"),
+    (re.compile(r"\blook\s+online\b.{0,40}\b(?:version|release\s+notes?|changelog|documentation|performance|benchmark|comparison)\b", re.I), "web_search"),
     # FIX-WEB-002: "search for the latest X" / "search for information about X"
     (re.compile(r"\bsearch\s+(for\s+)?(the\s+)?(latest|current|recent|newest)\b", re.I), "web_search"),
     (re.compile(r"\bsearch\s+for\b.{0,30}\b(information|info|details?|news|updates?|tutorial|guide|docs?)\b", re.I), "web_search"),
@@ -1342,6 +1353,8 @@ _REGEX_INTENTS = [
     # catches "generate_image function in adwi" — the _ + "function" + "in adwi" signal code lookup
     (re.compile(r"\b[a-z]+_[a-z_]+\b.{0,20}\b(?:function|handler|method|command)\b.{0,20}\bin\s+adwi\b", re.I), "inspect_code"),
     (re.compile(r"\b(?:show|find|where\s+is)\b.{0,15}\bthe\b.{0,15}\b[a-z]+_[a-z_]+\b.{0,10}\b(?:function|handler|method)\b", re.I), "inspect_code"),
+    (re.compile(r"\b(?:search|look\s+through|scan)\b.{0,20}\b(?:the\s+)?(?:codebase|repo|repository|source)\b.{0,30}\b(?:for|to\s+find)\b.{0,30}\b(?:handler|route|endpoint|function|method|class|auth|login)\b", re.I), "inspect_code"),
+    (re.compile(r"\bwhere\b.{0,15}\b(?:is|are)\b.{0,30}\b(?:route|endpoint|handler|function|method|class)\b.{0,20}\b(?:defined|implemented|declared|wired)\b", re.I), "inspect_code"),
     # ── Image generation ─────────────────────────────────────────────────────────
     # CYCLE-5: bare "image" command
     (re.compile(r"^image\s*$", re.I), "generate_image"),
@@ -1732,6 +1745,7 @@ _REGEX_INTENTS = [
     (re.compile(r"\b(gm[i]?al|emial)\b", re.I), "gmail"),
     (re.compile(r"(check|show|read|open|get|fetch|look\s+at|list).{0,20}(my )?(email|gmail|inbox|mail|messages?|emial|emil)\b", re.I), "gmail"),
     (re.compile(r"\bhow\s+many\b.{0,20}\b(?:unread|emails?|messages?)\b", re.I), "gmail"),
+    (re.compile(r"\b(?:search|find|look\s+for)\b.{0,20}\b(?:gmail|mail|email)\b.{0,40}\b(?:receipt|invoice|confirmation|itinerary|statement|order|tracking)\b", re.I), "gmail"),
     (re.compile(r"\bshow\b.{0,15}\bme\b.{0,10}\bunread\b", re.I), "gmail"),
     (re.compile(r"(any (new|unread) )?emails?\b", re.I), "gmail"),
     (re.compile(r"gmail\b", re.I), "gmail"),
@@ -1791,6 +1805,7 @@ _REGEX_INTENTS = [
     (re.compile(r"memory\s+(statistics|metrics|size|count|entries|records)\b", re.I), "memory_stats"),
     # FIX-MEMST-001: "how many X in memory" / "entries in memory"
     (re.compile(r"\bhow\s+many\b.{0,20}\b(things?|entries?|items?|records?)\b.{0,20}\bin\s+(your\s+|adwi.s\s+)?memory\b", re.I), "memory_stats"),
+    (re.compile(r"\b(?:show|list|print|get)\b.{0,20}\b(?:adwi\s+|your\s+)?memory\b.{0,20}\b(?:counts?|stats?|statistics|metrics|size|entries|records)\b", re.I), "memory_stats"),
     (re.compile(r"\b(entries?|items?|records?)\s+in\s+(your\s+|my\s+|adwi.s\s+)?memory\b", re.I), "memory_stats"),
     (re.compile(r"\bmemry\s+(stats?|status|count|size)\b", re.I), "memory_stats"),
     # FIX-MS-002: "memory usage stats/statistics/metrics" → memory_stats ("usage" separates memory+stats)

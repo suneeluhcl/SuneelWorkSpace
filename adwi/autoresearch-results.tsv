@@ -63,3 +63,6 @@ cbab981	1015	1016	25	25	17	17	keep	FIX-ORG-003/YT-002/FR-002/MS-003/UC-002/WN-00
 e28c563	1025	1026	25	25	17	17	keep	FIX-STA-003/CAP-002/BEN-002/WN-003: adwi-status, what-can-adwi-do, run-speed-test, what-should-I-focus-on
 c849d19	1033	1034	25	25	17	17	keep	FIX-MC-004/MR-003/004/005/GS-002: dedup-memories, write/think-about, notes-on, git-pull
 a7f6efb	1045	1046	25	25	17	17	keep	FIX-AUS-002/FL-002/SH-003/RES-005/BU-004/FS-001/FE-007: adwi-updates-guard, list-all-files, self-repair, investigate-research, snapshot, where-is-file, investigate-error
+acd38a4	921	921	24	25	17	17	keep	FIX-P1-ONR-001: document lookup, web release lookup, overnight improve, research/memory variants (921 tests; docs drift 24/25)
+9fdc873	925	925	24	25	17	17	keep	FIX-P1-ONR-002: old-file, large-file, and Gmail receipt search variants (925 tests; docs drift 24/25)
+9b581bd	927	927	24	25	17	17	keep	FIX-P1-ONR-003: inspect-code codebase and route-definition variants (927 tests; docs drift 24/25)

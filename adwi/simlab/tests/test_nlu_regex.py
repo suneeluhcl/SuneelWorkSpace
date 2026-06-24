@@ -4249,6 +4249,105 @@ class TestFIXAUS002(unittest.TestCase):
 
     def test_no_fp_gmail_updates(self):
         self.assertEqual(_classify("check my gmail updates"), "gmail_list_category")
+class TestPhase1OvernightCandidateRouting(unittest.TestCase):
+    """Phase-1 autoresearch coverage for common missed NLU phrasings."""
+
+    def test_find_invoice_document_routes_to_file_search(self):
+        self.assertEqual(_classify("find the invoice from May"), "file_search")
+        self.assertEqual(
+            _classify("search my files for the contractor invoice"),
+            "file_search",
+        )
+
+    def test_find_statement_and_warranty_documents_route_to_file_search(self):
+        self.assertEqual(
+            _classify("show me the bank statement from march"),
+            "file_search",
+        )
+        self.assertEqual(_classify("where is the warranty document"), "file_search")
+
+    def test_current_release_lookup_routes_to_web_search(self):
+        self.assertEqual(
+            _classify("check the latest react release notes online"),
+            "web_search",
+        )
+        self.assertEqual(
+            _classify("what is the current version of python on the web"),
+            "web_search",
+        )
+
+    def test_online_benchmark_lookup_routes_to_web_search(self):
+        self.assertEqual(
+            _classify("search the internet for ollama changelog"),
+            "web_search",
+        )
+        self.assertEqual(
+            _classify("look online for node performance benchmark"),
+            "web_search",
+        )
+
+    def test_overnight_improvement_cycle_routes_to_daily_improve(self):
+        self.assertEqual(
+            _classify("please run the adwi improvement cycle overnight"),
+            "daily_improve",
+        )
+
+    def test_recent_research_requests_route_to_research(self):
+        self.assertEqual(
+            _classify("investigate the latest MCP spec changes for me"),
+            "research",
+        )
+        self.assertEqual(
+            _classify("look into recent API protocol updates for me"),
+            "research",
+        )
+
+    def test_memory_count_request_routes_to_memory_stats(self):
+        self.assertEqual(_classify("show adwi memory counts"), "memory_stats")
+
+
+class TestPhase1OvernightFileAndMailRouting(unittest.TestCase):
+    """Phase-1 autoresearch coverage for file hygiene and mail search variants."""
+
+    def test_untouched_pdf_requests_route_to_old_files(self):
+        self.assertEqual(
+            _classify("show untouched pdfs from last year"),
+            "old_files",
+        )
+
+    def test_video_space_requests_route_to_large_files(self):
+        self.assertEqual(
+            _classify("which videos are taking the most disk space"),
+            "large_files",
+        )
+
+    def test_largest_downloads_requests_route_to_large_files(self):
+        self.assertEqual(
+            _classify("largest downloads on my machine"),
+            "large_files",
+        )
+
+    def test_mail_receipt_search_routes_to_gmail(self):
+        self.assertEqual(
+            _classify("search mail for the Delta receipt"),
+            "gmail",
+        )
+
+
+class TestPhase1OvernightInspectCodeRouting(unittest.TestCase):
+    """Phase-1 autoresearch coverage for codebase inspection phrasing."""
+
+    def test_search_codebase_for_handler_routes_to_inspect_code(self):
+        self.assertEqual(
+            _classify("search the codebase for the auth handler"),
+            "inspect_code",
+        )
+
+    def test_where_route_defined_routes_to_inspect_code(self):
+        self.assertEqual(
+            _classify("where is the route defined for login"),
+            "inspect_code",
+        )
 
 
 if __name__ == "__main__":
