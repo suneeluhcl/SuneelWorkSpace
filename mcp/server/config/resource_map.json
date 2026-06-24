@@ -28,6 +28,8 @@
     "workspace://routing/patterns":   { "file": "orchestrator/models/routing_patterns.json",                  "label": "Learned routing patterns" },
     "workspace://routing/profiles":   { "file": "orchestrator/router/agent_profiles.json",                    "label": "Agent capability profiles" },
     "workspace://routing/logs":       { "file": "orchestrator/router/routing_logs.md",                        "label": "Routing decision logs" },
+    "workspace://gstack/skills":      { "file": "~/.claude/skills/gstack/README.md",                           "label": "gstack skills list" },
+    "workspace://gstack/policy":      { "file": "orchestrator/router/gstack_policy.json",                      "label": "gstack task-to-skill policy" },
     "workspace://goals/active":       { "file": "goal-engine/goals/active_goals.md",                           "label": "Active goals" },
     "workspace://goals/status":       { "file": "goal-engine/state/goal_state.json",                           "label": "Goal engine state" },
     "workspace://goals/graph":        { "file": "goal-engine/graph/task_graph.json",                           "label": "Task graph" },

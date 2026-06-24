@@ -1037,6 +1037,157 @@ def routing_context() -> str:
     )
 
 # ---------------------------------------------------------------------------
+# GSTACK — resources, tools, prompts
+# ---------------------------------------------------------------------------
+
+GSTACK_PATH = pathlib.Path.home() / ".claude" / "skills" / "gstack"
+GSTACK_POLICY = WORKSPACE / "orchestrator" / "router" / "gstack_policy.json"
+
+def _gstack_skill_list() -> list[dict]:
+    """Return list of available gstack skills with descriptions."""
+    skills = []
+    if not GSTACK_PATH.exists():
+        return skills
+    for entry in sorted(GSTACK_PATH.iterdir()):
+        skill_md = entry / "SKILL.md"
+        if skill_md.exists() and entry.is_dir():
+            try:
+                header = skill_md.read_text(errors="replace")[:400]
+                desc = ""
+                for line in header.splitlines():
+                    if line.startswith("description:"):
+                        desc = line.split(":", 1)[1].strip()
+                        break
+                skills.append({"skill": f"/{entry.name}", "description": desc, "path": str(skill_md)})
+            except Exception:
+                pass
+    return skills
+
+@mcp.resource("workspace://gstack/skills")
+def res_gstack_skills() -> str:
+    """Available gstack skills and their descriptions."""
+    skills = _gstack_skill_list()
+    if not skills:
+        return "[gstack not installed — run: git clone https://github.com/garrytan/gstack ~/.claude/skills/gstack]"
+    lines = ["# Available gstack Skills\n"]
+    for s in skills:
+        lines.append(f"- **{s['skill']}**: {s['description']}")
+    return "\n".join(lines)
+
+@mcp.resource("workspace://gstack/policy")
+def res_gstack_policy() -> str:
+    """gstack skill selection policy — maps task types to recommended skills."""
+    if not GSTACK_POLICY.exists():
+        return "[gstack_policy.json not found]"
+    return GSTACK_POLICY.read_text(errors="replace")[:MAX_BYTES]
+
+@mcp.tool()
+def get_gstack_recommendation(task: str) -> str:
+    """Get the recommended gstack skill for a task description.
+
+    Runs route-task and extracts the gstack_skill field from the decision.
+    Returns the skill name, hint, and how to invoke it.
+
+    Args:
+        task: Task description to classify
+    """
+    try:
+        result = subprocess.run(
+            [str(WORKSPACE / "orchestrator" / "scripts" / "route-task"), "--json", "--dry-run", task],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(result.stdout)
+        skill = data.get("gstack_skill")
+        hint  = data.get("gstack_hint")
+        agent = data.get("agent", "claude")
+        ttype = data.get("task_type", "unknown")
+        if skill:
+            return (
+                f"Task type: {ttype}\n"
+                f"Agent: {agent}\n"
+                f"Recommended gstack skill: {skill}\n"
+                f"Why: {hint}\n"
+                f"How to use: Open Claude Code and type `{skill}` at the start of your session."
+            )
+        else:
+            return (
+                f"Task type: {ttype}\n"
+                f"Agent: {agent}\n"
+                f"No specific gstack skill needed — use standard reasoning."
+            )
+    except Exception as e:
+        return f"[Error: {e}]"
+
+@mcp.tool()
+def list_available_gstack_skills() -> str:
+    """List all gstack skills installed at ~/.claude/skills/gstack/ with descriptions."""
+    skills = _gstack_skill_list()
+    if not skills:
+        return "[gstack not installed]"
+    lines = [f"gstack skills ({len(skills)} total, at {GSTACK_PATH}):\n"]
+    for s in skills:
+        lines.append(f"  {s['skill']:25s}  {s['description']}")
+    lines.append("\nKey skills for this workspace:")
+    key = ["/investigate", "/cso", "/review", "/office-hours", "/plan-eng-review", "/ship", "/careful"]
+    for k in key:
+        match = next((s for s in skills if s["skill"] == k), None)
+        if match:
+            lines.append(f"  {k:25s}  {match['description']}")
+    return "\n".join(lines)
+
+@mcp.tool()
+def suggest_cognitive_mode(task: str) -> str:
+    """Suggest the best cognitive mode (gstack skill + agent) for a task.
+
+    Returns a structured recommendation covering: agent, gstack skill,
+    how to think about the task, and the expected output shape.
+
+    Args:
+        task: Task description
+    """
+    try:
+        result = subprocess.run(
+            [str(WORKSPACE / "orchestrator" / "scripts" / "route-task"), "--json", "--dry-run", task],
+            capture_output=True, text=True, timeout=15
+        )
+        data = json.loads(result.stdout)
+    except Exception as e:
+        return f"[Error classifying task: {e}]"
+
+    skill = data.get("gstack_skill")
+    hint  = data.get("gstack_hint")
+    agent = data.get("agent", "claude")
+    ttype = data.get("task_type", "unknown")
+    conf  = data.get("confidence", 0.0)
+
+    skill_modes = {
+        "/investigate": "Systematic 5-phase debugging: Observe → Hypothesize → Test → Fix → Verify",
+        "/cso": "Security threat model: STRIDE + OWASP Top 10 sweep, trust boundary analysis",
+        "/review": "Pre-commit audit: auto-fix obvious bugs, flag production risks, check error paths",
+        "/office-hours": "10-star product challenge: interrogate scope, find the real problem, tighten the plan",
+        "/plan-eng-review": "Architecture lock: define interfaces, scope, dependencies, risks before coding",
+        "/ship": "Release sequence: tests → diff review → version bump → CHANGELOG → PR",
+        "/careful": "Safety preview: show commands before running, confirm destructive steps",
+        "/qa": "Browser QA: navigate flows, screenshot, file bugs automatically",
+    }
+
+    lines = [
+        f"Cognitive Mode Recommendation",
+        f"  Task: {task[:80]}",
+        f"  Classified as: {ttype} (confidence: {conf:.0%})",
+        f"  Agent: {agent.upper()}",
+    ]
+    if skill:
+        lines += [
+            f"  gstack skill: {skill}",
+            f"  Mode: {skill_modes.get(skill, hint or '')}",
+            f"  Trigger: type `{skill}` in Claude Code at session start",
+        ]
+    else:
+        lines.append("  Mode: Standard reasoning — no specific gstack skill needed")
+    return "\n".join(lines)
+
+# ---------------------------------------------------------------------------
 # GOAL ENGINE — resources, tools, prompts
 # ---------------------------------------------------------------------------
 

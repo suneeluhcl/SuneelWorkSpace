@@ -139,6 +139,33 @@ Short version:
 - No complicated database or external service for shared state.
 - No hidden state when a plain file will work.
 
+## gstack Skills Available
+
+gstack is installed at `~/.claude/skills/gstack/`. These skills are invoked as slash commands at the start of a Claude Code session to activate a specialist reasoning mode.
+
+**Claude should dynamically choose a gstack skill when the task warrants it. Prefer structured thinking over generic responses.**
+
+| Skill | When to use |
+|---|---|
+| `/investigate` | Debugging — unknown root cause, multi-file failures, intermittent errors |
+| `/cso` | Security — before shipping auth/input/API changes; any security audit |
+| `/review` | Code quality — after implementation, before commit |
+| `/office-hours` | Planning — before decomposing a new goal; validate framing first |
+| `/plan-eng-review` | Architecture — before building a new subsystem; lock interfaces |
+| `/ship` | Release — test → version bump → CHANGELOG → PR in one flow |
+| `/careful` | Scripting / file ops — preview destructive commands before running |
+| `/qa` | UI testing — browser-based flow testing with auto bug filing |
+| `/autoplan` | Full pipeline — runs CEO + design + eng review sequentially |
+
+**Routing integration:** The orchestrator's `route-task` recommends a gstack skill alongside agent selection. The goal engine shows skill hints in task cards.
+
+**Usage pattern:**
+1. `route-task "describe your task"` → see recommended skill
+2. Open Claude Code → type the skill name (e.g. `/investigate`)
+3. Describe the task → skill activates its structured methodology
+
+**Policy file:** `orchestrator/router/gstack_policy.json`
+
 ## Existing Note
 
 Before this shared system was created, Claude had a global `CLAUDE.md` pointing at `@RTK.md`. That file was preserved in backups. It appeared to be a technical note, not the main workspace policy.

@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Maps task types to recommended gstack skills. Updated by route-learn when skill outcome data is available.",
+    "last_updated": null,
+    "gstack_skills_path": "~/.claude/skills/gstack/",
+    "policy": "advisory — skills are shown as hints, never auto-invoked"
+  },
+  "skill_map": {
+    "debugging": {
+      "gstack_skill": "/investigate",
+      "description": "Systematic root-cause analysis: 5-phase methodology (observe → hypothesis → test → fix → verify)",
+      "when_to_use": "Error with unknown root cause, multi-file failures, intermittent bugs",
+      "confidence_boost": 0.05
+    },
+    "security": {
+      "gstack_skill": "/cso",
+      "description": "OWASP Top 10 + STRIDE threat model audit by Chief Security Officer persona",
+      "when_to_use": "Before shipping, after adding auth/inputs/external calls, security review requests",
+      "confidence_boost": 0.05
+    },
+    "analysis": {
+      "gstack_skill": "/review",
+      "description": "Automated bug detection, production-risk flagging, auto-fix of obvious issues",
+      "when_to_use": "Pre-commit review, code quality audit, logic bug hunting",
+      "confidence_boost": 0.03
+    },
+    "planning": {
+      "gstack_skill": "/office-hours",
+      "description": "YC-style interrogation of goal framing before building: 10-star product challenge",
+      "when_to_use": "Starting a new goal, validating product direction, before goal-plan runs",
+      "confidence_boost": 0.03
+    },
+    "system_design": {
+      "gstack_skill": "/plan-eng-review",
+      "description": "Architecture lock-in session: interfaces, scope, dependencies, risks",
+      "when_to_use": "Before coding a new subsystem, reviewing existing architecture",
+      "confidence_boost": 0.04
+    },
+    "code_edit": {
+      "gstack_skill": "/review",
+      "description": "Pre-commit code review after implementation",
+      "when_to_use": "After implementing a feature or fix, before committing",
+      "confidence_boost": 0.02
+    },
+    "orchestration": {
+      "gstack_skill": "/office-hours",
+      "description": "High-level product/strategy challenge before orchestrating a complex workflow",
+      "when_to_use": "When orchestrating multi-step workflows with unclear requirements",
+      "confidence_boost": 0.02
+    },
+    "documentation": {
+      "gstack_skill": "/review",
+      "description": "Review docs for accuracy and completeness",
+      "when_to_use": "After writing documentation",
+      "confidence_boost": 0.02
+    }
+  },
+  "always_available": [
+    "/investigate", "/office-hours", "/review", "/cso",
+    "/plan-eng-review", "/ship", "/qa"
+  ],
+  "skill_outcomes": {}
+}

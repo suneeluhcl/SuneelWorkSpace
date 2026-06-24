@@ -171,6 +171,8 @@ def main():
         print(f"  Task type   : {task['task_type']}")
         print(f"  Agent       : {preferred_agent} (orchestrator rec: {agent_rec or 'claude'}, conf: {confidence:.0%})")
         print(f"  Difficulty  : {task['estimated_difficulty']}")
+        if task.get("gstack_skill"):
+            print(f"  gstack mode : {task['gstack_skill']}  ← {task.get('gstack_hint','')}")
 
         if args.dry_run:
             print(f"  [DRY RUN] Would launch {preferred_agent}")
@@ -202,6 +204,9 @@ def main():
         print(f"  TASK FOR {preferred_agent.upper()}: {task['description']}")
         print(f"  Goal: {goal['description']}")
         print(f"  Task type: {task['task_type']}")
+        if task.get("gstack_skill"):
+            print(f"  Cognitive mode: invoke {task['gstack_skill']} at session start")
+            print(f"  Why: {task.get('gstack_hint','')}")
         print(f"  Success criteria: {goal['success_criteria']}")
         print(f"  {'='*60}")
         print()

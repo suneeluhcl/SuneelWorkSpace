@@ -203,6 +203,15 @@ def route(task: str, dry_run: bool = False, json_output: bool = False) -> dict:
         if code_keywords & set(_tokenize(task)):
             hybrid = f"Suggest: Claude plans/designs → Codex executes code changes"
 
+    # gstack skill recommendation
+    tdef_for_skill = task_types.get(task_type_id, {})
+    gstack_skill = tdef_for_skill.get("gstack_skill")
+    gstack_hint  = tdef_for_skill.get("gstack_hint")
+    # Also check gstack_policy.json for security task type
+    if not gstack_skill and "security" in task.lower():
+        gstack_skill = "/cso"
+        gstack_hint  = "Full OWASP Top 10 + STRIDE threat model by CSO persona"
+
     # Confidence label
     if adjusted_conf >= scoring.get("high_confidence_threshold", 0.85):
         conf_label = "HIGH"
@@ -228,6 +237,8 @@ def route(task: str, dry_run: bool = False, json_output: bool = False) -> dict:
         "hybrid_suggestion": hybrid,
         "reasoning": reasoning,
         "all_matched_types": [{"type": t, "hits": s, "base_conf": c} for t, s, c in all_types],
+        "gstack_skill": gstack_skill,
+        "gstack_hint": gstack_hint,
         "status": "ok",
     }
 
@@ -263,6 +274,8 @@ def _print_human(d: dict) -> None:
     print(f"  Secondary:    {d.get('secondary_agent','')}")
     if d.get("hybrid_suggestion"):
         print(f"  Hybrid hint:  {d['hybrid_suggestion']}")
+    if d.get("gstack_skill"):
+        print(f"  gstack skill: {d['gstack_skill']}  ← {d.get('gstack_hint','')}")
     print(f"  Reasoning:    {d['reasoning']}")
     if len(d.get("all_matched_types", [])) > 1:
         others = ", ".join(f"{x['type']}({x['hits']})" for x in d["all_matched_types"][1:])

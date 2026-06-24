@@ -178,6 +178,17 @@ def main():
     for i, spec in enumerate(task_specs):
         tid = _gen_task_id(args.goal_id, i)
         task_ids.append(tid)
+        # Look up gstack skill for this task type from task_types.json
+        task_types_path = WORKSPACE / "orchestrator" / "router" / "task_types.json"
+        try:
+            tt_data = json.loads(task_types_path.read_text())
+            tt_entry = tt_data.get(spec["task_type"], {})
+            gstack_skill = tt_entry.get("gstack_skill")
+            gstack_hint  = tt_entry.get("gstack_hint")
+        except Exception:
+            gstack_skill = None
+            gstack_hint  = None
+
         task_objects[tid] = {
             "id": tid,
             "goal_id": args.goal_id,
@@ -186,6 +197,8 @@ def main():
             "preferred_agent": AGENT_FOR_TYPE.get(spec["task_type"], "claude"),
             "estimated_difficulty": spec["estimated_difficulty"],
             "requires_confirmation": spec.get("requires_confirmation", False),
+            "gstack_skill": gstack_skill,
+            "gstack_hint": gstack_hint,
             "dependencies": [],
             "status": "pending",
             "attempts": 0,

@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "version": "1.0",
-    "description": "Task type definitions. preferred_agent and confidence evolve via route-learn.",
+    "version": "1.1",
+    "description": "Task type definitions. preferred_agent and confidence evolve via route-learn. gstack_skill fields added in v1.1.",
     "last_updated": null
   },
   "reasoning": {
@@ -9,97 +9,134 @@
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.85,
-    "keywords": ["why", "reason", "explain", "think", "understand", "analyze", "decide", "should", "best approach", "tradeoff", "consider", "evaluate"]
+    "keywords": ["why", "reason", "explain", "think", "understand", "analyze", "decide", "should", "best approach", "tradeoff", "consider", "evaluate"],
+    "gstack_skill": null,
+    "gstack_hint": null
   },
   "planning": {
     "label": "Planning / Architecture",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.90,
-    "keywords": ["plan", "design", "architect", "strategy", "structure", "organize", "roadmap", "approach", "phases", "steps"]
+    "keywords": ["plan", "design", "architect", "strategy", "structure", "organize", "roadmap", "approach", "phases", "steps"],
+    "gstack_skill": "/office-hours",
+    "gstack_hint": "Challenge goal framing before decomposing into tasks"
   },
   "code_edit": {
     "label": "Code Editing / Implementation",
     "preferred_agent": "codex",
     "secondary_agent": "claude",
     "confidence_weight": 0.80,
-    "keywords": ["edit", "change", "modify", "update", "fix", "implement", "add function", "refactor", "rewrite", "patch", "code", "add to", "add a", "insert", "create function", "update script", "update file"]
+    "keywords": ["edit", "change", "modify", "update", "fix", "implement", "add function", "refactor", "rewrite", "patch", "code", "add to", "add a", "insert", "create function", "update script", "update file"],
+    "gstack_skill": "/review",
+    "gstack_hint": "Run /review after implementation to catch bugs before committing"
   },
   "scripting": {
     "label": "Shell / Python Scripting",
     "preferred_agent": "codex",
     "secondary_agent": "claude",
     "confidence_weight": 0.82,
-    "keywords": ["script", "shell", "bash", "python", "automate", "command", "cli", "run", "execute script"]
+    "keywords": ["script", "shell", "bash", "python", "automate", "command", "cli", "run", "execute script"],
+    "gstack_skill": "/careful",
+    "gstack_hint": "Use /careful for scripts that touch filesystem or external services"
   },
   "debugging": {
     "label": "Debugging / Error Analysis",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.78,
-    "keywords": ["debug", "error", "bug", "failing", "broken", "trace", "stacktrace", "exception", "not working", "why is", "diagnose"]
+    "keywords": ["debug", "error", "bug", "failing", "broken", "trace", "stacktrace", "exception", "not working", "why is", "diagnose"],
+    "gstack_skill": "/investigate",
+    "gstack_hint": "5-phase systematic root-cause analysis before attempting a fix"
   },
   "documentation": {
     "label": "Documentation / Writing",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.88,
-    "keywords": ["document", "write", "readme", "explain", "describe", "doc", "comment", "guide", "manual", "notes"]
+    "keywords": ["document", "write", "readme", "explain", "describe", "doc", "comment", "guide", "manual", "notes"],
+    "gstack_skill": null,
+    "gstack_hint": null
   },
   "analysis": {
     "label": "Analysis / Review",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.85,
-    "keywords": ["analyze", "review", "audit", "check", "assess", "evaluate", "report", "summarize", "compare", "inspect"]
+    "keywords": ["analyze", "review", "audit", "check", "assess", "evaluate", "report", "summarize", "compare", "inspect"],
+    "gstack_skill": "/review",
+    "gstack_hint": "Auto-fix obvious issues and flag production risks"
   },
   "workspace_repair": {
     "label": "Workspace Repair / Maintenance",
     "preferred_agent": "codex",
     "secondary_agent": "claude",
     "confidence_weight": 0.75,
-    "keywords": ["repair", "fix workspace", "doctor", "maintain", "health", "broken config", "missing file", "restore"]
+    "keywords": ["repair", "fix workspace", "doctor", "maintain", "health", "broken config", "missing file", "restore"],
+    "gstack_skill": "/investigate",
+    "gstack_hint": "Diagnose root cause before applying repairs"
   },
   "autolab_experiment": {
     "label": "Autolab Experiment Execution",
     "preferred_agent": "codex",
     "secondary_agent": "claude",
     "confidence_weight": 0.80,
-    "keywords": ["autolab", "experiment", "mutation", "test improvement", "run eval", "frontier", "score"]
+    "keywords": ["autolab", "experiment", "mutation", "test improvement", "run eval", "frontier", "score"],
+    "gstack_skill": null,
+    "gstack_hint": null
   },
   "orchestration": {
     "label": "Orchestration / Coordination",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.88,
-    "keywords": ["orchestrate", "coordinate", "route", "manage", "delegate", "assign", "workflow", "pipeline"]
+    "keywords": ["orchestrate", "coordinate", "route", "manage", "delegate", "assign", "workflow", "pipeline"],
+    "gstack_skill": "/office-hours",
+    "gstack_hint": "Validate workflow scope before orchestrating"
   },
   "memory_update": {
     "label": "Memory / State Update",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.82,
-    "keywords": ["remember", "save", "memory", "note", "handoff", "decision", "record", "store", "update state"]
+    "keywords": ["remember", "save", "memory", "note", "handoff", "decision", "record", "store", "update state"],
+    "gstack_skill": null,
+    "gstack_hint": null
   },
   "file_manipulation": {
     "label": "File / Directory Operations",
     "preferred_agent": "codex",
     "secondary_agent": "claude",
     "confidence_weight": 0.78,
-    "keywords": ["move", "copy", "delete", "create file", "mkdir", "rename", "organize files", "bulk", "find files"]
+    "keywords": ["move", "copy", "delete", "create file", "mkdir", "rename", "organize files", "bulk", "find files"],
+    "gstack_skill": "/careful",
+    "gstack_hint": "Use /careful for bulk file operations to preview before executing"
   },
   "system_design": {
     "label": "System Design / Architecture Review",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.90,
-    "keywords": ["system design", "architecture", "design review", "how should", "structure this", "layers", "components", "interfaces"]
+    "keywords": ["system design", "architecture", "design review", "how should", "structure this", "layers", "components", "interfaces"],
+    "gstack_skill": "/plan-eng-review",
+    "gstack_hint": "Lock interfaces and scope before building"
   },
   "logging": {
     "label": "Logging / Reporting",
     "preferred_agent": "claude",
     "secondary_agent": "codex",
     "confidence_weight": 0.70,
-    "keywords": ["log", "report", "track", "session", "generate report", "status report"]
+    "keywords": ["log", "report", "track", "session", "generate report", "status report"],
+    "gstack_skill": null,
+    "gstack_hint": null
+  },
+  "security": {
+    "label": "Security Audit / Hardening",
+    "preferred_agent": "claude",
+    "secondary_agent": "codex",
+    "confidence_weight": 0.90,
+    "keywords": ["security", "vulnerability", "cve", "owasp", "hardening", "auth", "token", "injection", "xss", "csrf", "pentest", "audit security", "threat", "exploit", "secure", "harden"],
+    "gstack_skill": "/cso",
+    "gstack_hint": "Full OWASP Top 10 + STRIDE threat model by CSO persona"
   }
 }

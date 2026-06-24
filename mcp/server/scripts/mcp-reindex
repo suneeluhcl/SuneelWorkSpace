@@ -78,6 +78,8 @@ sources = [
     ("goal-engine/state/goal_state.json", "goals", "goal-state"),
     ("goal-engine/state/current_goal.json", "goals", "current-goal"),
     ("goal-engine/reports/goal_report.md", "goals", "goal-report"),
+    ("orchestrator/router/gstack_policy.json", "gstack", "gstack-policy"),
+    ("agent-system/shared/AGENT_SYSTEM.md", "gstack", "gstack-skills-doc"),
 ]
 total = 0
 indexed = []
