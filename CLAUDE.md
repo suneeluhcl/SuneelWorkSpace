@@ -194,51 +194,6 @@ headroom perf                                       # savings stats (after sessi
 
 ---
 
-## Autoresearch — Overnight LLM Experiment Loop
-
-`autoresearch-mlx/` is an Apple Silicon port of Karpathy's autoresearch. Claude autonomously modifies `train.py`, runs 5-minute training experiments, measures `val_bpb`, keeps improvements, reverts failures — overnight, unattended.
-
-**The only file Claude edits:** `autoresearch-mlx/train.py`
-**The metric:** `val_bpb` (validation bits per byte) — lower is better.
-**Each experiment:** ~7 minutes (5 min train + compile/eval overhead).
-
-### Quick commands
-
-```bash
-ar-night          # kick off one overnight session (starts at 11pm via LaunchAgent too)
-ar-night 2        # start TWO parallel sessions (branches: autoresearch/jun22-1 and -2)
-ar-morning        # morning briefing: experiments run, val_bpb improvement, best changes
-screen -r autoresearch-<tag>   # attach to a live or finished session
-```
-
-### How a session works
-
-1. `ar-night` starts a detached `screen` session with Claude running in `autoresearch-mlx/`
-2. Claude reads `program.md` (auto-loaded via `CLAUDE.md` → `@program.md`)
-3. Claude creates branch `autoresearch/<tag>`, establishes baseline, then loops forever:
-   - Edit `train.py` with an idea → commit → `uv run train.py` (5 min) → read `val_bpb`
-   - If improved: keep the commit, log to `results.tsv`
-   - If not: `git reset --hard` to discard, log as discarded
-4. `ar-morning` reads all `autoresearch/*` branches and shows the overnight delta
-
-### Logs and results
-
-- Per-session log: `logs/autoresearch/<tag>.log`
-- Experiment history: `autoresearch-mlx/results.tsv` (on the branch, not main)
-- LaunchAgent log: `logs/autoresearch/launchd.log`
-
-### LaunchAgent
-
-`com.suneel.autoresearch-night` fires at **11:00 PM** nightly.
-Manual override any time: `ar-night` (or `ar-night 2` for parallel runs).
-
-### Data and dependencies
-
-Training data and tokenizer live in `~/.cache/autoresearch/` (already prepared).
-Re-run data prep only if cache is deleted: `cd autoresearch-mlx && uv run prepare.py`
-
----
-
 ## Adwi Autoresearch — Overnight NLU + Test Improvement Loop
 
 `adwi/autoresearch-program.md` is the instruction file for Claude when running overnight as an autonomous Adwi improvement agent. Claude targets NLU fixes, test repairs, doc consistency, and bin-script robustness — not MLX training.
