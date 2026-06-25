@@ -53,3 +53,10 @@ Reason: The workspace should learn from its own experiment history. Patterns and
 Decision: Brainstorm new ideas in Microsoft 365 Copilot Chat (local Mac app) and paste its engineered prompts into the active workspace agents.
 
 Reason: Copilot acts as a specialized prompt engineer to refine tasks, while the workspace agents execute them. Pasting Copilot-engineered prompts ensures high-quality planning and execution, and sharing the README provides Copilot with full context of SuneelWorkSpace.
+
+## 2026-06-25 - Add Custom GStack Creator and Self-Repair Skills
+
+Decision: Add `gstack-create` CLI utility to automate stubbing/linking new slash commands and deploy a dedicated `/self-repair` GStack reasoning mode for troubleshooting.
+
+Reason: Level 1 of the video emphasizes skill creation and loop-engineered self-healing. Automating GStack creation makes it extremely easy to expand custom capabilities, while `/self-repair` provides a structured workflow for agents to debug failures, run workspace checks, apply fixes, and execute rollback procedures safely.
+

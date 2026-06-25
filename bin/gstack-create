@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""gstack-create — stub a new GStack skill and symlink it to Claude Code.
+
+Usage:
+  gstack-create <skill-name> "<description>" [--workspace]
+"""
+import argparse
+import os
+import re
+import sys
+from pathlib import Path
+
+WORKSPACE = Path(__file__).resolve().parent.parent
+HOME = Path.home()
+CLAUDE_SKILLS = HOME / ".claude" / "skills"
+GSTACK_DIR = CLAUDE_SKILLS / "gstack"
+WORKSPACE_SKILLS = WORKSPACE / ".agents" / "skills"
+
+def slugify(text):
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[-\s]+", "-", text)
+    return text
+
+def main():
+    parser = argparse.ArgumentParser(description="Create a new GStack skill and link it to Claude Code.")
+    parser.add_argument("name", help="Name of the skill (e.g. git-flow-expert)")
+    parser.add_argument("description", nargs="?", default="Custom GStack reasoning skill.", help="Brief description of the skill")
+    parser.add_argument("--workspace", action="store_true", help="Store in workspace .agents/skills instead of global gstack folder")
+    args = parser.parse_args()
+
+    slug = slugify(args.name)
+    if not slug:
+        print("Error: Invalid skill name.")
+        sys.exit(1)
+
+    # Determine paths
+    if args.workspace:
+        target_dir = WORKSPACE_SKILLS / slug
+        link_target = target_dir
+    else:
+        target_dir = GSTACK_DIR / slug
+        link_target = Path("/Users/MAC/.claude/skills/gstack") / slug
+
+    skill_file = target_dir / "SKILL.md"
+    symlink_path = CLAUDE_SKILLS / slug
+
+    print(f"Creating GStack skill '{slug}'...")
+    
+    # 1. Create target directory
+    try:
+        target_dir.mkdir(parents=True, exist_ok=True)
+    except Exception as e:
+        print(f"Error creating directory {target_dir}: {e}")
+        sys.exit(1)
+
+    # 2. Write SKILL.md
+    content = f"""---
+name: {slug}
+description: >
+  {args.description}
+---
+
+# {slug.replace('-', ' ').title()}
+
+## Purpose
+Describe what this skill aims to achieve and when it should be triggered.
+
+## Instructions
+1. Define the step-by-step workflow for the agent to follow.
+2. Specify the expected inputs, analysis methods, and output files.
+3. Align outputs with Suneel's workspace directories and rules.
+
+## Execution Rules
+- Always use `rtk` command wrappers.
+- Keep session handoffs up to date in [agent-system/memory/SESSION_HANDOFF.md](file:///Users/MAC/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md).
+- Run `./bin/agent-doctor` after executing code edits.
+"""
+    try:
+        skill_file.write_text(content.strip() + "\n")
+        print(f"  Written: {skill_file.relative_to(WORKSPACE) if WORKSPACE in skill_file.parents else skill_file}")
+    except Exception as e:
+        print(f"Error writing skill file: {e}")
+        sys.exit(1)
+
+    # 3. Create symlink under ~/.claude/skills/
+    if symlink_path.exists() or symlink_path.is_symlink():
+        print(f"  Link path {symlink_path} already exists. Skipping link creation.")
+    else:
+        try:
+            os.symlink(str(link_target), symlink_path)
+            print(f"  Symlinked: {symlink_path} -> {link_target}")
+            print(f"\n🎉 Skill ready! You can now type '/{slug}' in Claude Code to trigger it.")
+        except Exception as e:
+            print(f"Warning: Failed to create symlink: {e}")
+            print(f"You may need to link manually: ln -s {link_target} {symlink_path}")
+
+if __name__ == "__main__":
+    main()

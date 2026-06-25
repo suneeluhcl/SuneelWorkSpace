@@ -4,7 +4,7 @@
 
 Date: 2026-06-25
 
-Summary: documented Microsoft 365 Copilot prompt engineering workflow and context for agents and Copilot
+Summary: implemented workflow-audit CLI tool and Karpathy-style Obsidian index maps
 
 Changed:
 

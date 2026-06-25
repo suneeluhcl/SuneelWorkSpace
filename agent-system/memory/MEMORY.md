@@ -37,6 +37,10 @@
 - **Headroom proxy** at `http://127.0.0.1:8787`: Compresses context on every API call. Saves ~$197+ lifetime. Claude, Codex, and Antigravity all route through it.
 - **RTK**: Auto-rewrites bash commands for 50-90% CLI output token savings. Configured as PreToolUse hook for Claude Code + workspace, and as a skill for Antigravity.
 - **savings** alias: Run `savings` in terminal to see combined savings report.
+- **workflow-audit**: Level 1 Agentic OS auditing tool. Analyzes prompt history to find repeated tasks and recommend new skills.
+- **gstack-create**: Automates GStack skill stubbing and Claude Code slash-command symlinking.
+- **self-repair skill**: A GStack reasoning skill (`/self-repair`) providing systematic diagnostic, health-check, code-fix, and rollback procedures.
+
 
 ## Memory Rules
 

@@ -17,7 +17,7 @@ for p in "$ROOT/AGENTS.md" "$ROOT/CLAUDE.md" "$HOME/.codex/AGENTS.md" "$HOME/.cl
   ln -sfn "$CANON" "$p"
 done
 
-for s in agent-status agent-start agent-finish agent-doctor agent-repair agent-maintain agent-autoclose use-codex use-claude workspace-context workspace-backup workspace-index workspace-report workspace-changes agent-test-loop workflow-audit; do
+for s in agent-status agent-start agent-finish agent-doctor agent-repair agent-maintain agent-autoclose use-codex use-claude workspace-context workspace-backup workspace-index workspace-report workspace-changes agent-test-loop workflow-audit gstack-create; do
   [ -f "$ROOT/bin/$s" ] && chmod 755 "$ROOT/bin/$s"
 done
 [ -f "$ROOT/automation/maintenance/common.sh" ] && chmod 755 "$ROOT/automation/maintenance/common.sh"

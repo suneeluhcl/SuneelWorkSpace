@@ -138,3 +138,4 @@ gstack is installed at `~/.claude/skills/gstack/`. These skills are invoked as s
 | `/careful` | Scripting / file ops — preview destructive commands |
 | `/qa` | UI testing — browser-based flow testing |
 | `/autoplan` | Full pipeline — CEO + design + eng review |
+| `/self-repair` | Self-Healing — diagnoses failures, runs doctor/repair, fixes syntax, and manages rollbacks |

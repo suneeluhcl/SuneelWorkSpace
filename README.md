@@ -86,6 +86,8 @@ For Claude Code sessions, **gstack** adds specialized expert methodologies (slas
 - `/careful`: Safe CLI Operations — Preview destructive commands before executing.
 - `/qa`: Browser UI Testing — Automated client verification with bug-filing logic.
 - `/autoplan`: CEO & Design Pipeline — Sequential automation of engineering design review.
+- `/self-repair`: Self-Healing — Diagnoses failures, verifies workspace health, repairs compilation/test errors, and manages safe rollbacks.
+
 
 ### Supply Chain Protection:
 To guard against silent updates, the workspace pins and verifies gstack files:
