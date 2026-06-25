@@ -32,15 +32,15 @@ Summary: $SUMMARY
 
 Changed:
 
-- See `agent-system/logs/SESSION_LOG.md` for the session entry.
+- See \`agent-system/logs/SESSION_LOG.md\` for the session entry.
 
 Verification:
 
-- Run `~/SuneelWorkSpace/bin/agent-status` or `~/SuneelWorkSpace/bin/agent-doctor`.
+- Run \`~/SuneelWorkSpace/bin/agent-status\` or \`~/SuneelWorkSpace/bin/agent-doctor\`.
 
 Open Items:
 
-- Review `agent-system/tasks/ACTIVE_TASKS.md` and `agent-system/tasks/TASK_QUEUE.md`.
+- Review \`agent-system/tasks/ACTIVE_TASKS.md\` and \`agent-system/tasks/TASK_QUEUE.md\`.
 EOF
 mv "$tmp" "$HANDOFF"
 

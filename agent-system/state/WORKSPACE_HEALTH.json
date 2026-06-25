@@ -1,44 +1,21 @@
 {
-  "auto_fixes_applied": 12,
-  "checked_at": "2026-06-24T21:09:08-0500",
+  "auto_fixes_applied": 14,
+  "checked_at": "2026-06-24T22:46:54-0500",
   "error_count": 0,
-  "issue_count": 3,
-  "issues": [
-    {
-      "code": "codex_not_on_path",
-      "message": "codex CLI is not on PATH",
-      "severity": "info"
-    },
-    {
-      "code": "claude_not_on_path",
-      "message": "claude CLI is not on PATH",
-      "severity": "info"
-    },
-    {
-      "code": "duplicate_instruction_files",
-      "message": "Additional AGENTS.md/CLAUDE.md files exist; inspect before consolidating",
-      "severity": "info"
-    }
-  ],
-  "last_doctor_run": "2026-06-24T21:09:08-0500",
+  "issue_count": 0,
+  "issues": [],
+  "last_doctor_run": "2026-06-24T22:46:54-0500",
   "launchd": {
     "configured": true,
     "label": "com.suneelworkspace.maintenance",
     "loaded": true,
     "plist": "/Users/MAC/Library/LaunchAgents/com.suneelworkspace.maintenance.plist"
   },
-  "repair_suggestions": [
-    {
-      "code": "inspect_duplicates",
-      "paths": [
-        "/Users/MAC/SuneelWorkSpace/.agents/AGENTS.md"
-      ]
-    }
-  ],
+  "repair_suggestions": [],
   "status": "healthy",
   "tools": {
-    "claude": null,
-    "codex": null
+    "claude": "/opt/homebrew/bin/claude",
+    "codex": "/Users/MAC/bin/codex"
   },
   "warning_count": 0
 }

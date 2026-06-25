@@ -1,7 +1,12 @@
 #!/bin/sh
 # Print a concise MCP subsystem capability and health report.
 set -eu
-MCP_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+# Resolve symlinks to get the real directory of this script
+TARGET="$0"
+while [ -L "$TARGET" ]; do
+    TARGET="$(readlink "$TARGET")"
+done
+MCP_ROOT="$(cd "$(dirname "$TARGET")/../.." && pwd)"
 DB="$MCP_ROOT/server/storage/memory_index.db"
 STATE="$MCP_ROOT/server/state/mcp_state.json"
 INDEX_META="$MCP_ROOT/server/state/last_index.json"

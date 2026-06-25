@@ -1,7 +1,12 @@
 #!/bin/sh
 # Run a compact functional test of the workspace-brain MCP subsystem.
 set -eu
-MCP_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+# Resolve symlinks to get the real directory of this script
+TARGET="$0"
+while [ -L "$TARGET" ]; do
+    TARGET="$(readlink "$TARGET")"
+done
+MCP_ROOT="$(cd "$(dirname "$TARGET")/../.." && pwd)"
 SERVER="$MCP_ROOT/server/main.py"
 WORKSPACE="$HOME/SuneelWorkSpace"
 

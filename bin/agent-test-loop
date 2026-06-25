@@ -1,0 +1,355 @@
+#!/usr/bin/env python3
+# Unified test-loop command: runs end-to-end tests, calculates pass percentage,
+# and runs self-repair & self-improving steps until the pass percentage reaches >= 99%.
+import argparse
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+# Resolve workspace root
+ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", str(Path.home() / "SuneelWorkSpace"))).resolve()
+BIN_DIR = ROOT / "bin"
+AUTO_DIR = ROOT / "autolab"
+
+# Color helpers
+GREEN = "\033[92m"
+RED = "\033[91m"
+YELLOW = "\033[93m"
+CYAN = "\033[96m"
+BOLD = "\033[1m"
+RESET = "\033[0m"
+
+def print_header(title):
+    print(f"\n{BOLD}{CYAN}==================================================")
+    print(f"  {title}")
+    print(f"=================================================={RESET}")
+
+def make_progress_bar(percentage):
+    width = 20
+    filled = int(round(width * percentage / 100))
+    bar = "█" * filled + "░" * (width - filled)
+    return f"[{bar}] {percentage:.1f}%"
+
+def run_cmd(args, timeout=30):
+    try:
+        res = subprocess.run(args, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
+        return res.returncode, res.stdout, res.stderr
+    except Exception as e:
+        return 99, "", str(e)
+
+def evaluate_suite():
+    passed = 0
+    total = 0
+    details = []
+
+    # --- 1. Workspace Health (Doctor) ---
+    # Refresh doctor
+    run_cmd([str(BIN_DIR / "agent-doctor"), "--quiet"])
+    health_file = ROOT / "agent-system/state/WORKSPACE_HEALTH.json"
+    doctor_passed = 0
+    doctor_total = 1
+    doctor_msg = "Doctor health check: OK"
+    if health_file.exists():
+        try:
+            hdata = json.loads(health_file.read_text())
+            errors = hdata.get("error_count", 0)
+            warnings = hdata.get("warning_count", 0)
+            issues = hdata.get("issue_count", 0)
+            if errors == 0 and warnings == 0:
+                doctor_passed = 1
+            else:
+                doctor_passed = 0
+                doctor_total = 1 + issues
+                doctor_msg = f"Doctor health check: {issues} issues ({errors} errs, {warnings} warns)"
+        except Exception as e:
+            doctor_passed = 0
+            doctor_msg = f"Failed to parse health JSON: {e}"
+    else:
+        doctor_passed = 0
+        doctor_msg = "WORKSPACE_HEALTH.json not found"
+
+    passed += doctor_passed
+    total += doctor_total
+    details.append({
+        "name": "Workspace Health (Doctor)",
+        "passed": doctor_passed,
+        "total": doctor_total,
+        "info": doctor_msg
+    })
+
+    # --- 2. MCP Subsystem Tests ---
+    mcp_passed = 0
+    mcp_total = 14
+    mcp_msg = ""
+    rc, stdout, stderr = run_cmd([str(BIN_DIR / "mcp-test")])
+    match = re.search(r"Passed:\s*(\d+)\s*\|\s*Failed:\s*(\d+)", stdout)
+    if match:
+        mcp_passed = int(match.group(1))
+        mcp_failed = int(match.group(2))
+        mcp_total = mcp_passed + mcp_failed
+        mcp_msg = f"MCP subsystem tests: {mcp_passed}/{mcp_total} passed"
+    else:
+        # Fallback counting [PASS] / [FAIL]
+        pass_cnt = len(re.findall(r"\[PASS\]", stdout))
+        fail_cnt = len(re.findall(r"\[FAIL\]", stdout))
+        if pass_cnt + fail_cnt > 0:
+            mcp_passed = pass_cnt
+            mcp_total = pass_cnt + fail_cnt
+            mcp_msg = f"MCP subsystem tests: {mcp_passed}/{mcp_total} passed (regex count)"
+        else:
+            mcp_passed = 0
+            mcp_total = 14
+            mcp_msg = f"MCP test run failed to execute properly (rc={rc})"
+
+    passed += mcp_passed
+    total += mcp_total
+    details.append({
+        "name": "MCP Subsystem Tests",
+        "passed": mcp_passed,
+        "total": mcp_total,
+        "info": mcp_msg
+    })
+
+    # --- 3. GStack Integrity Verification ---
+    gstack_passed = 0
+    gstack_total = 1
+    gstack_msg = "GStack verified"
+    gverify_path = BIN_DIR / "gstack-verify"
+    if gverify_path.exists():
+        rc, stdout, stderr = run_cmd(["python3", str(gverify_path), "--json"])
+        try:
+            gdata = json.loads(stdout)
+            if gdata.get("status") == "ok":
+                gstack_passed = 1
+            else:
+                gstack_passed = 0
+                gstack_msg = f"GStack verification status: {gdata.get('status')}"
+        except Exception as e:
+            gstack_passed = 0
+            gstack_msg = f"GStack parse failed: {e}"
+    else:
+        gstack_passed = 0
+        gstack_msg = "gstack-verify script not found"
+
+    passed += gstack_passed
+    total += gstack_total
+    details.append({
+        "name": "GStack Verification",
+        "passed": gstack_passed,
+        "total": gstack_total,
+        "info": gstack_msg
+    })
+
+    # --- 4. Autolab Workspace Scoring ---
+    autolab_passed = 0
+    autolab_total = 12
+    autolab_msg = ""
+    # Refresh autolab evaluation
+    run_cmd(["python3", str(AUTO_DIR / "scripts/autolab-core"), "eval"])
+    eval_file = AUTO_DIR / "state/latest_eval.json"
+    if eval_file.exists():
+        try:
+            edata = json.loads(eval_file.read_text())
+            checks = edata.get("checks", {})
+            passed_checks = sum(1 for c in checks.values() if c.get("passed") is True)
+            total_checks = len(checks)
+            if total_checks > 0:
+                autolab_passed = passed_checks
+                autolab_total = total_checks
+                autolab_msg = f"Autolab evaluator score: {edata.get('score')}/100 ({passed_checks}/{total_checks} checks passed)"
+            else:
+                autolab_passed = 0
+                autolab_total = 12
+                autolab_msg = "Autolab evaluation checks empty"
+        except Exception as e:
+            autolab_passed = 0
+            autolab_total = 12
+            autolab_msg = f"Failed to parse autolab eval: {e}"
+    else:
+        autolab_passed = 0
+        autolab_total = 12
+        autolab_msg = "latest_eval.json not found"
+
+    passed += autolab_passed
+    total += autolab_total
+    details.append({
+        "name": "Autolab Score Checks",
+        "passed": autolab_passed,
+        "total": autolab_total,
+        "info": autolab_msg
+    })
+
+    percentage = (passed / total) * 100 if total > 0 else 0.0
+    return percentage, passed, total, details
+
+def run_self_repair(details):
+    print(f"\n{BOLD}{YELLOW}🔧 Initiating Self-Repair Procedures...{RESET}")
+    
+    # 1. Core workspace repairs
+    print("  - Running general agent-repair...", end="", flush=True)
+    rc, stdout, stderr = run_cmd([str(BIN_DIR / "agent-repair")])
+    if rc == 0:
+        print(f" {GREEN}[OK]{RESET}")
+    else:
+        print(f" {RED}[FAILED]{RESET}")
+
+    # 2. MCP subsystem repairs
+    print("  - Running MCP subsystem repair...", end="", flush=True)
+    rc, stdout, stderr = run_cmd([str(BIN_DIR / "mcp-repair")])
+    if rc == 0:
+        print(f" {GREEN}[OK]{RESET}")
+    else:
+        print(f" {RED}[FAILED]{RESET}")
+
+    # 3. GStack repairs if gstack verify failed
+    gstack_details = next((d for d in details if d["name"] == "GStack Verification"), None)
+    if gstack_details and gstack_details["passed"] == 0:
+        print("  - Running GStack verification repair...", end="", flush=True)
+        rc, stdout, stderr = run_cmd([str(BIN_DIR / "gstack-repair")])
+        if rc == 0:
+            print(f" {GREEN}[OK]{RESET}")
+        else:
+            print(f" {RED}[FAILED]{RESET}")
+
+def run_self_improve():
+    print(f"\n{BOLD}{YELLOW}📈 Initiating Self-Training & Self-Improving Procedures...{RESET}")
+    
+    # 1. Run Autolab once to mutate and test improvements
+    print("  - Executing Autolab self-improvement iteration...", end="", flush=True)
+    rc, stdout, stderr = run_cmd(["python3", str(AUTO_DIR / "scripts/autolab-core"), "once"])
+    if rc == 0:
+        print(f" {GREEN}[OK]{RESET}")
+        # Show what was run
+        print(f"    {stdout.strip()}")
+    else:
+        print(f" {RED}[FAILED]{RESET}")
+
+    # 2. Train route models from logs
+    print("  - Re-training orchestrator router patterns...", end="", flush=True)
+    rc, stdout, stderr = run_cmd([str(BIN_DIR / "route-learn"), "--summary"])
+    if rc == 0:
+        print(f" {GREEN}[OK]{RESET}")
+    else:
+        print(f" {RED}[FAILED]{RESET}")
+
+    # 3. Run full agent maintenance
+    print("  - Refreshing index and running general maintenance...", end="", flush=True)
+    rc, stdout, stderr = run_cmd([str(BIN_DIR / "agent-maintain")])
+    if rc == 0:
+        print(f" {GREEN}[OK]{RESET}")
+    else:
+        print(f" {RED}[FAILED]{RESET}")
+
+def generate_report(history):
+    report_file = ROOT / "automation/reports/test-loop-latest.md"
+    report_file.parent.mkdir(parents=True, exist_ok=True)
+    
+    lines = [
+        "# Workspace Test & Self-Improvement Loop Report",
+        "",
+        f"**Run Timestamp:** {time.strftime('%Y-%m-%dT%H:%M:%S')}",
+        f"**Final Status:** {'Success (>= 99%)' if history[-1]['percentage'] >= 99.0 else 'Incomplete (< 99%)'}",
+        f"**Final Score:** {history[-1]['percentage']:.1f}% ({history[-1]['passed']}/{history[-1]['total']} passed)",
+        f"**Iterations:** {len(history)}",
+        "",
+        "## Iteration History",
+        "",
+        "| Iteration | Pass Percentage | Passed Tests | Total Tests | Status |",
+        "| --- | --- | --- | --- | --- |"
+    ]
+    for idx, h in enumerate(history):
+        lines.append(f"| {idx+1} | {h['percentage']:.1f}% | {h['passed']} | {h['total']} | {'PASSED' if h['percentage'] >= 99.0 else 'TRIGGERED LOOPS'} |")
+    
+    lines += [
+        "",
+        "## Final Test Suite Breakdown",
+        "",
+        "| Test Suite Category | Passed | Total | Detail |",
+        "| --- | --- | --- | --- |"
+    ]
+    for d in history[-1]["details"]:
+        status_str = "✅ PASS" if d["passed"] == d["total"] else "❌ FAIL"
+        lines.append(f"| {d['name']} | {d['passed']} | {d['total']} | {status_str} - {d['info']} |")
+        
+    lines += [
+        "",
+        "## System Recommendations",
+        "- The self-improving loop automatically adjusts prompt instructions and repairs path configurations.",
+        "- If the score fails to reach 99%, use `agent-doctor` manually to inspect unresolved drift issues.",
+        "- Review `agent-system/logs/MAINTENANCE_LOG.md` for background events."
+    ]
+    
+    report_file.write_text("\n".join(lines) + "\n")
+    return report_file
+
+def main():
+    parser = argparse.ArgumentParser(description="End-to-End Test and Self-Improvement Loop.")
+    parser.add_argument("--max-iterations", type=int, default=5, help="Max loops to execute if score remains below 99%%.")
+    parser.add_argument("--cooldown", type=int, default=2, help="Seconds to rest between loops.")
+    args = parser.parse_args()
+
+    print_header("🤖 SUNEEL WORKSPACE END-TO-END TEST & AUTO-LOOP 🤖")
+    print(f"Target Threshold: {BOLD}{GREEN}99.0%{RESET}")
+    print(f"Max Loops Allowed: {args.max_iterations}")
+    print(f"Workspace path: {ROOT}\n")
+
+    history = []
+    success = False
+
+    for iteration in range(1, args.max_iterations + 1):
+        print(f"\n{BOLD}{CYAN}--- Iteration {iteration} / {args.max_iterations} ---{RESET}")
+        
+        # 1. Run tests
+        print("Running test suite...")
+        percentage, passed, total, details = evaluate_suite()
+        
+        # Record history
+        history.append({
+            "percentage": percentage,
+            "passed": passed,
+            "total": total,
+            "details": details
+        })
+        
+        # Print breakdown
+        print("\nBreakdown:")
+        for d in details:
+            color = GREEN if d["passed"] == d["total"] else RED
+            print(f"  {d['name']:<30} {color}{d['passed']}/{d['total']}{RESET} ({d['info']})")
+        
+        print(f"\nOverall Testing Percentage: {BOLD}{make_progress_bar(percentage)}{RESET}\n")
+
+        if percentage >= 99.0:
+            print(f"{GREEN}{BOLD}🎉 Success! Pass threshold reached: {percentage:.1f}% (>= 99.0%){RESET}")
+            success = True
+            break
+        
+        if iteration == args.max_iterations:
+            print(f"{RED}{BOLD}Reached maximum iterations ({args.max_iterations}) without hitting 99% threshold.{RESET}")
+            break
+
+        # If not passed, trigger repair and improvement loops
+        print(f"{YELLOW}⚠️  Percentage is below 99.0%. Triggering self-repair and self-improving loop...{RESET}")
+        run_self_repair(details)
+        run_self_improve()
+        
+        # Cooldown
+        if args.cooldown > 0:
+            print(f"\nSleeping for {args.cooldown} seconds before re-testing...")
+            time.sleep(args.cooldown)
+
+    # Generate final report
+    report_file = generate_report(history)
+    print(f"\n{BOLD}Report saved to:{RESET} {report_file}")
+    
+    if success:
+        sys.exit(0)
+    else:
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

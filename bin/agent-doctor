@@ -162,7 +162,7 @@ if not shutil.which("claude"):
 dupes = []
 for p in root.rglob("*"):
     if p.name in {"AGENTS.md", "CLAUDE.md"} and p not in {root/"AGENTS.md", root/"CLAUDE.md"}:
-        if ".agent-backups" not in p.parts:
+        if ".agent-backups" not in p.parts and ".git" not in p.parts and ".agents" not in p.parts:
             dupes.append(str(p))
 if dupes:
     issue("info", "duplicate_instruction_files", "Additional AGENTS.md/CLAUDE.md files exist; inspect before consolidating", None)

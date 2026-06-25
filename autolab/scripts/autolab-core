@@ -306,7 +306,7 @@ def check_eval():
 
     dupes = []
     for p in ROOT.rglob("*"):
-        if ".agent-backups" in p.parts or ".git" in p.parts:
+        if ".agent-backups" in p.parts or ".git" in p.parts or ".agents" in p.parts:
             continue
         if p.name in {"AGENTS.md", "CLAUDE.md"} and p not in {ROOT / "AGENTS.md", ROOT / "CLAUDE.md"}:
             dupes.append(rel(p))

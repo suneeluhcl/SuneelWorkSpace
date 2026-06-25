@@ -1,6 +1,5 @@
 {
-  "active": false,
-  "closed_at": "2026-06-24T20:43:48-0500",
-  "closeout_reason": "shell-exit",
-  "session_id": null
+  "active": true,
+  "session_id": "20260624-224512-77690",
+  "started_at": "2026-06-24T22:45:12-0500"
 }

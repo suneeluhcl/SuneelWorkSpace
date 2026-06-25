@@ -3,6 +3,11 @@
 # MCP clients (Claude, Codex) start it automatically as a subprocess.
 # Use this script only for manual testing.
 set -eu
-MCP_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+# Resolve symlinks to get the real directory of this script
+TARGET="$0"
+while [ -L "$TARGET" ]; do
+    TARGET="$(readlink "$TARGET")"
+done
+MCP_ROOT="$(cd "$(dirname "$TARGET")/../.." && pwd)"
 SERVER="$MCP_ROOT/server/main.py"
 exec uv run --with-requirements "$MCP_ROOT/server/requirements.txt" python3 "$SERVER"
