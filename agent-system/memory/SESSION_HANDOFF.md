@@ -4,7 +4,7 @@
 
 Date: 2026-06-25
 
-Summary: integrated GStack and Headroom status monitoring into doctor and maintain, and filled doc gaps
+Summary: documented Microsoft 365 Copilot prompt engineering workflow and context for agents and Copilot
 
 Changed:
 

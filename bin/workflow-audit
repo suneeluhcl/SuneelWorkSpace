@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+import glob
+import json
+import os
+import re
+from collections import Counter
+from pathlib import Path
+
+# Setup paths
+HOME = Path.home()
+CLAUDE_HIST = HOME / ".claude" / "history.jsonl"
+CODEX_HIST = HOME / ".codex" / "history.jsonl"
+AGY_BRAIN = HOME / ".gemini" / "antigravity-cli" / "brain"
+
+def clean_text(text):
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s\-\:\/]", "", text)
+    return text
+
+def get_ngrams(words, n):
+    return [" ".join(words[i:i+n]) for i in range(len(words)-n+1)]
+
+def main():
+    print("==================================================")
+    # Auditing header
+    print("       🔍 WORKSPACE AGENT WORKFLOW AUDIT 🔍")
+    print("==================================================")
+    print("Scanning session histories across Claude Code, Codex, and Antigravity...")
+
+    queries = []
+    session_count = 0
+    mcp_tool_mentions = 0
+    files_mentioned = Counter()
+
+    # 1. Audit Claude Code
+    if CLAUDE_HIST.exists():
+        try:
+            with open(CLAUDE_HIST, "r", errors="ignore") as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    data = json.loads(line)
+                    text = data.get("display") or data.get("text")
+                    if text:
+                        queries.append(text)
+        except Exception as e:
+            print(f"[WARN] Failed to parse Claude history: {e}")
+
+    # 2. Audit Codex CLI
+    if CODEX_HIST.exists():
+        try:
+            with open(CODEX_HIST, "r", errors="ignore") as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    data = json.loads(line)
+                    text = data.get("text")
+                    if text:
+                        queries.append(text)
+        except Exception as e:
+            print(f"[WARN] Failed to parse Codex history: {e}")
+
+    # 3. Audit Antigravity (agy)
+    brain_transcripts = glob.glob(str(AGY_BRAIN / "*" / ".system_generated" / "logs" / "transcript.jsonl"))
+    session_count += len(brain_transcripts)
+    for path in brain_transcripts:
+        try:
+            with open(path, "r", errors="ignore") as f:
+                for line in f:
+                    if not line.strip():
+                        continue
+                    data = json.loads(line)
+                    if data.get("type") == "USER_INPUT":
+                        text = data.get("content")
+                        if text:
+                            queries.append(text)
+        except Exception:
+            pass
+
+    total_queries = len(queries)
+    if total_queries == 0:
+        print("\nNo historical queries found. Run some agent sessions first!")
+        return
+
+    # Text Analysis
+    all_words = []
+    stop_words = {
+        "the", "a", "and", "to", "of", "in", "is", "that", "it", "you", "he", "was", "for", "on", "are", 
+        "as", "with", "his", "they", "i", "at", "be", "this", "have", "from", "or", "one", "had", "by", 
+        "word", "but", "not", "what", "all", "were", "we", "when", "your", "can", "said", "there", "use",
+        "an", "each", "which", "she", "do", "how", "their", "if", "will", "up", "other", "about", "out",
+        "many", "then", "them", "these", "so", "some", "her", "would", "make", "like", "him", "into", "has"
+    }
+
+    phrase_counter_2 = Counter()
+    phrase_counter_3 = Counter()
+
+    for q in queries:
+        # Match file links
+        for m in re.findall(r"(?:file:///)?([a-zA-Z0-9_\-\/]+\.(?:md|json|py|sh|ts|js|toml))", q):
+            basename = os.path.basename(m)
+            files_mentioned[basename] += 1
+
+        # MCP tool mentions
+        if "mcp" in q.lower() or "tool" in q.lower():
+            mcp_tool_mentions += 1
+
+        cleaned = clean_text(q)
+        words = [w for w in cleaned.split() if w not in stop_words and len(w) > 1]
+        all_words.extend(words)
+        
+        # 2-grams & 3-grams
+        phrase_counter_2.update(get_ngrams(words, 2))
+        phrase_counter_3.update(get_ngrams(words, 3))
+
+    word_counter = Counter(all_words)
+
+    # Print Summary Report
+    print(f"\n📊 Audit Statistics:")
+    print(f"  - Total Audited Prompts: {total_queries}")
+    print(f"  - Antigravity Conversations Audited: {session_count}")
+    print(f"  - Tool/MCP Queries: {mcp_tool_mentions}")
+    print(f"  - Distinct Files Referenced: {len(files_mentioned)}")
+
+    print(f"\n📂 Most Referenced Files:")
+    for f_name, count in files_mentioned.most_common(5):
+        print(f"  - {f_name:<30} referenced {count} times")
+
+    print(f"\n🔑 Top Keywords & Phrases:")
+    print("  - Keywords: ", ", ".join(f"'{k}' ({c})" for k, c in word_counter.most_common(5)))
+    print("  - 2-Word Phrases:")
+    for phrase, count in phrase_counter_2.most_common(3):
+        print(f"    * \"{phrase}\" (seen {count} times)")
+    print("  - 3-Word Phrases:")
+    for phrase, count in phrase_counter_3.most_common(3):
+        print(f"    * \"{phrase}\" (seen {count} times)")
+
+    # Recommend Skills based on findings
+    print("\n💡 Custom Skill Recommendations:")
+    recommendations = []
+    
+    # Check for common patterns
+    words_set = set(all_words)
+    if "git" in words_set or "commit" in words_set or "pr" in words_set:
+        recommendations.append(
+            "- **git-flow-expert**: Automates branch creation, commit message formatting, and PR submission.\n"
+            "  *Trigger*: 'pr', 'commit', 'branch'\n"
+            "  *Action*: Codify git commands into a single GStack release/ship checklist."
+        )
+    if "autolab" in words_set or "experiment" in words_set:
+        recommendations.append(
+            "- **autolab-experiment-runner**: Enqueues and runs meta-evaluations for instruction changes.\n"
+            "  *Trigger*: 'autolab once', 'enqueue'\n"
+            "  *Action*: Automates candidate file generation and score comparisons."
+        )
+    if "obsidian" in words_set or "notes" in words_set:
+        recommendations.append(
+            "- **vault-index-refresher**: Re-indexes all markdown files and updates index.md maps.\n"
+            "  *Trigger*: 'obsidian', 'index', 'notes'\n"
+            "  *Action*: Refreshes vaults and builds Karpathy-style maps."
+        )
+    if "copilot" in words_set or "prompt" in words_set:
+        recommendations.append(
+            "- **copilot-prompt-aligner**: Templates prompts specifically engineered for Microsoft 365 Copilot.\n"
+            "  *Trigger*: 'copilot', 'prompt'\n"
+            "  *Action*: Standardizes how the workspace README is structured for pasting."
+        )
+
+    # Fallback recommendations if set is sparse
+    if not recommendations:
+        recommendations.append(
+            "- **workspace-health-monitor**: Runs doctors and repairs, outputting structured status summaries.\n"
+            "  *Target*: 'doctor', 'repair'"
+        )
+
+    for rec in recommendations[:3]:
+        print(rec)
+        
+    print("\n==================================================")
+    print("Audit Complete. Run: python3 bin/gstack-create <name> to stub a skill.")
+
+if __name__ == "__main__":
+    main()

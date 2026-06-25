@@ -75,7 +75,7 @@ required_files = [
 scripts = [
     "agent-status", "agent-start", "agent-finish", "agent-doctor", "agent-repair",
     "agent-maintain", "agent-autoclose", "use-codex", "use-claude", "workspace-context",
-    "workspace-backup", "workspace-index", "workspace-report", "workspace-changes",
+    "workspace-backup", "workspace-index", "workspace-report", "workspace-changes", "workflow-audit",
 ]
 autolab_scripts = [
     "autolab-run", "autolab-once", "autolab-eval", "autolab-commit",
