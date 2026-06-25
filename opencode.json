@@ -1,0 +1,35 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "groq/llama-3.3-70b-versatile",
+  "autoshare": false,
+  "provider": {
+    "groq": {
+      "name": "Groq (Free Tier)",
+      "models": {
+        "llama-3.3-70b-versatile": {
+          "name": "Llama 3.3 70B (fast, free)"
+        },
+        "meta-llama/llama-4-scout-17b-16e-instruct": {
+          "name": "Llama 4 Scout (latest, free)"
+        },
+        "qwen/qwen3-32b": {
+          "name": "Qwen 3 32B (strong coder, free)"
+        }
+      }
+    },
+    "google": {
+      "name": "Google Gemini (Free Tier — uses GEMINI_API_KEY)",
+      "models": {
+        "gemini-2.0-flash": {
+          "name": "Gemini 2.0 Flash (fast, free)"
+        },
+        "gemini-2.5-flash": {
+          "name": "Gemini 2.5 Flash (latest, free tier)"
+        },
+        "gemini-1.5-flash": {
+          "name": "Gemini 1.5 Flash (stable, free)"
+        }
+      }
+    }
+  }
+}

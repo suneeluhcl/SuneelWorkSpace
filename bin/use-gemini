@@ -1,0 +1,23 @@
+#!/bin/sh
+# Launch Gemini CLI from the workspace.
+# Gemini reads GEMINI.md automatically when run from ~/SuneelWorkSpace.
+#
+# Free quota: Gemini 2.0 Flash — 1,500 req/day, 1M tokens/min (free tier)
+# Usage:
+#   use-gemini                     interactive session
+#   use-gemini -p "your prompt"    non-interactive one-shot
+#   use-gemini --model gemini-2.5-flash-preview-05-20
+
+ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
+cd "$ROOT" || exit 1
+
+if [ -z "$GEMINI_API_KEY" ]; then
+    echo "[WARN] GEMINI_API_KEY not in current env — gemini will use stored credentials."
+fi
+
+echo "Gemini CLI — SuneelWorkSpace"
+echo "  GEMINI.md:  loaded (workspace instructions)"
+echo "  Free quota: ~1,500 req/day on Flash models"
+echo
+
+exec gemini "$@"

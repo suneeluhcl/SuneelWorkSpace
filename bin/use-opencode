@@ -1,0 +1,21 @@
+#!/bin/sh
+# Launch opencode from the workspace with the shared agent context.
+# opencode reads AGENTS.md (symlinked to canonical agent-system docs) automatically.
+#
+# Default model: groq/llama-3.3-70b-versatile (free, no quota)
+# Switch to Gemini: use-opencode --model google/gemini-2.0-flash
+# Switch to Llama 4: use-opencode --model groq/meta-llama/llama-4-scout-17b-16e-instruct
+# Switch to Qwen3:   use-opencode --model groq/qwen/qwen3-32b
+
+ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
+cd "$ROOT" || exit 1
+
+# Light context reminder
+echo "opencode — SuneelWorkSpace"
+echo "  AGENTS.md:    loaded (-> agent-system/shared/AGENT_SYSTEM.md)"
+echo "  Default model: groq/llama-3.3-70b-versatile (free)"
+echo "  Gemini models: google/gemini-2.0-flash | google/gemini-2.5-flash"
+echo "  Switch model:  --model google/gemini-2.0-flash"
+echo
+
+exec opencode "$@"

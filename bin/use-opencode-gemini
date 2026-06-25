@@ -1,0 +1,22 @@
+#!/bin/sh
+# Launch opencode with Gemini 2.0 Flash as the model.
+# Free fallback when Claude/Codex quota is exhausted.
+
+ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
+cd "$ROOT" || exit 1
+
+if [ -z "$GEMINI_API_KEY" ]; then
+    echo "[ERROR] GEMINI_API_KEY is not set in your environment."
+    echo "  Add to ~/.zshrc: export GEMINI_API_KEY=your_key_here"
+    exit 1
+fi
+
+MODEL="${1:-google/gemini-2.0-flash}"
+
+echo "opencode + Gemini — SuneelWorkSpace"
+echo "  Model:      $MODEL"
+echo "  AGENTS.md:  loaded (-> agent-system/shared/AGENT_SYSTEM.md)"
+echo "  Free tier:  yes (GEMINI_API_KEY quota)"
+echo
+
+exec opencode --model "$MODEL"
