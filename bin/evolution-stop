@@ -1,0 +1,17 @@
+#!/bin/bash
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+python3 -c "
+import sys, json
+sys.path.insert(0, '.')
+from pathlib import Path
+state_file = Path('evolution/engine_state.json')
+if state_file.exists():
+    state = json.loads(state_file.read_text())
+    state['status'] = 'stopped'
+    state['stopped_at'] = __import__('datetime').datetime.now(__import__('datetime').timezone.utc).isoformat()
+    state_file.write_text(json.dumps(state, indent=2))
+    print('🛑 Stop signal written — engine will halt after current cycle.')
+else:
+    print('Evolution engine is not running (no state file found).')
+"

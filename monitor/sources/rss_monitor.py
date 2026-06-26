@@ -12,7 +12,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-CONFIG_PATH = Path(__file__).parent.parent / "monitor_config.json"
+CONFIG_PATH = Path(__file__).parent.parent / "config" / "monitor_config.json"
 CACHE_DIR = Path(__file__).parent.parent / "cache"
 
 

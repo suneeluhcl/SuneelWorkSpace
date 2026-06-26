@@ -43,4 +43,7 @@ testing/reports/
 agent-system/memory/vector/.hf_cache/
 agent-system/memory/vector/chroma_store/
 
+# Playwright MCP session logs (runtime-only)
+.playwright-mcp/
+
 

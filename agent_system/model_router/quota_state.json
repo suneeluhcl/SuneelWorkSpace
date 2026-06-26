@@ -1,0 +1,39 @@
+{
+  "models": {
+    "claude-sonnet-4-6": {
+      "tokens_used_today": 0,
+      "calls_today": 0,
+      "errors_today": 0,
+      "last_error": null,
+      "available": true
+    },
+    "claude-opus-4-8": {
+      "tokens_used_today": 0,
+      "calls_today": 0,
+      "errors_today": 0,
+      "last_error": null,
+      "available": true
+    },
+    "gpt-4o": {
+      "tokens_used_today": 0,
+      "calls_today": 0,
+      "errors_today": 0,
+      "last_error": null,
+      "available": true
+    },
+    "gemini-2.5-pro": {
+      "tokens_used_today": 0,
+      "calls_today": 0,
+      "errors_today": 0,
+      "last_error": null,
+      "available": true
+    }
+  },
+  "last_reset": "2026-06-26",
+  "fallback_chain": [
+    "claude-sonnet-4-6",
+    "claude-opus-4-8",
+    "gpt-4o",
+    "gemini-2.5-pro"
+  ]
+}

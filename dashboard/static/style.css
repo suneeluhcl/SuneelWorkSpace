@@ -475,6 +475,192 @@ html, body {
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #3a4d6e; }
 
+/* ── Enhancement 1: Health Repair Button ────────────────────────────────── */
+.cc-repair-btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid var(--accent-yellow);
+  color: var(--accent-yellow);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+.cc-repair-btn:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.12);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+.cc-repair-btn:disabled,
+.cc-repair-btn.repairing {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ── Enhancement 2: Autolab Action Buttons ───────────────────────────────── */
+.autolab-actions {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.cc-autolab-btn {
+  flex: 1;
+  padding: 6px 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 5px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cc-autolab-btn:hover {
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+/* ── Enhancement 2: Autolab Queue List ───────────────────────────────────── */
+.autolab-queue-list {
+  margin-bottom: 6px;
+}
+.autolab-queue-hdr {
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.autolab-queue-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+  font-size: 11px;
+}
+.alq-level {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.alq-safe  { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+.alq-medium { background: rgba(245, 158, 11, 0.15); color: var(--accent-yellow); }
+.alq-high  { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+.alq-name { color: var(--text-primary); line-height: 1.3; }
+
+/* ── Upgrade 7: Quick Actions Toolbar ───────────────────────────────────── */
+.cc-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  background: var(--panel-bg);
+  border-bottom: 1px solid var(--border);
+}
+.cc-quick-btn {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.cc-quick-btn:hover {
+  border-color: var(--accent-yellow);
+  color: var(--accent-yellow);
+  background: rgba(245, 158, 11, 0.08);
+}
+.cc-quick-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Upgrade 7: Model Status Panel ─────────────────────────────────────── */
+.cc-model-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 0;
+}
+.cc-model-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.03);
+}
+.cc-model-icon { font-size: 13px; flex-shrink: 0; }
+.cc-model-name { font-size: 12px; color: var(--text-primary); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cc-model-tokens { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+.cc-model-calls  { font-size: 11px; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* ── Upgrade 7: Approval Queue Panel ────────────────────────────────────── */
+.cc-approval-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 0;
+}
+.cc-approval-row {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px;
+}
+.cc-approval-title {
+  font-size: 12px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.cc-approval-btn {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  transition: all 0.15s;
+}
+.cc-approve {
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--accent-green);
+  border-color: var(--accent-green);
+  margin-right: 6px;
+}
+.cc-approve:hover { background: rgba(16, 185, 129, 0.25); }
+.cc-reject {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+.cc-reject:hover { background: rgba(239, 68, 68, 0.22); }
+
+/* ── Upgrade 7: Image Chip (Visual Monitor) ─────────────────────────────── */
+.cc-image-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  font-size: 11px;
+  color: #a78bfa;
+  font-family: var(--font-mono);
+  margin-top: 6px;
+}
+
 /* ── Responsive ─────────────────────────────────────────────────────────── */
 @media (max-width: 1200px) {
   .cc-layout { grid-template-columns: 220px 1fr 240px; }

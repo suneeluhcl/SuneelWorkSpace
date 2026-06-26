@@ -56,3 +56,17 @@ The following workflows are low-performing and have pending structural optimizat
 - **Re-index workspace-brain MCP server storage**: Success
 - **Run workspace auto-repair & doctor verification check**: Success
 - **Re-train orchestrator router using recent decision logs**: Success
+
+### [2026-06-26] Anticipation pattern confidence boost
+- Hypothesis: Increasing bootstrap pattern confidence from 0.6 to 0.65 will produce more relevant suggestions with
+- Baseline: manual_review_required
+- Result: manual:5.5/10
+- Delta: +0.00 — ✅ improved
+- Status: completed_positive
+
+### [2026-06-26] MCP resource auto-discovery scan
+- Hypothesis: Running auto-discovery will surface unregistered workspace files and increase MCP resource coverage
+- Baseline: 126
+- Result: 126
+- Delta: +0.00 — ✅ improved
+- Status: completed_positive

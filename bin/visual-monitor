@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+exec scripts/visual_monitor_start.sh "$@"

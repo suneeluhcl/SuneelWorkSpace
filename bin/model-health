@@ -1,0 +1,14 @@
+#!/bin/bash
+# Check live model availability via API probes
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+python3 -c "
+import sys, json
+sys.path.insert(0, '.')
+from agent_system.model_router.health_checker import run_health_check
+result = run_health_check()
+print(json.dumps(result, indent=2))
+any_up = result.get('any_available', False)
+print()
+print('✅ At least one provider is up.' if any_up else '🔴 All providers appear unavailable.')
+"

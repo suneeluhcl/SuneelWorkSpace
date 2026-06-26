@@ -2174,7 +2174,7 @@
         "arxiv-mcp"
       ],
       "next": "idea-start",
-      "confidence": 0.6,
+      "confidence": 0.65,
       "source": "bootstrap",
       "added_at": "2026-06-26T09:56:58.827062",
       "uses": 0
@@ -2264,7 +2264,7 @@
         "agent-finish"
       ],
       "next": "agent-start",
-      "confidence": 0.6,
+      "confidence": 0.65,
       "source": "bootstrap",
       "added_at": "2026-06-26T09:56:58.827071",
       "uses": 0
@@ -2374,7 +2374,7 @@
         "brain-graph-query"
       ],
       "next": "idea-start",
-      "confidence": 0.6,
+      "confidence": 0.65,
       "source": "bootstrap",
       "added_at": "2026-06-26T09:56:58.827083",
       "uses": 0
@@ -2484,7 +2484,7 @@
         "build-training-data"
       ],
       "next": "agent-finish",
-      "confidence": 0.6,
+      "confidence": 0.65,
       "source": "bootstrap",
       "added_at": "2026-06-26T09:56:58.827095",
       "uses": 0
@@ -2494,7 +2494,7 @@
         "ollama-mcp"
       ],
       "next": "memory-search",
-      "confidence": 0.6,
+      "confidence": 0.65,
       "source": "bootstrap",
       "added_at": "2026-06-26T09:56:58.827096",
       "uses": 0
@@ -2504,7 +2504,7 @@
         "arxiv-mcp"
       ],
       "next": "brain-graph-build",
-      "confidence": 0.6,
+      "confidence": 0.65,
       "source": "bootstrap",
       "added_at": "2026-06-26T09:56:58.827097",
       "uses": 0

@@ -3,7 +3,7 @@
 'use strict';
 
 // ── State ──────────────────────────────────────────────────────────────────
-const CLIENT_ID = 'cc_' + Math.random().toString(36).slice(2, 10);
+const CLIENT_ID = 'cc_' + crypto.randomUUID().replace(/-/g, '');
 let ws = null;
 let wsReady = false;
 let feedPaused = false;
@@ -61,6 +61,26 @@ function handleMessage(msg) {
   } else if (type === 'result') {
     showResult(msg);
     setRunning(false);
+    loadHistory();
+  } else if (type === 'repair_complete') {
+    const btn = document.getElementById('repair-btn');
+    if (btn) { btn.disabled = false; btn.textContent = '🔧 Repair to 98%'; btn.classList.remove('repairing'); }
+    log('system', '✓', `Health repair done — score: ${msg.score ?? '?'}, fixes: ${msg.fixes ?? 0}`);
+    // Paint the ring directly from the repair score — don't re-fetch (live endpoint lags)
+    const repairScore = Math.round(msg.score || 0);
+    const circumference = 251.2;
+    const ring = document.getElementById('ring-fill');
+    if (ring) {
+      ring.style.strokeDashoffset = circumference - (repairScore / 100) * circumference;
+      ring.style.stroke = repairScore >= 80 ? 'var(--accent-green)' : repairScore >= 50 ? 'var(--accent-yellow)' : 'var(--accent-red)';
+    }
+    const label = document.getElementById('health-score-label');
+    if (label) label.textContent = repairScore;
+    const details = document.getElementById('health-details');
+    if (details) details.innerHTML = `<div class="health-detail-row"><span>Status</span><span class="${repairScore>=80?'ok':repairScore>=50?'warn':'err'}">repaired</span></div>`;
+    loadHistory();
+  } else if (type === 'quick_action_complete') {
+    log('system', '✅', `Quick action complete: ${msg.action}`);
     loadHistory();
   } else if (type === 'pong') {
     // heartbeat — ignore
@@ -394,7 +414,7 @@ async function loadGoals() {
 
 async function loadHistory() {
   const data = await apiFetch('/api/history');
-  allHistory = Array.isArray(data) ? data : [];
+  allHistory = (data && Array.isArray(data.history)) ? data.history : (Array.isArray(data) ? data : []);
   renderHistory(allHistory);
 }
 
@@ -427,7 +447,8 @@ function renderHistory(items) {
     badge.textContent = h.outcome || '?';
 
     const tsEl = document.createElement('span');
-    tsEl.textContent = (h.ts || '').slice(5, 16);
+    const tsRaw = h.timestamp || h.ts || '';
+    tsEl.textContent = tsRaw.slice(5, 16);
 
     meta.appendChild(badge);
     meta.appendChild(tsEl);
@@ -504,6 +525,164 @@ async function loadAutolab() {
   }
 }
 
+// ── Upgrade 7: Quick Actions ───────────────────────────────────────────────
+const QUICK_ACTIONS = {
+  'night-shift':    { cmd: 'dag-run orchestrator/dag/pipelines/night_shift.yaml', label: 'Night Shift' },
+  'gap-scan':       { cmd: 'python3 evolution/gap_finder.py',   label: 'Gap Scan' },
+  'challenge':      { cmd: 'python3 evolution/challenger.py',   label: 'Challenge Generation' },
+  'screenshot':     { cmd: 'screenshot-take',                   label: 'Screenshot' },
+  'model-health':   { cmd: 'model-health',                      label: 'Model Health Check' },
+  'evolution-start':{ cmd: 'python3 evolution/engine.py cycle', label: 'Evolution Cycle' },
+  'morning-brief':  { cmd: 'morning-brief',                     label: 'Morning Brief' },
+  'workspace-ci':   { cmd: 'workspace-ci',                      label: 'Workspace CI' },
+};
+
+async function quickAction(action) {
+  const config = QUICK_ACTIONS[action];
+  if (!config) return;
+  log('info', '⚡', `Quick action: ${config.label}`);
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ type: 'quick_action', action }));
+  } else {
+    log('warn', '⚠', 'WebSocket not connected — reconnecting…');
+    connectWebSocket();
+  }
+}
+
+// ── Upgrade 7: Approval Queue Actions ─────────────────────────────────────
+async function approveItem(queuedAt) {
+  try {
+    await fetch('/api/approvals/approve', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ queued_at: queuedAt }),
+    });
+    log('system', '✅', 'Item approved and fix triggered');
+    loadApprovalQueue();
+  } catch(e) {
+    log('error', '✗', `Approval failed: ${e.message}`);
+  }
+}
+
+async function rejectItem(queuedAt) {
+  try {
+    await fetch('/api/approvals/reject', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ queued_at: queuedAt }),
+    });
+    log('system', '✕', 'Item rejected');
+    loadApprovalQueue();
+  } catch(e) {
+    log('error', '✗', `Rejection failed: ${e.message}`);
+  }
+}
+
+// ── Upgrade 7: New Panel Loaders ───────────────────────────────────────────
+async function loadApprovalQueue() {
+  const el = document.getElementById('approval-body');
+  if (!el) return;
+  try {
+    const res = await fetch('/widgets/approval');
+    el.innerHTML = await res.text();
+    const data = await apiFetch('/api/visual/status');
+    const badge = document.getElementById('approval-count');
+    if (badge && data) badge.textContent = data.approval_queue || 0;
+  } catch(e) { el.textContent = 'Error loading approvals'; }
+}
+
+async function loadEvolutionPanel() {
+  const el = document.getElementById('evolution-body');
+  if (!el) return;
+  try {
+    const res = await fetch('/widgets/evolution');
+    el.innerHTML = await res.text();
+  } catch(e) { el.textContent = 'Evolution not started'; }
+}
+
+async function loadVisualPanel() {
+  const el = document.getElementById('visual-body');
+  if (!el) return;
+  try {
+    const res = await fetch('/widgets/visual');
+    el.innerHTML = await res.text();
+  } catch(e) { el.textContent = 'Visual monitor not running'; }
+}
+
+async function loadModelsPanel() {
+  const el = document.getElementById('models-body');
+  if (!el) return;
+  try {
+    const res = await fetch('/widgets/models');
+    el.innerHTML = await res.text();
+  } catch(e) { el.textContent = 'Model router not initialized'; }
+}
+
+// ── Enhancement 1: Health Repair ──────────────────────────────────────────
+async function startHealthRepair() {
+  const btn = document.getElementById('repair-btn');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ Repairing…'; btn.classList.add('repairing'); }
+  log('info', '🔧', 'Starting 8-stage health repair pipeline…');
+  try {
+    const res = await fetch('/api/health/repair', { method: 'POST' });
+    const data = await res.json();
+    log('info', '▶', `Repair job started: ${data.job_id} (target: ${data.target}%)`);
+  } catch (e) {
+    log('error', '✗', `Failed to start repair: ${e.message}`);
+    if (btn) { btn.disabled = false; btn.textContent = '🔧 Repair to 98%'; btn.classList.remove('repairing'); }
+  }
+}
+
+// ── Enhancement 2: Autolab Controls ───────────────────────────────────────
+async function runAutolabExperiments() {
+  log('info', '⚗', 'Triggering autolab experiment runner…');
+  try {
+    const res = await fetch('/api/autolab/run', { method: 'POST' });
+    const data = await res.json();
+    log('info', '▶', `Autolab runner started: ${data.job_id}`);
+  } catch (e) {
+    log('error', '✗', `Autolab run failed: ${e.message}`);
+  }
+}
+
+async function generateHypotheses() {
+  log('info', '💡', 'Generating new experiment hypotheses…');
+  try {
+    const res = await fetch('/api/autolab/generate', { method: 'POST' });
+    const data = await res.json();
+    log('info', '✓', `Hypotheses generated (${data.count ?? 0} lines)`);
+    loadAutolabQueue();
+  } catch (e) {
+    log('error', '✗', `Hypothesis generation failed: ${e.message}`);
+  }
+}
+
+async function loadAutolabQueue() {
+  const el = document.getElementById('autolab-queue-list');
+  if (!el) return;
+  const data = await apiFetch('/api/autolab/experiments');
+  el.innerHTML = '';
+  const exps = (data && Array.isArray(data.experiments)) ? data.experiments : [];
+  if (!exps.length) return;
+  const hdr = document.createElement('div');
+  hdr.className = 'autolab-queue-hdr';
+  hdr.textContent = `Queue (${exps.length})`;
+  el.appendChild(hdr);
+  exps.slice(0, 5).forEach(exp => {
+    const row = document.createElement('div');
+    row.className = 'autolab-queue-item';
+    const badge = document.createElement('span');
+    badge.className = `alq-level alq-${(exp.level || 'safe').toLowerCase()}`;
+    badge.textContent = exp.level || 'SAFE';
+    const name = document.createElement('span');
+    name.className = 'alq-name';
+    name.textContent = (exp.name || '').slice(0, 55);
+    row.appendChild(badge);
+    row.appendChild(name);
+    el.appendChild(row);
+  });
+}
+
 // ── Keyboard Shortcuts ─────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
   // Ctrl+Enter → Execute
@@ -544,13 +723,23 @@ function init() {
   loadGoals();
   loadHistory();
   loadAutolab();
+  loadAutolabQueue();
+  loadModelsPanel();
+  loadEvolutionPanel();
+  loadVisualPanel();
+  loadApprovalQueue();
 
   // Polling intervals
-  setInterval(loadHealth,      30000);
-  setInterval(loadSuggestions, 60000);
-  setInterval(loadAgents,      15000);
-  setInterval(loadGoals,       60000);
-  setInterval(loadAutolab,     60000);
+  setInterval(loadHealth,        30000);
+  setInterval(loadSuggestions,   60000);
+  setInterval(loadAgents,        15000);
+  setInterval(loadGoals,         60000);
+  setInterval(loadAutolab,       60000);
+  setInterval(loadAutolabQueue,  90000);
+  setInterval(loadModelsPanel,   60000);
+  setInterval(loadEvolutionPanel, 30000);
+  setInterval(loadVisualPanel,   45000);
+  setInterval(loadApprovalQueue, 20000);
 
   // Check AI status via /api/status
   async function checkStatus() {

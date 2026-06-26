@@ -1,0 +1,17 @@
+#!/bin/bash
+# Show today's model usage stats
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+python3 -c "
+import sys
+sys.path.insert(0, '.')
+from agent_system.model_router.quota_tracker import get_status
+data = get_status()
+print(f'Last reset : {data[\"last_reset\"]}')
+print()
+print(f'  {\"Model\":<32} {\"Tokens\":>10} {\"Calls\":>6} {\"Errors\":>7} {\"Avail\":>6}')
+print('  ' + '-' * 62)
+for m in data['models']:
+    icon = '🟢' if m['available'] else '🔴'
+    print(f'  {icon} {m[\"id\"]:<30} {m[\"tokens_used_today\"]:>8,} {m[\"calls_today\"]:>4} {m[\"errors_today\"]:>6}')
+"

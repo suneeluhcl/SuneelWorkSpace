@@ -1,0 +1,22 @@
+#!/bin/bash
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+python3 -c "
+import sys, json
+sys.path.insert(0, '.')
+from visual.screenshot_manager import get_latest_screenshot
+from visual.vision_analyzer import analyze_screenshot
+from visual.visual_repair_agent import enqueue_from_analysis, process_repair_queue
+
+shot = get_latest_screenshot()
+path = shot['path'] if shot else None
+analysis = analyze_screenshot(path)
+print(f'Analysis: {analysis[\"total_issues\"]} issue(s), {analysis[\"total_improvements\"]} improvement(s)')
+
+added = enqueue_from_analysis(analysis)
+print(f'Enqueued:  {added} new item(s)')
+
+result = process_repair_queue()
+print(f'Processed: {result[\"processed\"]} item(s) — {result[\"auto_fixed\"]} auto-fixed, {result[\"queued_for_approval\"]} pending approval')
+print(json.dumps(result, indent=2))
+" "$@"

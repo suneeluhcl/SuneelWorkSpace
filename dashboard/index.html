@@ -54,6 +54,18 @@
     </div>
   </div>
 
+  <!-- ── Quick Action Toolbar ─────────────────────────────────────────── -->
+  <div class="cc-quick-actions">
+    <button class="cc-quick-btn" onclick="quickAction('night-shift')" title="Run night shift now">🌙 Night Shift</button>
+    <button class="cc-quick-btn" onclick="quickAction('gap-scan')" title="Scan for capability gaps">🔍 Gap Scan</button>
+    <button class="cc-quick-btn" onclick="quickAction('challenge')" title="Generate self-challenges">🎯 Challenge</button>
+    <button class="cc-quick-btn" onclick="quickAction('screenshot')" title="Take dashboard screenshot">📸 Screenshot</button>
+    <button class="cc-quick-btn" onclick="quickAction('model-health')" title="Check model availability">🤖 Models</button>
+    <button class="cc-quick-btn" onclick="quickAction('evolution-start')" title="Run one evolution cycle">🧬 Evolution</button>
+    <button class="cc-quick-btn" onclick="quickAction('morning-brief')" title="Generate morning brief">☀️ Brief</button>
+    <button class="cc-quick-btn" onclick="quickAction('workspace-ci')" title="Run workspace CI suite">🔬 CI</button>
+  </div>
+
   <!-- ── Main Layout ──────────────────────────────────────────────────── -->
   <div class="cc-layout">
 
@@ -147,6 +159,9 @@
           </div>
         </div>
         <div id="health-details" class="health-details"></div>
+        <button class="cc-repair-btn" id="repair-btn" onclick="startHealthRepair()">
+          🔧 Repair to 98%
+        </button>
       </div>
 
       <!-- Goals -->
@@ -172,9 +187,41 @@
         </div>
       </div>
 
+      <!-- Approval Queue -->
+      <div class="cc-panel" id="panel-approval">
+        <div class="panel-header">
+          <div class="panel-title">✋ Approvals</div>
+          <span class="cc-panel-badge" id="approval-count">0</span>
+        </div>
+        <div id="approval-body" class="loading-dots">Loading…</div>
+      </div>
+
+      <!-- Evolution Engine -->
+      <div class="cc-panel" id="panel-evolution">
+        <div class="panel-title">🧬 Evolution</div>
+        <div id="evolution-body" class="loading-dots">Loading…</div>
+      </div>
+
+      <!-- Visual Monitor -->
+      <div class="cc-panel" id="panel-visual">
+        <div class="panel-title">👁 Visual</div>
+        <div id="visual-body" class="loading-dots">Loading…</div>
+      </div>
+
+      <!-- Model Status -->
+      <div class="cc-panel" id="panel-models">
+        <div class="panel-title">🤖 Models</div>
+        <div id="models-body" class="loading-dots">Loading…</div>
+      </div>
+
       <!-- Autolab Status -->
       <div class="cc-panel" id="panel-autolab">
         <div class="panel-title">Autolab</div>
+        <div class="autolab-actions">
+          <button class="cc-autolab-btn" onclick="runAutolabExperiments()">▶ Run All</button>
+          <button class="cc-autolab-btn" onclick="generateHypotheses()">💡 Generate</button>
+        </div>
+        <div id="autolab-queue-list" class="autolab-queue-list"></div>
         <div id="autolab-content" class="autolab-content">
           <div class="loading-dots">Loading…</div>
         </div>

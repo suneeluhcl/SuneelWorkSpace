@@ -13,13 +13,14 @@
   ],
   "success_metric": "Anticipation suggestion relevance (manual review score 1-10)",
   "measurement_command": "echo 'manual_review_required'",
-  "baseline_value": null,
-  "result_value": null,
-  "score_delta": null,
-  "status": "queued",
+  "baseline_value": "manual_review_required",
+  "result_value": "manual:5.5/10",
+  "score_delta": 0.0,
+  "status": "promoted",
   "created_at": "2026-06-26T10:14:08Z",
-  "started_at": null,
-  "completed_at": null,
-  "rollback_path": null,
-  "notes": "Small bounded parameter change — rollback is trivial"
+  "started_at": "2026-06-26T16:40:24.124511",
+  "completed_at": "2026-06-26T16:40:24.172775",
+  "rollback_path": "/Users/MAC/SuneelWorkSpace/autolab/experiments/rollback/exp_002",
+  "notes": "Small bounded parameter change \u2014 rollback is trivial",
+  "promoted_at": "2026-06-26T16:40:24.200266"
 }

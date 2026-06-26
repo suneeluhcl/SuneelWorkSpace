@@ -13,13 +13,13 @@
   ],
   "success_metric": "Total chunk count in vector store",
   "measurement_command": "python3 -c \"import chromadb; c = chromadb.PersistentClient('agent-system/memory/vector/chroma_store'); col = c.get_collection('workspace_memory'); print(col.count())\" 2>/dev/null || echo 0",
-  "baseline_value": null,
+  "baseline_value": "52",
   "result_value": null,
   "score_delta": null,
-  "status": "queued",
+  "status": "failed",
   "created_at": "2026-06-26T10:14:08Z",
-  "started_at": null,
+  "started_at": "2026-06-26T16:40:24.116702",
   "completed_at": null,
-  "rollback_path": null,
-  "notes": "Safe read-only reindex — no destructive actions"
+  "rollback_path": "/Users/MAC/SuneelWorkSpace/autolab/experiments/rollback/exp_001",
+  "notes": "Safe read-only reindex \u2014 no destructive actions"
 }

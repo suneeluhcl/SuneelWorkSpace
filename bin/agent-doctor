@@ -225,7 +225,8 @@ subsystem_dirs = {
     "agent-system", "anticipation", "autolab", "automation", "comms",
     "codex", "docs", "goal-engine", "identity", "mcp", "obsidian-vault",
     "orchestrator", "projects", "research-engine", "scripts", "system-context",
-    "tools", "testing", "dashboard", "gateway"
+    "tools", "testing", "dashboard", "gateway", "monitor", "dispatcher",
+    "tests", "audit",
 }
 
 
@@ -246,7 +247,7 @@ for p in root.rglob("*"):
     filename = parts[-1]
     
     # Skip standard folders
-    if any(k in parts for k in (".git", ".agent-backups", "__pycache__", "node_modules", "snapshots", ".hf_cache", "chroma_store")):
+    if any(k in parts for k in (".git", ".agent-backups", "__pycache__", "node_modules", "snapshots", ".hf_cache", "chroma_store", ".venv", "venv", "env", ".env")):
         continue
         
     # Check duplicate instruction files

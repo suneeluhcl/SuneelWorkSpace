@@ -277,7 +277,67 @@
     "workspace://workflow-rules": {
       "file": "agent-system/shared/WORKFLOW_RULES.md",
       "label": "Workflow rules"
+    },
+    "evolution_engine": {
+      "path": "evolution/engine.py",
+      "type": "python_module",
+      "description": "Autonomous evolution engine with gap scanning and challenge generation",
+      "uri": "workspace://evolution_engine"
+    },
+    "evolution_gap_finder": {
+      "path": "evolution/gap_finder.py",
+      "type": "python_module",
+      "description": "Scans workspace for missing capabilities and produces gap analysis",
+      "uri": "workspace://evolution_gap_finder"
+    },
+    "visual_screenshot_manager": {
+      "path": "visual/screenshot_manager.py",
+      "type": "python_module",
+      "description": "Takes and manages workspace screenshots for visual monitoring",
+      "uri": "workspace://visual_screenshot_manager"
+    },
+    "visual_vision_analyzer": {
+      "path": "visual/vision_analyzer.py",
+      "type": "python_module",
+      "description": "Analyzes screenshots and workspace state to identify issues",
+      "uri": "workspace://visual_vision_analyzer"
+    },
+    "visual_repair_agent": {
+      "path": "visual/visual_repair_agent.py",
+      "type": "python_module",
+      "description": "Auto-applies safe fixes and queues complex issues for approval",
+      "uri": "workspace://visual_repair_agent"
+    },
+    "model_router": {
+      "path": "agent_system/model_router/router.py",
+      "type": "python_module",
+      "description": "Routes tasks to optimal model with quota-aware fallback chain",
+      "uri": "workspace://model_router"
+    },
+    "night_shift_pipeline": {
+      "path": "orchestrator/dag/pipelines/night_shift.yaml",
+      "type": "dag_pipeline",
+      "description": "15-step nightly autonomous evolution pipeline",
+      "uri": "workspace://night_shift_pipeline"
+    },
+    "dashboard_v3": {
+      "path": "dashboard/",
+      "type": "webapp",
+      "description": "Control Center v3.0 with evolution engine, visual monitor, model status, and approval queue panels",
+      "uri": "workspace://dashboard_v3"
     }
+  },
+  "workspace://automation/evolution_scores": {
+    "description": "Daily evolution scores",
+    "file": "brain/system/evolution_scores.json"
+  },
+  "workspace://brain/graph": {
+    "description": "Knowledge graph of brain/ notes with backlinks",
+    "file": "brain/graph/knowledge_graph.json"
+  },
+  "workspace://brain/graph/orphans": {
+    "description": "Notes with no connections",
+    "file": "brain/graph/reports/orphan_notes.md"
   },
   "workspace://comms/imessage/recent": "comms/imessage/logs/imessage_access.log",
   "workspace://comms/imessage/status": "comms/imessage/state/imessage_state.json",
@@ -286,44 +346,32 @@
   "workspace://comms/policy": "comms/config/outbound_policy.json",
   "workspace://comms/reports/latest": "comms/reports/latest_comms_report.md",
   "workspace://comms/status": "comms/config/comms_config.json",
-  "workspace://brain/graph": {
-    "file": "brain/graph/knowledge_graph.json",
-    "description": "Knowledge graph of brain/ notes with backlinks"
-  },
-  "workspace://brain/graph/orphans": {
-    "file": "brain/graph/reports/orphan_notes.md",
-    "description": "Notes with no connections"
-  },
-  "workspace://orchestrator/mesh/agents": {
-    "file": "orchestrator/mesh/agent_registry.json",
-    "description": "Multi-agent registry"
-  },
-  "workspace://orchestrator/mesh/queue": {
-    "file": "orchestrator/mesh/task_queue.json",
-    "description": "Active multi-agent task queue"
-  },
-  "workspace://automation/evolution_scores": {
-    "file": "brain/system/evolution_scores.json",
-    "description": "Daily evolution scores"
-  },
-  "workspace://research/arxiv": {
-    "file": "bin/arxiv-mcp",
-    "description": "Arxiv research paper connector"
-  },
-  "workspace://ollama/status": {
-    "file": "bin/ollama-mcp",
-    "description": "Ollama local model connector"
-  },
   "workspace://docker/status": {
-    "file": "bin/docker-mcp",
-    "description": "Docker container connector"
-  },
-  "workspace://jupyter/notebooks": {
-    "file": "bin/jupyter-mcp",
-    "description": "Jupyter notebook connector"
+    "description": "Docker container connector",
+    "file": "bin/docker-mcp"
   },
   "workspace://gateway/api": {
-    "file": "gateway/api.py",
-    "description": "Agent REST API gateway (port 8888)"
+    "description": "Agent REST API gateway (port 8888)",
+    "file": "gateway/api.py"
+  },
+  "workspace://jupyter/notebooks": {
+    "description": "Jupyter notebook connector",
+    "file": "bin/jupyter-mcp"
+  },
+  "workspace://ollama/status": {
+    "description": "Ollama local model connector",
+    "file": "bin/ollama-mcp"
+  },
+  "workspace://orchestrator/mesh/agents": {
+    "description": "Multi-agent registry",
+    "file": "orchestrator/mesh/agent_registry.json"
+  },
+  "workspace://orchestrator/mesh/queue": {
+    "description": "Active multi-agent task queue",
+    "file": "orchestrator/mesh/task_queue.json"
+  },
+  "workspace://research/arxiv": {
+    "description": "Arxiv research paper connector",
+    "file": "bin/arxiv-mcp"
   }
 }

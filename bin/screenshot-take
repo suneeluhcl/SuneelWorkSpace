@@ -1,0 +1,20 @@
+#!/bin/bash
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+python3 -c "
+import sys, json
+sys.path.insert(0, '.')
+from visual.screenshot_manager import take_screenshot, list_screenshots
+label = sys.argv[1] if len(sys.argv) > 1 else 'manual'
+path = take_screenshot(label=label)
+if path:
+    print(f'✅ Screenshot saved: {path}')
+else:
+    print('⚠️  Screenshot failed (Chrome/Playwright not available or dashboard not running)')
+print()
+shots = list_screenshots(3)
+if shots:
+    print(f'Recent screenshots ({len(shots)}):')
+    for s in shots:
+        print(f'  {s[\"taken_at\"][:16]}  {s[\"filename\"]}  ({s[\"size_kb\"]} KB)')
+" "$@"

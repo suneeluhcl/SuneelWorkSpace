@@ -1,0 +1,17 @@
+#!/bin/bash
+# Route a task to the best available model
+cd ~/SuneelWorkSpace
+source .venv/bin/activate 2>/dev/null || true
+python3 -c "
+import sys
+sys.path.insert(0, '.')
+from agent_system.model_router.router import get_best_model, get_fallback_chain
+task = sys.argv[1] if len(sys.argv) > 1 else 'default'
+model = get_best_model(task)
+print(f'Best model for [{task}]: {model}')
+print()
+print('Fallback chain:')
+for m in get_fallback_chain():
+    status = '🟢' if m['available'] else '🔴'
+    print(f'  {status} {m[\"id\"]:<32} {m[\"tokens_today\"]:>8,} tokens  {m[\"calls_today\"]:>4} calls')
+" "$@"

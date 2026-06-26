@@ -13,13 +13,14 @@
   ],
   "success_metric": "Number of proposed new MCP resources",
   "measurement_command": "python3 mcp/server/scripts/auto_discover.py 2>/dev/null | grep 'Unregistered:' | grep -o '[0-9]*' || echo 0",
-  "baseline_value": null,
-  "result_value": null,
-  "score_delta": null,
-  "status": "queued",
+  "baseline_value": "126",
+  "result_value": "126",
+  "score_delta": 0.0,
+  "status": "promoted",
   "created_at": "2026-06-26T10:14:08Z",
-  "started_at": null,
-  "completed_at": null,
-  "rollback_path": null,
-  "notes": "Read-only scan — proposes only, does not apply"
+  "started_at": "2026-06-26T16:40:24.277019",
+  "completed_at": "2026-06-26T16:40:24.462285",
+  "rollback_path": "/Users/MAC/SuneelWorkSpace/autolab/experiments/rollback/exp_003",
+  "notes": "Read-only scan \u2014 proposes only, does not apply",
+  "promoted_at": "2026-06-26T16:40:24.494261"
 }

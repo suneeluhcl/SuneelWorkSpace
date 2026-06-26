@@ -1,0 +1,111 @@
+name: night_shift
+description: "Aggressive nightly workspace evolution — runs while Suneel sleeps"
+version: "1.0"
+trigger:
+  type: schedule
+  schedule: "0 22 * * *"   # 10pm every night
+
+steps:
+  - id: backup
+    name: "Workspace Backup"
+    command: workspace-backup
+    execution_level: SAFE
+
+  - id: model_health
+    name: "Check Model Availability"
+    command: model-health
+    depends_on: [backup]
+    execution_level: SAFE
+
+  - id: visual_screenshot
+    name: "Take Dashboard Screenshot"
+    command: screenshot-take
+    depends_on: [model_health]
+    execution_level: SAFE
+
+  - id: visual_repair
+    name: "Visual Repair Pass"
+    command: visual-repair
+    depends_on: [visual_screenshot]
+    execution_level: SAFE
+
+  - id: gap_scan
+    name: "Gap Analysis"
+    command: python3 evolution/gap_finder.py
+    depends_on: [visual_repair]
+    execution_level: SAFE
+
+  - id: challenge
+    name: "Self-Challenge Generation"
+    command: python3 evolution/challenger.py
+    depends_on: [gap_scan]
+    execution_level: SAFE
+
+  - id: hypothesis_generate
+    name: "Generate Hypotheses"
+    command: hypothesis-generate --queue-safe
+    depends_on: [challenge]
+    execution_level: SAFE
+
+  - id: autolab_run
+    name: "Run SAFE Experiments"
+    command: autolab-run --safe-only
+    depends_on: [hypothesis_generate]
+    execution_level: SAFE
+
+  - id: health_repair
+    name: "Health Repair (target 98%)"
+    command: >
+      python3 -c "
+      import asyncio, sys; sys.path.insert(0,'dashboard')
+      from execution.health_repair_pipeline import run_health_repair
+      asyncio.run(run_health_repair(lambda l,c: print(f'{l}: {c}'), 'night_shift'))
+      "
+    depends_on: [autolab_run]
+    execution_level: SAFE
+
+  - id: memory_reindex
+    name: "Memory Reindex"
+    command: memory-reindex
+    depends_on: [health_repair]
+    execution_level: SAFE
+
+  - id: graph_rebuild
+    name: "Knowledge Graph Rebuild"
+    command: brain-graph-build
+    depends_on: [memory_reindex]
+    execution_level: SAFE
+
+  - id: capability_update
+    name: "Update Capability Scores via Gap Finder"
+    command: python3 evolution/gap_finder.py
+    depends_on: [graph_rebuild]
+    execution_level: SAFE
+
+  - id: prompt_eval
+    name: "Prompt Evaluation"
+    command: prompt-eval --version current
+    depends_on: [capability_update]
+    execution_level: SAFE
+
+  - id: morning_brief
+    name: "Generate Morning Brief"
+    command: morning-brief
+    depends_on: [prompt_eval]
+    execution_level: SAFE
+
+  - id: workspace_ci
+    name: "Workspace CI"
+    command: workspace-ci
+    depends_on: [morning_brief]
+    execution_level: SAFE
+
+  - id: agent_finish
+    name: "Session Closeout"
+    command: agent-finish "Night shift complete"
+    depends_on: [workspace_ci]
+    execution_level: SAFE
+
+on_failure:
+  action: continue
+  notify: log
