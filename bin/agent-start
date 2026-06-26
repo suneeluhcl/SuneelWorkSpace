@@ -66,5 +66,110 @@ PY
 log_session "Agent startup preflight ran and active session was marked."
 
 if [ "$QUIET" -eq 0 ]; then
+  python3 - "$ROOT" <<'PY'
+import json, pathlib, sys, subprocess
+root = pathlib.Path(sys.argv[1])
+active_context_path = root / "agent-system" / "state" / "ACTIVE_CONTEXT.json"
+if active_context_path.exists():
+    try:
+        ctx = json.loads(active_context_path.read_text())
+        if ctx.get("status") == "active" and (ctx.get("current_goal") or ctx.get("last_actions")):
+            print("\n🧠 Resuming previous session context")
+            print(f"  - Current Goal: {ctx.get('current_goal')}")
+            print(f"  - Intent      : {ctx.get('current_intent')}")
+            print(f"  - Last Actions: {', '.join(ctx.get('last_actions', []))}")
+            print("\nSuggested continuation:")
+            
+            recs = ctx.get("next_recommended_actions", [])
+            if not recs:
+                recs = ["Review recent workspace changes", "Run agent-status", "Inspect active goals"]
+                
+            for idx, r in enumerate(recs[:3], 1):
+                rank = "HIGH" if idx == 1 else ("MED" if idx == 2 else "LOW")
+                print(f"  {idx}. [{rank}] {r}")
+            print("")
+            
+            try:
+                ans = input("Continue / switch workflow / reset? (continue/switch/reset) [continue]: ").strip().lower()
+            except (EOFError, KeyboardInterrupt):
+                ans = "continue"
+                print()
+                
+            if ans in ("switch", "s"):
+                history = ctx.get("context_history", [])
+                if not history:
+                    print("No context history available to switch. Resuming...")
+                else:
+                    print("\nSelect a historical context to restore:")
+                    for idx, h in enumerate(reversed(history), 1):
+                        print(f"  {idx}. Goal: {h.get('current_goal')} | Intent: {h.get('current_intent')} | Workflow: {h.get('active_workflow')} ({h.get('last_updated')})")
+                    print("")
+                    try:
+                        sel = input(f"Select context (1-{len(history)}) or 'c' to cancel: ").strip()
+                    except (EOFError, KeyboardInterrupt):
+                        sel = "c"
+                        print()
+                        
+                    if sel.isdigit():
+                        choice_idx = int(sel) - 1
+                        if 0 <= choice_idx < len(history):
+                            from datetime import datetime, timezone
+                            target = list(reversed(history))[choice_idx]
+                            current_active = {
+                                "current_goal": ctx.get("current_goal"),
+                                "current_intent": ctx.get("current_intent"),
+                                "active_workflow": ctx.get("active_workflow"),
+                                "last_actions": ctx.get("last_actions"),
+                                "confidence": ctx.get("confidence"),
+                                "last_updated": ctx.get("last_updated"),
+                                "decay_factor": ctx.get("decay_factor"),
+                                "last_active_timestamp": ctx.get("last_active_timestamp")
+                            }
+                            history.append(current_active)
+                            original_len = len(history) - 1
+                            pop_idx = original_len - 1 - choice_idx
+                            history.pop(pop_idx)
+                            
+                            ctx.update({
+                                "current_goal": target.get("current_goal"),
+                                "current_intent": target.get("current_intent"),
+                                "active_workflow": target.get("active_workflow"),
+                                "last_actions": target.get("last_actions", []),
+                                "confidence": target.get("confidence", 0.5),
+                                "decay_factor": target.get("decay_factor", 1.0),
+                                "last_active_timestamp": target.get("last_active_timestamp", ""),
+                                "last_updated": datetime.now(timezone.utc).astimezone().isoformat(),
+                                "context_history": history[-10:]
+                            })
+                            active_context_path.write_text(json.dumps(ctx, indent=2) + "\n")
+                            print(f"Restored context: Goal: {ctx.get('current_goal')} | Intent: {ctx.get('current_intent')}")
+                        else:
+                            print("Invalid choice. Resuming current context.")
+                    else:
+                        print("Switch cancelled. Resuming current context.")
+                        
+            elif ans in ("reset", "r"):
+                reset_script = root / "bin" / "context-reset"
+                if reset_script.exists():
+                    subprocess.run([str(reset_script)])
+                else:
+                    ctx.update({
+                        "current_goal": None,
+                        "current_intent": "unknown",
+                        "active_workflow": "unknown",
+                        "last_actions": [],
+                        "next_recommended_actions": [],
+                        "confidence": 0.0,
+                        "status": "active"
+                    })
+                    active_context_path.write_text(json.dumps(ctx, indent=2) + "\n")
+                print("Context reset. Starting fresh session.")
+            else:
+                print("Continuity active. Resuming...")
+    except Exception as e:
+        pass
+fi
+
+if [ "$QUIET" -eq 0 ]; then
   "$ROOT/bin/workspace-context"
 fi

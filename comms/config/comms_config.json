@@ -1,41 +1,67 @@
 {
   "_meta": {
-    "version": "1.0",
-    "description": "Communications subsystem configuration",
     "created": "2026-06-24",
+    "description": "Communications subsystem configuration",
+    "version": "1.0",
     "workspace": "~/SuneelWorkSpace"
   },
-  "imessage": {
+  "anticipation": {
     "enabled": true,
-    "db_path": "~/Library/Messages/chat.db",
-    "read_mode": "sqlite_direct",
-    "send_mode": "applescript",
-    "fda_required": true,
-    "fda_confirmed": true,
+    "examples": [
+      "after drafts, suggest review/send approval steps"
+    ],
+    "prediction_engine": "anticipation/prediction_engine.py",
+    "suggestion_scope": "suggest_only_never_send"
+  },
+  "identity": {
+    "adaptive": {
+      "drift_guardrails": "identity/adaptive/drift_guardrails.json",
+      "enabled": true,
+      "pattern_updates": "identity/adaptive/pattern_updates.json",
+      "scope": "small tone refinements only",
+      "send_requires_explicit_approval": true
+    },
+    "communication_prompt": "identity/prompts/communication_prompt.md",
+    "enabled": true,
+    "rules": [
+      "short_direct_casual",
+      "softened_not_harsh",
+      "never_condescending",
+      "do_not_send_without_explicit_approval"
+    ],
+    "tone_profile": "identity/profile/tone_profile.md"
+  },
+  "imessage": {
     "automation_permission_required": true,
-    "plugin_status": "not_installed",
+    "db_path": "~/Library/Messages/chat.db",
+    "enabled": true,
+    "fda_confirmed": true,
+    "fda_required": true,
     "plugin_name": "imessage@claude-plugins-official",
+    "plugin_status": "not_installed",
+    "read_mode": "sqlite_direct",
     "recent_limit": 20,
     "search_limit": 50,
-    "self_chat_handle": null
+    "self_chat_handle": null,
+    "send_mode": "applescript"
   },
   "mail": {
-    "enabled": false,
-    "reason_disabled": "Mail.app not installed at /Applications/Mail.app",
-    "adapter": "applescript",
-    "mailapp_installed": false,
     "accounts_configured": false,
-    "fallback": "see comms/reports/plugin_recommendations.md for Gmail/IMAP options"
+    "adapter": "applescript",
+    "enabled": false,
+    "fallback": "see comms/reports/plugin_recommendations.md for Gmail/IMAP options",
+    "mailapp_installed": false,
+    "reason_disabled": "Mail.app not installed at /Applications/Mail.app"
   },
   "safety": {
+    "allowlist_enforced": false,
     "auto_reply": false,
     "auto_send": false,
-    "confirmation_required": true,
-    "allowlist_enforced": false,
-    "log_outbound": true,
-    "log_blocked": true,
-    "dry_run_by_default": true,
     "body_logging": false,
-    "body_logging_debug_mode": false
+    "body_logging_debug_mode": false,
+    "confirmation_required": true,
+    "dry_run_by_default": true,
+    "log_blocked": true,
+    "log_outbound": true
   }
 }

@@ -1,5 +1,32 @@
 {
   "resources": {
+    "workspace://anticipation/current-context": {
+      "file": "anticipation/current_context.json",
+      "label": "Current inferred intent and recent actions"
+    },
+    "workspace://anticipation/memory": {
+      "file": "anticipation/prediction_memory.json",
+      "label": "Anticipation prediction memory"
+    },
+    "workspace://anticipation/patterns": {
+      "file": "anticipation/behavior_patterns.json",
+      "label": "Anticipation behavior patterns"
+    },
+    "workspace://anticipation/report": {
+      "file": "anticipation/reports/anticipation_report.md",
+      "label": "Anticipation report"
+    },
+    "workspace://anticipation/suggestions": {
+      "file": "anticipation/action_suggestions.md",
+      "label": "Current suggested next actions"
+    },
+    "workspace://audit/gaps": "audit/gap_analysis.md",
+    "workspace://audit/improvement-plan": "audit/improvement_plan.md",
+    "workspace://audit/system": "audit/system_audit.md",
+    "workspace://autolab/adaptive-identity-strategy": {
+      "file": "autolab/meta/adaptive_identity_strategy.md",
+      "label": "Autolab adaptive identity strategy"
+    },
     "workspace://autolab/failures": {
       "file": "autolab/meta/failure_patterns.json",
       "label": "Autolab failure patterns"
@@ -24,6 +51,11 @@
       "file": "autolab/program.md",
       "label": "Autolab program/strategy"
     },
+    "workspace://autolab/system-improvement-strategy": "autolab/meta/system_improvement_strategy.md",
+    "workspace://context/active": {
+      "file": "agent-system/state/ACTIVE_CONTEXT.json",
+      "label": "Active session context"
+    },
     "workspace://decisions": {
       "file": "agent-system/memory/DECISIONS.md",
       "label": "Important decisions"
@@ -40,6 +72,7 @@
       "file": "goal-engine/execution/execution_log.md",
       "label": "Goal execution log"
     },
+    "workspace://goals/idea-pipeline": "goal-engine/planner/idea_execution_pipeline.md",
     "workspace://goals/status": {
       "file": "goal-engine/state/goal_state.json",
       "label": "Goal engine state"
@@ -72,6 +105,70 @@
       "file": "agent-system/shared/IDENTITY.md",
       "label": "Agent identity and context"
     },
+    "workspace://identity/adaptive/drift-guardrails": {
+      "file": "identity/adaptive/drift_guardrails.json",
+      "label": "Adaptive identity drift guardrails"
+    },
+    "workspace://identity/adaptive/feedback-log": {
+      "file": "identity/adaptive/feedback_log.json",
+      "label": "Adaptive identity feedback log"
+    },
+    "workspace://identity/adaptive/pattern-updates": {
+      "file": "identity/adaptive/pattern_updates.json",
+      "label": "Adaptive identity pattern updates"
+    },
+    "workspace://identity/adaptive/report": {
+      "file": "identity/adaptive/reports/adaptation_report.md",
+      "label": "Adaptive identity report"
+    },
+    "workspace://identity/adaptive/signal-weights": {
+      "file": "identity/adaptive/signal_weights.json",
+      "label": "Adaptive identity signal weights"
+    },
+    "workspace://identity/adaptive/signals": {
+      "file": "identity/adaptive/signal_memory.json",
+      "label": "Adaptive identity signal memory"
+    },
+    "workspace://identity/adaptive/state": {
+      "file": "identity/adaptive/adaptation_state.json",
+      "label": "Adaptive identity state"
+    },
+    "workspace://identity/behavioral-patterns": {
+      "file": "identity/profile/behavioral_patterns.json",
+      "label": "Suneel behavioral patterns"
+    },
+    "workspace://identity/communication-prompt": {
+      "file": "identity/prompts/communication_prompt.md",
+      "label": "Communication voice prompt"
+    },
+    "workspace://identity/decision": {
+      "file": "identity/profile/decision_profile.md",
+      "label": "Suneel decision profile"
+    },
+    "workspace://identity/preferences": {
+      "file": "identity/profile/preferences.json",
+      "label": "Suneel identity preferences"
+    },
+    "workspace://identity/profile": {
+      "file": "identity/profile/identity_profile.md",
+      "label": "Suneel identity profile"
+    },
+    "workspace://identity/prompt": {
+      "file": "identity/prompts/identity_prompt.md",
+      "label": "Identity behavior prompt"
+    },
+    "workspace://identity/routing": {
+      "file": "identity/integration/routing_identity.json",
+      "label": "Identity routing rules"
+    },
+    "workspace://identity/signals": {
+      "file": "identity/interview/extracted_signals.json",
+      "label": "Identity interview extracted signals"
+    },
+    "workspace://identity/tone": {
+      "file": "identity/profile/tone_profile.md",
+      "label": "Suneel tone profile"
+    },
     "workspace://logs/recent": {
       "file": "agent-system/logs/SESSION_LOG.md",
       "label": "Recent session log"
@@ -84,14 +181,24 @@
       "file": "agent-system/memory/MEMORY.md",
       "label": "Persistent memory"
     },
+    "workspace://memory/insights": "agent-system/memory/INSIGHTS.md",
+    "workspace://memory/patterns": "agent-system/memory/PATTERNS.md",
     "workspace://notes": {
       "file": "agent-system/memory/NOTES.md",
       "label": "Temporary notes"
     },
+    "workspace://orchestrator/system-intelligence-policy": "orchestrator/router/system_intelligence_policy.md",
     "workspace://overview": {
       "file": "agent-system/shared/AGENT_SYSTEM.md",
       "label": "Canonical workspace instructions"
     },
+    "workspace://policy/bounded-self-upgrade": "agent-system/shared/BOUNDED_SELF_UPGRADE.md",
+    "workspace://readme/blueprint": {
+      "file": "README.md",
+      "label": "Canonical zero-gap system blueprint"
+    },
+    "workspace://research/decisions": "research-engine/decisions/README.md",
+    "workspace://research/index": "research-engine/ideas/index.json",
     "workspace://routing/history": {
       "file": "orchestrator/router/history.json",
       "label": "Routing decision history"
@@ -128,6 +235,7 @@
       "file": "agent-system/state/CURRENT_STATE.json",
       "label": "Current state JSON"
     },
+    "workspace://system/profile": "system-context/system_profile.json",
     "workspace://tasks/active": {
       "file": "agent-system/tasks/ACTIVE_TASKS.md",
       "label": "Active tasks"
@@ -140,6 +248,8 @@
       "file": "agent-system/tasks/TASK_QUEUE.md",
       "label": "Task queue"
     },
+    "workspace://tools/inventory": "tools/tool_inventory.json",
+    "workspace://tools/recommendations": "tools/recommendations.md",
     "workspace://workflow-rules": {
       "file": "agent-system/shared/WORKFLOW_RULES.md",
       "label": "Workflow rules"

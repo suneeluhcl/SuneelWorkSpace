@@ -204,4 +204,7 @@ tmp.replace(path)
 PY
 
 log_maintenance "Maintenance ran."
+if [ -f "$ROOT/scripts/system_intelligence.py" ]; then
+  python3 "$ROOT/scripts/system_intelligence.py" improve >/dev/null 2>&1 || true
+fi
 echo "Maintenance completed."

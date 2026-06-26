@@ -10,6 +10,7 @@ if [ ! -f "$HEALTH_JSON" ] || ! python3 -m json.tool "$HEALTH_JSON" >/dev/null 2
   "$ROOT/bin/agent-doctor" --quiet >/dev/null 2>&1 || true
 fi
 
+
 echo "Workspace: $ROOT"
 echo "Canonical instructions: $CANON"
 echo
@@ -174,4 +175,7 @@ print(f"gates_passed: {data.get('gates_passed', 'unknown')}")
 print(f"loop_status: {status.get('status', 'unknown')}")
 print("report: autolab/reports/latest_report.md")
 PY
+fi
+if [ -f "$ROOT/scripts/system_intelligence.py" ]; then
+  python3 "$ROOT/scripts/system_intelligence.py" status 2>/dev/null || true
 fi

@@ -223,3 +223,7 @@ for item in issues[:20]:
 PY
 
 log_maintenance "Doctor ran."
+
+if [ -f "$ROOT/scripts/system_intelligence.py" ]; then
+  python3 "$ROOT/scripts/system_intelligence.py" health-update >/dev/null 2>&1 || true
+fi

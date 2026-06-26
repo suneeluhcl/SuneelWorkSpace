@@ -21,6 +21,7 @@ Exit codes:
 """
 
 import argparse
+import atexit
 import json
 import os
 import pathlib
@@ -42,6 +43,68 @@ ROUTE_TASK = WORKSPACE / "orchestrator" / "scripts" / "route-task"
 
 def _now():
     return datetime.now(timezone.utc).astimezone().isoformat()
+
+
+def _identity_adaptive_hook():
+    goal_id = None
+    for idx, arg in enumerate(sys.argv):
+        if arg == "--goal-id" and idx + 1 < len(sys.argv):
+            goal_id = sys.argv[idx + 1]
+        elif arg.startswith("--goal-id="):
+            goal_id = arg.split("=", 1)[1]
+    if not goal_id:
+        return
+    script = WORKSPACE / "identity/adaptive/adaptive_identity.py"
+    if not script.exists():
+        return
+    try:
+        subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "hook",
+                "--output-id",
+                f"goal-execute-{goal_id}",
+                "--context",
+                "goal_execute",
+                "--agent",
+                "Codex",
+                "--notes",
+                "goal execution cycle completed",
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            timeout=5,
+            check=False,
+        )
+    except Exception:
+        pass
+    prediction = WORKSPACE / "anticipation/prediction_engine.py"
+    if prediction.exists():
+        try:
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(prediction),
+                    "record",
+                    "--command",
+                    "goal-execute",
+                    "--context",
+                    "goal_engine",
+                    "--exit-code",
+                    "0",
+                    "--quiet",
+                ],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5,
+                check=False,
+            )
+        except Exception:
+            pass
+
+
+atexit.register(_identity_adaptive_hook)
 
 def _load(path):
     try:
@@ -284,6 +347,26 @@ def main():
             print(f"All tasks complete! Run `goal-complete {args.goal_id}` to close.")
         elif failed:
             print(f"Failed tasks: {', '.join(failed)}. Run `goal-adapt {args.goal_id}` to retry.")
+
+    # Update ACTIVE_CONTEXT.json
+    try:
+        active_context_path = WORKSPACE / "agent-system" / "state" / "ACTIVE_CONTEXT.json"
+        if active_context_path.exists():
+            active_context = json.loads(active_context_path.read_text())
+        else:
+            active_context = {}
+        active_context["current_goal"] = goal.get("description", args.goal_id)
+        active_context["active_workflow"] = "idea_execution"
+        active_context["current_intent"] = "idea_execution"
+        active_context["status"] = "active"
+        active_context["last_updated"] = _now()
+        last_actions = active_context.get("last_actions", [])
+        last_actions.append("goal-execute")
+        active_context["last_actions"] = last_actions[-10:]
+        active_context["confidence"] = 0.9 if goal.get("status") in ("active", "paused") else 0.4
+        active_context_path.write_text(json.dumps(active_context, indent=2) + "\n")
+    except Exception:
+        pass
 
 if __name__ == "__main__":
     main()

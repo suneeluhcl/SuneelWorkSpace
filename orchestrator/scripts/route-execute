@@ -170,7 +170,36 @@ if not updated:
 data["entries"] = entries
 data["_meta"]["entry_count"] = len(entries)
 path.write_text(json.dumps(data, indent=2) + "\n")
+
+# Update ACTIVE_CONTEXT.json
+try:
+    active_path = path.parent.parent.parent / "agent-system" / "state" / "ACTIVE_CONTEXT.json"
+    if active_path.exists():
+        active = json.loads(active_path.read_text())
+    else:
+        active = {}
+    active["active_workflow"] = task_type
+    active["current_intent"] = task_type
+    active["status"] = "active"
+    active["last_updated"] = datetime.now(timezone.utc).astimezone().isoformat()
+    last_act = active.get("last_actions", [])
+    last_act.append("route-execute")
+    active["last_actions"] = last_act[-10:]
+    active["confidence"] = 0.8
+    active_path.write_text(json.dumps(active, indent=2) + "\n")
+except Exception:
+    pass
 PY
+
+python3 "$ROOT/identity/adaptive/adaptive_identity.py" hook \
+  --output-id "route-execute-$(date '+%Y%m%d%H%M%S')" \
+  --context "route_execute:$TASK_TYPE" \
+  --agent "$AGENT" \
+  --notes "route execution cycle completed with exit code $EXIT_CODE" >/dev/null 2>&1 || true
+python3 "$ROOT/anticipation/prediction_engine.py" record \
+  --command route-execute \
+  --context "orchestrator:$TASK_TYPE" \
+  --exit-code "$EXIT_CODE" 2>/dev/null || true
 
 echo ""
 echo "Agent finished (exit $EXIT_CODE)."

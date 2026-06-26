@@ -39,3 +39,13 @@ If a task fails repeatedly, goal-adapt can:
 - Swap the agent (Claude → Codex or vice versa)
 - Add a pre-task (gather more context first)
 - Mark the task as `aborted` and continue goal without it
+
+## Identity Planning Rules
+
+- Plan in Suneel's style: clear-cut, structured, concise, and practical.
+- Prefer fast but careful iterations.
+- Show enough detail before meaningful action.
+- Break uncertainty into smaller tasks.
+- Default to autopilot for safe work.
+- Ask only for serious system risk or explicit safety-gated actions.
+- Prioritize tools by simplicity, cost, power, speed, then reliability.

@@ -48,3 +48,32 @@
 - Store only stable, useful facts here.
 - Do not store secrets, tokens, passwords, private keys, billing data, or temporary noise.
 - Prefer updating an existing bullet over adding duplicates.
+
+## 2026-06-26 - Personal AI operating system upgrade
+
+- The workspace now has a bounded system intelligence layer: `system-audit`, `system-gaps`, `system-capabilities`, `system-recommend`, and `improve-system`.
+- Durable audit artifacts live in `audit/`; safe machine metadata lives in `system-context/system_profile.json`; local tool discovery lives in `tools/`.
+- The research engine lives in `research-engine/` and supports `idea-start`, `idea-run`, and lower-level `idea-*` scripts for idea capture, research plans, analyses, and decisions.
+- Bounded self-upgrade policy is documented in `agent-system/shared/BOUNDED_SELF_UPGRADE.md`.
+
+## 2026-06-26 - Suneel identity capture
+
+- Identity subsystem lives in `identity/`.
+- Suneel's preferred voice is short, direct, casual, conversational, smart, structured, softened, and never harsh or condescending.
+- Suneel prefers autopilot by default, with questions only for serious system risk or safety-gated actions.
+- Suneel chooses tools by simplicity, cost, power, speed, then reliability.
+- Hard boundary: never wipe the system or delete important files automatically.
+- Adaptive identity loop lives in `identity/adaptive/` and learns slowly from accepted, edited, rejected, and adjusted outputs while preserving the original identity profile.
+- Adaptive identity now uses weighted signals from `identity/adaptive/signal_weights.json` so rejected/manual/heavy-edit feedback influences learning more than simple acceptance.
+
+## 2026-06-26 - Anticipatory intelligence
+
+- Anticipation subsystem lives in `anticipation/`.
+- Prediction engine path: `anticipation/prediction_engine.py`.
+- Prediction memory path: `anticipation/prediction_memory.json`.
+- Current suggestions path: `anticipation/action_suggestions.md`.
+- Anticipation suggests next actions only; it never auto-executes or overrides safety boundaries.
+- `README.md` is now the complete system blueprint and AI-agent drop-in context.
+- Intent detection stores current intent in `anticipation/current_context.json` using categories: messaging, email, research, system_improvement, development, idea_execution, maintenance, unknown.
+- Suggestions are ranked with `frequency_weight + success_weight + recency_weight + identity_alignment + intent_alignment` and limited to top 3-5.
+- Session boot contract in `README.md` requires agents to say `✅ Loading workspace shared brain` and confirm context loaded before meaningful work.
