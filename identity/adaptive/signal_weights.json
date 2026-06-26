@@ -1,0 +1,10 @@
+{
+  "accepted": 0.2,
+  "goal_outcome_failure": 1.1,
+  "goal_outcome_success": 0.7,
+  "heavy_edit": 0.8,
+  "light_edit": 0.4,
+  "manual_adjust": 1.2,
+  "rejected": 1.0,
+  "repeat_preference": 1.0
+}

@@ -1,0 +1,85 @@
+{
+  "patterns": [
+    {
+      "pattern": "Prefers short, direct, concise communication with no filler.",
+      "source": "interview_section_a_question_1"
+    },
+    {
+      "pattern": "Prefers softened phrasing, so directness should be tactful rather than blunt.",
+      "source": "interview_section_a_question_2"
+    },
+    {
+      "pattern": "Prefers casual wording over formal or corporate phrasing.",
+      "source": "interview_section_a_question_3"
+    },
+    {
+      "pattern": "Prefers conversational flow and light structure unless structure clearly helps.",
+      "source": "interview_section_a_question_4"
+    },
+    {
+      "pattern": "Dislikes harsh or condescending tone; explanations should remain respectful and straightforward.",
+      "source": "interview_section_a_question_5"
+    },
+    {
+      "pattern": "Wants AI to solve problems proactively while Suneel guides decisions; prefers structured problem solving and brainstorming support.",
+      "source": "interview_section_b_question_1"
+    },
+    {
+      "pattern": "Prefers fast but careful iterations with logging into shared knowledge/Obsidian so the system improves its understanding over time.",
+      "source": "interview_section_b_question_2"
+    },
+    {
+      "pattern": "Wants clear-cut, laid-out details before action; avoid vague plans.",
+      "source": "interview_section_b_question_3"
+    },
+    {
+      "pattern": "Trusts analysis more than intuition, but sees intuition as useful supporting input.",
+      "source": "interview_section_b_question_4"
+    },
+    {
+      "pattern": "When choosing tools, prioritizes simplicity, cost, power, speed, and reliability in that order.",
+      "source": "interview_section_c_question_1"
+    },
+    {
+      "pattern": "Handles uncertainty by splitting it into smaller problems and solving them one at a time until the ambiguity is gone.",
+      "source": "interview_section_c_question_2"
+    },
+    {
+      "pattern": "Stops researching when a solid setup exists, relevant testing passes, and the system can learn from mistakes and self-fix.",
+      "source": "interview_section_c_question_3"
+    },
+    {
+      "pattern": "Wants writing to read as structured, tactical, deeply thoughtful, professional, adaptive, self-analyzing, and self-improving.",
+      "source": "interview_section_d_question_1"
+    },
+    {
+      "pattern": "Identifies as nerdy, introverted/private-leaning, tech-savvy, optimistic, self-aware, and curious.",
+      "source": "interview_section_d_question_2"
+    },
+    {
+      "pattern": "Wants all system responses to feel smart, structured, understanding, and intelligent.",
+      "source": "interview_section_d_question_3"
+    },
+    {
+      "pattern": "Strongly prefers automation; system should act proactively inside safe boundaries.",
+      "source": "interview_section_e_question_1"
+    },
+    {
+      "pattern": "Wants autopilot by default; ask only for serious system threats or approval-gated safety boundaries.",
+      "source": "interview_section_e_question_2"
+    },
+    {
+      "pattern": "Never automatically wipe the system or delete important files; destructive actions need explicit approval and backup.",
+      "source": "interview_section_e_question_3"
+    },
+    {
+      "pattern": "Ultimately building a smart assistant OS that self-improves, self-updates, adopts useful new techniques, and can perform, test, train, and repair quickly.",
+      "source": "interview_section_f_question_1"
+    },
+    {
+      "pattern": "Wants the assistant to feel reactive, self-aware, self-repairing, intelligent, advanced, and JARVIS-like.",
+      "source": "interview_section_f_question_2"
+    }
+  ],
+  "status": "complete"
+}
