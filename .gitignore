@@ -74,6 +74,7 @@ spine/backups/
 # README pipeline runtime logs (overwritten nightly)
 blood/logs/readme-nightly.out.log
 blood/logs/readme-nightly.err.log
+blood/logs/auto_commit.log
 
 # Auto-repair state (regenerated on every readme-repair run)
 spine/readme_repair_report.json
