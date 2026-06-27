@@ -11,8 +11,8 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-EVAL_DIR = WORKSPACE / 'identity/prompts/eval'
-VERSIONS_DIR = WORKSPACE / 'identity/prompts/versions'
+EVAL_DIR = WORKSPACE / 'dna/dna/identity/prompts/eval'
+VERSIONS_DIR = WORKSPACE / 'dna/dna/identity/prompts/versions'
 RESULTS_DIR = EVAL_DIR / 'eval_results'
 CASES_FILE = EVAL_DIR / 'eval_cases.json'
 
@@ -46,7 +46,7 @@ def load_prompt_version(version: str) -> str:
         if current.exists():
             return current.read_text()
         # Fall back to base
-        base = WORKSPACE / 'identity/prompts/identity_prompt.md'
+        base = WORKSPACE / 'dna/dna/identity/prompts/identity_prompt.md'
         return base.read_text() if base.exists() else ""
     return version_file.read_text()
 
@@ -180,7 +180,7 @@ def run_eval(version: str = 'v1', case_filter: str = None):
     with open(result_file, 'w') as f:
         json.dump(result_data, f, indent=2)
 
-    print(f"\nResults saved → identity/prompts/eval/eval_results/{result_file.name}")
+    print(f"\nResults saved → dna/dna/identity/prompts/eval/eval_results/{result_file.name}")
     return result_data
 
 

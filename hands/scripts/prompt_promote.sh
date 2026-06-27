@@ -3,8 +3,8 @@
 set -euo pipefail
 
 WORKSPACE="${WORKSPACE:-$HOME/SuneelWorkSpace}"
-VERSIONS_DIR="$WORKSPACE/dna/identity/prompts/versions"
-RESULTS_DIR="$WORKSPACE/dna/identity/prompts/eval/eval_results"
+VERSIONS_DIR="$WORKSPACE/dna/dna/dna/identity/prompts/versions"
+RESULTS_DIR="$WORKSPACE/dna/dna/dna/identity/prompts/eval/eval_results"
 LOG_FILE="$WORKSPACE/blood/logs/prompt_versions.log"
 
 VERSION="${1:-}"

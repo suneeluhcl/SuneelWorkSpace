@@ -34,17 +34,17 @@ bin/         Short-form terminal aliases
   install-imessage-plugin
   use-claude-imessage
 
-comms/
+mouth/comms/
   config/    Configuration and policy
   imessage/  iMessage scripts, logs, drafts
   mail/      Mail scripts (stubs until Mail.app installed)
   workflows/ Agent workflow guides
-  docs/      HOW_IT_WORKS, SAFETY_MODEL, PERMISSIONS, RECOVERY
+  spine/docs/      HOW_IT_WORKS, SAFETY_MODEL, PERMISSIONS, RECOVERY
   reports/   Comms status reports, plugin recommendations
 
-mcp/server/main.py   comms_* tools and resources registered here
-orchestrator/        imessage_read, imessage_reply, email_read, email_reply task types
-goal-engine/         comms goals supported via comms_convert_to_goal()
+nervous/nervous/mcp/server/main.py   comms_* tools and resources registered here
+heart/orchestrator/        imessage_read, imessage_reply, email_read, email_reply task types
+heart/goals/         comms goals supported via comms_convert_to_goal()
 ```
 
 ## Safety Rules (non-negotiable)
@@ -58,8 +58,8 @@ goal-engine/         comms goals supported via comms_convert_to_goal()
 
 ## Docs
 
-- `comms/docs/HOW_IT_WORKS.md` — full architecture
-- `comms/docs/SAFETY_MODEL.md` — safety rules
-- `comms/docs/PERMISSIONS.md` — macOS permissions guide
-- `comms/docs/RECOVERY.md` — troubleshooting
-- `comms/reports/plugin_recommendations.md` — email/plugin options
+- `mouth/comms/spine/docs/HOW_IT_WORKS.md` — full architecture
+- `mouth/comms/spine/docs/SAFETY_MODEL.md` — safety rules
+- `mouth/comms/spine/docs/PERMISSIONS.md` — macOS permissions guide
+- `mouth/comms/spine/docs/RECOVERY.md` — troubleshooting
+- `mouth/comms/reports/plugin_recommendations.md` — email/plugin options

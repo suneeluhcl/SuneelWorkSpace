@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """P3.8 — Generate experiment hypotheses from telemetry anomalies, leaderboard gaps, and world monitor.
 
-Appends to autolab/experiment_queue.md in the format existing runner.py expects:
+Appends to lab/autolab/experiment_queue.md in the format existing runner.py expects:
   category<TAB>hypothesis
 """
 

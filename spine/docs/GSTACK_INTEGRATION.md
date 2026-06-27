@@ -3,8 +3,8 @@
 gstack is a collection of specialist reasoning modes (skills) for Claude Code. Each skill activates a domain-expert persona with a structured methodology.
 
 Installed at: `~/.claude/skills/gstack/`  
-Policy file: `orchestrator/router/gstack_policy.json`  
-Task types enhanced: `orchestrator/router/task_types.json`
+Policy file: `heart/heart/orchestrator/router/gstack_policy.json`  
+Task types enhanced: `heart/heart/orchestrator/router/task_types.json`
 
 ## What gstack adds
 
@@ -97,7 +97,7 @@ goal-execute G001 --dry-run
 
 ## Autolab tracking
 
-`autolab/meta/patterns.json` now has a `cognitive_modes` section that tracks skill usage per experiment. As you use skills and log outcomes, route-learn will update observed success rates per skill.
+`lab/autolab/meta/patterns.json` now has a `cognitive_modes` section that tracks skill usage per experiment. As you use skills and log outcomes, route-learn will update observed success rates per skill.
 
 ## Updating gstack
 
@@ -128,12 +128,12 @@ integrity checking at multiple layers.
 
 | Layer | File | What it does |
 |-------|------|-------------|
-| Version pin | `mcp/config/gstack_version.json` | Records exact commit hash and version |
+| Version pin | `nervous/mcp/config/gstack_version.json` | Records exact commit hash and version |
 | Integrity check | `bin/gstack-verify` | Compares live install to pinned commit; exits non-zero on drift |
 | Repair script | `bin/gstack-repair` | Resets to pinned commit or performs a controlled upgrade |
-| Snapshot | `snapshots/gstack/` | Local tarball of the pinned install (not committed to git) |
+| Snapshot | `spine/snapshots/gstack/` | Local tarball of the pinned install (not committed to git) |
 | MCP tools | `verify_gstack_integrity()` | Live integrity check via Claude |
-| Autolab gate | `autolab/evaluator.md` | Blocks experiments when drift is detected |
+| Autolab gate | `lab/autolab/evaluator.md` | Blocks experiments when drift is detected |
 | Maintenance | `bin/agent-maintain` | Runs `gstack-verify` every cycle, logs drift as warning |
 
 ### Pinned Version
@@ -141,7 +141,7 @@ integrity checking at multiple layers.
 ```
 Version: 1.58.4.0
 Commit:  9fd03fae9e74f5daa7a138366aca8f86c7367c5c
-Config:  mcp/config/gstack_version.json
+Config:  nervous/mcp/config/gstack_version.json
 ```
 
 ### Checking Integrity
@@ -171,9 +171,9 @@ Upgrades require explicit human intent. Never run `git pull` in `~/.claude/skill
    - Ask for typed confirmation (`y`)
    - Snapshot the current install before merging
    - Merge via `--ff-only` (no history rewriting)
-   - Update `mcp/config/gstack_version.json` with the new pin
+   - Update `nervous/mcp/config/gstack_version.json` with the new pin
 3. Run `bin/gstack-verify` to confirm the new state is clean
-4. Run `git add mcp/config/gstack_version.json && git commit` to record the new pin
+4. Run `git add nervous/mcp/config/gstack_version.json && git commit` to record the new pin
 
 ### Restoring from Snapshot
 
@@ -181,11 +181,11 @@ If the install is corrupted beyond git repair:
 
 ```bash
 # List available snapshots
-ls ~/SuneelWorkSpace/snapshots/gstack/
+ls ~/SuneelWorkSpace/spine/snapshots/gstack/
 
 # Restore manually
 rm -rf ~/.claude/skills/gstack
-tar -xzf ~/SuneelWorkSpace/snapshots/gstack/<snapshot>.tar.gz -C ~/.claude/skills/
+tar -xzf ~/SuneelWorkSpace/spine/snapshots/gstack/<snapshot>.tar.gz -C ~/.claude/skills/
 
 # Confirm integrity
 ~/SuneelWorkSpace/bin/gstack-verify

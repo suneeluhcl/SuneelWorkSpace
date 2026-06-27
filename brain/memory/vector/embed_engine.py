@@ -3,7 +3,7 @@ import os
 import sys
 
 # Redirect HF Hub cache to a local directory to bypass permission issues on global cache
-os.environ["HF_HOME"] = "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache"
+os.environ["HF_HOME"] = "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache"
 
 import argparse
 import datetime
@@ -12,7 +12,7 @@ from sentence_transformers import SentenceTransformer
 import chromadb
 
 # Ensure log directory exists
-log_dir = "/Users/MAC/SuneelWorkSpace/agent-system/logs"
+log_dir = "/Users/MAC/SuneelWorkSpace/brain/memory/logs"
 os.makedirs(log_dir, exist_ok=True)
 
 # Configure logging
@@ -23,7 +23,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
-CHROMA_DIR = "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store"
+CHROMA_DIR = "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store"
 COLLECTION_NAME = "workspace_memory"
 
 def get_content_type(file_path):

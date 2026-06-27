@@ -80,7 +80,7 @@
 **Phases run:** 0 (stack), 1 (surface), 2 (secrets), 3 (supply chain), 4 (CI/CD), 5 (infra), 6 (webhooks), 7 (LLM), 8 (skill supply chain), 9 (OWASP), 10 (STRIDE), 11 (active verification), 12 (false positives), 13 (report)
 
 **Findings:**
-- F1 MEDIUM fixed: `_read_workspace_file` workspace boundary guard added (mcp/server/main.py)
+- F1 MEDIUM fixed: `_read_workspace_file` workspace boundary guard added (nervous/nervous/mcp/server/main.py)
 - F2 MEDIUM open: gstack supply chain — no commit pinning (garrytan/gstack)
 - F3 LOW fixed: autolab bin/ denylist now code-enforced via AUTOLAB_ALLOW_BIN gate
 - F4 LOW fixed: mcp==1.28.0 pinned in requirements.txt; all 5 uv invocation sites updated
@@ -210,7 +210,7 @@
 
 ## 2026-06-25
 
-- Full system audit and bounded self-improvement upgrade completed: added system intelligence commands/reports, safe system profile, tool inventory/recommendations, research engine, MCP resource coverage, autolab/orchestrator/goal integration docs, and health/status/maintenance hooks. Validated command smoke tests and doctor health.
+- Full system audit and bounded self-improvement upgrade completed: added system intelligence commands/reports, safe system profile, tool inventory/recommendations, research engine, MCP resource coverage, lab/autolab/heart/orchestrator/goal integration docs, and health/status/maintenance hooks. Validated command smoke tests and doctor health.
 
 ## 2026-06-25
 
@@ -234,7 +234,7 @@
 
 ## 2026-06-26
 
-- Adaptive identity loop upgrade completed: added identity/adaptive data layer, bounded learning engine, feedback commands, execution/comms hooks, MCP resources, autolab guidance, shared memory updates, and validation. Drift guardrails keep base identity protected; doctor and MCP reindex passed.
+- Adaptive identity loop upgrade completed: added dna/identity/adaptive data layer, bounded learning engine, feedback commands, execution/comms hooks, MCP resources, autolab guidance, shared memory updates, and validation. Drift guardrails keep base identity protected; doctor and MCP reindex passed.
 
 ## 2026-06-26
 
@@ -270,7 +270,7 @@
 
 ## 2026-06-26
 
-- Zero-risk semi-autonomous execution layer and safe workspace cleanup completed: added execution engine with SAFE, CONTROLLED, and RESTRICTED tiers, updated prediction engine formatting, created smart next command entrypoint, conducted workspace scan, archived active logs into agent-system/logs/archive/, removed empty directories, updated README.md and created docs/WORKSPACE_MAP.md, verified doctor health.
+- Zero-risk semi-autonomous execution layer and safe workspace cleanup completed: added execution engine with SAFE, CONTROLLED, and RESTRICTED tiers, updated prediction engine formatting, created smart next command entrypoint, conducted workspace scan, archived active logs into blood/logs/archive/, removed empty directories, updated README.md and created spine/docs/WORKSPACE_MAP.md, verified doctor health.
 
 
 ## 2026-06-26
@@ -732,7 +732,7 @@
 
 ## 2026-06-26
 
-- deployed MCP connector orchestration: created mcp/capabilities.json and orchestrator/router/intent_mcp_mapping.json; built scripts/mcp_orchestrator.py supporting input/output chaining, execution logs, and safety classifications; updated scripts/knowledge_bridge.py to compile MCP workflow notes into orchestrated scripts; updated prediction_engine.py to suggest system-improvement workflow instead of system-gaps; updated daily_evolve.py to auto-detect frequently used MCP chains; registered mapping resource in MCP server; doctor and test loop passed.
+- deployed MCP connector orchestration: created nervous/mcp/capabilities.json and heart/heart/orchestrator/router/intent_mcp_mapping.json; built scripts/mcp_orchestrator.py supporting input/output chaining, execution logs, and safety classifications; updated scripts/knowledge_bridge.py to compile MCP workflow notes into orchestrated scripts; updated prediction_engine.py to suggest system-improvement workflow instead of system-gaps; updated daily_evolve.py to auto-detect frequently used MCP chains; registered mapping resource in MCP server; doctor and test loop passed.
 
 ## 2026-06-26
 

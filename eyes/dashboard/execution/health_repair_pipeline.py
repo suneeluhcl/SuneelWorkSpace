@@ -10,12 +10,12 @@ from pathlib import Path
 from typing import Callable, Awaitable
 
 WORKSPACE_ROOT = os.path.expanduser("~/SuneelWorkSpace")
-REPAIR_REPORTS_DIR = os.path.join(WORKSPACE_ROOT, "agent-system/logs/repair_reports")
+REPAIR_REPORTS_DIR = os.path.join(WORKSPACE_ROOT, "blood/logs/repair_reports")
 
 _MEMORY_FILES = [
-    "agent-system/memory/MEMORY.md",
-    "agent-system/memory/DECISIONS.md",
-    "agent-system/memory/SESSION_HANDOFF.md",
+    "brain/memory/MEMORY.md",
+    "brain/memory/DECISIONS.md",
+    "brain/memory/SESSION_HANDOFF.md",
 ]
 
 _CRITICAL_DIRS = [
@@ -46,7 +46,7 @@ def _run_cmd(cmd: str, timeout: int = 30) -> tuple[int, str]:
 
 def _read_health_score() -> int:
     try:
-        path = os.path.join(WORKSPACE_ROOT, "agent-system/state/WORKSPACE_HEALTH.json")
+        path = os.path.join(WORKSPACE_ROOT, "spine/state/WORKSPACE_HEALTH.json")
         data = json.loads(Path(path).read_text())
         return int(data.get("health_score", 50))
     except Exception:
@@ -102,14 +102,14 @@ async def run_health_repair(broadcast: Broadcaster, job_id: str) -> dict:
     # ── Stage 3: MCP server health ──────────────────────────────────────────
     await broadcast("info", "🧠 Stage 3/8: Checking MCP server health…")
     code, out = _run_cmd(
-        "python3 mcp/server/main.py --health-check 2>&1 || echo 'ok'", timeout=12
+        "python3 nervous/nervous/mcp/server/main.py --health-check 2>&1 || echo 'ok'", timeout=12
     )
     await broadcast("success", "  ✓ MCP check complete")
     stages["3"] = {"mcp_checked": True}
 
     # ── Stage 4: Vector store accessibility ─────────────────────────────────
     await broadcast("info", "📚 Stage 4/8: Checking memory vector store…")
-    vector_path = os.path.join(WORKSPACE_ROOT, "agent-system/memory/vector")
+    vector_path = os.path.join(WORKSPACE_ROOT, "brain/memory/vector")
     if os.path.exists(vector_path):
         await broadcast("success", "  ✓ Vector store accessible")
     else:
@@ -118,7 +118,7 @@ async def run_health_repair(broadcast: Broadcaster, job_id: str) -> dict:
 
     # ── Stage 5: Pipeline state recovery ────────────────────────────────────
     await broadcast("info", "🔄 Stage 5/8: Recovering interrupted pipeline state…")
-    state_path = os.path.join(WORKSPACE_ROOT, "dashboard/execution/pipeline_state.json")
+    state_path = os.path.join(WORKSPACE_ROOT, "eyes/eyes/dashboard/execution/pipeline_state.json")
     if os.path.exists(state_path):
         try:
             state = json.loads(Path(state_path).read_text())
@@ -200,7 +200,7 @@ async def run_health_repair(broadcast: Broadcaster, job_id: str) -> dict:
 
     # Persist final score so /api/health polls reflect it
     try:
-        wh_path = Path(os.path.join(WORKSPACE_ROOT, "agent-system/state/WORKSPACE_HEALTH.json"))
+        wh_path = Path(os.path.join(WORKSPACE_ROOT, "spine/state/WORKSPACE_HEALTH.json"))
         wh: dict = json.loads(wh_path.read_text()) if wh_path.exists() else {}
         wh["health_score"] = final
         wh["last_repair"] = report["timestamp"]

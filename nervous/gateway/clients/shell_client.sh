@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 # shell_client.sh — Shell functions for the workspace gateway
-# Source this file: source ~/SuneelWorkSpace/gateway/clients/shell_client.sh
+# Source this file: source ~/SuneelWorkSpace/nervous/gateway/clients/shell_client.sh
 
 WORKSPACE="${WORKSPACE:-$HOME/SuneelWorkSpace}"
 GW_URL="http://localhost:8888"
-GW_TOKEN_FILE="$WORKSPACE/gateway/.token"
+GW_TOKEN_FILE="$WORKSPACE/nervous/gateway/.token"
 
 _gw_token() { cat "$GW_TOKEN_FILE" 2>/dev/null || echo "NO_TOKEN"; }
 _gw_get()  { curl -sf -H "Authorization: Bearer $(_gw_token)" "$GW_URL$1" | jq . 2>/dev/null || curl -sf -H "Authorization: Bearer $(_gw_token)" "$GW_URL$1"; }
 _gw_post() { curl -sf -X POST -H "Authorization: Bearer $(_gw_token)" "$GW_URL$1" | jq . 2>/dev/null; }
 
 ws-health()   { _gw_get "/health"; }
-ws-suggest()  { _gw_get "/anticipation/suggestions"; }
+ws-suggest()  { _gw_get "/brain/anticipation/suggestions"; }
 ws-goals()    { _gw_get "/goals/active"; }
 ws-workflows(){ _gw_get "/workflows/list"; }
 ws-decisions(){ _gw_get "/memory/decisions"; }

@@ -18,7 +18,7 @@ Safeguards keep self-improvement bounded, reversible, and understandable.
 - Every mutating experiment creates a snapshot first.
 - Failed or non-improving experiments restore the snapshot.
 - The failed attempt is logged in `results.tsv`.
-- Failed artifacts may be moved to `autolab/quarantine/` for inspection.
+- Failed artifacts may be moved to `lab/autolab/quarantine/` for inspection.
 
 ## Meta-Improvement Rules
 
@@ -31,13 +31,13 @@ Changing evaluator/scoring logic requires stronger evidence:
 - The reason must be logged.
 - The previous evaluator must remain available in a snapshot.
 
-Changing `autolab/safeguards.md` or `agent-system/shared/SAFETY_BOUNDARIES.md` requires explicit human approval.
+Changing `lab/autolab/safeguards.md` or `skeleton/rules/SAFETY_BOUNDARIES.md` requires explicit human approval.
 
 ## Strategy Evolution Safeguards
 
-Autolab may update `autolab/program.md` only when:
+Autolab may update `lab/autolab/program.md` only when:
 
-- The previous program is copied to `autolab/meta/strategy_versions/`.
+- The previous program is copied to `lab/autolab/meta/strategy_versions/`.
 - Safety constraints remain present.
 - Mutation boundaries remain present.
 - The workspace score does not drop.

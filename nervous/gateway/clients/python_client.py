@@ -15,7 +15,7 @@ class WorkspaceClient:
     def __init__(self, base_url: str = "http://localhost:8888", token: str = None):
         self.base_url = base_url.rstrip('/')
         if token is None:
-            token_file = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace')) / 'gateway/.token'
+            token_file = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace')) / 'nervous/gateway/.token'
             token = token_file.read_text().strip() if token_file.exists() else ""
         self.token = token
         self.headers = {"Authorization": f"Bearer {token}"}
@@ -47,7 +47,7 @@ class WorkspaceClient:
         return self._get("/memory/decisions")
 
     def get_suggestions(self):
-        return self._get("/anticipation/suggestions")
+        return self._get("/brain/anticipation/suggestions")
 
     def create_goal(self, description: str, confirm: bool = False):
         return self._post("/goals/create", params={"description": description, "confirm": confirm})

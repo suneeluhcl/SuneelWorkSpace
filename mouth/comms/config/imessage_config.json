@@ -8,7 +8,7 @@
   "search_limit": 50,
   "fda_status": "confirmed",
   "send_method": "applescript",
-  "draft_dir": "comms/imessage/state/drafts/",
+  "draft_dir": "mouth/comms/imessage/state/drafts/",
   "self_phone": null,
   "self_email": null,
   "allowlist": [],

@@ -11,10 +11,10 @@
 
 ## START HERE (FOR AI AGENTS)
 Welcome external agent! Follow this boot sequence for immediate alignment:
-1. **Load Identity**: Read `identity/prompts/identity_prompt.md` and related profile configs.
-2. **Access memory**: Read `agent-system/memory/MEMORY.md` and active tasks list.
-3. **Read MCP resource map**: Inspect `mcp/server/config/resource_map.json` and capabilities list.
-4. **Inspect context**: Read `agent-system/state/ACTIVE_CONTEXT.json`.
+1. **Load Identity**: Read `dna/dna/identity/prompts/identity_prompt.md` and related profile configs.
+2. **Access memory**: Read `brain/memory/MEMORY.md` and active tasks list.
+3. **Read MCP resource map**: Inspect `nervous/nervous/mcp/server/config/resource_map.json` and capabilities list.
+4. **Inspect context**: Read `spine/state/ACTIVE_CONTEXT.json`.
 5. **Check workflows**: Look up priority order in `brain/system/workflow_priority.json`.
 6. **Execution pattern**: Execute using `intent` → `select workflow` → `run workflow` → `record outcome` pipeline.
 *Do NOT treat this as a simple project. This is a stateful AI operating system.*
@@ -101,37 +101,37 @@ Suneel
   v
 Agent Entry Points
   - Claude: CLAUDE.md, ~/.claude/CLAUDE.md
-  - Codex: AGENTS.md, ~/.codex/AGENTS.md
+  - Codex: AGENTS.md, ~/.hands/codex/AGENTS.md
   - Gemini/OpenCode launchers in bin/
   |
   v
 Shared Workspace Brain
-  agent-system/
+  brain/memory/
     shared rules, identity, safety, memory, decisions, tasks, state, logs
   |
-  +--> identity/
+  +--> dna/identity/
   |     base profile, tone profile, decision profile, prompts
   |     adaptive loop: feedback -> weighted signals -> bounded updates
   |
-  +--> anticipation/
+  +--> brain/anticipation/
   |     command/workflow events -> sequence patterns -> suggested next actions
   |
-  +--> research-engine/
+  +--> brain/research/
   |     idea capture -> research plan -> analysis -> decision
   |
-  +--> orchestrator/
+  +--> heart/orchestrator/
   |     task routing, agent selection, routing history, gstack hints
   |
-  +--> goal-engine/
+  +--> heart/goals/
   |     goal creation, planning, execution, monitoring, dependency graph
   |
-  +--> comms/
+  +--> mouth/comms/
   |     mail and iMessage search/draft/status support with send approval gates
   |
-  +--> mcp/
+  +--> nervous/mcp/
   |     workspace-brain resources, indexes, shared context access
   |
-  +--> autolab/
+  +--> lab/autolab/
         bounded self-improvement experiments, evaluator, reports, rollback state
 ```
 
@@ -139,43 +139,43 @@ Shared Workspace Brain
 
 ### Agent System
 
-Path: `agent-system/`
+Path: `brain/memory/`
 
 This is the shared source for workspace rules, identity context, memory, tasks, logs, and state.
 
 Important files:
 
-- `agent-system/shared/AGENT_SYSTEM.md`: canonical shared system policy.
-- `agent-system/shared/IDENTITY.md`: shared user/workspace identity context.
-- `agent-system/shared/SAFETY_BOUNDARIES.md`: safety rules.
-- `agent-system/shared/BOUNDED_SELF_UPGRADE.md`: allowed and approval-gated self-upgrades.
-- `agent-system/memory/MEMORY.md`: stable facts.
-- `agent-system/memory/DECISIONS.md`: important choices and reasons.
-- `agent-system/memory/PATTERNS.md`: recurring operating patterns.
-- `agent-system/memory/INSIGHTS.md`: higher-level learning.
-- `agent-system/tasks/ACTIVE_TASKS.md`: current tasks.
-- `agent-system/tasks/COMPLETED_TASKS.md`: completed task history.
-- `agent-system/memory/SESSION_HANDOFF.md`: latest handoff.
-- `agent-system/state/CURRENT_STATE.json`: current state.
-- `agent-system/state/WORKSPACE_HEALTH.json`: health and readiness.
+- `skeleton/rules/AGENT_SYSTEM.md`: canonical shared system policy.
+- `skeleton/rules/IDENTITY.md`: shared user/workspace identity context.
+- `skeleton/rules/SAFETY_BOUNDARIES.md`: safety rules.
+- `skeleton/rules/BOUNDED_SELF_UPGRADE.md`: allowed and approval-gated self-upgrades.
+- `brain/memory/MEMORY.md`: stable facts.
+- `brain/memory/DECISIONS.md`: important choices and reasons.
+- `brain/memory/PATTERNS.md`: recurring operating patterns.
+- `brain/memory/INSIGHTS.md`: higher-level learning.
+- `heart/tasks/ACTIVE_TASKS.md`: current tasks.
+- `heart/tasks/COMPLETED_TASKS.md`: completed task history.
+- `brain/memory/SESSION_HANDOFF.md`: latest handoff.
+- `spine/state/CURRENT_STATE.json`: current state.
+- `spine/state/WORKSPACE_HEALTH.json`: health and readiness.
 
 ### Identity System
 
-Path: `identity/`
+Path: `dna/identity/`
 
 The identity system defines how agents should sound, decide, plan, and communicate for Suneel.
 
 Base files:
 
-- `identity/profile/identity_profile.md`: core identity profile.
-- `identity/profile/tone_profile.md`: writing and tone rules.
-- `identity/profile/decision_profile.md`: decision rules.
-- `identity/profile/preferences.json`: structured preferences.
-- `identity/profile/behavioral_patterns.json`: behavior patterns.
-- `identity/prompts/identity_prompt.md`: agent identity prompt.
-- `identity/prompts/communication_prompt.md`: email/message/summarization voice prompt.
-- `identity/integration/routing_identity.json`: routing and autonomy rules.
-- `identity/reports/identity_summary.md`: human-readable summary.
+- `dna/dna/identity/profile/identity_profile.md`: core identity profile.
+- `dna/dna/identity/profile/tone_profile.md`: writing and tone rules.
+- `dna/dna/identity/profile/decision_profile.md`: decision rules.
+- `dna/dna/identity/profile/preferences.json`: structured preferences.
+- `dna/dna/identity/profile/behavioral_patterns.json`: behavior patterns.
+- `dna/dna/identity/prompts/identity_prompt.md`: agent identity prompt.
+- `dna/dna/identity/prompts/communication_prompt.md`: email/message/summarization voice prompt.
+- `dna/identity/integration/routing_identity.json`: routing and autonomy rules.
+- `dna/identity/reports/identity_summary.md`: human-readable summary.
 
 Suneel's base style:
 
@@ -199,20 +199,20 @@ Decision style:
 
 ### Adaptive Identity
 
-Path: `identity/adaptive/`
+Path: `dna/dna/identity/adaptive/`
 
 The adaptive identity loop improves Suneel's voice and decision behavior from real interaction outcomes.
 
 Files:
 
-- `identity/adaptive/feedback_log.json`: raw feedback events.
-- `identity/adaptive/signal_weights.json`: quality weights for signal types.
-- `identity/adaptive/signal_memory.json`: extracted weighted signals.
-- `identity/adaptive/pattern_updates.json`: proposed and active adjustments.
-- `identity/adaptive/drift_guardrails.json`: strict drift limits.
-- `identity/adaptive/adaptation_state.json`: current loop state.
-- `identity/adaptive/reports/adaptation_report.md`: report.
-- `identity/adaptive/adaptive_identity.py`: learning engine.
+- `dna/dna/identity/adaptive/feedback_log.json`: raw feedback events.
+- `dna/dna/identity/adaptive/signal_weights.json`: quality weights for signal types.
+- `dna/dna/identity/adaptive/signal_memory.json`: extracted weighted signals.
+- `dna/dna/identity/adaptive/pattern_updates.json`: proposed and active adjustments.
+- `dna/dna/identity/adaptive/drift_guardrails.json`: strict drift limits.
+- `dna/dna/identity/adaptive/adaptation_state.json`: current loop state.
+- `dna/dna/identity/adaptive/reports/adaptation_report.md`: report.
+- `dna/dna/identity/adaptive/adaptive_identity.py`: learning engine.
 
 Signal weights:
 
@@ -239,17 +239,17 @@ Learning rule:
 
 ### Anticipation Engine
 
-Path: `anticipation/`
+Path: `brain/anticipation/`
 
 The anticipation engine records command and workflow sequences, detects repeated patterns, and suggests next actions before Suneel asks.
 
 Files:
 
-- `anticipation/prediction_engine.py`: prediction engine.
-- `anticipation/prediction_memory.json`: command/workflow event memory.
-- `anticipation/behavior_patterns.json`: built-in and learned behavior patterns.
-- `anticipation/action_suggestions.md`: latest suggestions.
-- `anticipation/reports/anticipation_report.md`: report.
+- `brain/anticipation/prediction_engine.py`: prediction engine.
+- `brain/anticipation/prediction_memory.json`: command/workflow event memory.
+- `brain/anticipation/behavior_patterns.json`: built-in and learned behavior patterns.
+- `brain/anticipation/action_suggestions.md`: latest suggestions.
+- `brain/anticipation/reports/anticipation_report.md`: report.
 
 Rules:
 
@@ -268,17 +268,17 @@ Example suggestions:
 
 ### Research Engine
 
-Path: `research-engine/`
+Path: `brain/research/`
 
 Turns rough ideas into durable local research artifacts.
 
 Files:
 
-- `research-engine/research_engine.py`: engine.
-- `research-engine/ideas/`: captured ideas.
-- `research-engine/plans/`: research plans.
-- `research-engine/analyses/`: comparisons and analysis.
-- `research-engine/decisions/`: decision records.
+- `brain/research/research_engine.py`: engine.
+- `brain/research/ideas/`: captured ideas.
+- `brain/research/plans/`: research plans.
+- `brain/research/analyses/`: comparisons and analysis.
+- `brain/research/decisions/`: decision records.
 
 Main commands:
 
@@ -287,16 +287,16 @@ Main commands:
 
 ### Comms Subsystem
 
-Path: `comms/`
+Path: `mouth/comms/`
 
 Supports email and iMessage workflows while preserving safety boundaries.
 
 Important files:
 
-- `comms/config/comms_config.json`: comms config, identity, adaptive identity, anticipation pointers.
-- `comms/mail/`: mail state/logs/scripts.
-- `comms/imessage/`: iMessage state/logs/scripts.
-- `comms/reports/latest_comms_report.md`: report.
+- `mouth/mouth/comms/config/comms_config.json`: comms config, identity, adaptive identity, anticipation pointers.
+- `mouth/comms/mail/`: mail state/logs/scripts.
+- `mouth/comms/imessage/`: iMessage state/logs/scripts.
+- `mouth/comms/reports/latest_comms_report.md`: report.
 
 Rules:
 
@@ -304,48 +304,48 @@ Rules:
 - Searching/status is allowed.
 - Sending requires explicit approval.
 - Deleting/archive/forward/contact actions require approval.
-- Drafts should use `identity/prompts/communication_prompt.md`.
+- Drafts should use `dna/dna/identity/prompts/communication_prompt.md`.
 
 ### MCP Workspace Brain
 
-Path: `mcp/`
+Path: `nervous/mcp/`
 
 The MCP subsystem exposes workspace resources to connected agents.
 
 Important files:
 
-- `mcp/server/main.py`: MCP server.
-- `mcp/server/config/resource_map.json`: resource registry.
-- `mcp/server/storage/memory_index.db`: local index.
-- `mcp/server/state/last_index.json`: latest index metadata.
+- `nervous/nervous/mcp/server/main.py`: MCP server.
+- `nervous/nervous/mcp/server/config/resource_map.json`: resource registry.
+- `nervous/nervous/mcp/server/storage/memory_index.db`: local index.
+- `nervous/nervous/mcp/server/state/last_index.json`: latest index metadata.
 
 Important resources include:
 
-- `workspace://identity/profile`
-- `workspace://identity/adaptive/feedback-log`
-- `workspace://identity/adaptive/signal-weights`
-- `workspace://anticipation/memory`
-- `workspace://anticipation/suggestions`
-- `workspace://audit/system`
+- `workspace://dna/identity/profile`
+- `workspace://dna/dna/identity/adaptive/feedback-log`
+- `workspace://dna/dna/identity/adaptive/signal-weights`
+- `workspace://brain/anticipation/memory`
+- `workspace://brain/anticipation/suggestions`
+- `workspace://spine/audit/system`
 - `workspace://readme/blueprint`
-- `workspace://tools/inventory`
+- `workspace://spine/tools/inventory`
 - `workspace://research/index`
 - `workspace://memory/patterns`
 
 ### Orchestrator
 
-Path: `orchestrator/`
+Path: `heart/orchestrator/`
 
 Routes tasks to the right agent/tool mode.
 
 Important files:
 
-- `orchestrator/router/task_types.json`
-- `orchestrator/router/agent_profiles.json`
-- `orchestrator/router/gstack_policy.json`
-- `orchestrator/router/system_intelligence_policy.md`
-- `orchestrator/state/current_routing_state.json`
-- `orchestrator/reports/routing_report.md`
+- `heart/heart/orchestrator/router/task_types.json`
+- `heart/heart/orchestrator/router/agent_profiles.json`
+- `heart/heart/orchestrator/router/gstack_policy.json`
+- `heart/heart/orchestrator/router/system_intelligence_policy.md`
+- `heart/orchestrator/state/current_routing_state.json`
+- `heart/orchestrator/reports/routing_report.md`
 
 It uses:
 
@@ -357,37 +357,37 @@ It uses:
 
 ### Goal Engine
 
-Path: `goal-engine/`
+Path: `heart/goals/`
 
 Turns goals into tasks, plans, dependency graphs, execution runs, and reports.
 
 Important files:
 
-- `goal-engine/goals/active_goals.md`
-- `goal-engine/planner/planner.md`
-- `goal-engine/planner/idea_execution_pipeline.md`
-- `goal-engine/graph/task_graph.json`
-- `goal-engine/state/goal_state.json`
-- `goal-engine/execution/execution_log.md`
+- `heart/goals/goals/active_goals.md`
+- `heart/goals/planner/planner.md`
+- `heart/goals/planner/idea_execution_pipeline.md`
+- `heart/goals/graph/task_graph.json`
+- `heart/goals/state/goal_state.json`
+- `heart/goals/execution/execution_log.md`
 
 Goal execution records adaptive identity and anticipation events.
 
 ### Autolab
 
-Path: `autolab/`
+Path: `lab/autolab/`
 
 Autolab is the bounded workspace self-improvement lab.
 
 Important files:
 
-- `autolab/program.md`
-- `autolab/mutation_policy.md`
-- `autolab/safeguards.md`
-- `autolab/evaluator.md`
-- `autolab/current_frontier.md`
-- `autolab/meta/adaptive_identity_strategy.md`
-- `autolab/meta/anticipation_strategy.md`
-- `autolab/reports/latest_report.md`
+- `lab/autolab/program.md`
+- `lab/autolab/mutation_policy.md`
+- `lab/autolab/safeguards.md`
+- `lab/autolab/evaluator.md`
+- `lab/autolab/current_frontier.md`
+- `lab/autolab/meta/adaptive_identity_strategy.md`
+- `lab/autolab/meta/anticipation_strategy.md`
+- `lab/autolab/reports/latest_report.md`
 
 Autolab may recommend improvements, but it must not override identity or execute unsafe changes automatically.
 
@@ -439,7 +439,7 @@ Intent is inferred from:
 
 Intent is stored in:
 
-- `anticipation/current_context.json`
+- `brain/anticipation/current_context.json`
 
 Agent behavior:
 
@@ -482,7 +482,7 @@ Suggested next actions:
 3. [LOW] ...
 ```
 
-Ranking is implemented in `anticipation/prediction_engine.py`.
+Ranking is implemented in `brain/anticipation/prediction_engine.py`.
 
 ## 4. Command Reference
 
@@ -505,10 +505,10 @@ Run commands from `~/SuneelWorkSpace` or ensure `~/SuneelWorkSpace/bin` is on `P
 
 | Command | What it does | When to use |
 |---|---|---|
-| `system-audit` | Refreshes `audit/system_audit.md`. | Need full system overview. |
-| `system-gaps` | Refreshes `audit/gap_analysis.md`. | Need current gaps and priorities. |
-| `system-capabilities` | Refreshes `system-context/system_profile.json`. | Need safe machine/workspace capability summary. |
-| `system-recommend` | Refreshes `tools/recommendations.md`. | Need improvement ideas. |
+| `system-audit` | Refreshes `spine/audit/system_audit.md`. | Need full system overview. |
+| `system-gaps` | Refreshes `spine/audit/gap_analysis.md`. | Need current gaps and priorities. |
+| `system-capabilities` | Refreshes `spine/system-context/system_profile.json`. | Need safe machine/workspace capability summary. |
+| `system-recommend` | Refreshes `spine/tools/recommendations.md`. | Need improvement ideas. |
 | `improve-system` | Runs bounded system intelligence refresh. | Safe local self-improvement scan. |
 | `anticipate` | Records or asks for next-action suggestions. | Work with prediction engine directly. |
 
@@ -534,7 +534,7 @@ Run commands from `~/SuneelWorkSpace` or ensure `~/SuneelWorkSpace/bin` is on `P
 | `idea-start` | Captures a raw idea. | Save a new idea. |
 | `idea-run` | Captures, researches, analyzes, and drafts a decision. | Turn an idea into a plan. |
 
-Lower-level scripts also exist in `research-engine/scripts/`: `idea-bootstrap`, `idea-capture`, `idea-research`, `idea-analyze`, `idea-decide`.
+Lower-level scripts also exist in `brain/research/scripts/`: `idea-bootstrap`, `idea-capture`, `idea-research`, `idea-analyze`, `idea-decide`.
 
 ### Goal Engine
 
@@ -672,7 +672,7 @@ mail-draft-reply
 Rules:
 
 - Draft only unless Suneel confirms send.
-- Use `identity/prompts/communication_prompt.md`.
+- Use `dna/dna/identity/prompts/communication_prompt.md`.
 - Keep tone short, direct, casual, and softened.
 
 ### System Improvement Workflow
@@ -699,22 +699,22 @@ What happens:
 
 | Area | Path | Purpose |
 |---|---|---|
-| Canonical rules | `agent-system/shared/` | System policy, identity, workflow, safety. |
-| Durable memory | `agent-system/memory/` | Facts, decisions, patterns, insights, handoff. |
-| Tasks | `agent-system/tasks/` | Active, queued, and completed tasks. |
-| State | `agent-system/state/` | Current state and health JSON. |
-| Logs | `agent-system/logs/` | Session logs. |
-| Identity | `identity/` | Profile, tone, decision, prompts. |
-| Adaptive identity | `identity/adaptive/` | Feedback, weighted signals, bounded adjustments. |
-| Anticipation | `anticipation/` | Prediction memory, behavior patterns, suggestions. |
-| Research | `research-engine/` | Ideas, plans, analyses, decisions. |
-| Orchestrator | `orchestrator/` | Routing policies, state, reports. |
-| Goals | `goal-engine/` | Goals, plans, graphs, execution logs. |
-| Comms | `comms/` | Mail/iMessage config, state, logs, reports. |
-| MCP | `mcp/` | Server, resource map, index DB, state. |
-| Autolab | `autolab/` | Self-improvement experiments, evaluator, reports. |
-| Audit | `audit/` | System audit, gap analysis, improvement plan. |
-| Tools | `tools/` | Tool inventory and recommendations. |
+| Canonical rules | `skeleton/rules/` | System policy, identity, workflow, safety. |
+| Durable memory | `brain/memory/` | Facts, decisions, patterns, insights, handoff. |
+| Tasks | `heart/tasks/` | Active, queued, and completed tasks. |
+| State | `spine/state/` | Current state and health JSON. |
+| Logs | `blood/logs/` | Session logs. |
+| Identity | `dna/identity/` | Profile, tone, decision, prompts. |
+| Adaptive identity | `dna/dna/identity/adaptive/` | Feedback, weighted signals, bounded adjustments. |
+| Anticipation | `brain/anticipation/` | Prediction memory, behavior patterns, suggestions. |
+| Research | `brain/research/` | Ideas, plans, analyses, decisions. |
+| Orchestrator | `heart/orchestrator/` | Routing policies, state, reports. |
+| Goals | `heart/goals/` | Goals, plans, graphs, execution logs. |
+| Comms | `mouth/comms/` | Mail/iMessage config, state, logs, reports. |
+| MCP | `nervous/mcp/` | Server, resource map, index DB, state. |
+| Autolab | `lab/autolab/` | Self-improvement experiments, evaluator, reports. |
+| Audit | `spine/audit/` | System audit, gap analysis, improvement plan. |
+| Tools | `spine/tools/` | Tool inventory and recommendations. |
 
 ### Full Folder Coverage
 
@@ -729,27 +729,27 @@ These top-level folders are part of the workspace and are intentionally document
 | `.rtk/` | RTK/token-filter local state. |
 | `.serena/` | Serena/tooling state if enabled. |
 | `.vscode/` | Local editor configuration. |
-| `agent-system/` | Shared brain, rules, memory, logs, state. |
-| `anticipation/` | Intent detection, prediction memory, ranked next-action suggestions. |
-| `audit/` | System audit, gap analysis, improvement plan. |
-| `autolab/` | Bounded self-improvement lab. |
+| `brain/memory/` | Shared brain, rules, memory, logs, state. |
+| `brain/anticipation/` | Intent detection, prediction memory, ranked next-action suggestions. |
+| `spine/audit/` | System audit, gap analysis, improvement plan. |
+| `lab/autolab/` | Bounded self-improvement lab. |
 | `automation/` | Local automation helpers and maintenance support. |
 | `bin/` | User-facing command wrappers. |
-| `codex/` | Codex-specific workspace files. |
-| `comms/` | Mail and iMessage workflows. |
-| `docs/` | Documentation and specs. |
-| `goal-engine/` | Goals, planning, execution, monitoring. |
-| `identity/` | Identity, adaptive identity, tone, decision profiles. |
-| `mcp/` | Workspace-brain MCP server and resource index. |
-| `obsidian-vault/` | Obsidian-facing knowledge vault. |
-| `orchestrator/` | Routing and agent selection. |
+| `hands/codex/` | Codex-specific workspace files. |
+| `mouth/comms/` | Mail and iMessage workflows. |
+| `spine/docs/` | Documentation and specs. |
+| `heart/goals/` | Goals, planning, execution, monitoring. |
+| `dna/identity/` | Identity, adaptive identity, tone, decision profiles. |
+| `nervous/mcp/` | Workspace-brain MCP server and resource index. |
+| `brain/vault/` | Obsidian-facing knowledge vault. |
+| `heart/orchestrator/` | Routing and agent selection. |
 | `projects/` | Project work area. |
-| `research-engine/` | Idea capture, research, analysis, decisions. |
+| `brain/research/` | Idea capture, research, analysis, decisions. |
 | `scripts/` | Shared local scripts behind commands. |
-| `snapshots/` | Snapshot state for recovery/experiments. |
-| `system-context/` | Safe metadata-only machine/workspace profile. |
-| `tools/` | Tool inventory and recommendations. |
-| System context | `system-context/` | Safe machine/workspace profile. |
+| `spine/snapshots/` | Snapshot state for recovery/experiments. |
+| `spine/system-context/` | Safe metadata-only machine/workspace profile. |
+| `spine/tools/` | Tool inventory and recommendations. |
+| System context | `spine/system-context/` | Safe machine/workspace profile. |
 
 Inspect commands:
 
@@ -759,7 +759,7 @@ agent-doctor
 mcp-status
 system-gaps
 anticipate report
-python3 -m json.tool identity/adaptive/signal_memory.json
+python3 -m json.tool dna/dna/identity/adaptive/signal_memory.json
 ```
 
 ## 7. Safety Model
@@ -838,13 +838,13 @@ Local-first:
 To prevent code duplication, configuration drift, and system fragmentation, `SuneelWorkSpace` enforces a strict canonical logic and directory layout policy.
 
 ### Core Policies
-- **Subsystem Logic Placement**: All subsystem logic, scripts, and utilities must live in their designated subsystem directories (e.g., `goal-engine/scripts/`, `mcp/server/scripts/`, `orchestrator/scripts/`).
+- **Subsystem Logic Placement**: All subsystem logic, scripts, and utilities must live in their designated subsystem directories (e.g., `heart/goals/scripts/`, `nervous/nervous/mcp/server/scripts/`, `heart/orchestrator/scripts/`).
 - **bin/ Entrypoints Only**: The root `bin/` directory must only serve as the CLI command entrypoint layer. It must **never** contain duplicate copies of subsystem scripts. Instead, all entrypoint commands in `bin/` must be created as relative symbolic links pointing to their subsystem originals.
-- **Config Folder Standardization**: Configuration files (e.g. JSON/YAML policies) must reside inside designated config subfolders (e.g., `subsystem/config/`, `orchestrator/router/`) rather than the subsystem root.
+- **Config Folder Standardization**: Configuration files (e.g. JSON/YAML policies) must reside inside designated config subfolders (e.g., `subsystem/config/`, `heart/heart/orchestrator/router/`) rather than the subsystem root.
 
 ### Command Reference
 Run `duplication-guard` to pre-check any proposed file creation or modification:
-- `duplication-guard <file_path> [--intent "description of purpose"]`: Validates that a file's proposed path conforms to canonical location rules and scans `audit/file_graph.json` to reject files with duplicate stems or overlapping functional intents.
+- `duplication-guard <file_path> [--intent "description of purpose"]`: Validates that a file's proposed path conforms to canonical location rules and scans `spine/audit/file_graph.json` to reject files with duplicate stems or overlapping functional intents.
 - Use `--force` flag to bypass warnings if intentionally creating a fork (explicit confirmation required).
 
 ## Canonical Integrity
@@ -878,7 +878,7 @@ Run `integrity-guard` before staging or merging edits into any existing file:
 2. Add a `README.md`.
 3. Store state in plain JSON/Markdown.
 4. Add command wrappers in `bin/`.
-5. Register resources in `mcp/server/config/resource_map.json`.
+5. Register resources in `nervous/nervous/mcp/server/config/resource_map.json`.
 6. Add memory/decision entries if durable.
 7. Add health/status integration if relevant.
 8. Update this README.
@@ -928,23 +928,23 @@ next
 The workspace is organized to keep code modular, state inspectable, and configurations protected:
 
 - `bin/` — User-facing CLI executables and tool wrappers.
-- `docs/` — System architecture maps, workspace map, and integration guides.
-- `agent-system/` — Shared memory (`memory/`), tasks (`tasks/`), policies (`shared/`), live states (`state/`), and compressed logs (`logs/archive/`).
-- `anticipation/` — Anticipatory intelligence: prediction engine, execution engine, and execution history.
-- `audit/` — Security, cleanup plans, and workspace capability analyses.
-- `autolab/` — Bounded self-improvement sandboxes.
-- `comms/` — macOS system communication scripts.
-- `goal-engine/` — Bounded goal graph planners.
-- `identity/` — User behavioral profile, voice prompts, and drift guards.
-- `mcp/` — Workspace-brain MCP configurations.
+- `spine/docs/` — System architecture maps, workspace map, and integration guides.
+- `brain/memory/` — Shared memory (`memory/`), tasks (`tasks/`), policies (`shared/`), live states (`state/`), and compressed logs (`logs/archive/`).
+- `brain/anticipation/` — Anticipatory intelligence: prediction engine, execution engine, and execution history.
+- `spine/audit/` — Security, cleanup plans, and workspace capability analyses.
+- `lab/autolab/` — Bounded self-improvement sandboxes.
+- `mouth/comms/` — macOS system communication scripts.
+- `heart/goals/` — Bounded goal graph planners.
+- `dna/identity/` — User behavioral profile, voice prompts, and drift guards.
+- `nervous/mcp/` — Workspace-brain MCP configurations.
 - `projects/` — Active projects development area.
-- `research-engine/` — Local idea capture and decision recording.
+- `brain/research/` — Local idea capture and decision recording.
 
 ## SESSION CONTINUITY
 
 To enable seamless context transitions across workspace sessions, the continuity manager saves and restores state across tool invocations.
 
-- **Automated Work Resumption**: The system tracks the current intent, goals, and workflows inside `agent-system/state/ACTIVE_CONTEXT.json`. When launching a new agent session via `agent-start`, the system will automatically query the active context and prompt the user to resume their work from where they left off.
+- **Automated Work Resumption**: The system tracks the current intent, goals, and workflows inside `spine/state/ACTIVE_CONTEXT.json`. When launching a new agent session via `agent-start`, the system will automatically query the active context and prompt the user to resume their work from where they left off.
 - **Workflow-Aware Execution**: Running the `next` command queries this context to prioritize and display recommendations targeted directly at the active goal or workflow.
 - **User Control Overrides**: Continuity is a helper, not a boundary. The user can switch workflows at any point or fully clear session history using `context-reset`.
 
@@ -995,7 +995,7 @@ Any markdown note captured in Obsidian that contains step-by-step instructions o
 2. Safe CLI symlinks at `bin/workflow-<name>` (which only contain relative symlinks).
 3. Metadata configuration JSON files at `brain/workflows/generated/<name>.json`.
 
-These workflows are ranked high in command suggestions, registered as MCP tools/resources, and synchronized during the Daily Evolution loop. Stale or empty workflows (with 0 valid commands) are automatically cleaned up.
+These workflows are ranked high in command suggestions, registered as MCP spine/tools/resources, and synchronized during the Daily Evolution loop. Stale or empty workflows (with 0 valid commands) are automatically cleaned up.
 
 ## DAILY EVOLUTION
 
@@ -1047,34 +1047,34 @@ Then load:
 
 Load identity:
 
-- `dna/identity/profile/identity_profile.md`
-- `dna/identity/profile/tone_profile.md`
-- `dna/identity/profile/decision_profile.md`
-- `dna/identity/profile/preferences.json`
-- `dna/identity/profile/behavioral_patterns.json`
-- `dna/identity/prompts/identity_prompt.md`
-- `dna/identity/prompts/communication_prompt.md`
+- `dna/dna/dna/identity/profile/identity_profile.md`
+- `dna/dna/dna/identity/profile/tone_profile.md`
+- `dna/dna/dna/identity/profile/decision_profile.md`
+- `dna/dna/dna/identity/profile/preferences.json`
+- `dna/dna/dna/identity/profile/behavioral_patterns.json`
+- `dna/dna/dna/identity/prompts/identity_prompt.md`
+- `dna/dna/dna/identity/prompts/communication_prompt.md`
 
 Load adaptive identity:
 
-- `dna/identity/adaptive/feedback_log.json`
-- `dna/identity/adaptive/signal_weights.json`
-- `dna/identity/adaptive/signal_memory.json`
-- `dna/identity/adaptive/pattern_updates.json`
-- `dna/identity/adaptive/drift_guardrails.json`
-- `dna/identity/adaptive/adaptation_state.json`
+- `dna/dna/dna/identity/adaptive/feedback_log.json`
+- `dna/dna/dna/identity/adaptive/signal_weights.json`
+- `dna/dna/dna/identity/adaptive/signal_memory.json`
+- `dna/dna/dna/identity/adaptive/pattern_updates.json`
+- `dna/dna/dna/identity/adaptive/drift_guardrails.json`
+- `dna/dna/dna/identity/adaptive/adaptation_state.json`
 
 Load capability context:
 
-- `brain/anticipation/current_context.json`
-- `brain/anticipation/prediction_memory.json`
-- `brain/anticipation/behavior_patterns.json`
-- `brain/anticipation/action_suggestions.md`
+- `brain/brain/anticipation/current_context.json`
+- `brain/brain/anticipation/prediction_memory.json`
+- `brain/brain/anticipation/behavior_patterns.json`
+- `brain/brain/anticipation/action_suggestions.md`
 - `brain/research/README.md`
-- `mouth/comms/config/comms_config.json`
-- `heart/orchestrator/router/system_intelligence_policy.md`
+- `mouth/mouth/mouth/comms/config/comms_config.json`
+- `heart/heart/heart/orchestrator/router/system_intelligence_policy.md`
 - `heart/goals/planner/planner.md`
-- `nervous/mcp/server/config/resource_map.json`
+- `nervous/nervous/nervous/mcp/server/config/resource_map.json`
 
 Load session state:
 
@@ -1101,14 +1101,14 @@ Startup:
 
 1. Say: `✅ Loading workspace shared brain`.
 2. Run or rely on `bin/agent-start`.
-3. Read canonical shared files under `agent-system/shared/`.
+3. Read canonical shared files under `skeleton/rules/`.
 4. Load identity:
-   - `identity/prompts/identity_prompt.md`
-   - `identity/prompts/communication_prompt.md`
-   - `identity/profile/identity_profile.md`
-   - `identity/profile/tone_profile.md`
-   - `identity/profile/decision_profile.md`
-5. Check recent handoff: `agent-system/memory/SESSION_HANDOFF.md`.
+   - `dna/dna/identity/prompts/identity_prompt.md`
+   - `dna/dna/identity/prompts/communication_prompt.md`
+   - `dna/dna/identity/profile/identity_profile.md`
+   - `dna/dna/identity/profile/tone_profile.md`
+   - `dna/dna/identity/profile/decision_profile.md`
+5. Check recent handoff: `brain/memory/SESSION_HANDOFF.md`.
 6. Confirm: `✅ Context, identity, memory, and capabilities loaded`.
 
 Voice:
@@ -1143,21 +1143,21 @@ Safety:
 
 Identity learning:
 
-- Record feedback through `identity/adaptive/adaptive_identity.py` or commands:
+- Record feedback through `dna/dna/identity/adaptive/adaptive_identity.py` or commands:
   - `identity-accept`
   - `identity-reject`
   - `identity-adjust`
-- Weighted identity signals live in `identity/adaptive/signal_weights.json`.
-- Pattern updates live in `identity/adaptive/pattern_updates.json`.
-- Drift guardrails live in `identity/adaptive/drift_guardrails.json`.
+- Weighted identity signals live in `dna/dna/identity/adaptive/signal_weights.json`.
+- Pattern updates live in `dna/dna/identity/adaptive/pattern_updates.json`.
+- Drift guardrails live in `dna/dna/identity/adaptive/drift_guardrails.json`.
 - Never let adaptive identity override explicit base identity.
 
 Anticipation:
 
-- Prediction engine: `anticipation/prediction_engine.py`.
-- Current intent: `anticipation/current_context.json`.
-- Memory: `anticipation/prediction_memory.json`.
-- Suggestions: `anticipation/action_suggestions.md`.
+- Prediction engine: `brain/anticipation/prediction_engine.py`.
+- Current intent: `brain/anticipation/current_context.json`.
+- Memory: `brain/anticipation/prediction_memory.json`.
+- Suggestions: `brain/anticipation/action_suggestions.md`.
 - You may suggest next actions.
 - You may pre-plan.
 - You may not auto-execute suggestions without approval if safety-gated.
@@ -1166,7 +1166,7 @@ Anticipation:
 Research:
 
 - Use `idea-run` for idea to analysis.
-- Store decisions in `research-engine/decisions/` and shared memory when durable.
+- Store decisions in `brain/research/decisions/` and shared memory when durable.
 
 Goals:
 
@@ -1175,7 +1175,7 @@ Goals:
 
 MCP:
 
-- Resource map: `mcp/server/config/resource_map.json`.
+- Resource map: `nervous/nervous/mcp/server/config/resource_map.json`.
 - Reindex after adding important resources: `mcp-reindex`.
 
 Closeout:

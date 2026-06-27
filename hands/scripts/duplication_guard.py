@@ -79,7 +79,7 @@ def check_canonical_location(proposed_path: Path) -> tuple[bool, str]:
     if (ext in (".sh", ".py", ".bash", ".zsh") or not ext) and top_dir not in SUBSYSTEM_DIRS and top_dir != "bin" and top_dir != "scripts":
         suggested_sub = "scripts" if top_dir == "root" else top_dir
         return False, (
-            f"Misplaced Script Rejected: Scripts must live inside a valid subsystem scripts directory (e.g. 'heart/goals/scripts/', 'orchestrator/scripts/').\n"
+            f"Misplaced Script Rejected: Scripts must live inside a valid subsystem scripts directory (e.g. 'heart/goals/scripts/', 'heart/orchestrator/scripts/').\n"
             f"Proposed path: {rel_path}\n"
             f"Suggested action: Move to subsystem folder, then create a symlink in bin/ if it's a CLI entrypoint."
         )
@@ -88,7 +88,7 @@ def check_canonical_location(proposed_path: Path) -> tuple[bool, str]:
     is_config_ext = ext in (".json", ".yaml", ".yml", ".toml")
     is_config_name = "config" in filename.lower() or "policy" in filename.lower() or "weights" in filename.lower()
     if (is_config_ext and is_config_name) or filename == "opencode.json":
-        # Check if it lives in a subsystem/config or nervous/mcp/server/config or orchestrator/router
+        # Check if it lives in a subsystem/config or nervous/nervous/nervous/mcp/server/config or heart/orchestrator/router
         in_config_dir = False
         for part in parts:
             if part in ("config", "router", "adaptive", "settings"):
@@ -98,14 +98,14 @@ def check_canonical_location(proposed_path: Path) -> tuple[bool, str]:
             return False, (
                 f"Misplaced Config Rejected: Configuration files must stay in subsystem/config/ directories.\n"
                 f"Proposed path: {rel_path}\n"
-                f"Suggested action: Place config in 'subsystem/config/' (e.g., 'mouth/comms/config/{filename}')."
+                f"Suggested action: Place config in 'subsystem/config/' (e.g., 'mouth/mouth/mouth/comms/config/{filename}')."
             )
             
     return True, ""
 
 def find_duplicates(proposed_path: Path, intent: str | None) -> list[dict[str, Any]]:
     """Phase 1: Scan file_graph.json and find similar files or intents."""
-    graph_path = ROOT / "spine/audit/file_graph.json"
+    graph_path = ROOT / "spine/spine/audit/file_graph.json"
     graph = load_json(graph_path)
     
     proposed_rel = rel(proposed_path)

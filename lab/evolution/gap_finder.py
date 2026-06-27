@@ -13,21 +13,21 @@ WORKSPACE = _HERE.parent
 GAP_OUTPUT = WORKSPACE / "brain/system/gap_analysis_latest.json"
 
 EXPECTED_CAPABILITIES = [
-    {"id": "model_router",     "path": "agent_system/model_router/router.py",               "desc": "Multi-model routing with fallback"},
-    {"id": "visual_monitor",   "path": "visual/screenshot_manager.py",                       "desc": "Visual monitoring + screenshot manager"},
-    {"id": "vision_analyzer",  "path": "visual/vision_analyzer.py",                          "desc": "AI vision analysis of screenshots"},
-    {"id": "visual_repair",    "path": "visual/visual_repair_agent.py",                      "desc": "Visual repair agent"},
-    {"id": "vision_impl",      "path": "visual/vision_implementer.py",                       "desc": "Vision-to-implementation bridge"},
-    {"id": "evolution_engine", "path": "evolution/engine.py",                                "desc": "Autonomous evolution engine"},
-    {"id": "night_shift",      "path": "orchestrator/dag/pipelines/night_shift.yaml",        "desc": "Night shift scheduler"},
-    {"id": "health_repair",    "path": "dashboard/execution/health_repair_pipeline.py",      "desc": "Health repair pipeline"},
-    {"id": "autolab",          "path": "autolab/runner.py",                                  "desc": "Autolab experiment runner"},
-    {"id": "memory_vector",    "path": "agent-system/memory/vector/chroma_store",            "desc": "Vector memory store"},
-    {"id": "mcp_server",       "path": "mcp/server/main.py",                                 "desc": "MCP server"},
-    {"id": "orchestrator",     "path": "orchestrator/router/router.py",                      "desc": "Task orchestrator"},
-    {"id": "goal_engine",      "path": "goal-engine/goal_tracker.py",                        "desc": "Goal tracking"},
-    {"id": "challenger",       "path": "evolution/challenger.py",                            "desc": "Self-challenge generator"},
-    {"id": "gap_finder",       "path": "evolution/gap_finder.py",                            "desc": "Gap finder (this file)"},
+    {"id": "model_router",     "path": "heart/model_router/router.py",               "desc": "Multi-model routing with fallback"},
+    {"id": "visual_monitor",   "path": "eyes/visual/screenshot_manager.py",                       "desc": "Visual monitoring + screenshot manager"},
+    {"id": "vision_analyzer",  "path": "eyes/visual/vision_analyzer.py",                          "desc": "AI vision analysis of screenshots"},
+    {"id": "visual_repair",    "path": "eyes/visual/visual_repair_agent.py",                      "desc": "Visual repair agent"},
+    {"id": "vision_impl",      "path": "eyes/visual/vision_implementer.py",                       "desc": "Vision-to-implementation bridge"},
+    {"id": "evolution_engine", "path": "lab/evolution/engine.py",                                "desc": "Autonomous evolution engine"},
+    {"id": "night_shift",      "path": "hands/automation/dag/pipelines/night_shift.yaml",        "desc": "Night shift scheduler"},
+    {"id": "health_repair",    "path": "eyes/eyes/dashboard/execution/health_repair_pipeline.py",      "desc": "Health repair pipeline"},
+    {"id": "autolab",          "path": "lab/autolab/runner.py",                                  "desc": "Autolab experiment runner"},
+    {"id": "memory_vector",    "path": "brain/memory/vector/chroma_store",            "desc": "Vector memory store"},
+    {"id": "mcp_server",       "path": "nervous/nervous/mcp/server/main.py",                                 "desc": "MCP server"},
+    {"id": "orchestrator",     "path": "heart/heart/orchestrator/router/router.py",                      "desc": "Task orchestrator"},
+    {"id": "goal_engine",      "path": "heart/goals/goal_tracker.py",                        "desc": "Goal tracking"},
+    {"id": "challenger",       "path": "lab/evolution/challenger.py",                            "desc": "Self-challenge generator"},
+    {"id": "gap_finder",       "path": "lab/evolution/gap_finder.py",                            "desc": "Gap finder (this file)"},
 ]
 
 
@@ -46,8 +46,8 @@ def scan_for_gaps() -> dict:
     # Check for stale memory files
     stale: list[dict] = []
     check_files = [
-        "agent-system/memory/MEMORY.md",
-        "agent-system/memory/SESSION_HANDOFF.md",
+        "brain/memory/MEMORY.md",
+        "brain/memory/SESSION_HANDOFF.md",
     ]
     for rel in check_files:
         p = WORKSPACE / rel

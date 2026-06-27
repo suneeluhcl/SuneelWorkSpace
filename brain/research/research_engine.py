@@ -19,8 +19,8 @@ IDEAS = ENGINE / "ideas"
 PLANS = ENGINE / "plans"
 ANALYSES = ENGINE / "analyses"
 DECISIONS = ENGINE / "decisions"
-SHARED_DECISIONS = ROOT / "agent-system/memory/DECISIONS.md"
-SHARED_MEMORY = ROOT / "agent-system/memory/MEMORY.md"
+SHARED_DECISIONS = ROOT / "brain/memory/DECISIONS.md"
+SHARED_MEMORY = ROOT / "brain/memory/MEMORY.md"
 NOW = datetime.now(timezone.utc).astimezone()
 
 
@@ -160,7 +160,7 @@ def research(identifier: str) -> Path:
         "",
         "- Existing files and commands under `~/SuneelWorkSpace`.",
         "- Relevant MCP resources and shared memory entries.",
-        "- Local CLI/app capabilities from `tools/tool_inventory.json`.",
+        "- Local CLI/app capabilities from `spine/tools/tool_inventory.json`.",
         "- Fresh web or vendor documentation only when explicitly requested or required for current facts.",
         "",
         "## Output",

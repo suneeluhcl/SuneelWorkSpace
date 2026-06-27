@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Autolab Runner — safe gated execution of workspace experiments.
-CLI: python3 autolab/runner.py [--experiment exp_001] [--dry-run] [--safe-only]
+CLI: python3 lab/autolab/runner.py [--experiment exp_001] [--dry-run] [--safe-only]
 """
 import json
 import os
@@ -12,9 +12,9 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-ACTIVE_DIR = WORKSPACE / 'autolab/experiments/active'
-ROLLBACK_DIR = WORKSPACE / 'autolab/experiments/rollback'
-LOG_FILE = WORKSPACE / 'agent-system/logs/autolab_runner.log'
+ACTIVE_DIR = WORKSPACE / 'lab/autolab/experiments/active'
+ROLLBACK_DIR = WORKSPACE / 'lab/autolab/experiments/rollback'
+LOG_FILE = WORKSPACE / 'blood/logs/autolab_runner.log'
 
 
 def log(msg: str):
@@ -137,7 +137,7 @@ def execute_experiment(exp: dict, exp_path: Path, dry_run: bool = False) -> bool
     # Call evaluator
     log(f"Calling evaluator for {exp_id}...")
     rc, output = run_command(
-        f"python3 {WORKSPACE}/autolab/evaluator.py --experiment {exp_id}",
+        f"python3 {WORKSPACE}/lab/autolab/evaluator.py --experiment {exp_id}",
         dry_run
     )
     if output:

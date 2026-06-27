@@ -3,8 +3,8 @@ import os
 import json
 import chromadb
 
-WORKSPACE_HEALTH = "/Users/MAC/SuneelWorkSpace/agent-system/state/WORKSPACE_HEALTH.json"
-CHROMA_DIR = "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store"
+WORKSPACE_HEALTH = "/Users/MAC/SuneelWorkSpace/spine/state/WORKSPACE_HEALTH.json"
+CHROMA_DIR = "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store"
 COLLECTION_NAME = "workspace_memory"
 
 def get_memory_health():

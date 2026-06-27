@@ -49,7 +49,7 @@ Note: `mcp__claude_ai_Gmail__authenticate` appears in your Claude Code tool list
 |--------|------|----------------|
 | Python imaplib + smtplib | Low (local) but requires app password | Configure as follow-up if no Mail.app |
 
-To configure IMAP/SMTP, ask the agent to set up `comms/mail/scripts/mail-imap.py`. You'll provide an app password (not your main password).
+To configure IMAP/SMTP, ask the agent to set up `mouth/comms/mail/scripts/mail-imap.py`. You'll provide an app password (not your main password).
 
 ---
 

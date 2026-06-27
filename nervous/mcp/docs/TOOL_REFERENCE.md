@@ -10,11 +10,11 @@ If `focus` is provided, filters sections containing that keyword.
 **[READ]**
 
 ### `get_current_state()`
-Returns `agent-system/state/CURRENT_STATE.json` as text.
+Returns `spine/state/CURRENT_STATE.json` as text.
 **[READ]**
 
 ### `get_recent_handoff()`
-Returns `agent-system/memory/SESSION_HANDOFF.md` as text.
+Returns `brain/memory/SESSION_HANDOFF.md` as text.
 **[READ]**
 
 ### `search_memory(query, limit=10)`
@@ -39,7 +39,7 @@ Returns the current autolab frontier and experiment queue.
 **[READ]**
 
 ### `get_workspace_health()`
-Returns `agent-system/state/WORKSPACE_HEALTH.json`.
+Returns `spine/state/WORKSPACE_HEALTH.json`.
 **[READ]**
 
 ### `get_recent_changes()`
@@ -49,12 +49,12 @@ Returns `git status --short` and `git log --oneline -10` from the workspace.
 ## Write Tools
 
 ### `add_memory_note(note, tags="")`
-Appends a note to `agent-system/memory/MEMORY.md`.
+Appends a note to `brain/memory/MEMORY.md`.
 Creates a `.bak` backup before writing.
 **[WRITE]**
 
 ### `add_decision(decision, reason="", tags="")`
-Appends a decision to `agent-system/memory/DECISIONS.md`.
+Appends a decision to `brain/memory/DECISIONS.md`.
 **[WRITE]**
 
 ### `add_task(task, queue="active")`
@@ -68,11 +68,11 @@ Creates a `.bak` backup before writing.
 **[WRITE]**
 
 ### `append_session_note(note)`
-Appends a timestamped note to `agent-system/logs/SESSION_LOG.md`.
+Appends a timestamped note to `blood/logs/SESSION_LOG.md`.
 **[WRITE]**
 
 ### `create_handoff_draft(summary, changed="", verification="", open_items="")`
-Overwrites `agent-system/memory/SESSION_HANDOFF.md` with a structured handoff.
+Overwrites `brain/memory/SESSION_HANDOFF.md` with a structured handoff.
 Creates a `.bak` backup before writing.
 **[WRITE]**
 

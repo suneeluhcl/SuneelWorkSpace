@@ -3,26 +3,26 @@
   "description": "Defines which files each MCP tool is allowed to read or mutate",
 
   "mutable_areas": [
-    "/Users/MAC/SuneelWorkSpace/agent-system/memory/MEMORY.md",
-    "/Users/MAC/SuneelWorkSpace/agent-system/memory/DECISIONS.md",
-    "/Users/MAC/SuneelWorkSpace/agent-system/memory/NOTES.md",
-    "/Users/MAC/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md",
-    "/Users/MAC/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md",
-    "/Users/MAC/SuneelWorkSpace/agent-system/tasks/TASK_QUEUE.md",
-    "/Users/MAC/SuneelWorkSpace/agent-system/logs/SESSION_LOG.md",
-    "/Users/MAC/SuneelWorkSpace/mcp/server/state/mcp_state.json",
-    "/Users/MAC/SuneelWorkSpace/mcp/server/logs/"
+    "/Users/MAC/SuneelWorkSpace/brain/memory/MEMORY.md",
+    "/Users/MAC/SuneelWorkSpace/brain/memory/DECISIONS.md",
+    "/Users/MAC/SuneelWorkSpace/brain/memory/NOTES.md",
+    "/Users/MAC/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md",
+    "/Users/MAC/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md",
+    "/Users/MAC/SuneelWorkSpace/heart/tasks/TASK_QUEUE.md",
+    "/Users/MAC/SuneelWorkSpace/blood/logs/SESSION_LOG.md",
+    "/Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/state/mcp_state.json",
+    "/Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/logs/"
   ],
 
   "protected_areas": [
-    "/Users/MAC/SuneelWorkSpace/agent-system/shared/",
-    "/Users/MAC/SuneelWorkSpace/agent-system/state/CURRENT_STATE.json",
-    "/Users/MAC/SuneelWorkSpace/agent-system/state/WORKSPACE_HEALTH.json",
-    "/Users/MAC/SuneelWorkSpace/autolab/",
+    "/Users/MAC/SuneelWorkSpace/skeleton/rules/",
+    "/Users/MAC/SuneelWorkSpace/spine/state/CURRENT_STATE.json",
+    "/Users/MAC/SuneelWorkSpace/spine/state/WORKSPACE_HEALTH.json",
+    "/Users/MAC/SuneelWorkSpace/lab/autolab/",
     "/Users/MAC/SuneelWorkSpace/bin/",
     "/Users/MAC/SuneelWorkSpace/automation/",
     "/Users/MAC/.claude/",
-    "/Users/MAC/.codex/"
+    "/Users/MAC/.hands/codex/"
   ],
 
   "tool_permissions": {

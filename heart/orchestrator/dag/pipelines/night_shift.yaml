@@ -31,13 +31,13 @@ steps:
 
   - id: gap_scan
     name: "Gap Analysis"
-    command: python3 evolution/gap_finder.py
+    command: python3 lab/evolution/gap_finder.py
     depends_on: [visual_repair]
     execution_level: SAFE
 
   - id: challenge
     name: "Self-Challenge Generation"
-    command: python3 evolution/challenger.py
+    command: python3 lab/evolution/challenger.py
     depends_on: [gap_scan]
     execution_level: SAFE
 
@@ -78,7 +78,7 @@ steps:
 
   - id: capability_update
     name: "Update Capability Scores via Gap Finder"
-    command: python3 evolution/gap_finder.py
+    command: python3 lab/evolution/gap_finder.py
     depends_on: [graph_rebuild]
     execution_level: SAFE
 

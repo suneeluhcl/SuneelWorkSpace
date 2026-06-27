@@ -11,7 +11,7 @@
   "disabled_reason": "Mail.app not installed at /Applications/Mail.app",
   "next_steps": [
     "Install Apple Mail.app or use Gmail plugin",
-    "See comms/reports/plugin_recommendations.md"
+    "See mouth/comms/reports/plugin_recommendations.md"
   ],
   "imap_fallback": {
     "enabled": false,

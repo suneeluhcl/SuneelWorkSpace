@@ -3,8 +3,8 @@ import os
 import json
 import re
 
-SESSION_LOG = "/Users/MAC/SuneelWorkSpace/agent-system/logs/SESSION_LOG.md"
-CURRENT_STATE = "/Users/MAC/SuneelWorkSpace/agent-system/state/CURRENT_STATE.json"
+SESSION_LOG = "/Users/MAC/SuneelWorkSpace/blood/logs/SESSION_LOG.md"
+CURRENT_STATE = "/Users/MAC/SuneelWorkSpace/spine/state/CURRENT_STATE.json"
 
 def get_agent_activity():
     activity = {

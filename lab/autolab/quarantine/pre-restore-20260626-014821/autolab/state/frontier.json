@@ -5,7 +5,7 @@
   "selection_bias": [
     "Prefer `strategy` when it targets a real score gap."
   ],
-  "snapshot": "/Users/MAC/SuneelWorkSpace/autolab/snapshots/frontier-20260624-154219",
+  "snapshot": "/Users/MAC/SuneelWorkSpace/lab/autolab/spine/snapshots/frontier-20260624-154219",
   "status": "frontier-recorded",
   "updated_at": "2026-06-24T15:42:19-0500"
 }

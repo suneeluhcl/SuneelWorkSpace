@@ -17,9 +17,9 @@
         <integer>0</integer>
     </dict>
     <key>StandardOutPath</key>
-    <string>/Users/MAC/SuneelWorkSpace/mcp/server/logs/daily_evolve_stdout.log</string>
+    <string>/Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/logs/daily_evolve_stdout.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/MAC/SuneelWorkSpace/mcp/server/logs/daily_evolve_stderr.log</string>
+    <string>/Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/logs/daily_evolve_stderr.log</string>
     <key>EnvironmentVariables</key>
     <dict>
         <key>SUNEEL_WORKSPACE</key>

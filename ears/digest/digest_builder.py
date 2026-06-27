@@ -67,7 +67,7 @@ def build(date_str: str | None = None) -> str:
         seen_urls.add(url)
         unique.append((item, score))
 
-    from monitor.digest.digest_formatter import format_brief
+    from ears.monitor.digest.digest_formatter import format_brief
     brief = format_brief(unique, date_str, len(all_items))
 
     BRAIN_LOGS.mkdir(parents=True, exist_ok=True)

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 WORKSPACE="${WORKSPACE:-$HOME/SuneelWorkSpace}"
-VERSIONS_DIR="$WORKSPACE/dna/identity/prompts/versions"
+VERSIONS_DIR="$WORKSPACE/dna/dna/dna/identity/prompts/versions"
 LOG_FILE="$WORKSPACE/blood/logs/prompt_versions.log"
 
 CURRENT_LINK="$VERSIONS_DIR/identity_prompt_current.md"

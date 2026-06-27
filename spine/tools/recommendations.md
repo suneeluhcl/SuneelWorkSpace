@@ -14,7 +14,7 @@ No external tools were installed. These are proposals for explicit future approv
 
 - Use `research-engine` for idea capture, planning, comparison, and decision records.
 - Add web research only when explicitly requested or when freshness materially matters.
-- Promote accepted decisions into `agent-system/memory/DECISIONS.md`.
+- Promote accepted decisions into `brain/memory/DECISIONS.md`.
 
 ## 3. Automation
 
@@ -30,7 +30,7 @@ No external tools were installed. These are proposals for explicit future approv
 
 ## 5. System Management
 
-- Add retention summaries for `.agent-backups`, `snapshots`, `autolab/quarantine`, and logs.
+- Add retention summaries for `.agent-backups`, `snapshots`, `lab/autolab/quarantine`, and logs.
 - Keep system awareness metadata-only unless Suneel explicitly asks for deeper indexing.
 
 ## 6. Data Organization
@@ -40,7 +40,7 @@ No external tools were installed. These are proposals for explicit future approv
 
 ## 7. Assistant Intelligence
 
-- Treat `audit/gap_analysis.md` as an input to autolab and goal planning.
+- Treat `spine/audit/gap_analysis.md` as an input to autolab and goal planning.
 - Register new durable knowledge files in MCP resource maps.
 - Use `idea-run` to transform rough ideas into plans, tradeoffs, and decisions.
 

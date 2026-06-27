@@ -7,7 +7,7 @@ You are guiding an NLU fix session for the Adwi local AI OS. Follow this exact w
 
 ## Step 1 — Read the current backlog
 
-Read `adwi/adwi/docs/NLU_REPAIR_BACKLOG.md` and identify all items with status `🔴 Open` or `🟡 In progress`.
+Read `adwi/adwi/spine/docs/NLU_REPAIR_BACKLOG.md` and identify all items with status `🔴 Open` or `🟡 In progress`.
 
 If there are no open items, report: "No open NHR items in backlog. Run /eval-summary to check current failure clusters and identify new targets."
 
@@ -52,7 +52,7 @@ python3 adwi/logs/simeval/run_large_eval_p2.py --workers 5
 
 ## Step 6 — Mark as applied
 
-Update `adwi/adwi/docs/NLU_REPAIR_BACKLOG.md`:
+Update `adwi/adwi/spine/docs/NLU_REPAIR_BACKLOG.md`:
 - Change `🔴 Open` → `✅ Applied <date>`
 - Add the measured pass rate improvement
 

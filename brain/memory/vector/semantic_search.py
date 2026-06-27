@@ -3,14 +3,14 @@ import os
 import sys
 
 # Redirect HF Hub cache to a local directory to bypass permission issues on global cache
-os.environ["HF_HOME"] = "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache"
+os.environ["HF_HOME"] = "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache"
 
 import argparse
 import json
 from sentence_transformers import SentenceTransformer
 import chromadb
 
-CHROMA_DIR = "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store"
+CHROMA_DIR = "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store"
 COLLECTION_NAME = "workspace_memory"
 
 def query_vector_store(query_str, top_k=5, content_type=None, min_threshold=0.2):

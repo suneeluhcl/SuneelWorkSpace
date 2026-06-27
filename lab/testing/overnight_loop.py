@@ -61,7 +61,7 @@ def run_command(cmd: str, timeout: float = 15.0) -> tuple[bool, str, float]:
 
 def simulate_context_continuity() -> tuple[bool, str, float]:
     """Test scenario 2: Verify active context write, decay, and history."""
-    ctx_path = ROOT / "agent-system/state/ACTIVE_CONTEXT.json"
+    ctx_path = ROOT / "spine/state/ACTIVE_CONTEXT.json"
     backup = ctx_path.read_text() if ctx_path.exists() else None
     
     start = time.time()
@@ -141,7 +141,7 @@ def simulate_duplication_integrity() -> tuple[bool, str, float]:
             return False, "Duplication guard failed to reject misplaced root script", time.time() - start
             
         # Run duplication-guard on exact duplicate creation
-        s2, out2, lat2 = run_command("python3 scripts/duplication_guard.py goal-engine/scripts/goal-create --intent 'Create a goal'")
+        s2, out2, lat2 = run_command("python3 scripts/duplication_guard.py heart/goals/scripts/goal-create --intent 'Create a goal'")
         if s2 or "⚠️  DUPLICATION WARNING: Similar functionality already exists" not in out2:
             return False, "Duplication guard failed to warn on exact script duplication", time.time() - start
             
@@ -226,7 +226,7 @@ def update_learning() -> None:
         prediction_engine.record("bin/next", context="overnight_test_loop", exit_code=0)
         
         # Log to adaptive identity loop
-        feedback_path = ROOT / "identity/adaptive/feedback_log.json"
+        feedback_path = ROOT / "dna/dna/identity/adaptive/feedback_log.json"
         logs = load_json(feedback_path, [])
         logs.append({
             "timestamp": now_iso(),

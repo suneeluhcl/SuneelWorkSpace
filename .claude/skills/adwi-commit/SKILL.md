@@ -28,7 +28,7 @@ Run `/adwi-check` (syntax + Gmail NLU regression suite, ~5 seconds).
 - If eval was run and pass rates changed, update the table before committing.
 
 ### 5. Backlog currency check
-- Were any NHR items applied? If yes, verify they're marked `✅ Applied` in `adwi/adwi/docs/NLU_REPAIR_BACKLOG.md`.
+- Were any NHR items applied? If yes, verify they're marked `✅ Applied` in `adwi/adwi/spine/docs/NLU_REPAIR_BACKLOG.md`.
 - Were any bugs fixed? Verify `notes/adwi-mistakes-and-fixes.md` has an entry.
 
 ### 6. Git status review

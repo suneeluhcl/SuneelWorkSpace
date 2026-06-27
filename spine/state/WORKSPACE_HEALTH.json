@@ -49,21 +49,21 @@
     {
       "code": "move_misplaced_scripts",
       "paths": [
-        "/Users/MAC/SuneelWorkSpace/visual/vision_analyzer.py",
-        "/Users/MAC/SuneelWorkSpace/visual/visual_monitor.py",
-        "/Users/MAC/SuneelWorkSpace/visual/__init__.py",
-        "/Users/MAC/SuneelWorkSpace/visual/visual_repair_agent.py",
-        "/Users/MAC/SuneelWorkSpace/visual/vision_implementer.py",
-        "/Users/MAC/SuneelWorkSpace/visual/screenshot_manager.py",
+        "/Users/MAC/SuneelWorkSpace/eyes/visual/vision_analyzer.py",
+        "/Users/MAC/SuneelWorkSpace/eyes/visual/visual_monitor.py",
+        "/Users/MAC/SuneelWorkSpace/eyes/visual/__init__.py",
+        "/Users/MAC/SuneelWorkSpace/eyes/visual/visual_repair_agent.py",
+        "/Users/MAC/SuneelWorkSpace/eyes/visual/vision_implementer.py",
+        "/Users/MAC/SuneelWorkSpace/eyes/visual/screenshot_manager.py",
         "/Users/MAC/SuneelWorkSpace/agent_system/__init__.py",
-        "/Users/MAC/SuneelWorkSpace/agent_system/model_router/__init__.py",
-        "/Users/MAC/SuneelWorkSpace/agent_system/model_router/health_checker.py",
-        "/Users/MAC/SuneelWorkSpace/agent_system/model_router/router.py",
-        "/Users/MAC/SuneelWorkSpace/agent_system/model_router/quota_tracker.py",
-        "/Users/MAC/SuneelWorkSpace/evolution/__init__.py",
-        "/Users/MAC/SuneelWorkSpace/evolution/engine.py",
-        "/Users/MAC/SuneelWorkSpace/evolution/gap_finder.py",
-        "/Users/MAC/SuneelWorkSpace/evolution/challenger.py"
+        "/Users/MAC/SuneelWorkSpace/heart/model_router/__init__.py",
+        "/Users/MAC/SuneelWorkSpace/heart/model_router/health_checker.py",
+        "/Users/MAC/SuneelWorkSpace/heart/model_router/router.py",
+        "/Users/MAC/SuneelWorkSpace/heart/model_router/quota_tracker.py",
+        "/Users/MAC/SuneelWorkSpace/lab/evolution/__init__.py",
+        "/Users/MAC/SuneelWorkSpace/lab/evolution/engine.py",
+        "/Users/MAC/SuneelWorkSpace/lab/evolution/gap_finder.py",
+        "/Users/MAC/SuneelWorkSpace/lab/evolution/challenger.py"
       ]
     }
   ],

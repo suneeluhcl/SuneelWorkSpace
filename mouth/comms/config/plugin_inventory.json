@@ -29,7 +29,7 @@
     "name": "local_sqlite_imessage",
     "type": "local_script",
     "status": "active",
-    "path": "comms/imessage/scripts/",
+    "path": "mouth/comms/imessage/scripts/",
     "method": "sqlite_direct_read",
     "fda_required": true,
     "fda_confirmed": true

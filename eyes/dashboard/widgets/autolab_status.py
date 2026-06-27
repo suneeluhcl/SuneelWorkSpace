@@ -3,7 +3,7 @@ import os
 import json
 import re
 
-REPORT_FILE = "/Users/MAC/SuneelWorkSpace/autolab/reports/latest_report.md"
+REPORT_FILE = "/Users/MAC/SuneelWorkSpace/lab/autolab/reports/latest_report.md"
 
 def get_autolab_status():
     status = {

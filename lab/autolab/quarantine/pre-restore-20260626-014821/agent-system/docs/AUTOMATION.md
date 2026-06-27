@@ -20,7 +20,7 @@ Automation keeps `~/SuneelWorkSpace` healthy without requiring Suneel to remembe
 
 ## Autolab
 
-Autolab lives at `~/SuneelWorkSpace/autolab/`.
+Autolab lives at `~/SuneelWorkSpace/lab/autolab/`.
 
 It adds a safe workspace-autoresearch loop:
 
@@ -71,7 +71,7 @@ There are three closeout paths:
 
 ## Logs And Reports
 
-- Maintenance log: `agent-system/logs/MAINTENANCE_LOG.md`
-- Health JSON: `agent-system/state/WORKSPACE_HEALTH.json`
-- Index JSON: `agent-system/state/INDEX.json`
+- Maintenance log: `blood/logs/MAINTENANCE_LOG.md`
+- Health JSON: `spine/state/WORKSPACE_HEALTH.json`
+- Index JSON: `spine/state/INDEX.json`
 - Latest report: `automation/reports/status-latest.md`

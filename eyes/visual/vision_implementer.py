@@ -56,7 +56,7 @@ def analyze_and_implement(
         })
         if not dry_run:
             r = subprocess.run(
-                [sys.executable, "autolab/hypothesis_generator.py"],
+                [sys.executable, "lab/autolab/hypothesis_generator.py"],
                 capture_output=True, text=True, timeout=60, cwd=str(WORKSPACE),
             )
             result["applied"] = r.returncode == 0
@@ -70,7 +70,7 @@ def analyze_and_implement(
         })
         if not dry_run:
             r = subprocess.run(
-                [sys.executable, "evolution/gap_finder.py"],
+                [sys.executable, "lab/evolution/gap_finder.py"],
                 capture_output=True, text=True, timeout=60, cwd=str(WORKSPACE),
             )
             result["applied"] = r.returncode == 0
@@ -82,9 +82,9 @@ def analyze_and_implement(
         })
         if not dry_run:
             sys.path.insert(0, str(WORKSPACE))
-            from visual.screenshot_manager import take_screenshot
-            from visual.vision_analyzer import analyze_screenshot
-            from visual.visual_repair_agent import enqueue_from_analysis, process_repair_queue
+            from eyes.visual.screenshot_manager import take_screenshot
+            from eyes.visual.vision_analyzer import analyze_screenshot
+            from eyes.visual.visual_repair_agent import enqueue_from_analysis, process_repair_queue
             path = take_screenshot(label="vision_impl")
             analysis = analyze_screenshot(path)
             added = enqueue_from_analysis(analysis)
@@ -104,7 +104,7 @@ def analyze_and_implement(
         })
         if not dry_run:
             sys.path.insert(0, str(WORKSPACE))
-            from agent_system.model_router.quota_tracker import get_status
+            from heart.model_router.quota_tracker import get_status
             result["actions"][-1]["detail"] = get_status()
             result["applied"] = True
 

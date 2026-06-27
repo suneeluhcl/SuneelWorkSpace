@@ -120,12 +120,12 @@ _ALLOWED_ORIGINS = {
 
 # Server-side allowlist: action key → argv (no shell interpolation)
 _QUICK_ACTIONS: dict[str, list[str]] = {
-    "night-shift":     ["dag-run", "orchestrator/dag/pipelines/night_shift.yaml"],
-    "gap-scan":        ["python3", "evolution/gap_finder.py"],
-    "challenge":       ["python3", "evolution/challenger.py"],
+    "night-shift":     ["dag-run", "hands/automation/dag/pipelines/night_shift.yaml"],
+    "gap-scan":        ["python3", "lab/evolution/gap_finder.py"],
+    "challenge":       ["python3", "lab/evolution/challenger.py"],
     "screenshot":      ["screenshot-take"],
     "model-health":    ["model-health"],
-    "evolution-start": ["python3", "evolution/engine.py", "cycle"],
+    "evolution-start": ["python3", "lab/evolution/engine.py", "cycle"],
     "morning-brief":   ["morning-brief"],
     "workspace-ci":    ["workspace-ci"],
 }
@@ -187,7 +187,7 @@ async def _run_pipeline(client_id: str, prompt: str, mode: str) -> None:
     """Run the 6-stage pipeline with live WebSocket streaming."""
     sys.path.insert(0, WORKSPACE)
     try:
-        from dashboard.pipeline.pipeline import Pipeline
+        from eyes.dashboard.pipeline.pipeline import Pipeline
         pipeline = Pipeline(
             client_id=client_id,
             prompt=prompt,
@@ -298,7 +298,7 @@ async def api_health() -> Any:
     # Use stored score if a repair ran and improved things
     stored_score = live_score
     try:
-        wh_path = Path(os.path.join(WORKSPACE, "agent-system/state/WORKSPACE_HEALTH.json"))
+        wh_path = Path(os.path.join(WORKSPACE, "spine/state/WORKSPACE_HEALTH.json"))
         if wh_path.exists():
             stored_score = int(json.loads(wh_path.read_text()).get("health_score", live_score))
     except Exception:
@@ -344,7 +344,7 @@ async def api_status() -> Any:
 async def get_model_status() -> Any:
     try:
         sys.path.insert(0, WORKSPACE)
-        from agent_system.model_router.quota_tracker import get_status
+        from heart.model_router.quota_tracker import get_status
         return get_status()
     except Exception as e:
         return {"models": [], "error": str(e)[:100]}
@@ -352,15 +352,15 @@ async def get_model_status() -> Any:
 @app.get("/widgets/models")
 async def widget_models() -> HTMLResponse:
     sys.path.insert(0, os.path.join(WORKSPACE, "dashboard"))
-    from dashboard.widgets.model_status import render_html
+    from eyes.dashboard.widgets.model_status import render_html
     return HTMLResponse(render_html())
 
 
 # ── Upgrade 7: Evolution Status ───────────────────────────────────────────────
 
-@app.get("/api/evolution/status")
+@app.get("/api/lab/evolution/status")
 async def get_evolution_status() -> Any:
-    log_path = os.path.join(WORKSPACE, "evolution/evolution_log.jsonl")
+    log_path = os.path.join(WORKSPACE, "lab/evolution/evolution_log.jsonl")
     if not os.path.exists(log_path):
         return {"status": "not_started", "recent_events": [], "total_events": 0}
     events: list[dict] = []
@@ -375,7 +375,7 @@ async def get_evolution_status() -> Any:
         pass
     return {"status": "running" if events else "idle", "recent_events": events[-5:], "total_events": len(events)}
 
-@app.get("/api/evolution/gaps")
+@app.get("/api/lab/evolution/gaps")
 async def get_evolution_gaps() -> Any:
     gap_path = os.path.join(WORKSPACE, "brain/system/gap_analysis_latest.json")
     if not os.path.exists(gap_path):
@@ -387,7 +387,7 @@ async def get_evolution_gaps() -> Any:
 
 @app.get("/widgets/evolution")
 async def widget_evolution() -> HTMLResponse:
-    log_path = os.path.join(WORKSPACE, "evolution/evolution_log.jsonl")
+    log_path = os.path.join(WORKSPACE, "lab/evolution/evolution_log.jsonl")
     events_raw: list[dict] = []
     if os.path.exists(log_path):
         try:
@@ -416,11 +416,11 @@ def _count_queue(path: str, status_filter: str) -> int:
     except Exception:
         return 0
 
-@app.get("/api/visual/status")
+@app.get("/api/eyes/visual/status")
 async def get_visual_status() -> Any:
     try:
         sys.path.insert(0, WORKSPACE)
-        from visual.screenshot_manager import list_screenshots, get_latest_screenshot
+        from eyes.visual.screenshot_manager import list_screenshots, get_latest_screenshot
         latest = get_latest_screenshot()
         recent = list_screenshots(5)
     except Exception:
@@ -429,15 +429,15 @@ async def get_visual_status() -> Any:
     return {
         "latest_screenshot": latest,
         "recent_screenshots": recent,
-        "repair_queue":   _count_queue(os.path.join(WORKSPACE, "visual/visual_repair_queue.json"),   "pending"),
-        "approval_queue": _count_queue(os.path.join(WORKSPACE, "visual/visual_approval_queue.json"), "awaiting_approval"),
+        "repair_queue":   _count_queue(os.path.join(WORKSPACE, "eyes/visual/visual_repair_queue.json"),   "pending"),
+        "approval_queue": _count_queue(os.path.join(WORKSPACE, "eyes/visual/visual_approval_queue.json"), "awaiting_approval"),
     }
 
 @app.get("/widgets/visual")
 async def widget_visual() -> HTMLResponse:
     try:
         sys.path.insert(0, WORKSPACE)
-        from visual.screenshot_manager import get_latest_screenshot
+        from eyes.visual.screenshot_manager import get_latest_screenshot
         latest = get_latest_screenshot()
     except Exception:
         latest = None
@@ -454,7 +454,7 @@ async def widget_visual() -> HTMLResponse:
 @app.get("/widgets/approval")
 async def widget_approval() -> HTMLResponse:
     sys.path.insert(0, os.path.join(WORKSPACE, "dashboard"))
-    from dashboard.widgets.approval_queue import render_html
+    from eyes.dashboard.widgets.approval_queue import render_html
     return HTMLResponse(render_html())
 
 @app.post("/api/approvals/approve")
@@ -470,7 +470,7 @@ async def reject_item_route(request: Request) -> Any:
     return {"status": "rejected"}
 
 def _process_approval(queued_at: str, approved: bool) -> None:
-    queue_path = os.path.join(WORKSPACE, "visual/visual_approval_queue.json")
+    queue_path = os.path.join(WORKSPACE, "eyes/visual/visual_approval_queue.json")
     if not os.path.exists(queue_path) or not queued_at:
         return
     try:
@@ -481,7 +481,7 @@ def _process_approval(queued_at: str, approved: bool) -> None:
                 item["processed_at"] = datetime.now(timezone.utc).isoformat()
                 if approved:
                     sys.path.insert(0, WORKSPACE)
-                    from visual.visual_repair_agent import _generate_and_apply_fix
+                    from eyes.visual.visual_repair_agent import _generate_and_apply_fix
                     issue = item.get("issue", item.get("improvement", {}))
                     _generate_and_apply_fix(issue)
                 break
@@ -539,9 +539,9 @@ async def api_health_repair() -> Any:
 
 # ── Enhancement 2: Autolab Experiment Controls ────────────────────────────────
 
-@app.get("/api/autolab/experiments")
+@app.get("/api/lab/autolab/experiments")
 async def api_autolab_experiments() -> Any:
-    """Parse autolab/experiment_queue.md and return structured experiment list."""
+    """Parse lab/autolab/experiment_queue.md and return structured experiment list."""
     queue_path = os.path.join(WORKSPACE, "autolab", "experiment_queue.md")
     if not os.path.exists(queue_path):
         return {"experiments": []}
@@ -573,7 +573,7 @@ async def api_autolab_experiments() -> Any:
         return {"experiments": [], "error": str(e)}
 
 
-@app.post("/api/autolab/run")
+@app.post("/api/lab/autolab/run")
 async def api_autolab_run() -> Any:
     """Trigger autolab runner as background task."""
     job_id = f"autolab_{str(uuid.uuid4())[:8]}"
@@ -583,7 +583,7 @@ async def api_autolab_run() -> Any:
         if not os.path.exists(runner):
             await manager.broadcast({
                 "type": "log", "level": "warn", "icon": "⚠",
-                "content": "Autolab runner not found at autolab/runner.py",
+                "content": "Autolab runner not found at lab/autolab/runner.py",
                 "ts": datetime.now(timezone.utc).isoformat(),
             })
             return
@@ -607,7 +607,7 @@ async def api_autolab_run() -> Any:
     return {"status": "started", "job_id": job_id}
 
 
-@app.post("/api/autolab/generate")
+@app.post("/api/lab/autolab/generate")
 async def api_autolab_generate() -> Any:
     """Trigger hypothesis generator."""
     gen_bin = os.path.join(WORKSPACE, "bin", "hypothesis-generate")

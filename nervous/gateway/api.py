@@ -57,7 +57,7 @@ def read_file_safe(path: Path) -> str:
 
 @app.get("/health")
 def health(_token: str = Depends(auth_check)):
-    health_file = WORKSPACE / 'agent-system/state/WORKSPACE_HEALTH.json'
+    health_file = WORKSPACE / 'spine/state/WORKSPACE_HEALTH.json'
     if health_file.exists():
         with open(health_file) as f:
             data = json.load(f)
@@ -70,13 +70,13 @@ def health(_token: str = Depends(auth_check)):
 
 @app.get("/memory/facts")
 def memory_facts(_token: str = Depends(auth_check)):
-    content = read_file_safe(WORKSPACE / 'agent-system/memory/MEMORY.md')
+    content = read_file_safe(WORKSPACE / 'brain/memory/MEMORY.md')
     return {"content": content}
 
 
 @app.get("/memory/decisions")
 def memory_decisions(_token: str = Depends(auth_check)):
-    content = read_file_safe(WORKSPACE / 'agent-system/memory/DECISIONS.md')
+    content = read_file_safe(WORKSPACE / 'brain/memory/DECISIONS.md')
     return {"content": content}
 
 
@@ -88,7 +88,7 @@ def memory_search(
 ):
     try:
         result = subprocess.run(
-            ["python3", str(WORKSPACE / 'agent-system/memory/vector/semantic_search.py'), q, str(k)],
+            ["python3", str(WORKSPACE / 'brain/memory/vector/semantic_search.py'), q, str(k)],
             capture_output=True, text=True, timeout=30
         )
         return {"query": q, "results": result.stdout, "error": result.stderr if result.returncode != 0 else None}
@@ -102,9 +102,9 @@ def memory_search(
 
 @app.get("/goals/active")
 def goals_active(_token: str = Depends(auth_check)):
-    goals_file = WORKSPACE / 'agent-system/goals/active_goals.md'
+    goals_file = WORKSPACE / 'brain/memory/goals/active_goals.md'
     if not goals_file.exists():
-        goals_file = WORKSPACE / 'agent-system/tasks/ACTIVE_TASKS.md'
+        goals_file = WORKSPACE / 'heart/tasks/ACTIVE_TASKS.md'
     content = read_file_safe(goals_file)
     return {"content": content}
 
@@ -113,7 +113,7 @@ def goals_active(_token: str = Depends(auth_check)):
 def goals_create(description: str, confirm: bool = False, _token: str = Depends(auth_check)):
     if not confirm:
         return {"status": "preview", "message": f"Would create goal: {description}", "confirm_with": "?confirm=true"}
-    goals_file = WORKSPACE / 'agent-system/goals/active_goals.md'
+    goals_file = WORKSPACE / 'brain/memory/goals/active_goals.md'
     goals_file.parent.mkdir(parents=True, exist_ok=True)
     from datetime import datetime
     entry = f"\n## {datetime.now():%Y-%m-%d} — {description}\n- Status: pending\n"
@@ -148,16 +148,16 @@ def workflows_execute(name: str, _token: str = Depends(auth_check)):
 
 # ─── Anticipation ──────────────────────────────────────────────────────────
 
-@app.get("/anticipation/suggestions")
+@app.get("/brain/anticipation/suggestions")
 def anticipation_suggestions(_token: str = Depends(auth_check)):
-    suggestions_file = WORKSPACE / 'anticipation/action_suggestions.md'
+    suggestions_file = WORKSPACE / 'brain/anticipation/action_suggestions.md'
     content = read_file_safe(suggestions_file)
     return {"content": content}
 
 
-@app.post("/anticipation/record")
+@app.post("/brain/anticipation/record")
 def anticipation_record(command: str, _token: str = Depends(auth_check)):
-    log_file = WORKSPACE / 'agent-system/logs/command_history.log'
+    log_file = WORKSPACE / 'blood/logs/command_history.log'
     from datetime import datetime
     with open(log_file, 'a') as f:
         f.write(f"{datetime.now().isoformat()} {command}\n")
@@ -168,7 +168,7 @@ def anticipation_record(command: str, _token: str = Depends(auth_check)):
 
 @app.get("/research/decisions")
 def research_decisions(_token: str = Depends(auth_check)):
-    decisions_dir = WORKSPACE / 'agent-system/memory'
+    decisions_dir = WORKSPACE / 'brain/memory/memory'
     files = [f.name for f in decisions_dir.glob('*.md') if f.is_file()]
     return {"files": files}
 

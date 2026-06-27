@@ -6,16 +6,16 @@
   <string>com.suneelworkspace.autolab</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/Users/MAC/SuneelWorkSpace/autolab/scripts/autolab-watch</string>
+    <string>/Users/MAC/SuneelWorkSpace/lab/autolab/scripts/autolab-watch</string>
   </array>
   <key>RunAtLoad</key>
   <false/>
   <key>StartInterval</key>
   <integer>21600</integer>
   <key>StandardOutPath</key>
-  <string>/Users/MAC/SuneelWorkSpace/autolab/reports/launchd-autolab.out.log</string>
+  <string>/Users/MAC/SuneelWorkSpace/lab/autolab/reports/launchd-autolab.out.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/MAC/SuneelWorkSpace/autolab/reports/launchd-autolab.err.log</string>
+  <string>/Users/MAC/SuneelWorkSpace/lab/autolab/reports/launchd-autolab.err.log</string>
   <key>WorkingDirectory</key>
   <string>/Users/MAC/SuneelWorkSpace</string>
 </dict>

@@ -19,27 +19,27 @@ This workspace is a central control center shared with Claude Code and Codex CLI
 
 
 - Canonical workspace: `~/SuneelWorkSpace`
-- Canonical instructions: `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
-- Memory: `~/SuneelWorkSpace/agent-system/memory/MEMORY.md`
-- Active tasks: `~/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md`
-- Handoff: `~/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md`
+- Canonical instructions: `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
+- Memory: `~/SuneelWorkSpace/brain/memory/MEMORY.md`
+- Active tasks: `~/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md`
+- Handoff: `~/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md`
 
 ## Startup
 
 Before meaningful work, read:
-1. `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
-2. `~/SuneelWorkSpace/agent-system/memory/MEMORY.md`
-3. `~/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md`
-4. `~/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md`
+1. `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
+2. `~/SuneelWorkSpace/brain/memory/MEMORY.md`
+3. `~/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md`
+4. `~/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md`
 
 State "Loading workspace context" before starting meaningful work.
 
 ## Closeout
 
 After meaningful work, update:
-- `agent-system/memory/SESSION_HANDOFF.md`
-- `agent-system/tasks/ACTIVE_TASKS.md`
-- `agent-system/logs/SESSION_LOG.md`
+- `brain/memory/SESSION_HANDOFF.md`
+- `heart/tasks/ACTIVE_TASKS.md`
+- `blood/logs/SESSION_LOG.md`
 
 ## Rules (Same as All Agents)
 

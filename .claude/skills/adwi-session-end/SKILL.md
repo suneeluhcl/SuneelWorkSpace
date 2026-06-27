@@ -24,12 +24,12 @@ Ask: "Was an eval run this session?"
 - If a new improvement cycle was completed, update the "Current NLU quality" section header in CLAUDE.md.
 
 ### 4. Backlog and notes
-- Were any NHR items applied? → Update `adwi/adwi/docs/NLU_REPAIR_BACKLOG.md`
+- Were any NHR items applied? → Update `adwi/adwi/spine/docs/NLU_REPAIR_BACKLOG.md`
 - Were any bugs found or fixed? → Update `notes/adwi-mistakes-and-fixes.md`
-- Do not create loose analysis files in the repo root (use `adwi/docs/` for persistent docs, `adwi/logs/simeval/` for eval artifacts)
+- Do not create loose analysis files in the repo root (use `adwi/spine/docs/` for persistent docs, `adwi/logs/simeval/` for eval artifacts)
 
 ### 5. Open items summary
-Show any remaining open NHR items from `adwi/adwi/docs/NLU_REPAIR_BACKLOG.md` so the next session can pick up immediately.
+Show any remaining open NHR items from `adwi/adwi/spine/docs/NLU_REPAIR_BACKLOG.md` so the next session can pick up immediately.
 
 ### 6. Codex review (optional, recommended for non-trivial sessions)
 

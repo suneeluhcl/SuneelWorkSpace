@@ -12,7 +12,7 @@ Use this skill when you encounter task failures, command crashes, lint/compilati
 ## Step-by-Step Instructions
 
 ### Phase 1: Locate and Diagnose
-1. **Identify the Failure**: Inspect recent terminal error outputs, stderr logs, or test reports. If the failure happened in a previous session, read [SESSION_LOG.md](file:///Users/MAC/SuneelWorkSpace/agent-system/logs/SESSION_LOG.md) and the latest exit code in [SESSION_HANDOFF.md](file:///Users/MAC/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md).
+1. **Identify the Failure**: Inspect recent terminal error outputs, stderr logs, or test reports. If the failure happened in a previous session, read [SESSION_LOG.md](file:///Users/MAC/SuneelWorkSpace/blood/logs/SESSION_LOG.md) and the latest exit code in [SESSION_HANDOFF.md](file:///Users/MAC/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md).
 2. **Check Workspace Health**: Run `./bin/agent-doctor` to see if there is any script permission drift, broken symlinks, duplicate files, or JSON corruption.
 3. **Isolate the Cause**: Determine if the error is due to:
    - Workspace drift (missing directory, permissions).
@@ -40,12 +40,12 @@ Use this skill when you encounter task failures, command crashes, lint/compilati
    ```
    Or restore the snapshot if using Autolab:
    ```bash
-   python3 autolab/scripts/autolab-core revert
+   python3 lab/autolab/scripts/autolab-core revert
    ```
 3. **Iterate**: Adjust your hypothesis and try a different, safer fix.
 
 ## Execution Rules
 - Always use `rtk` command wrappers.
-- Keep session handoffs up to date in [agent-system/memory/SESSION_HANDOFF.md](file:///Users/MAC/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md).
+- Keep session handoffs up to date in [brain/memory/SESSION_HANDOFF.md](file:///Users/MAC/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md).
 - Run `./bin/agent-doctor` after executing code edits.
 

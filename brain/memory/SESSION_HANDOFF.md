@@ -9,11 +9,11 @@ Summary: Automatic closeout checkpoint (shell-exit). 30 recently modified files 
 Changed:
 
 - `.gitignore`
-- `.playwright-mcp/console-2026-06-26T20-38-10-561Z.log`
-- `.playwright-mcp/page-2026-06-26T20-38-10-642Z.yml`
-- `.playwright-mcp/page-2026-06-26T20-38-19-673Z.yml`
-- `.playwright-mcp/page-2026-06-26T20-39-04-949Z.yml`
-- `.playwright-mcp/page-2026-06-26T20-39-11-642Z.yml`
+- `.playwright-nervous/mcp/console-2026-06-26T20-38-10-561Z.log`
+- `.playwright-nervous/mcp/page-2026-06-26T20-38-10-642Z.yml`
+- `.playwright-nervous/mcp/page-2026-06-26T20-38-19-673Z.yml`
+- `.playwright-nervous/mcp/page-2026-06-26T20-39-04-949Z.yml`
+- `.playwright-nervous/mcp/page-2026-06-26T20-39-11-642Z.yml`
 - `.pytest_cache/.gitignore`
 - `.pytest_cache/CACHEDIR.TAG`
 - `.pytest_cache/README.md`
@@ -37,5 +37,5 @@ Verification:
 
 Open Items:
 
-- Review `agent-system/tasks/ACTIVE_TASKS.md` and `agent-system/tasks/TASK_QUEUE.md`.
+- Review `heart/tasks/ACTIVE_TASKS.md` and `heart/tasks/TASK_QUEUE.md`.
 - Future agents should read `CURRENT_STATE.json` and this handoff before acting.

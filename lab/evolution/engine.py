@@ -65,7 +65,7 @@ def run_evolution_cycle() -> dict:
     # Gap scan
     try:
         sys.path.insert(0, str(WORKSPACE))
-        from evolution.gap_finder import scan_for_gaps
+        from lab.evolution.gap_finder import scan_for_gaps
         gaps = scan_for_gaps()
         results["gaps"] = {"count": gaps["gap_count"], "health_pct": gaps["health_pct"]}
         _log_event("gap_scan_complete", results["gaps"])
@@ -75,7 +75,7 @@ def run_evolution_cycle() -> dict:
 
     # Generate challenges
     try:
-        from evolution.challenger import generate_challenges
+        from lab.evolution.challenger import generate_challenges
         challenges = generate_challenges(3)
         results["challenges"] = len(challenges)
         _log_event("challenges_generated", {"count": len(challenges)})

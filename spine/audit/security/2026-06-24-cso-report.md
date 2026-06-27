@@ -20,7 +20,7 @@ Overall posture: **GOOD** for a local personal workspace. Two critical findings 
 ## Findings
 
 ### F1 — MEDIUM: `_read_workspace_file` has no workspace boundary guard
-**File:** `mcp/server/main.py:89`  
+**File:** `nervous/nervous/mcp/server/main.py:89`  
 **Status:** No current exploit path (all callers use hardcoded paths) — but UNGUARDED for future.
 
 ```python
@@ -53,7 +53,7 @@ def _read_workspace_file(rel_or_abs: str) -> str:
 ---
 
 ### F3 — LOW: Autolab mutation scope includes `bin/` without code-level enforcement
-**File:** `autolab/mutation_policy.md` line 12  
+**File:** `lab/autolab/mutation_policy.md` line 12  
 **Status:** Policy-only — no code enforces the "explicitly queued or agent-approved" constraint.
 
 ```markdown
@@ -68,12 +68,12 @@ def _read_workspace_file(rel_or_abs: str) -> str:
 ---
 
 ### F4 — LOW: Python dependency unpinned (`mcp`/`fastmcp`)
-**File:** `mcp/server/main.py` (imports `from mcp.server.fastmcp import FastMCP`)  
+**File:** `nervous/nervous/mcp/server/main.py` (imports `from nervous.mcp.server.fastmcp import FastMCP`)  
 **Status:** No `requirements.txt` — any `pip install mcp` gets latest.
 
 **Risk:** Breaking API changes or a compromised release of `mcp` package would silently affect the MCP server. Severity is low because `mcp` is published by Anthropic.
 
-**Fix:** Add `mcp/server/requirements.txt` with pinned version (e.g. `mcp==1.x.x`).
+**Fix:** Add `nervous/nervous/mcp/server/requirements.txt` with pinned version (e.g. `mcp==1.x.x`).
 
 ---
 
@@ -107,4 +107,4 @@ def _read_workspace_file(rel_or_abs: str) -> str:
 1. **[MEDIUM] Fix `_read_workspace_file`** — add the boundary guard before any future tool exposes it
 2. **[MEDIUM] Pin gstack to a commit hash** — protect against supply chain drift
 3. **[LOW] Add `bin/` hard-denylist in autolab-core** — convert policy → code enforcement
-4. **[LOW] Create `mcp/server/requirements.txt`** — pin `mcp` package version
+4. **[LOW] Create `nervous/nervous/mcp/server/requirements.txt`** — pin `mcp` package version

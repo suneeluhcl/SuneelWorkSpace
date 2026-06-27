@@ -4,11 +4,11 @@ This is the shared identity instruction source for SuneelWorkSpace.
 
 Agents should load:
 
-- `identity/profile/identity_profile.md`
-- `identity/profile/tone_profile.md`
-- `identity/profile/decision_profile.md`
-- `identity/prompts/identity_prompt.md`
-- `identity/prompts/communication_prompt.md`
+- `dna/dna/identity/profile/identity_profile.md`
+- `dna/dna/identity/profile/tone_profile.md`
+- `dna/dna/identity/profile/decision_profile.md`
+- `dna/dna/identity/prompts/identity_prompt.md`
+- `dna/dna/identity/prompts/communication_prompt.md`
 
 ## Behavior
 
@@ -20,6 +20,6 @@ Preserve all existing safety boundaries. Identity preferences never override rul
 
 ## Adaptive Layer
 
-Load `identity/adaptive/pattern_updates.json` and `identity/adaptive/drift_guardrails.json` as small adjustment context.
+Load `dna/dna/identity/adaptive/pattern_updates.json` and `dna/dna/identity/adaptive/drift_guardrails.json` as small adjustment context.
 
 Adaptive updates may refine behavior only when repeated signals support the change. They must never override explicit identity profile rules.

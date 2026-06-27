@@ -10,11 +10,11 @@
 
 Before drafting, planning, or communicating for Suneel, load the identity subsystem:
 
-- `~/SuneelWorkSpace/identity/prompts/identity_prompt.md`
-- `~/SuneelWorkSpace/identity/prompts/communication_prompt.md`
-- `~/SuneelWorkSpace/identity/profile/identity_profile.md`
-- `~/SuneelWorkSpace/identity/profile/tone_profile.md`
-- `~/SuneelWorkSpace/identity/profile/decision_profile.md`
+- `~/SuneelWorkSpace/dna/dna/identity/prompts/identity_prompt.md`
+- `~/SuneelWorkSpace/dna/dna/identity/prompts/communication_prompt.md`
+- `~/SuneelWorkSpace/dna/dna/identity/profile/identity_profile.md`
+- `~/SuneelWorkSpace/dna/dna/identity/profile/tone_profile.md`
+- `~/SuneelWorkSpace/dna/dna/identity/profile/decision_profile.md`
 
 Apply Suneel's voice: short, direct, casual, conversational, smart, structured, softened, never harsh or condescending. Default to safe autopilot, but ask before serious system risk, destructive actions, important deletion, money/account actions, external installs, private deep indexing, or outbound communication.
 
@@ -22,19 +22,19 @@ Apply Suneel's voice: short, direct, casual, conversational, smart, structured, 
 
 This is the canonical instruction source for Suneel's living shared agent workspace at `~/SuneelWorkSpace`.
 
-Claude Code and Codex CLI must use this workspace as the shared source for instructions, identity/context, memory, task state, logs, maintenance state, and session handoffs.
+Claude Code and Codex CLI must use this workspace as the shared source for instructions, dna/identity/context, memory, task state, logs, maintenance state, and session handoffs.
 
 ## Source Of Truth
 
 - Canonical workspace: `~/SuneelWorkSpace`
-- Canonical instruction file: `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
+- Canonical instruction file: `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
 - Workspace entrypoints: `~/SuneelWorkSpace/AGENTS.md` and `~/SuneelWorkSpace/CLAUDE.md`
 - Claude global entrypoint: `~/.claude/CLAUDE.md`
-- Codex global entrypoint: `~/.codex/AGENTS.md`
+- Codex global entrypoint: `~/.hands/codex/AGENTS.md`
 - Antigravity global entrypoint: `~/.gemini/config/AGENTS.md`
 - Antigravity workspace customization: `~/SuneelWorkSpace/.agents/AGENTS.md`
 
-If instructions conflict inside this workspace, the canonical shared docs under `~/SuneelWorkSpace/agent-system/` are the source of truth. Project-specific instructions may add local detail, but they must not weaken safety boundaries.
+If instructions conflict inside this workspace, the canonical shared docs under `~/SuneelWorkSpace/brain/memory/` are the source of truth. Project-specific instructions may add local detail, but they must not weaken safety boundaries.
 
 ## Rules
 
@@ -53,18 +53,18 @@ If instructions conflict inside this workspace, the canonical shared docs under 
 
 Before meaningful work, read these files in order:
 
-1. `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
-2. `~/SuneelWorkSpace/agent-system/shared/IDENTITY.md`
-3. `~/SuneelWorkSpace/agent-system/shared/WORKFLOW_RULES.md`
-4. `~/SuneelWorkSpace/agent-system/shared/SAFETY_BOUNDARIES.md`
-5. `~/SuneelWorkSpace/agent-system/shared/STARTUP_CHECKLIST.md`
-6. `~/SuneelWorkSpace/agent-system/memory/MEMORY.md`
-7. `~/SuneelWorkSpace/agent-system/memory/DECISIONS.md`
-8. `~/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md`
-9. `~/SuneelWorkSpace/agent-system/tasks/TASK_QUEUE.md`
-10. `~/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md`
-11. `~/SuneelWorkSpace/agent-system/state/CURRENT_STATE.json`
-12. `~/SuneelWorkSpace/agent-system/state/WORKSPACE_HEALTH.json`
+1. `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
+2. `~/SuneelWorkSpace/skeleton/rules/IDENTITY.md`
+3. `~/SuneelWorkSpace/skeleton/rules/WORKFLOW_RULES.md`
+4. `~/SuneelWorkSpace/skeleton/rules/SAFETY_BOUNDARIES.md`
+5. `~/SuneelWorkSpace/skeleton/rules/STARTUP_CHECKLIST.md`
+6. `~/SuneelWorkSpace/brain/memory/MEMORY.md`
+7. `~/SuneelWorkSpace/brain/memory/DECISIONS.md`
+8. `~/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md`
+9. `~/SuneelWorkSpace/heart/tasks/TASK_QUEUE.md`
+10. `~/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md`
+11. `~/SuneelWorkSpace/spine/state/CURRENT_STATE.json`
+12. `~/SuneelWorkSpace/spine/state/WORKSPACE_HEALTH.json`
 
 Use `~/SuneelWorkSpace/bin/agent-start` or `~/SuneelWorkSpace/bin/workspace-context` to print the startup brief.
 
@@ -79,12 +79,12 @@ Mandatory startup behavior:
 
 After completing meaningful work, update:
 
-- `agent-system/memory/SESSION_HANDOFF.md`
-- `agent-system/tasks/ACTIVE_TASKS.md` and/or `agent-system/tasks/COMPLETED_TASKS.md`
-- `agent-system/logs/SESSION_LOG.md`
-- `agent-system/state/CURRENT_STATE.json`
-- `agent-system/state/WORKSPACE_HEALTH.json` if system condition changed
-- `agent-system/memory/MEMORY.md` or `agent-system/memory/DECISIONS.md` if durable knowledge was created
+- `brain/memory/SESSION_HANDOFF.md`
+- `heart/tasks/ACTIVE_TASKS.md` and/or `heart/tasks/COMPLETED_TASKS.md`
+- `blood/logs/SESSION_LOG.md`
+- `spine/state/CURRENT_STATE.json`
+- `spine/state/WORKSPACE_HEALTH.json` if system condition changed
+- `brain/memory/MEMORY.md` or `brain/memory/DECISIONS.md` if durable knowledge was created
 
 Use `~/SuneelWorkSpace/bin/agent-finish "summary"` for simple closeouts.
 
@@ -131,25 +131,25 @@ Keep task entries short enough for future agents to scan quickly.
 - Use `agent-repair` to safely fix small issues.
 - Use `agent-maintain` for recurring health, repair, index, backup, and report refresh.
 - Use `agent-autoclose` for automatic, idempotent session checkpointing on wrapper exit, shell exit, and startup recovery.
-- Use `autolab/` for bounded workspace self-improvement experiments. Autolab may improve prompts, docs, scripts, reports, and repair logic only within its mutation policy.
+- Use `lab/autolab/` for bounded workspace self-improvement experiments. Autolab may improve prompts, docs, scripts, reports, and repair logic only within its mutation policy.
 - Autolab changes must be measurable, reversible, logged, and kept only when safety gates pass and score improves.
 
 ## Autolab Startup Note
 
 If a user asks for workspace self-improvement, read:
 
-1. `~/SuneelWorkSpace/autolab/program.md`
-2. `~/SuneelWorkSpace/autolab/mutation_policy.md`
-3. `~/SuneelWorkSpace/autolab/safeguards.md`
-4. `~/SuneelWorkSpace/autolab/evaluator.md`
-5. `~/SuneelWorkSpace/autolab/current_frontier.md`
-- Log maintenance in `agent-system/logs/MAINTENANCE_LOG.md`.
-- Track health in `agent-system/state/WORKSPACE_HEALTH.json`.
-- Track file locations in `agent-system/state/INDEX.json`.
+1. `~/SuneelWorkSpace/lab/autolab/program.md`
+2. `~/SuneelWorkSpace/lab/autolab/mutation_policy.md`
+3. `~/SuneelWorkSpace/lab/autolab/safeguards.md`
+4. `~/SuneelWorkSpace/lab/autolab/evaluator.md`
+5. `~/SuneelWorkSpace/lab/autolab/current_frontier.md`
+- Log maintenance in `blood/logs/MAINTENANCE_LOG.md`.
+- Track health in `spine/state/WORKSPACE_HEALTH.json`.
+- Track file locations in `spine/state/INDEX.json`.
 
 ## Safety Boundaries
 
-See `agent-system/shared/SAFETY_BOUNDARIES.md`.
+See `skeleton/rules/SAFETY_BOUNDARIES.md`.
 
 Short version:
 
@@ -186,7 +186,7 @@ gstack is installed at `~/.claude/skills/gstack/`. These skills are invoked as s
 2. Open Claude Code → type the skill name (e.g. `/investigate`)
 3. Describe the task → skill activates its structured methodology
 
-**Policy file:** `orchestrator/router/gstack_policy.json`
+**Policy file:** `heart/heart/orchestrator/router/gstack_policy.json`
 
 ## Copilot Prompt Engineering Workflow
 
@@ -228,7 +228,7 @@ When Claude Code or Codex CLI tokens are exhausted, two free alternatives are co
 | Gemini CLI | `swgemini` | Gemini 2.5 Pro | Direct (free) | Free fallback, 1M ctx |
 | OpenCode | `swopencode` | Llama 3.3 70B (Groq) | Direct (free) | Free fallback, fast |
 
-All agents read/write the same shared memory and task files in `~/SuneelWorkSpace/agent-system/`.
+All agents read/write the same shared memory and task files in `~/SuneelWorkSpace/brain/memory/`.
 
 ### Antigravity (agy) Integration
 

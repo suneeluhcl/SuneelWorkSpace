@@ -7,7 +7,7 @@ VS Code Terminal
       ↓
   bin/ shortcuts (imsg-recent, mail-recent, etc.)
       ↓
-  comms/imessage/scripts/ or comms/mail/scripts/
+  mouth/comms/imessage/scripts/ or mouth/comms/mail/scripts/
       ↓
   ┌─────────────────────────────────────────┐
   │  iMessage         │  Mail               │
@@ -68,7 +68,7 @@ Mail.app is not installed. To enable:
 3. Re-run `comms-doctor` to verify
 4. The `mail-*` scripts will then work via AppleScript
 
-For Gmail without Mail.app, see `comms/reports/plugin_recommendations.md`.
+For Gmail without Mail.app, see `mouth/comms/reports/plugin_recommendations.md`.
 
 ## Claude iMessage Plugin
 

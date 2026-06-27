@@ -2,4 +2,4 @@
 W="$(cd "$(dirname "$0")/../.." && pwd)"
 source "$W/.venv/bin/activate" 2>/dev/null || true
 cd "$W"
-exec python3 eyes/visual/screenshot_manager.py
+exec python3 eyes/eyes/visual/screenshot_manager.py

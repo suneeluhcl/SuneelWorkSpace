@@ -1,6 +1,6 @@
 # System Improvement Strategy
 
-Autolab should use `audit/gap_analysis.md`, `audit/improvement_plan.md`, `tools/recommendations.md`, and `agent-system/shared/BOUNDED_SELF_UPGRADE.md` as inputs when proposing workspace self-improvements.
+Autolab should use `spine/audit/gap_analysis.md`, `spine/audit/improvement_plan.md`, `spine/tools/recommendations.md`, and `skeleton/rules/BOUNDED_SELF_UPGRADE.md` as inputs when proposing workspace self-improvements.
 
 ## Evaluation Signals
 

@@ -121,14 +121,14 @@
     },
     "run_system_health": {
       "command": "dag-run",
-      "args": ["orchestrator/dag/pipelines/system_health.yaml", "--dry-run"],
+      "args": ["hands/automation/dag/pipelines/system_health.yaml", "--dry-run"],
       "task_type": "pipeline",
       "keywords": ["system health pipeline", "run health pipeline", "full health cycle"],
       "description": "Run the system health pipeline"
     },
     "run_morning_brief_pipeline": {
       "command": "dag-run",
-      "args": ["orchestrator/dag/pipelines/morning_brief.yaml"],
+      "args": ["hands/automation/dag/pipelines/morning_brief.yaml"],
       "task_type": "pipeline",
       "keywords": ["morning pipeline", "run morning", "morning brief pipeline"],
       "description": "Run the morning brief pipeline"

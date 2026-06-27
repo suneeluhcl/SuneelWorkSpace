@@ -12,7 +12,7 @@ Claude auto-invokes this tool when the user asks it to write, improve, or engine
 ## Architecture
 
 ```
-mcp/server/
+nervous/nervous/mcp/server/
 ├── main.py                  — add one @mcp.tool() entry point
 ├── copilot_browser.py       — NEW: all Playwright + Copilot session logic
 ├── sessions/
@@ -25,7 +25,7 @@ bin/
 
 ## Components
 
-### `mcp/server/copilot_browser.py`
+### `nervous/nervous/mcp/server/copilot_browser.py`
 
 Single class with two public methods:
 
@@ -43,7 +43,7 @@ class CopilotSession:
         # Raises LoginRequired if cookies are missing or expired.
 ```
 
-### `mcp/server/main.py` — new tool
+### `nervous/nervous/mcp/server/main.py` — new tool
 
 ```python
 @mcp.tool()
@@ -61,7 +61,7 @@ def copilot_prompt_engineer(task: str, context: str = "") -> str:
 One-time setup script:
 1. Opens a visible Chromium window
 2. User logs into copilot.microsoft.com normally
-3. Script saves cookies to `mcp/server/sessions/copilot_cookies.json`
+3. Script saves cookies to `nervous/nervous/mcp/server/sessions/copilot_cookies.json`
 4. Exits — all future tool calls use the saved session headlessly
 
 ## Data Flow
@@ -85,7 +85,7 @@ One-time setup script:
 ## Auth & Session Management
 
 - Cookies last approximately 30 days
-- Cookie file is stored at `mcp/server/sessions/copilot_cookies.json`
+- Cookie file is stored at `nervous/nervous/mcp/server/sessions/copilot_cookies.json`
 - The `sessions/` directory is gitignored — cookies are never committed
 - When cookies expire the tool returns a clear error string; user reruns `bin/copilot-login`
 
@@ -102,7 +102,7 @@ Claude surfaces these as actionable messages to the user.
 
 ## Dependencies
 
-- `playwright` added to `mcp/server/requirements.txt`
+- `playwright` added to `nervous/nervous/mcp/server/requirements.txt`
 - `playwright install chromium` run once at setup (~130MB Chromium binary)
 - No other new dependencies
 

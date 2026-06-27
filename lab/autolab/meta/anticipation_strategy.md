@@ -4,10 +4,10 @@ Autolab may inspect anticipation quality and recommend improvements, but it must
 
 ## Inputs
 
-- `anticipation/prediction_memory.json`
-- `anticipation/behavior_patterns.json`
-- `anticipation/action_suggestions.md`
-- `anticipation/reports/anticipation_report.md`
+- `brain/anticipation/prediction_memory.json`
+- `brain/anticipation/behavior_patterns.json`
+- `brain/anticipation/action_suggestions.md`
+- `brain/anticipation/reports/anticipation_report.md`
 
 ## What Autolab Can Do
 

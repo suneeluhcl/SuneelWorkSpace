@@ -3,7 +3,7 @@ import os
 import json
 import re
 
-SUGGESTIONS_FILE = "/Users/MAC/SuneelWorkSpace/anticipation/action_suggestions.md"
+SUGGESTIONS_FILE = "/Users/MAC/SuneelWorkSpace/brain/anticipation/action_suggestions.md"
 
 def get_suggestions():
     if not os.path.exists(SUGGESTIONS_FILE):

@@ -5,7 +5,7 @@
       "path": "/Users/MAC/SuneelWorkSpace/AGENTS.md",
       "relative_path": "AGENTS.md",
       "size": 62,
-      "target": "/Users/MAC/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md",
+      "target": "/Users/MAC/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md",
       "type": "symlink"
     },
     {
@@ -13,15 +13,15 @@
       "path": "/Users/MAC/SuneelWorkSpace/CLAUDE.md",
       "relative_path": "CLAUDE.md",
       "size": 62,
-      "target": "/Users/MAC/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md",
+      "target": "/Users/MAC/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md",
       "type": "symlink"
     },
     {
       "modified_epoch": 1782517747,
-      "path": "/Users/MAC/.codex/AGENTS.md",
+      "path": "/Users/MAC/.hands/codex/AGENTS.md",
       "relative_path": null,
       "size": 62,
-      "target": "/Users/MAC/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md",
+      "target": "/Users/MAC/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md",
       "type": "symlink"
     },
     {
@@ -29,7 +29,7 @@
       "path": "/Users/MAC/.claude/CLAUDE.md",
       "relative_path": null,
       "size": 62,
-      "target": "/Users/MAC/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md",
+      "target": "/Users/MAC/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md",
       "type": "symlink"
     }
   ],
@@ -152,40 +152,40 @@
     "docs": [
       {
         "modified_epoch": 1782333615,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/docs/AUTOMATION.md",
-        "relative_path": "agent-system/docs/AUTOMATION.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/spine/docs/AUTOMATION.md",
+        "relative_path": "brain/memory/spine/docs/AUTOMATION.md",
         "size": 3052,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782333615,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/docs/FILE_MAP.md",
-        "relative_path": "agent-system/docs/FILE_MAP.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/spine/docs/FILE_MAP.md",
+        "relative_path": "brain/memory/spine/docs/FILE_MAP.md",
         "size": 4761,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782394995,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/docs/HOW_IT_WORKS.md",
-        "relative_path": "agent-system/docs/HOW_IT_WORKS.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/spine/docs/HOW_IT_WORKS.md",
+        "relative_path": "brain/memory/spine/docs/HOW_IT_WORKS.md",
         "size": 3623,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782394998,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/docs/OPERATOR_GUIDE.md",
-        "relative_path": "agent-system/docs/OPERATOR_GUIDE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/spine/docs/OPERATOR_GUIDE.md",
+        "relative_path": "brain/memory/spine/docs/OPERATOR_GUIDE.md",
         "size": 1651,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782331684,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/docs/RECOVERY.md",
-        "relative_path": "agent-system/docs/RECOVERY.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/spine/docs/RECOVERY.md",
+        "relative_path": "brain/memory/spine/docs/RECOVERY.md",
         "size": 1715,
         "target": null,
         "type": "file"
@@ -194,136 +194,136 @@
     "logs": [
       {
         "modified_epoch": 1782333698,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/CHANGE_LOG.md",
-        "relative_path": "agent-system/logs/CHANGE_LOG.md",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/CHANGE_LOG.md",
+        "relative_path": "blood/logs/CHANGE_LOG.md",
         "size": 676,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782517748,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/MAINTENANCE_LOG.md",
-        "relative_path": "agent-system/logs/MAINTENANCE_LOG.md",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/MAINTENANCE_LOG.md",
+        "relative_path": "blood/logs/MAINTENANCE_LOG.md",
         "size": 46430,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516989,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/SESSION_LOG.md",
-        "relative_path": "agent-system/logs/SESSION_LOG.md",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/SESSION_LOG.md",
+        "relative_path": "blood/logs/SESSION_LOG.md",
         "size": 28907,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782453367,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/archive/autolab/launchd-autolab.out.log.gz",
-        "relative_path": "agent-system/logs/archive/autolab/launchd-autolab.out.log.gz",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/archive/lab/autolab/launchd-autolab.out.log.gz",
+        "relative_path": "blood/logs/archive/lab/autolab/launchd-autolab.out.log.gz",
         "size": 92,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782453367,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/archive/automation/launchd-maintenance.out.log.gz",
-        "relative_path": "agent-system/logs/archive/automation/launchd-maintenance.out.log.gz",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/archive/automation/launchd-maintenance.out.log.gz",
+        "relative_path": "blood/logs/archive/automation/launchd-maintenance.out.log.gz",
         "size": 78,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782453367,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/archive/server/mcp_server.log.gz",
-        "relative_path": "agent-system/logs/archive/server/mcp_server.log.gz",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/archive/server/mcp_server.log.gz",
+        "relative_path": "blood/logs/archive/server/mcp_server.log.gz",
         "size": 249,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782487052,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/archive/vector_embed.log.20260626-101735.bak",
-        "relative_path": "agent-system/logs/archive/vector_embed.log.20260626-101735.bak",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/archive/vector_embed.log.20260626-101735.bak",
+        "relative_path": "blood/logs/archive/vector_embed.log.20260626-101735.bak",
         "size": 474712,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782510693,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/archive/vector_embed.log.20260626-165134.bak",
-        "relative_path": "agent-system/logs/archive/vector_embed.log.20260626-165134.bak",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/archive/vector_embed.log.20260626-165134.bak",
+        "relative_path": "blood/logs/archive/vector_embed.log.20260626-165134.bak",
         "size": 120604,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782513728,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/autolab_runner.log",
-        "relative_path": "agent-system/logs/autolab_runner.log",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/autolab_runner.log",
+        "relative_path": "blood/logs/autolab_runner.log",
         "size": 6889,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782517748,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/dashboard.log",
-        "relative_path": "agent-system/logs/dashboard.log",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/dashboard.log",
+        "relative_path": "blood/logs/dashboard.log",
         "size": 16418,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782514659,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/execution_history.jsonl",
-        "relative_path": "agent-system/logs/execution_history.jsonl",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/execution_history.jsonl",
+        "relative_path": "blood/logs/execution_history.jsonl",
         "size": 250,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782509966,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/repair_reports/repair_repair_3119cf86.json",
-        "relative_path": "agent-system/logs/repair_reports/repair_repair_3119cf86.json",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/repair_reports/repair_repair_3119cf86.json",
+        "relative_path": "blood/logs/repair_reports/repair_repair_3119cf86.json",
         "size": 580,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782510104,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/repair_reports/repair_repair_a8eb3c27.json",
-        "relative_path": "agent-system/logs/repair_reports/repair_repair_a8eb3c27.json",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/repair_reports/repair_repair_a8eb3c27.json",
+        "relative_path": "blood/logs/repair_reports/repair_repair_a8eb3c27.json",
         "size": 580,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782510009,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/repair_reports/repair_repair_cfa64ea3.json",
-        "relative_path": "agent-system/logs/repair_reports/repair_repair_cfa64ea3.json",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/repair_reports/repair_repair_cfa64ea3.json",
+        "relative_path": "blood/logs/repair_reports/repair_repair_cfa64ea3.json",
         "size": 580,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782510715,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/repair_reports/repair_repair_f1512e86.json",
-        "relative_path": "agent-system/logs/repair_reports/repair_repair_f1512e86.json",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/repair_reports/repair_repair_f1512e86.json",
+        "relative_path": "blood/logs/repair_reports/repair_repair_f1512e86.json",
         "size": 580,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782510694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/repair_reports/repair_repair_f9ce8b1a.json",
-        "relative_path": "agent-system/logs/repair_reports/repair_repair_f9ce8b1a.json",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/repair_reports/repair_repair_f9ce8b1a.json",
+        "relative_path": "blood/logs/repair_reports/repair_repair_f9ce8b1a.json",
         "size": 580,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516993,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/logs/vector_embed.log",
-        "relative_path": "agent-system/logs/vector_embed.log",
+        "path": "/Users/MAC/SuneelWorkSpace/blood/logs/vector_embed.log",
+        "relative_path": "blood/logs/vector_embed.log",
         "size": 60073,
         "target": null,
         "type": "file"
@@ -332,408 +332,408 @@
     "memory": [
       {
         "modified_epoch": 1782453067,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/DECISIONS.md",
-        "relative_path": "agent-system/memory/DECISIONS.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/DECISIONS.md",
+        "relative_path": "brain/memory/DECISIONS.md",
         "size": 6678,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782453067,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/INSIGHTS.md",
-        "relative_path": "agent-system/memory/INSIGHTS.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/INSIGHTS.md",
+        "relative_path": "brain/memory/INSIGHTS.md",
         "size": 1150,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782453067,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/MEMORY.md",
-        "relative_path": "agent-system/memory/MEMORY.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/MEMORY.md",
+        "relative_path": "brain/memory/MEMORY.md",
         "size": 5798,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782330774,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/NOTES.md",
-        "relative_path": "agent-system/memory/NOTES.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/NOTES.md",
+        "relative_path": "brain/memory/NOTES.md",
         "size": 207,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782453067,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/PATTERNS.md",
-        "relative_path": "agent-system/memory/PATTERNS.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/PATTERNS.md",
+        "relative_path": "brain/memory/PATTERNS.md",
         "size": 1612,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516989,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md",
-        "relative_path": "agent-system/memory/SESSION_HANDOFF.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md",
+        "relative_path": "brain/memory/SESSION_HANDOFF.md",
         "size": 1098,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/.agent_harnesses.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/.agent_harnesses.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/.agent_harnesses.json",
+        "relative_path": "brain/memory/vector/.hf_cache/.agent_harnesses.json",
         "size": 5265,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/CACHEDIR.TAG",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/CACHEDIR.TAG",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/CACHEDIR.TAG",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/CACHEDIR.TAG",
         "size": 191,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/adapter_config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/adapter_config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/adapter_config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/adapter_config.json",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/added_tokens.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/added_tokens.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/added_tokens.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/added_tokens.json",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/chat_template.jinja",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/chat_template.jinja",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/chat_template.jinja",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/chat_template.jinja",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/preprocessor_config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/preprocessor_config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/preprocessor_config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/preprocessor_config.json",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/processor_config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/processor_config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/processor_config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/processor_config.json",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/video_preprocessor_config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/video_preprocessor_config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/video_preprocessor_config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/.no_exist/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/video_preprocessor_config.json",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/44af2e3b0fa3a0b6239e48422972bf755f28fde0",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/44af2e3b0fa3a0b6239e48422972bf755f28fde0",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/44af2e3b0fa3a0b6239e48422972bf755f28fde0",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/44af2e3b0fa3a0b6239e48422972bf755f28fde0",
         "size": 10502,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
         "size": 90868376,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/59d594003bf59880a884c574bf88ef7555bb0202",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/59d594003bf59880a884c574bf88ef7555bb0202",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/59d594003bf59880a884c574bf88ef7555bb0202",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/59d594003bf59880a884c574bf88ef7555bb0202",
         "size": 53,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00",
         "size": 612,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43",
         "size": 349,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0",
         "size": 350,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02",
         "size": 466247,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03",
         "size": 190,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5",
         "size": 112,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938",
         "size": 231508,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fd1b291129c607e5d49799f87cb219b27f98acdf",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fd1b291129c607e5d49799f87cb219b27f98acdf",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fd1b291129c607e5d49799f87cb219b27f98acdf",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/blobs/fd1b291129c607e5d49799f87cb219b27f98acdf",
         "size": 116,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/refs/main",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/refs/main",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/refs/main",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/refs/main",
         "size": 40,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling/config.json",
         "size": 55,
         "target": "../../../blobs/d1514c3162bbe87b343f565fadc62e6c06f04f03",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
         "size": 52,
         "target": "../../blobs/44af2e3b0fa3a0b6239e48422972bf755f28fde0",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json",
         "size": 52,
         "target": "../../blobs/72b987fd805cfa2b58c4c8c952b274a11bfd5a00",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json",
         "size": 52,
         "target": "../../blobs/fd1b291129c607e5d49799f87cb219b27f98acdf",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors",
         "size": 76,
         "target": "../../blobs/53aa51172d142c89d9012cce15ae4d6cc0ca6895895114379cacb4fab128d9db",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json",
         "size": 52,
         "target": "../../blobs/952a9b81c0bfd99800fabf352f69c7ccd46c5e43",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484691,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json",
         "size": 52,
         "target": "../../blobs/59d594003bf59880a884c574bf88ef7555bb0202",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json",
         "size": 52,
         "target": "../../blobs/e7b0375001f109a6b8873d756ad4f7bbb15fbaa5",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json",
         "size": 52,
         "target": "../../blobs/cb202bfe2e3c98645018a6d12f182a434c9d3e02",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json",
         "size": 52,
         "target": "../../blobs/c79f2b6a0cea6f4b564fed1938984bace9d30ff0",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484695,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
-        "relative_path": "agent-system/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
+        "relative_path": "brain/memory/vector/.hf_cache/hub/models--sentence-transformers--all-MiniLM-L6-v2/spine/snapshots/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt",
         "size": 52,
         "target": "../../blobs/fb140275c155a9c7c5a3b3e0e77a9e839594a938",
         "type": "symlink"
       },
       {
         "modified_epoch": 1782484694,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/.hf_cache/xet/logs/xet_20260626T093812143-0500_40094.log",
-        "relative_path": "agent-system/memory/vector/.hf_cache/xet/logs/xet_20260626T093812143-0500_40094.log",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/.hf_cache/xet/logs/xet_20260626T093812143-0500_40094.log",
+        "relative_path": "brain/memory/vector/.hf_cache/xet/logs/xet_20260626T093812143-0500_40094.log",
         "size": 37837,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484689,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/__pycache__/embed_engine.cpython-314.pyc",
-        "relative_path": "agent-system/memory/vector/__pycache__/embed_engine.cpython-314.pyc",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/__pycache__/embed_engine.cpython-314.pyc",
+        "relative_path": "brain/memory/vector/__pycache__/embed_engine.cpython-314.pyc",
         "size": 5927,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484883,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/data_level0.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/data_level0.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/data_level0.bin",
+        "relative_path": "brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/data_level0.bin",
         "size": 167600,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484883,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/header.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/header.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/header.bin",
+        "relative_path": "brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/header.bin",
         "size": 100,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484883,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/length.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/length.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/length.bin",
+        "relative_path": "brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/length.bin",
         "size": 400,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484883,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/link_lists.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/link_lists.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/link_lists.bin",
+        "relative_path": "brain/memory/vector/chroma_store/6ad6221c-b6e3-42fe-a283-be9de3f02426/link_lists.bin",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516993,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/chroma.sqlite3",
-        "relative_path": "agent-system/memory/vector/chroma_store/chroma.sqlite3",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/chroma.sqlite3",
+        "relative_path": "brain/memory/vector/chroma_store/chroma.sqlite3",
         "size": 8364032,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516993,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/data_level0.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/data_level0.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/data_level0.bin",
+        "relative_path": "brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/data_level0.bin",
         "size": 167600,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516993,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/header.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/header.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/header.bin",
+        "relative_path": "brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/header.bin",
         "size": 100,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516993,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/length.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/length.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/length.bin",
+        "relative_path": "brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/length.bin",
         "size": 400,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516993,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/link_lists.bin",
-        "relative_path": "agent-system/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/link_lists.bin",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/link_lists.bin",
+        "relative_path": "brain/memory/vector/chroma_store/f64780e2-1f24-40f2-b462-b7036660a04c/link_lists.bin",
         "size": 0,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484680,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/embed_engine.py",
-        "relative_path": "agent-system/memory/vector/embed_engine.py",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/embed_engine.py",
+        "relative_path": "brain/memory/vector/embed_engine.py",
         "size": 4280,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484653,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/reindex.py",
-        "relative_path": "agent-system/memory/vector/reindex.py",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/reindex.py",
+        "relative_path": "brain/memory/vector/reindex.py",
         "size": 2914,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782484942,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/memory/vector/semantic_search.py",
-        "relative_path": "agent-system/memory/vector/semantic_search.py",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/vector/semantic_search.py",
+        "relative_path": "brain/memory/vector/semantic_search.py",
         "size": 3715,
         "target": null,
         "type": "file"
@@ -769,7 +769,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/agent-compare",
         "relative_path": "bin/agent-compare",
         "size": 54,
-        "target": "../agent-system/telemetry/comparison/compare_agents.py",
+        "target": "../blood/telemetry/comparison/compare_agents.py",
         "type": "symlink"
       },
       {
@@ -905,7 +905,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/brain-inject",
         "relative_path": "bin/brain-inject",
         "size": 26,
-        "target": "../tools/brain_injector.py",
+        "target": "../spine/tools/brain_injector.py",
         "type": "symlink"
       },
       {
@@ -969,7 +969,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/dag-run",
         "relative_path": "bin/dag-run",
         "size": 33,
-        "target": "../orchestrator/dag/dag_runner.py",
+        "target": "../hands/automation/dag/dag_runner.py",
         "type": "symlink"
       },
       {
@@ -977,7 +977,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/dag-schedule",
         "relative_path": "bin/dag-schedule",
         "size": 36,
-        "target": "../orchestrator/dag/dag_scheduler.py",
+        "target": "../hands/automation/dag/dag_scheduler.py",
         "type": "symlink"
       },
       {
@@ -985,7 +985,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/dag-validate",
         "relative_path": "bin/dag-validate",
         "size": 36,
-        "target": "../orchestrator/dag/dag_validator.py",
+        "target": "../hands/automation/dag/dag_validator.py",
         "type": "symlink"
       },
       {
@@ -1041,7 +1041,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/feedback-ingest",
         "relative_path": "bin/feedback-ingest",
         "size": 43,
-        "target": "../agent-system/feedback/feedback_ingest.py",
+        "target": "../dna/feedback/feedback_ingest.py",
         "type": "symlink"
       },
       {
@@ -1097,7 +1097,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-adapt",
         "relative_path": "bin/goal-adapt",
         "size": 33,
-        "target": "../goal-engine/scripts/goal-adapt",
+        "target": "../heart/goals/scripts/goal-adapt",
         "type": "symlink"
       },
       {
@@ -1105,7 +1105,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-complete",
         "relative_path": "bin/goal-complete",
         "size": 36,
-        "target": "../goal-engine/scripts/goal-complete",
+        "target": "../heart/goals/scripts/goal-complete",
         "type": "symlink"
       },
       {
@@ -1113,7 +1113,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-create",
         "relative_path": "bin/goal-create",
         "size": 34,
-        "target": "../goal-engine/scripts/goal-create",
+        "target": "../heart/goals/scripts/goal-create",
         "type": "symlink"
       },
       {
@@ -1121,7 +1121,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-execute",
         "relative_path": "bin/goal-execute",
         "size": 35,
-        "target": "../goal-engine/scripts/goal-execute",
+        "target": "../heart/goals/scripts/goal-execute",
         "type": "symlink"
       },
       {
@@ -1129,7 +1129,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-fail",
         "relative_path": "bin/goal-fail",
         "size": 32,
-        "target": "../goal-engine/scripts/goal-fail",
+        "target": "../heart/goals/scripts/goal-fail",
         "type": "symlink"
       },
       {
@@ -1137,7 +1137,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-monitor",
         "relative_path": "bin/goal-monitor",
         "size": 35,
-        "target": "../goal-engine/scripts/goal-monitor",
+        "target": "../heart/goals/scripts/goal-monitor",
         "type": "symlink"
       },
       {
@@ -1145,7 +1145,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-plan",
         "relative_path": "bin/goal-plan",
         "size": 32,
-        "target": "../goal-engine/scripts/goal-plan",
+        "target": "../heart/goals/scripts/goal-plan",
         "type": "symlink"
       },
       {
@@ -1153,7 +1153,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/goal-status",
         "relative_path": "bin/goal-status",
         "size": 34,
-        "target": "../goal-engine/scripts/goal-status",
+        "target": "../heart/goals/scripts/goal-status",
         "type": "symlink"
       },
       {
@@ -1185,7 +1185,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/hypothesis-generate",
         "relative_path": "bin/hypothesis-generate",
         "size": 34,
-        "target": "../autolab/hypothesis_generator.py",
+        "target": "../lab/autolab/hypothesis_generator.py",
         "type": "symlink"
       },
       {
@@ -1377,7 +1377,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-doctor",
         "relative_path": "bin/mcp-doctor",
         "size": 32,
-        "target": "../mcp/server/scripts/mcp-doctor",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-doctor",
         "type": "symlink"
       },
       {
@@ -1385,7 +1385,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-reindex",
         "relative_path": "bin/mcp-reindex",
         "size": 33,
-        "target": "../mcp/server/scripts/mcp-reindex",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-reindex",
         "type": "symlink"
       },
       {
@@ -1393,7 +1393,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-repair",
         "relative_path": "bin/mcp-repair",
         "size": 32,
-        "target": "../mcp/server/scripts/mcp-repair",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-repair",
         "type": "symlink"
       },
       {
@@ -1401,7 +1401,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-report",
         "relative_path": "bin/mcp-report",
         "size": 32,
-        "target": "../mcp/server/scripts/mcp-report",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-report",
         "type": "symlink"
       },
       {
@@ -1409,7 +1409,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-start",
         "relative_path": "bin/mcp-start",
         "size": 31,
-        "target": "../mcp/server/scripts/mcp-start",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-start",
         "type": "symlink"
       },
       {
@@ -1417,7 +1417,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-status",
         "relative_path": "bin/mcp-status",
         "size": 32,
-        "target": "../mcp/server/scripts/mcp-status",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-status",
         "type": "symlink"
       },
       {
@@ -1425,7 +1425,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-stop",
         "relative_path": "bin/mcp-stop",
         "size": 30,
-        "target": "../mcp/server/scripts/mcp-stop",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-stop",
         "type": "symlink"
       },
       {
@@ -1433,7 +1433,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/mcp-test",
         "relative_path": "bin/mcp-test",
         "size": 30,
-        "target": "../mcp/server/scripts/mcp-test",
+        "target": "../nervous/nervous/mcp/server/scripts/mcp-test",
         "type": "symlink"
       },
       {
@@ -1441,7 +1441,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/memory-reindex",
         "relative_path": "bin/memory-reindex",
         "size": 40,
-        "target": "../agent-system/memory/vector/reindex.py",
+        "target": "../brain/memory/vector/reindex.py",
         "type": "symlink"
       },
       {
@@ -1449,7 +1449,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/memory-search",
         "relative_path": "bin/memory-search",
         "size": 48,
-        "target": "../agent-system/memory/vector/semantic_search.py",
+        "target": "../brain/memory/vector/semantic_search.py",
         "type": "symlink"
       },
       {
@@ -1513,7 +1513,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/monitor-digest",
         "relative_path": "bin/monitor-digest",
         "size": 35,
-        "target": "../monitor/digest/digest_builder.py",
+        "target": "../ears/digest/digest_builder.py",
         "type": "symlink"
       },
       {
@@ -1521,7 +1521,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/monitor-run",
         "relative_path": "bin/monitor-run",
         "size": 28,
-        "target": "../monitor/monitor_runner.py",
+        "target": "../ears/monitor/monitor_runner.py",
         "type": "symlink"
       },
       {
@@ -1545,7 +1545,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/prompt-eval",
         "relative_path": "bin/prompt-eval",
         "size": 39,
-        "target": "../identity/prompts/eval/eval_runner.py",
+        "target": "../dna/dna/identity/prompts/eval/eval_runner.py",
         "type": "symlink"
       },
       {
@@ -1577,7 +1577,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/route-analyze",
         "relative_path": "bin/route-analyze",
         "size": 37,
-        "target": "../orchestrator/scripts/route-analyze",
+        "target": "../heart/orchestrator/scripts/route-analyze",
         "type": "symlink"
       },
       {
@@ -1585,7 +1585,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/route-execute",
         "relative_path": "bin/route-execute",
         "size": 37,
-        "target": "../orchestrator/scripts/route-execute",
+        "target": "../heart/orchestrator/scripts/route-execute",
         "type": "symlink"
       },
       {
@@ -1593,7 +1593,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/route-learn",
         "relative_path": "bin/route-learn",
         "size": 35,
-        "target": "../orchestrator/scripts/route-learn",
+        "target": "../heart/orchestrator/scripts/route-learn",
         "type": "symlink"
       },
       {
@@ -1601,7 +1601,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/route-task",
         "relative_path": "bin/route-task",
         "size": 34,
-        "target": "../orchestrator/scripts/route-task",
+        "target": "../heart/orchestrator/scripts/route-task",
         "type": "symlink"
       },
       {
@@ -1649,7 +1649,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/telemetry-anomalies",
         "relative_path": "bin/telemetry-anomalies",
         "size": 46,
-        "target": "../agent-system/telemetry/telemetry_anomaly.py",
+        "target": "../blood/telemetry/telemetry_anomaly.py",
         "type": "symlink"
       },
       {
@@ -1657,7 +1657,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/telemetry-query",
         "relative_path": "bin/telemetry-query",
         "size": 44,
-        "target": "../agent-system/telemetry/telemetry_query.py",
+        "target": "../blood/telemetry/telemetry_query.py",
         "type": "symlink"
       },
       {
@@ -1665,7 +1665,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/telemetry-write",
         "relative_path": "bin/telemetry-write",
         "size": 45,
-        "target": "../agent-system/telemetry/telemetry_writer.py",
+        "target": "../blood/telemetry/telemetry_writer.py",
         "type": "symlink"
       },
       {
@@ -1873,7 +1873,7 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/workspace-dashboard",
         "relative_path": "bin/workspace-dashboard",
         "size": 35,
-        "target": "../dashboard/workspace_dashboard.sh",
+        "target": "../eyes/dashboard/workspace_dashboard.sh",
         "type": "symlink"
       },
       {
@@ -1905,63 +1905,63 @@
         "path": "/Users/MAC/SuneelWorkSpace/bin/ws",
         "relative_path": "bin/ws",
         "size": 19,
-        "target": "../dispatcher/ws.py",
+        "target": "../mouth/dispatcher/ws.py",
         "type": "symlink"
       }
     ],
     "shared": [
       {
         "modified_epoch": 1782452951,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md",
-        "relative_path": "agent-system/shared/AGENT_SYSTEM.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md",
+        "relative_path": "skeleton/rules/AGENT_SYSTEM.md",
         "size": 16683,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782447741,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/BOUNDED_SELF_UPGRADE.md",
-        "relative_path": "agent-system/shared/BOUNDED_SELF_UPGRADE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/BOUNDED_SELF_UPGRADE.md",
+        "relative_path": "skeleton/rules/BOUNDED_SELF_UPGRADE.md",
         "size": 1221,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782450759,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/IDENTITY.md",
-        "relative_path": "agent-system/shared/IDENTITY.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/IDENTITY.md",
+        "relative_path": "skeleton/rules/IDENTITY.md",
         "size": 2441,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782331488,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/SAFETY_BOUNDARIES.md",
-        "relative_path": "agent-system/shared/SAFETY_BOUNDARIES.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/SAFETY_BOUNDARIES.md",
+        "relative_path": "skeleton/rules/SAFETY_BOUNDARIES.md",
         "size": 1367,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782332222,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/SESSION_CLOSEOUT_CHECKLIST.md",
-        "relative_path": "agent-system/shared/SESSION_CLOSEOUT_CHECKLIST.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/SESSION_CLOSEOUT_CHECKLIST.md",
+        "relative_path": "skeleton/rules/SESSION_CLOSEOUT_CHECKLIST.md",
         "size": 1010,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782331488,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/STARTUP_CHECKLIST.md",
-        "relative_path": "agent-system/shared/STARTUP_CHECKLIST.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/STARTUP_CHECKLIST.md",
+        "relative_path": "skeleton/rules/STARTUP_CHECKLIST.md",
         "size": 872,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782454936,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/shared/WORKFLOW_RULES.md",
-        "relative_path": "agent-system/shared/WORKFLOW_RULES.md",
+        "path": "/Users/MAC/SuneelWorkSpace/skeleton/rules/WORKFLOW_RULES.md",
+        "relative_path": "skeleton/rules/WORKFLOW_RULES.md",
         "size": 2500,
         "target": null,
         "type": "file"
@@ -1970,48 +1970,48 @@
     "state": [
       {
         "modified_epoch": 1782517748,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/state/ACTIVE_CONTEXT.json",
-        "relative_path": "agent-system/state/ACTIVE_CONTEXT.json",
+        "path": "/Users/MAC/SuneelWorkSpace/spine/state/ACTIVE_CONTEXT.json",
+        "relative_path": "spine/state/ACTIVE_CONTEXT.json",
         "size": 4206,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516989,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/state/ACTIVE_SESSION.json",
-        "relative_path": "agent-system/state/ACTIVE_SESSION.json",
+        "path": "/Users/MAC/SuneelWorkSpace/spine/state/ACTIVE_SESSION.json",
+        "relative_path": "spine/state/ACTIVE_SESSION.json",
         "size": 122,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782516989,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/state/CURRENT_STATE.json",
-        "relative_path": "agent-system/state/CURRENT_STATE.json",
+        "path": "/Users/MAC/SuneelWorkSpace/spine/state/CURRENT_STATE.json",
+        "relative_path": "spine/state/CURRENT_STATE.json",
         "size": 1957,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782517747,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/state/INDEX.json",
-        "relative_path": "agent-system/state/INDEX.json",
+        "path": "/Users/MAC/SuneelWorkSpace/spine/state/INDEX.json",
+        "relative_path": "spine/state/INDEX.json",
         "size": 76416,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782332361,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/state/LAST_KNOWN_GOOD.json",
-        "relative_path": "agent-system/state/LAST_KNOWN_GOOD.json",
+        "path": "/Users/MAC/SuneelWorkSpace/spine/state/LAST_KNOWN_GOOD.json",
+        "relative_path": "spine/state/LAST_KNOWN_GOOD.json",
         "size": 259,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782517748,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/state/WORKSPACE_HEALTH.json",
-        "relative_path": "agent-system/state/WORKSPACE_HEALTH.json",
+        "path": "/Users/MAC/SuneelWorkSpace/spine/state/WORKSPACE_HEALTH.json",
+        "relative_path": "spine/state/WORKSPACE_HEALTH.json",
         "size": 3515,
         "target": null,
         "type": "file"
@@ -2020,24 +2020,24 @@
     "tasks": [
       {
         "modified_epoch": 1782331814,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md",
-        "relative_path": "agent-system/tasks/ACTIVE_TASKS.md",
+        "path": "/Users/MAC/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md",
+        "relative_path": "heart/tasks/ACTIVE_TASKS.md",
         "size": 368,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782455207,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/tasks/COMPLETED_TASKS.md",
-        "relative_path": "agent-system/tasks/COMPLETED_TASKS.md",
+        "path": "/Users/MAC/SuneelWorkSpace/heart/tasks/COMPLETED_TASKS.md",
+        "relative_path": "heart/tasks/COMPLETED_TASKS.md",
         "size": 3481,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782331488,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/tasks/TASK_QUEUE.md",
-        "relative_path": "agent-system/tasks/TASK_QUEUE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/heart/tasks/TASK_QUEUE.md",
+        "relative_path": "heart/tasks/TASK_QUEUE.md",
         "size": 223,
         "target": null,
         "type": "file"
@@ -2046,32 +2046,32 @@
     "templates": [
       {
         "modified_epoch": 1782330774,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/templates/DECISION_TEMPLATE.md",
-        "relative_path": "agent-system/templates/DECISION_TEMPLATE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/templates/DECISION_TEMPLATE.md",
+        "relative_path": "brain/memory/templates/DECISION_TEMPLATE.md",
         "size": 91,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782330774,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/templates/SESSION_SUMMARY_TEMPLATE.md",
-        "relative_path": "agent-system/templates/SESSION_SUMMARY_TEMPLATE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/templates/SESSION_SUMMARY_TEMPLATE.md",
+        "relative_path": "brain/memory/templates/SESSION_SUMMARY_TEMPLATE.md",
         "size": 114,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782331488,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/templates/STATUS_REPORT_TEMPLATE.md",
-        "relative_path": "agent-system/templates/STATUS_REPORT_TEMPLATE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/templates/STATUS_REPORT_TEMPLATE.md",
+        "relative_path": "brain/memory/templates/STATUS_REPORT_TEMPLATE.md",
         "size": 126,
         "target": null,
         "type": "file"
       },
       {
         "modified_epoch": 1782330774,
-        "path": "/Users/MAC/SuneelWorkSpace/agent-system/templates/TASK_TEMPLATE.md",
-        "relative_path": "agent-system/templates/TASK_TEMPLATE.md",
+        "path": "/Users/MAC/SuneelWorkSpace/brain/memory/templates/TASK_TEMPLATE.md",
+        "relative_path": "brain/memory/templates/TASK_TEMPLATE.md",
         "size": 96,
         "target": null,
         "type": "file"

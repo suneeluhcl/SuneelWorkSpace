@@ -17,14 +17,14 @@
     "workspace://tasks/completed",
     "workspace://state",
     "workspace://health",
-    "workspace://autolab/frontier",
-    "workspace://autolab/program",
-    "workspace://autolab/insights",
-    "workspace://autolab/patterns",
-    "workspace://autolab/failures",
-    "workspace://autolab/learning",
+    "workspace://lab/autolab/frontier",
+    "workspace://lab/autolab/program",
+    "workspace://lab/autolab/insights",
+    "workspace://lab/autolab/patterns",
+    "workspace://lab/autolab/failures",
+    "workspace://lab/autolab/learning",
     "workspace://logs/recent",
-    "workspace://mcp/state"
+    "workspace://nervous/mcp/state"
   ],
   "tools": [
     "query_workspace_context",

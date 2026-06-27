@@ -1,17 +1,17 @@
 {
   "created_at": "2026-06-26T01:48:21-0500",
   "paths": [
-    "autolab/program.md",
-    "autolab/evaluator.md",
-    "autolab/current_frontier.md",
-    "autolab/experiment_queue.md",
-    "autolab/reports",
-    "autolab/state",
-    "autolab/templates",
-    "autolab/scripts",
-    "autolab/meta",
-    "agent-system/docs",
-    "agent-system/shared",
+    "lab/autolab/program.md",
+    "lab/autolab/evaluator.md",
+    "lab/autolab/current_frontier.md",
+    "lab/autolab/experiment_queue.md",
+    "lab/autolab/reports",
+    "lab/autolab/state",
+    "lab/autolab/templates",
+    "lab/autolab/scripts",
+    "lab/autolab/meta",
+    "brain/memory/docs",
+    "brain/memory/shared",
     "automation/maintenance",
     "automation/hooks"
   ]

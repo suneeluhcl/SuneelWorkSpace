@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Autolab Evaluator — scores experiments by before/after metric comparison.
-CLI: python3 autolab/evaluator.py --experiment <exp_id>
+CLI: python3 lab/autolab/evaluator.py --experiment <exp_id>
 """
 import json
 import os
@@ -11,9 +11,9 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-ACTIVE_DIR = WORKSPACE / 'autolab/experiments/active'
-COMPLETED_DIR = WORKSPACE / 'autolab/experiments/completed'
-LOG_FILE = WORKSPACE / 'agent-system/logs/autolab_runner.log'
+ACTIVE_DIR = WORKSPACE / 'lab/autolab/experiments/active'
+COMPLETED_DIR = WORKSPACE / 'lab/autolab/experiments/completed'
+LOG_FILE = WORKSPACE / 'blood/logs/autolab_runner.log'
 IMPROVEMENTS_FILE = WORKSPACE / 'brain/system/daily_improvements.md'
 
 
@@ -151,7 +151,7 @@ def main():
 
         if reply == 'y':
             rc = os.system(
-                f"python3 {WORKSPACE}/autolab/promotion_gate.py --rollback {exp_id}"
+                f"python3 {WORKSPACE}/lab/autolab/promotion_gate.py --rollback {exp_id}"
             )
             if rc == 0:
                 print(f"   ↩️  Rolled back successfully")
@@ -174,13 +174,13 @@ def main():
     # Append to daily improvements
     append_improvement_log(exp, delta)
 
-    print(f"\n   Archived → autolab/experiments/completed/{exp_path.name}")
+    print(f"\n   Archived → lab/autolab/experiments/completed/{exp_path.name}")
     print(f"   Logged → brain/system/daily_improvements.md")
 
     # Auto-promote if SAFE + positive
     if exp.get('execution_level') == 'SAFE' and delta >= 0:
         os.system(
-            f"python3 {WORKSPACE}/autolab/promotion_gate.py --promote {exp_id} 2>/dev/null || true"
+            f"python3 {WORKSPACE}/lab/autolab/promotion_gate.py --promote {exp_id} 2>/dev/null || true"
         )
 
 

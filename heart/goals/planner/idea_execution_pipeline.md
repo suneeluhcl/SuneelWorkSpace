@@ -26,5 +26,5 @@ The goal engine should use this sequence for new ideas and system improvements:
 
 - After `goal-create`, suggest `goal-plan`.
 - After `goal-plan`, suggest routing or execution only when safe.
-- Record goal execution cycles into `anticipation/prediction_memory.json`.
+- Record goal execution cycles into `brain/anticipation/prediction_memory.json`.
 - Keep recommendations as suggestions, not automatic execution.

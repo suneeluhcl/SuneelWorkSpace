@@ -17,12 +17,12 @@ workspace-brain MCP server (main.py)
      │        └── rebuilt from authoritative files by mcp-reindex
      │
      └── Authoritative files (source of truth)
-              ├── agent-system/memory/MEMORY.md
-              ├── agent-system/memory/DECISIONS.md
-              ├── agent-system/tasks/ACTIVE_TASKS.md
-              ├── agent-system/state/CURRENT_STATE.json
-              ├── agent-system/state/WORKSPACE_HEALTH.json
-              ├── autolab/meta/insights.md
+              ├── brain/memory/MEMORY.md
+              ├── brain/memory/DECISIONS.md
+              ├── heart/tasks/ACTIVE_TASKS.md
+              ├── spine/state/CURRENT_STATE.json
+              ├── spine/state/WORKSPACE_HEALTH.json
+              ├── lab/autolab/meta/insights.md
               └── ... (see resource_map.json)
 ```
 
@@ -36,8 +36,8 @@ workspace-brain MCP server (main.py)
 
 ## Index lifecycle
 
-- **Source of truth**: markdown and JSON files in `agent-system/` and `autolab/`.
-- **Index**: SQLite FTS5 table in `mcp/server/storage/memory_index.db`.
+- **Source of truth**: markdown and JSON files in `brain/memory/` and `lab/autolab/`.
+- **Index**: SQLite FTS5 table in `nervous/nervous/mcp/server/storage/memory_index.db`.
 - **Reindex**: `mcp-reindex` deletes all index entries, re-parses source files, rebuilds.
 - **Auto-reindex**: On server startup, if index is empty. On maintenance via `agent-maintain`.
 - **Index is disposable**: delete `memory_index.db` and run `mcp-reindex` to recover cleanly.
@@ -62,6 +62,6 @@ workspace-brain MCP server (main.py)
 | `server/storage/memory_index.db` | SQLite FTS index (disposable) |
 | `server/state/mcp_state.json` | Server runtime state |
 | `server/state/last_index.json` | Index build metadata |
-| `server/state/capability_report.json` | What tools/resources are available |
+| `server/state/capability_report.json` | What spine/tools/resources are available |
 | `server/logs/mcp_server.log` | Server log |
 | `server/logs/mcp_access.log` | Per-tool access log (JSONL) |

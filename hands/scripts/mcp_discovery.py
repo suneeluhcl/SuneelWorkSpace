@@ -7,9 +7,9 @@ import pathlib
 import shutil
 
 ROOT = pathlib.Path(os.environ.get("SUNEEL_WORKSPACE", str(pathlib.Path.home() / "SuneelWorkSpace"))).resolve()
-INVENTORY_PATH = ROOT / "tools/tool_inventory.json"
-OPPORTUNITIES_PATH = ROOT / "tools/mcp_opportunities.json"
-RECOMMENDATIONS_PATH = ROOT / "tools/mcp_recommendations.md"
+INVENTORY_PATH = ROOT / "spine/tools/tool_inventory.json"
+OPPORTUNITIES_PATH = ROOT / "spine/tools/mcp_opportunities.json"
+RECOMMENDATIONS_PATH = ROOT / "spine/tools/mcp_recommendations.md"
 
 def load_inventory() -> list:
     if not INVENTORY_PATH.exists():

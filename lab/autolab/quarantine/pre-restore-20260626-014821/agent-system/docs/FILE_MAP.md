@@ -2,62 +2,62 @@
 
 ## Root
 
-- `AGENTS.md`: Codex-style workspace entrypoint. Should point to `agent-system/shared/AGENT_SYSTEM.md`.
-- `CLAUDE.md`: Claude-style workspace entrypoint. Should point to `agent-system/shared/AGENT_SYSTEM.md`.
+- `AGENTS.md`: Codex-style workspace entrypoint. Should point to `skeleton/rules/AGENT_SYSTEM.md`.
+- `CLAUDE.md`: Claude-style workspace entrypoint. Should point to `skeleton/rules/AGENT_SYSTEM.md`.
 - `README.md`: Human-friendly overview of the workspace.
 - `.gitignore`: Basic local ignore rules.
 - `bin/`: Helper scripts.
 - `automation/`: Doctor, repair, launchd, hooks, and generated reports.
-- `autolab/`: Safe workspace autoresearch subsystem for iterative self-improvement.
+- `lab/autolab/`: Safe workspace autoresearch subsystem for iterative self-improvement.
 - `projects/`: Place for individual projects.
 
 ## Shared Instructions
 
-- `agent-system/shared/AGENT_SYSTEM.md`: Canonical shared instruction source.
-- `agent-system/shared/IDENTITY.md`: User identity, preferences, and stable context.
-- `agent-system/shared/WORKFLOW_RULES.md`: How agents should inspect, execute, verify, and close out work.
-- `agent-system/shared/STARTUP_CHECKLIST.md`: Files to read at session start.
-- `agent-system/shared/SESSION_CLOSEOUT_CHECKLIST.md`: Files to update before ending a session.
-- `agent-system/shared/SAFETY_BOUNDARIES.md`: Non-negotiable safety limits.
+- `skeleton/rules/AGENT_SYSTEM.md`: Canonical shared instruction source.
+- `skeleton/rules/IDENTITY.md`: User identity, preferences, and stable context.
+- `skeleton/rules/WORKFLOW_RULES.md`: How agents should inspect, execute, verify, and close out work.
+- `skeleton/rules/STARTUP_CHECKLIST.md`: Files to read at session start.
+- `skeleton/rules/SESSION_CLOSEOUT_CHECKLIST.md`: Files to update before ending a session.
+- `skeleton/rules/SAFETY_BOUNDARIES.md`: Non-negotiable safety limits.
 
 ## Memory
 
-- `agent-system/memory/MEMORY.md`: Durable facts and stable context.
-- `agent-system/memory/DECISIONS.md`: Important decisions and reasons.
-- `agent-system/memory/SESSION_HANDOFF.md`: Latest handoff from the prior agent/session.
-- `agent-system/memory/NOTES.md`: Temporary or low-stakes notes.
+- `brain/memory/MEMORY.md`: Durable facts and stable context.
+- `brain/memory/DECISIONS.md`: Important decisions and reasons.
+- `brain/memory/SESSION_HANDOFF.md`: Latest handoff from the prior agent/session.
+- `brain/memory/NOTES.md`: Temporary or low-stakes notes.
 
 ## Tasks
 
-- `agent-system/tasks/ACTIVE_TASKS.md`: Current tasks and next steps.
-- `agent-system/tasks/COMPLETED_TASKS.md`: Finished work.
-- `agent-system/tasks/TASK_QUEUE.md`: Queued future work.
+- `heart/tasks/ACTIVE_TASKS.md`: Current tasks and next steps.
+- `heart/tasks/COMPLETED_TASKS.md`: Finished work.
+- `heart/tasks/TASK_QUEUE.md`: Queued future work.
 
 ## Logs And State
 
-- `agent-system/logs/SESSION_LOG.md`: Append-only work log.
-- `agent-system/logs/MAINTENANCE_LOG.md`: Append-only maintenance log.
-- `agent-system/logs/CHANGE_LOG.md`: Human-readable change history.
-- `agent-system/state/CURRENT_STATE.json`: Machine-readable current state.
-- `agent-system/state/WORKSPACE_HEALTH.json`: Latest doctor result.
-- `agent-system/state/INDEX.json`: Generated index of shared files and scripts.
-- `agent-system/state/ACTIVE_SESSION.json`: Current shell/wrapper session marker used by automatic closeout.
-- `agent-system/state/LAST_KNOWN_GOOD.json`: Latest validation snapshot after a healthy maintenance pass.
+- `blood/logs/SESSION_LOG.md`: Append-only work log.
+- `blood/logs/MAINTENANCE_LOG.md`: Append-only maintenance log.
+- `blood/logs/CHANGE_LOG.md`: Human-readable change history.
+- `spine/state/CURRENT_STATE.json`: Machine-readable current state.
+- `spine/state/WORKSPACE_HEALTH.json`: Latest doctor result.
+- `spine/state/INDEX.json`: Generated index of shared files and scripts.
+- `spine/state/ACTIVE_SESSION.json`: Current shell/wrapper session marker used by automatic closeout.
+- `spine/state/LAST_KNOWN_GOOD.json`: Latest validation snapshot after a healthy maintenance pass.
 
 ## Templates
 
-- `agent-system/templates/SESSION_SUMMARY_TEMPLATE.md`: Handoff summary template.
-- `agent-system/templates/TASK_TEMPLATE.md`: Task entry template.
-- `agent-system/templates/DECISION_TEMPLATE.md`: Decision entry template.
-- `agent-system/templates/STATUS_REPORT_TEMPLATE.md`: Status report template.
+- `brain/memory/templates/SESSION_SUMMARY_TEMPLATE.md`: Handoff summary template.
+- `brain/memory/templates/TASK_TEMPLATE.md`: Task entry template.
+- `brain/memory/templates/DECISION_TEMPLATE.md`: Decision entry template.
+- `brain/memory/templates/STATUS_REPORT_TEMPLATE.md`: Status report template.
 
 ## Docs
 
-- `agent-system/docs/HOW_IT_WORKS.md`: Detailed system explanation.
-- `agent-system/docs/FILE_MAP.md`: This file.
-- `agent-system/docs/RECOVERY.md`: How to restore backups and repair symlinks.
-- `agent-system/docs/AUTOMATION.md`: How maintenance automation works.
-- `agent-system/docs/OPERATOR_GUIDE.md`: Short usage guide for Suneel.
+- `brain/memory/spine/docs/HOW_IT_WORKS.md`: Detailed system explanation.
+- `brain/memory/spine/docs/FILE_MAP.md`: This file.
+- `brain/memory/spine/docs/RECOVERY.md`: How to restore backups and repair symlinks.
+- `brain/memory/spine/docs/AUTOMATION.md`: How maintenance automation works.
+- `brain/memory/spine/docs/OPERATOR_GUIDE.md`: Short usage guide for Suneel.
 
 ## Scripts
 
@@ -78,15 +78,15 @@
 
 ## Autolab
 
-- `autolab/program.md`: Research organization instructions for improving the workspace.
-- `autolab/evaluator.md`: Score and acceptance rules.
-- `autolab/mutation_policy.md`: Allowlist and denylist for autonomous changes.
-- `autolab/safeguards.md`: Safety and rollback rules.
-- `autolab/results.tsv`: Append-only experiment history.
-- `autolab/current_frontier.md`: Current best-known improvement state.
-- `autolab/state/latest_eval.json`: Latest score breakdown.
-- `autolab/meta/insights.md`: Human-readable learning summary.
-- `autolab/meta/patterns.json`: Successful mutation and target-area patterns.
-- `autolab/meta/failure_patterns.json`: Repeated failure patterns and avoidance guidance.
-- `autolab/meta/strategy_versions/`: Snapshots of `program.md` before strategy evolution.
-- `autolab/scripts/`: Autolab command suite.
+- `lab/autolab/program.md`: Research organization instructions for improving the workspace.
+- `lab/autolab/evaluator.md`: Score and acceptance rules.
+- `lab/autolab/mutation_policy.md`: Allowlist and denylist for autonomous changes.
+- `lab/autolab/safeguards.md`: Safety and rollback rules.
+- `lab/autolab/results.tsv`: Append-only experiment history.
+- `lab/autolab/current_frontier.md`: Current best-known improvement state.
+- `lab/autolab/state/latest_eval.json`: Latest score breakdown.
+- `lab/autolab/meta/insights.md`: Human-readable learning summary.
+- `lab/autolab/meta/patterns.json`: Successful mutation and target-area patterns.
+- `lab/autolab/meta/failure_patterns.json`: Repeated failure patterns and avoidance guidance.
+- `lab/autolab/meta/strategy_versions/`: Snapshots of `program.md` before strategy evolution.
+- `lab/autolab/scripts/`: Autolab command suite.

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Autolab Promotion Gate — promotes or rolls back experiments.
 CLI:
-  python3 autolab/promotion_gate.py --promote <exp_id>
-  python3 autolab/promotion_gate.py --rollback <exp_id>
-  python3 autolab/promotion_gate.py --status
+  python3 lab/autolab/promotion_gate.py --promote <exp_id>
+  python3 lab/autolab/promotion_gate.py --rollback <exp_id>
+  python3 lab/autolab/promotion_gate.py --status
 """
 import json
 import os
@@ -14,10 +14,10 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-ACTIVE_DIR = WORKSPACE / 'autolab/experiments/active'
-COMPLETED_DIR = WORKSPACE / 'autolab/experiments/completed'
-ROLLBACK_DIR = WORKSPACE / 'autolab/experiments/rollback'
-LOG_FILE = WORKSPACE / 'agent-system/logs/autolab_runner.log'
+ACTIVE_DIR = WORKSPACE / 'lab/autolab/experiments/active'
+COMPLETED_DIR = WORKSPACE / 'lab/autolab/experiments/completed'
+ROLLBACK_DIR = WORKSPACE / 'lab/autolab/experiments/rollback'
+LOG_FILE = WORKSPACE / 'blood/logs/autolab_runner.log'
 
 
 def log(msg: str):

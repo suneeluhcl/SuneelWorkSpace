@@ -11,7 +11,7 @@ Generated: 2026-06-25 01:03 UTC
 ## Mail
 - Mail.app: NOT installed
 - Status: disabled until Mail.app is configured
-- See: comms/reports/plugin_recommendations.md for options
+- See: mouth/comms/reports/plugin_recommendations.md for options
 
 ## Safety
 - Auto-send: DISABLED

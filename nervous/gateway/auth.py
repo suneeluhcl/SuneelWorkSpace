@@ -5,7 +5,7 @@ import secrets
 from pathlib import Path
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-TOKEN_FILE = WORKSPACE / 'gateway/.token'
+TOKEN_FILE = WORKSPACE / 'nervous/gateway/.token'
 
 
 def get_or_create_token() -> str:

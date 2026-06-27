@@ -4,10 +4,10 @@ Use the system intelligence layer when a task asks for audit, self-improvement, 
 
 ## Preferred Commands
 
-- `system-audit`: refresh and open `audit/system_audit.md`.
-- `system-gaps`: refresh and open `audit/gap_analysis.md`.
-- `system-capabilities`: refresh `system-context/system_profile.json`.
-- `system-recommend`: refresh `tools/recommendations.md`.
+- `system-audit`: refresh and open `spine/audit/system_audit.md`.
+- `system-gaps`: refresh and open `spine/audit/gap_analysis.md`.
+- `system-capabilities`: refresh `spine/system-context/system_profile.json`.
+- `system-recommend`: refresh `spine/tools/recommendations.md`.
 - `improve-system`: run the bounded local refresh loop without installing external tools.
 - `idea-start`: capture a raw idea.
 - `idea-run`: capture, plan, analyze, and draft a decision.
@@ -21,7 +21,7 @@ Use the system intelligence layer when a task asks for audit, self-improvement, 
 
 ## Identity Routing
 
-- Load `identity/integration/routing_identity.json` before choosing ask-vs-act behavior.
+- Load `dna/identity/integration/routing_identity.json` before choosing ask-vs-act behavior.
 - Default to autopilot for safe local work.
 - Ask only for serious system risk or explicit safety-gated actions.
 - Keep responses short, direct, casual, softened, smart, and structured enough to be clear.
@@ -29,6 +29,6 @@ Use the system intelligence layer when a task asks for audit, self-improvement, 
 
 ## Anticipatory Routing
 
-- Check `anticipation/action_suggestions.md` for precomputed next actions.
-- Record route execution outcomes through `anticipation/prediction_engine.py`.
+- Check `brain/anticipation/action_suggestions.md` for precomputed next actions.
+- Record route execution outcomes through `brain/anticipation/prediction_engine.py`.
 - Suggestions must never auto-execute. They are planning hints only.

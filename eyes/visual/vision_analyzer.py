@@ -23,7 +23,7 @@ def analyze_screenshot(screenshot_path: str = None, context: dict = None) -> dic
 
     # ── Workspace health ────────────────────────────────────────────────────
     try:
-        health_path = WORKSPACE / "agent-system/state/WORKSPACE_HEALTH.json"
+        health_path = WORKSPACE / "spine/state/WORKSPACE_HEALTH.json"
         if health_path.exists():
             health = json.loads(health_path.read_text())
             score = health.get("health_score", 100)
@@ -47,7 +47,7 @@ def analyze_screenshot(screenshot_path: str = None, context: dict = None) -> dic
 
     # ── Evolution engine ────────────────────────────────────────────────────
     try:
-        evo_log = WORKSPACE / "evolution/evolution_log.jsonl"
+        evo_log = WORKSPACE / "lab/evolution/evolution_log.jsonl"
         if not evo_log.exists() or evo_log.stat().st_size == 0:
             improvements.append({
                 "id": "no_evolution",
@@ -60,7 +60,7 @@ def analyze_screenshot(screenshot_path: str = None, context: dict = None) -> dic
 
     # ── Autolab queue ───────────────────────────────────────────────────────
     try:
-        queue_md = WORKSPACE / "autolab/experiment_queue.md"
+        queue_md = WORKSPACE / "lab/autolab/experiment_queue.md"
         if queue_md.exists():
             lines = queue_md.read_text().splitlines()
             hypotheses = [l for l in lines if l.startswith("## ")]
@@ -117,7 +117,7 @@ def analyze_screenshot(screenshot_path: str = None, context: dict = None) -> dic
 
     # Update visual state
     try:
-        state_path = WORKSPACE / "visual/visual_state.json"
+        state_path = WORKSPACE / "eyes/visual/visual_state.json"
         state: dict = {}
         if state_path.exists():
             state = json.loads(state_path.read_text())

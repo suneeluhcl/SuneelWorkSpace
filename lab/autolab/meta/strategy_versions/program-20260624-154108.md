@@ -58,9 +58,9 @@ Autolab may improve its own program, evaluator, templates, and selected scripts.
 Autolab must learn from experiment history:
 
 - Analyze `results.tsv` after experiments.
-- Track successful mutation types in `autolab/meta/patterns.json`.
-- Track repeated failure types in `autolab/meta/failure_patterns.json`.
-- Record human-readable lessons in `autolab/meta/insights.md`.
+- Track successful mutation types in `lab/autolab/meta/patterns.json`.
+- Track repeated failure types in `lab/autolab/meta/failure_patterns.json`.
+- Record human-readable lessons in `lab/autolab/meta/insights.md`.
 - Prefer future experiments that match successful patterns.
 - Avoid repeating known failure patterns.
 - Occasionally explore under-tested low-risk areas.
@@ -70,7 +70,7 @@ Autolab must learn from experiment history:
 
 Autolab may evolve this `program.md` only when the change improves clarity, consistency, success rate, or failure avoidance.
 
-Before changing this file, snapshot the current version into `autolab/meta/strategy_versions/`.
+Before changing this file, snapshot the current version into `lab/autolab/meta/strategy_versions/`.
 
 Never remove safety constraints, rollback requirements, mutation limits, or the rule that changes must be measurable and reversible.
 

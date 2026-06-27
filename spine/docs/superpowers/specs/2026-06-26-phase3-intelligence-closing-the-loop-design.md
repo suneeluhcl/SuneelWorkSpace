@@ -20,7 +20,7 @@ Transform SuneelWorkSpace from a reactive assistant into a self-improving, world
 
 **Files:**
 ```
-agent-system/telemetry/
+blood/telemetry/
   telemetry.db              ← SQLite, all traces
   telemetry_writer.py       ← write_trace(agent, task_type, duration_ms, tokens_in, tokens_out, outcome, payload)
   telemetry_query.py        ← CLI: telemetry-query summary|agent|task-type|anomalies [--days N]
@@ -32,7 +32,7 @@ agent-system/telemetry/
 
 **CLI:** `telemetry-query summary --days 7` → table per agent/task-type with success rate, avg tokens, avg duration.
 
-**Anomaly rule:** If current 24h avg for any (agent, task_type) pair deviates >20% from 7-day baseline, write to `agent-system/telemetry/anomalies.json` and print warning.
+**Anomaly rule:** If current 24h avg for any (agent, task_type) pair deviates >20% from 7-day baseline, write to `blood/telemetry/anomalies.json` and print warning.
 
 ### P3.1 — Closed Feedback Loop
 
@@ -40,15 +40,15 @@ agent-system/telemetry/
 
 **Files:**
 ```
-agent-system/feedback/
+dna/feedback/
   inbox/                    ← drop .md files here
   processed/                ← archived after ingestion
   feedback_ingest.py        ← parse, tag, emit JSONL training record
-autolab/training_data/
+lab/autolab/training_data/
   feedback_<timestamp>.jsonl
 ```
 
-**Flow:** Drop `.md` in `feedback/inbox/` → `feedback-ingest` → tags by agent/intent/outcome → writes JSONL to `autolab/training_data/` → existing `evaluator.py` + `promotion_gate.py` run on next autolab cycle → promoted changes committed back.
+**Flow:** Drop `.md` in `feedback/inbox/` → `feedback-ingest` → tags by agent/intent/outcome → writes JSONL to `lab/autolab/training_data/` → existing `evaluator.py` + `promotion_gate.py` run on next autolab cycle → promoted changes committed back.
 
 **CLI:** `feedback-ingest` (runs all pending), `feedback-status` (shows queue depth and last promotion).
 
@@ -62,7 +62,7 @@ autolab/training_data/
 
 **Files:**
 ```
-agent-system/telemetry/comparison/
+blood/telemetry/comparison/
   leaderboard.json          ← capability scores per (agent, task_type)
   compare_agents.py         ← reads telemetry.db, builds comparison table
   score_updater.py          ← recomputes scores after each telemetry write
@@ -72,7 +72,7 @@ agent-system/telemetry/comparison/
 
 **CLI:** `agent-compare --task-type code_review` → side-by-side table (Claude / Codex / Gemini) with success rate, avg tokens, avg duration, capability score.
 
-**Router integration:** `orchestrator/router/` reads `leaderboard.json` when routing; picks agent with highest capability score for matched task type.
+**Router integration:** `heart/heart/orchestrator/router/` reads `leaderboard.json` when routing; picks agent with highest capability score for matched task type.
 
 ### P3.4 — Brain Context Injector
 
@@ -81,7 +81,7 @@ agent-system/telemetry/comparison/
 **Files:**
 ```
 brain/
-  context_injector.py       ← keyword+tag search obsidian-vault/, returns top 3-5 hits
+  context_injector.py       ← keyword+tag search brain/vault/, returns top 3-5 hits
   context_cache.json        ← LRU cache, TTL 1h
 ```
 
@@ -97,7 +97,7 @@ brain/
 
 **Files:**
 ```
-monitor/
+ears/monitor/
   monitor_config.json       ← feeds, repos, topics, check intervals
   monitor_runner.py         ← orchestrates all sources, deduplicates, scores relevance
   sources/
@@ -113,13 +113,13 @@ monitor/
     arxiv_<date>.json
 ```
 
-**Relevance scoring:** Each item scored 0–1 against keywords extracted from `agent-system/tasks/ACTIVE_TASKS.md` and `orchestrator/state/`. Items scoring >0.4 included in digest.
+**Relevance scoring:** Each item scored 0–1 against keywords extracted from `heart/tasks/ACTIVE_TASKS.md` and `heart/orchestrator/state/`. Items scoring >0.4 included in digest.
 
 **Output:** `brain/logs/morning_brief_<date>.md`
 
 **CLI:** `monitor-run` (all sources), `monitor-run --source arxiv`, `monitor-digest` (build brief from today's cache).
 
-**Schedule:** Daily at 7am via `orchestrator/dag/pipelines/morning_brief.yaml`.
+**Schedule:** Daily at 7am via `hands/automation/dag/pipelines/morning_brief.yaml`.
 
 ---
 
@@ -131,7 +131,7 @@ monitor/
 
 **Files:**
 ```
-orchestrator/dag/
+hands/automation/dag/
   dag_validator.py          ← check deps, cycles, variable refs, command existence
   dag_runner.py             ← topological sort, execution gates, template substitution, run records
   dag_scheduler.py          ← cron-style schedule registry
@@ -158,7 +158,7 @@ orchestrator/dag/
 
 **Files:**
 ```
-dispatcher/
+mouth/dispatcher/
   ws.py                     ← main entry point
   intent_classifier.py      ← keyword+pattern → intent, confidence score
   intent_map.json           ← intent → command mappings with keywords
@@ -171,7 +171,7 @@ dispatcher/
 
 **CLI:** `ws "<natural language command>"` — single universal entry point.
 
-**Symlink:** `bin/ws → ../dispatcher/ws.py`.
+**Symlink:** `bin/ws → ../mouth/dispatcher/ws.py`.
 
 **Seed intents (20+):** health-check, telemetry-summary, agent-compare, run-pipeline, morning-brief, idea-start, goal-status, brain-inject, monitor-run, feedback-ingest, system-audit, etc.
 
@@ -181,7 +181,7 @@ dispatcher/
 
 **Files:**
 ```
-autolab/
+lab/autolab/
   hypothesis_generator.py   ← reads anomalies.json + leaderboard.json + morning_brief → generates candidates
   hypothesis_log.jsonl      ← all generated hypotheses with source signals
 ```
@@ -191,7 +191,7 @@ autolab/
 - Leaderboard gap (P3.3) → "Codex outperforms Claude on code_edit by 30% — hypothesis: route all code_edit to Codex"
 - World monitor hit (P3.6) → "New paper on prompt compression — hypothesis: apply technique to system prompts"
 
-**Output:** Appends to `autolab/experiment_queue.md` in existing format so `autolab/runner.py` picks up naturally.
+**Output:** Appends to `lab/autolab/experiment_queue.md` in existing format so `lab/autolab/runner.py` picks up naturally.
 
 **CLI:** `hypothesis-generate` (run once), `hypothesis-log` (show recent hypotheses and their status).
 
@@ -202,22 +202,22 @@ autolab/
 ## Implementation Order (Approach B — Foundation-first)
 
 ### Batch 1 — Tier 1
-1. `agent-system/telemetry/schema.sql` + `telemetry_writer.py` + `telemetry_query.py` + `telemetry_anomaly.py`
-2. `agent-system/feedback/` + `autolab/training_data/` + `feedback_ingest.py`
+1. `blood/telemetry/schema.sql` + `telemetry_writer.py` + `telemetry_query.py` + `telemetry_anomaly.py`
+2. `dna/feedback/` + `lab/autolab/training_data/` + `feedback_ingest.py`
 3. CLI symlinks: `telemetry-query`, `feedback-ingest`, `feedback-status`
 4. Validate: `telemetry-query summary --days 7`, `feedback-ingest` on test file
 
 ### Batch 2 — Tier 2
 5. `comparison/compare_agents.py` + `leaderboard.json` + `score_updater.py`
 6. `brain/context_injector.py` + `context_cache.json`
-7. `monitor/` full directory + all source monitors + digest builder
+7. `ears/monitor/` full directory + all source monitors + digest builder
 8. CLI symlinks: `agent-compare`, `brain-inject`, `monitor-run`, `monitor-digest`
 9. Validate: `agent-compare`, `brain-inject "test task"`, `monitor-run --dry-run`
 
 ### Batch 3 — Tier 3
-10. `orchestrator/dag/` full directory + validator + runner + scheduler + 3 seed pipelines
-11. `dispatcher/` + `intent_map.json` (20+ intents) + `ws.py`
-12. `autolab/hypothesis_generator.py` + wire into `morning_brief.yaml`
+10. `hands/automation/dag/` full directory + validator + runner + scheduler + 3 seed pipelines
+11. `mouth/dispatcher/` + `intent_map.json` (20+ intents) + `ws.py`
+12. `lab/autolab/hypothesis_generator.py` + wire into `morning_brief.yaml`
 13. CLI symlinks: `dag-run`, `dag-validate`, `dag-schedule`, `ws`
 14. Validate: `dag-validate` all pipelines, `ws "run health check"`, `hypothesis-generate`
 
@@ -227,19 +227,19 @@ autolab/
 ---
 
 ## New Directories Created
-- `agent-system/telemetry/` (new — exists but empty)
-- `agent-system/feedback/inbox/` + `feedback/processed/`
-- `autolab/training_data/`
-- `agent-system/telemetry/comparison/`
+- `blood/telemetry/` (new — exists but empty)
+- `dna/feedback/inbox/` + `feedback/processed/`
+- `lab/autolab/training_data/`
+- `blood/telemetry/comparison/`
 - `brain/` + `brain/logs/`
-- `monitor/` + `monitor/sources/` + `monitor/digest/` + `monitor/cache/`
-- `orchestrator/dag/` + `dag/pipelines/` + `dag/runs/`
-- `dispatcher/`
+- `ears/monitor/` + `ears/ears/monitor/sources/` + `ears/digest/` + `ears/monitor/cache/`
+- `hands/automation/dag/` + `dag/pipelines/` + `dag/runs/`
+- `mouth/dispatcher/`
 
 ## Files Modified
-- `orchestrator/router/` — reads `leaderboard.json` for routing
-- `autolab/experiment_queue.md` — hypothesis_generator appends here
-- `orchestrator/dag/pipelines/morning_brief.yaml` — adds hypothesis-generate step
+- `heart/heart/orchestrator/router/` — reads `leaderboard.json` for routing
+- `lab/autolab/experiment_queue.md` — hypothesis_generator appends here
+- `hands/automation/dag/pipelines/morning_brief.yaml` — adds hypothesis-generate step
 
 ## Total
 ~62 new files, 8 new subdirectories, 3 files modified.

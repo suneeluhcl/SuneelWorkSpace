@@ -413,7 +413,7 @@ def fallback_candidates(intent: str) -> list[dict[str, Any]]:
         "messaging": ["Review recent message context", "Draft a short reply", "Send only after explicit approval"],
         "email": ["Review relevant mail thread", "Draft a concise reply", "Send only after explicit approval"],
         "research": ["Review generated research artifacts", "Compare options", "Record the decision"],
-        "system_improvement": ["Review audit/gap_analysis.md", "Pick one high-impact fix", "Run agent-doctor after changes"],
+        "system_improvement": ["Review spine/audit/gap_analysis.md", "Pick one high-impact fix", "Run agent-doctor after changes"],
         "development": ["Inspect relevant files", "Make scoped changes", "Run focused validation"],
         "idea_execution": ["Review the generated plan", "Convert accepted work into a goal", "Run goal-plan"],
         "maintenance": ["Run agent-status", "Run agent-doctor", "Reindex MCP if resources changed"],

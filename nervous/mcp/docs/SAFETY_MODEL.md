@@ -17,30 +17,30 @@ workspace-brain enforces a layered safety model: most operations are read-only, 
 ## Mutable area (tools may write here)
 
 ```
-agent-system/memory/MEMORY.md
-agent-system/memory/DECISIONS.md
-agent-system/memory/NOTES.md
-agent-system/memory/SESSION_HANDOFF.md
-agent-system/tasks/ACTIVE_TASKS.md
-agent-system/tasks/TASK_QUEUE.md
-agent-system/logs/SESSION_LOG.md
-mcp/server/state/mcp_state.json
-mcp/server/logs/
+brain/memory/MEMORY.md
+brain/memory/DECISIONS.md
+brain/memory/NOTES.md
+brain/memory/SESSION_HANDOFF.md
+heart/tasks/ACTIVE_TASKS.md
+heart/tasks/TASK_QUEUE.md
+blood/logs/SESSION_LOG.md
+nervous/nervous/mcp/server/state/mcp_state.json
+nervous/nervous/mcp/server/logs/
 ```
 
 ## Protected area (tools never write here)
 
 ```
-agent-system/shared/          (canonical instructions — read-only)
-agent-system/state/           (written only by agent-doctor, agent-repair, agent-autoclose)
-autolab/                      (written only by autolab scripts)
+skeleton/rules/          (canonical instructions — read-only)
+spine/state/           (written only by agent-doctor, agent-repair, agent-autoclose)
+lab/autolab/                      (written only by autolab scripts)
 bin/                          (workspace scripts — never modified by MCP)
 automation/                   (maintenance scripts — never modified by MCP)
 ~/.claude/                    (Claude config — never modified by MCP tools)
-~/.codex/                     (Codex config — never modified by MCP tools)
+~/.hands/codex/                     (Codex config — never modified by MCP tools)
 ```
 
-Note: `mcp-repair` (a shell script, not an MCP tool) does modify `~/.claude/settings.json` and `~/.codex/config.toml` when fixing broken registration — but only on explicit operator invocation, not via tool calls.
+Note: `mcp-repair` (a shell script, not an MCP tool) does modify `~/.claude/settings.json` and `~/.hands/codex/config.toml` when fixing broken registration — but only on explicit operator invocation, not via tool calls.
 
 ## Tool-level permission table
 
@@ -53,9 +53,9 @@ Summary:
 
 ## Access logging
 
-Every tool call writes a JSONL line to `mcp/server/logs/mcp_access.log`:
+Every tool call writes a JSONL line to `nervous/nervous/mcp/server/logs/mcp_access.log`:
 ```json
 {"ts": "2026-06-24T...", "tool": "search_memory", "args": {"query": "NLU"}}
 ```
 
-Mutating operations are also logged to `mcp/server/logs/mcp_server.log`.
+Mutating operations are also logged to `nervous/nervous/mcp/server/logs/mcp_server.log`.

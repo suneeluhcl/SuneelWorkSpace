@@ -30,13 +30,13 @@ ensure_core_dirs() {
     "$ROOT/automation/launchd" \
     "$ROOT/automation/hooks" \
     "$ROOT/automation/reports" \
-    "$ROOT/agent-system/shared" \
-    "$ROOT/agent-system/memory" \
-    "$ROOT/agent-system/tasks" \
-    "$ROOT/agent-system/logs" \
-    "$ROOT/agent-system/state" \
-    "$ROOT/agent-system/templates" \
-    "$ROOT/agent-system/docs" \
+    "$ROOT/brain/memory/shared" \
+    "$ROOT/brain/memory/memory" \
+    "$ROOT/brain/memory/tasks" \
+    "$ROOT/brain/memory/logs" \
+    "$ROOT/brain/memory/state" \
+    "$ROOT/brain/memory/templates" \
+    "$ROOT/brain/memory/docs" \
     "$ROOT/projects"
 }
 

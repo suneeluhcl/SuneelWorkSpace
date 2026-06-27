@@ -2,19 +2,19 @@
 
 ## 2026-06-26 - Identity system integration
 
-- Decision: Use `identity/` as the source of truth for Suneel's voice, decision style, workflow preferences, and assistant feel.
+- Decision: Use `dna/identity/` as the source of truth for Suneel's voice, decision style, workflow preferences, and assistant feel.
 - Reason: Future Claude, Codex, MCP, orchestrator, goal-engine, and comms behavior needs a shared plain-file identity source.
 - Safety: Identity preferences do not override safety boundaries around destructive actions, money/account changes, external installs, private deep indexing, or outbound communication.
 
 ## 2026-06-26 - Adaptive identity loop
 
-- Decision: Add `identity/adaptive/` as a bounded learning layer over the base identity.
+- Decision: Add `dna/dna/identity/adaptive/` as a bounded learning layer over the base identity.
 - Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.
-- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `identity/profile/identity_profile.md` or safety boundaries.
+- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/dna/identity/profile/identity_profile.md` or safety boundaries.
 
 ## 2026-06-26 - Predictive self-documenting workspace
 
-- Decision: Add `anticipation/` for suggest-only predictive intelligence and rebuild `README.md` as a complete system blueprint.
+- Decision: Add `brain/anticipation/` for suggest-only predictive intelligence and rebuild `README.md` as a complete system blueprint.
 - Reason: Suneel wants the workspace to be proactive and understandable from README alone.
 - Safety: Anticipation can suggest, pre-plan, and pre-compute, but cannot auto-execute actions or bypass approval gates.
 
@@ -32,13 +32,13 @@ Reason: File-based markdown and JSON are transparent, durable, easy to inspect, 
 
 ## 2026-06-24 - Use One Canonical Instruction File
 
-Decision: Use `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md` as the canonical shared instruction file.
+Decision: Use `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md` as the canonical shared instruction file.
 
 Reason: A single source of truth avoids drift between `AGENTS.md`, `CLAUDE.md`, and global tool configuration.
 
 ## 2026-06-24 - Use Symlink Entrypoints When Possible
 
-Decision: Point `AGENTS.md`, `CLAUDE.md`, `~/.codex/AGENTS.md`, and `~/.claude/CLAUDE.md` to the canonical instruction file with symlinks when possible.
+Decision: Point `AGENTS.md`, `CLAUDE.md`, `~/.hands/codex/AGENTS.md`, and `~/.claude/CLAUDE.md` to the canonical instruction file with symlinks when possible.
 
 Reason: Symlinks keep instructions synchronized without copying content across files.
 
@@ -62,7 +62,7 @@ Reason: Suneel should not need to remember `agent-finish` for normal operation. 
 
 ## 2026-06-24 - Add Workspace Autolab
 
-Decision: Add `~/SuneelWorkSpace/autolab/` as a safe autoresearch-style subsystem for iterative workspace self-improvement.
+Decision: Add `~/SuneelWorkSpace/lab/autolab/` as a safe autoresearch-style subsystem for iterative workspace self-improvement.
 
 Reason: Suneel wants the workspace to improve its own prompts, rules, automation, wrappers, validation, reporting, repair logic, and operational behavior over time. Autolab uses file-based evaluation, snapshots, keep/revert decisions, and append-only experiment logs rather than model-weight training or opaque services.
 
@@ -92,4 +92,4 @@ Reason: To enable structured brainstorming and packaging of raw feature requests
 ## 2026-06-25 - Research decision: Bounded self-upgrade validation
 
 - Decision: Adopt a bounded local-first self-upgrade loop: audit, profile, gap analysis, recommendations, research artifacts, MCP resource coverage, and health integration may refresh autonomously; external installs, private data indexing, communication sends, money actions, and destructive changes require explicit approval.
-- Source: `research-engine/decisions/20260625-232344-bounded-self-upgrade-validation-decision.md`
+- Source: `brain/research/decisions/20260625-232344-bounded-self-upgrade-validation-decision.md`

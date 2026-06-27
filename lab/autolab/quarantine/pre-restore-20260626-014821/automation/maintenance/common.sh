@@ -1,13 +1,13 @@
 #!/bin/sh
 
 ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-CANON="$ROOT/agent-system/shared/AGENT_SYSTEM.md"
+CANON="$ROOT/skeleton/rules/AGENT_SYSTEM.md"
 BACKUP_ROOT="$ROOT/.agent-backups"
-MAINT_LOG="$ROOT/agent-system/logs/MAINTENANCE_LOG.md"
-SESSION_LOG="$ROOT/agent-system/logs/SESSION_LOG.md"
-HEALTH_JSON="$ROOT/agent-system/state/WORKSPACE_HEALTH.json"
-STATE_JSON="$ROOT/agent-system/state/CURRENT_STATE.json"
-INDEX_JSON="$ROOT/agent-system/state/INDEX.json"
+MAINT_LOG="$ROOT/blood/logs/MAINTENANCE_LOG.md"
+SESSION_LOG="$ROOT/blood/logs/SESSION_LOG.md"
+HEALTH_JSON="$ROOT/spine/state/WORKSPACE_HEALTH.json"
+STATE_JSON="$ROOT/spine/state/CURRENT_STATE.json"
+INDEX_JSON="$ROOT/spine/state/INDEX.json"
 LAUNCHD_LABEL="com.suneelworkspace.maintenance"
 LAUNCHD_WORKSPACE_PLIST="$ROOT/automation/launchd/$LAUNCHD_LABEL.plist"
 LAUNCHD_USER_PLIST="$HOME/Library/LaunchAgents/$LAUNCHD_LABEL.plist"
@@ -30,13 +30,13 @@ ensure_core_dirs() {
     "$ROOT/automation/launchd" \
     "$ROOT/automation/hooks" \
     "$ROOT/automation/reports" \
-    "$ROOT/agent-system/shared" \
-    "$ROOT/agent-system/memory" \
-    "$ROOT/agent-system/tasks" \
-    "$ROOT/agent-system/logs" \
-    "$ROOT/agent-system/state" \
-    "$ROOT/agent-system/templates" \
-    "$ROOT/agent-system/docs" \
+    "$ROOT/brain/memory/shared" \
+    "$ROOT/brain/memory/memory" \
+    "$ROOT/brain/memory/tasks" \
+    "$ROOT/brain/memory/logs" \
+    "$ROOT/brain/memory/state" \
+    "$ROOT/brain/memory/templates" \
+    "$ROOT/brain/memory/docs" \
     "$ROOT/projects"
 }
 

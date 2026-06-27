@@ -10,18 +10,18 @@
     "examples": [
       "after drafts, suggest review/send approval steps"
     ],
-    "prediction_engine": "anticipation/prediction_engine.py",
+    "prediction_engine": "brain/anticipation/prediction_engine.py",
     "suggestion_scope": "suggest_only_never_send"
   },
   "identity": {
     "adaptive": {
-      "drift_guardrails": "identity/adaptive/drift_guardrails.json",
+      "drift_guardrails": "dna/dna/identity/adaptive/drift_guardrails.json",
       "enabled": true,
-      "pattern_updates": "identity/adaptive/pattern_updates.json",
+      "pattern_updates": "dna/dna/identity/adaptive/pattern_updates.json",
       "scope": "small tone refinements only",
       "send_requires_explicit_approval": true
     },
-    "communication_prompt": "identity/prompts/communication_prompt.md",
+    "communication_prompt": "dna/dna/identity/prompts/communication_prompt.md",
     "enabled": true,
     "rules": [
       "short_direct_casual",
@@ -29,7 +29,7 @@
       "never_condescending",
       "do_not_send_without_explicit_approval"
     ],
-    "tone_profile": "identity/profile/tone_profile.md"
+    "tone_profile": "dna/dna/identity/profile/tone_profile.md"
   },
   "imessage": {
     "automation_permission_required": true,
@@ -49,7 +49,7 @@
     "accounts_configured": false,
     "adapter": "applescript",
     "enabled": false,
-    "fallback": "see comms/reports/plugin_recommendations.md for Gmail/IMAP options",
+    "fallback": "see mouth/comms/reports/plugin_recommendations.md for Gmail/IMAP options",
     "mailapp_installed": false,
     "reason_disabled": "Mail.app not installed at /Applications/Mail.app"
   },

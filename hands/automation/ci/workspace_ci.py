@@ -99,9 +99,9 @@ def check_key_files():
         'skeleton/rules/AGENT_SYSTEM.md',
         'brain/memory/MEMORY.md',
         'heart/tasks/ACTIVE_TASKS.md',
-        'heart/orchestrator/mesh/agent_registry.json',
+        'heart/heart/heart/orchestrator/mesh/agent_registry.json',
         'brain/graph/build_graph.py',
-        'nervous/gateway/api.py',
+        'nervous/nervous/gateway/api.py',
     ]
     missing = [f for f in required if not (WORKSPACE / f).exists()]
     check("Key files exist", len(missing) == 0, '\n'.join(missing))

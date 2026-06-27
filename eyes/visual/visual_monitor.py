@@ -28,12 +28,12 @@ async def monitor_loop() -> None:
         await asyncio.sleep(interval)
 
         print("📸 Taking dashboard screenshot…")
-        from visual.screenshot_manager import take_screenshot
+        from eyes.visual.screenshot_manager import take_screenshot
         screenshot_path = take_screenshot(label="monitor")
 
         if screenshot_path:
             print(f"✅ Screenshot saved: {screenshot_path}")
-            from visual.vision_analyzer import analyze_screenshot
+            from eyes.visual.vision_analyzer import analyze_screenshot
             analysis = analyze_screenshot(screenshot_path)
             issues = analysis.get("issues", [])
             if issues:

@@ -9,8 +9,8 @@ import time
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path(os.environ.get("SUNEEL_WORKSPACE", str(pathlib.Path.home() / "SuneelWorkSpace"))).resolve()
-LOGS_DIR = ROOT / "agent-system/logs"
-MCP_LOGS_DIR = ROOT / "nervous/mcp/server/logs"
+LOGS_DIR = ROOT / "brain/memory/logs"
+MCP_LOGS_DIR = ROOT / "nervous/nervous/nervous/mcp/server/logs"
 
 def log_event(message: str):
     stamp = datetime.now(timezone.utc).astimezone().isoformat()
@@ -25,7 +25,7 @@ def log_event(message: str):
 
 def check_performance():
     """Detect degraded performance via testing latency logs."""
-    results_path = ROOT / "testing/test_results.json"
+    results_path = ROOT / "lab/testing/test_results.json"
     if not results_path.exists():
         return
     try:

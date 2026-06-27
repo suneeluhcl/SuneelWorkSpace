@@ -73,6 +73,6 @@ The workspace uses both **Headroom** (API context compression) and **RTK** (CLI 
 ## What To Remember
 
 - The main workspace is `~/SuneelWorkSpace`.
-- The main instruction file is `agent-system/shared/AGENT_SYSTEM.md`.
-- Memory lives in `agent-system/memory/`.
+- The main instruction file is `skeleton/rules/AGENT_SYSTEM.md`.
+- Memory lives in `brain/memory/`.
 - If something looks wrong, run `agent-doctor` first and `agent-repair` second.

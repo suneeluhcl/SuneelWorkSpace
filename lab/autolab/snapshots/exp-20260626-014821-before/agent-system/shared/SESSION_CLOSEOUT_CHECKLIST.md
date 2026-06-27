@@ -2,12 +2,12 @@
 
 ## Update
 
-- `agent-system/memory/SESSION_HANDOFF.md`
-- `agent-system/tasks/ACTIVE_TASKS.md`
-- `agent-system/tasks/COMPLETED_TASKS.md`
-- `agent-system/logs/SESSION_LOG.md`
-- `agent-system/state/CURRENT_STATE.json`
-- `agent-system/state/WORKSPACE_HEALTH.json` if health changed
+- `brain/memory/SESSION_HANDOFF.md`
+- `heart/tasks/ACTIVE_TASKS.md`
+- `heart/tasks/COMPLETED_TASKS.md`
+- `blood/logs/SESSION_LOG.md`
+- `spine/state/CURRENT_STATE.json`
+- `spine/state/WORKSPACE_HEALTH.json` if health changed
 
 ## Automatic Safety Net
 
@@ -16,8 +16,8 @@
 
 ## Consider Updating
 
-- `agent-system/memory/MEMORY.md` for durable facts.
-- `agent-system/memory/DECISIONS.md` for important decisions and reasons.
+- `brain/memory/MEMORY.md` for durable facts.
+- `brain/memory/DECISIONS.md` for important decisions and reasons.
 
 ## Verify
 

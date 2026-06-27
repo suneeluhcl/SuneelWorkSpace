@@ -10,7 +10,7 @@ from embed_engine import embed_and_store, CHROMA_DIR, COLLECTION_NAME
 import chromadb
 
 # Configure logging
-log_dir = "/Users/MAC/SuneelWorkSpace/agent-system/logs"
+log_dir = "/Users/MAC/SuneelWorkSpace/brain/memory/logs"
 os.makedirs(log_dir, exist_ok=True)
 logging.basicConfig(
     filename=os.path.join(log_dir, "vector_embed.log"),
@@ -34,17 +34,17 @@ def main():
     
     # Files to index from Step 1.5
     files_to_index = [
-        "agent-system/memory/MEMORY.md",
-        "agent-system/memory/DECISIONS.md",
-        "agent-system/memory/PATTERNS.md",
-        "agent-system/memory/INSIGHTS.md",
-        "agent-system/memory/SESSION_HANDOFF.md",
-        "identity/profile/identity_profile.md",
-        "identity/profile/decision_profile.md"
+        "brain/memory/MEMORY.md",
+        "brain/memory/DECISIONS.md",
+        "brain/memory/PATTERNS.md",
+        "brain/memory/INSIGHTS.md",
+        "brain/memory/SESSION_HANDOFF.md",
+        "dna/dna/identity/profile/identity_profile.md",
+        "dna/dna/identity/profile/decision_profile.md"
     ]
     
-    # Find all files in research-engine/decisions/
-    research_decisions = glob.glob("research-engine/decisions/**/*.md", recursive=True)
+    # Find all files in brain/research/decisions/
+    research_decisions = glob.glob("brain/research/decisions/**/*.md", recursive=True)
     files_to_index.extend(research_decisions)
     
     # Find all files in brain/decisions/ (if it exists)

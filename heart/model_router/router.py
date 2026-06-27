@@ -11,7 +11,7 @@ FALLBACK_LOG = _HERE / "fallback_log.jsonl"
 
 # Keep imports lazy so the module is importable without side effects
 def _get_quota():
-    from agent_system.model_router.quota_tracker import get_status, record_usage, mark_unavailable
+    from heart.model_router.quota_tracker import get_status, record_usage, mark_unavailable
     return get_status, record_usage, mark_unavailable
 
 

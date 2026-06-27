@@ -14,8 +14,8 @@
 
 ```
 1. User requests draft       comms_create_imessage_draft() / imsg-draft
-2. Draft saved to state/     comms/imessage/state/drafts/<id>.json
-3. User reviews draft        cat comms/imessage/state/drafts/<id>.json
+2. Draft saved to state/     mouth/comms/imessage/state/drafts/<id>.json
+3. User reviews draft        cat mouth/comms/imessage/state/drafts/<id>.json
 4. User runs send-confirmed  imsg-send-confirmed <draft_id>
 5. Terminal prompts: "Type SEND to send"
 6. User types SEND
@@ -40,7 +40,7 @@
 The outbound allowlist is empty by default (`outbound_policy.json: allowlist_enforced: false`).
 
 To restrict sends to known contacts only:
-1. Edit `comms/config/access_policy.json`
+1. Edit `mouth/mouth/comms/config/access_policy.json`
 2. Set `allowlist.enabled: true`
 3. Add phone numbers/emails to `allowlist.recipients`
 

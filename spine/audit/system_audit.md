@@ -40,7 +40,7 @@ No private home-directory file contents were ingested. Home awareness is limited
 ## Missing Or Incomplete Subsystems
 
 - [P0] architecture: System-wide audit artifacts were missing or not first-class. Impact: Agents could inspect files ad hoc, but there was no durable overview for future sessions.
-- [P0] automation: Health checks did not summarize audit/gap/research/tool readiness. Impact: Maintenance could report green while intelligence coverage was incomplete.
+- [P0] automation: Health checks did not summarize spine/audit/gap/research/tool readiness. Impact: Maintenance could report green while intelligence coverage was incomplete.
 - [P1] intelligence: Ideas, comparisons, and decisions had no dedicated pipeline. Impact: Research outcomes could remain in chat instead of becoming durable shared brain context.
 - [P1] research: Tool discovery was not summarized into an inspectable inventory. Impact: Agents had to rediscover installed CLIs, apps, and integration candidates.
 - [P1] workflow: Email, messaging, downloads, and file organization support existed only as scattered commands. Impact: Daily workflows lacked a unified route from capture to execution to memory.

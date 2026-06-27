@@ -4,12 +4,12 @@ Autolab may analyze identity effectiveness, but it must not override identity au
 
 ## Inputs
 
-- `identity/adaptive/feedback_log.json`
-- `identity/adaptive/signal_weights.json`
-- `identity/adaptive/signal_memory.json`
-- `identity/adaptive/pattern_updates.json`
-- `identity/adaptive/drift_guardrails.json`
-- `identity/adaptive/reports/adaptation_report.md`
+- `dna/dna/identity/adaptive/feedback_log.json`
+- `dna/dna/identity/adaptive/signal_weights.json`
+- `dna/dna/identity/adaptive/signal_memory.json`
+- `dna/dna/identity/adaptive/pattern_updates.json`
+- `dna/dna/identity/adaptive/drift_guardrails.json`
+- `dna/dna/identity/adaptive/reports/adaptation_report.md`
 
 ## What Autolab Can Do
 
@@ -21,7 +21,7 @@ Autolab may analyze identity effectiveness, but it must not override identity au
 
 ## What Autolab Must Not Do
 
-- Override `identity/profile/identity_profile.md`.
+- Override `dna/dna/identity/profile/identity_profile.md`.
 - Remove explicit user preferences.
 - Change safety boundaries.
 - Make large tone shifts automatically.

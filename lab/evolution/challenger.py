@@ -1,7 +1,7 @@
 """
 challenger.py
 Generates self-improvement challenges for the workspace.
-Logs challenges to evolution/challenges.jsonl.
+Logs challenges to lab/evolution/challenges.jsonl.
 """
 import json
 import random

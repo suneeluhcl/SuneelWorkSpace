@@ -16,5 +16,5 @@
   ],
   "relevance_threshold": 0.4,
   "schedule": "0 7 * * *",
-  "output_dir": "monitor/cache"
+  "output_dir": "ears/monitor/cache"
 }

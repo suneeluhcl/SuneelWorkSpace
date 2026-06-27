@@ -29,7 +29,7 @@
 2. Verify Messages.app is open and signed in
 
 **Symptom:** `Draft not found: draft_20260624_XXXXXX`
-- Check: `ls ~/SuneelWorkSpace/comms/imessage/state/drafts/`
+- Check: `ls ~/SuneelWorkSpace/mouth/comms/imessage/state/drafts/`
 - Re-create the draft: `imsg-draft <recipient> <message>`
 
 ---
@@ -42,7 +42,7 @@ mcp-doctor
 
 If `comms_*` tools not found:
 1. MCP server needs restart: `mcp-stop && mcp-start`
-2. Check: `grep -c "comms_" ~/SuneelWorkSpace/mcp/server/main.py`
+2. Check: `grep -c "comms_" ~/SuneelWorkSpace/nervous/nervous/mcp/server/main.py`
    - Should return ~20
 
 ---
@@ -60,11 +60,11 @@ If `comms_*` tools not found:
 
 | File | Purpose |
 |------|---------|
-| `comms/imessage/state/imessage_state.json` | Draft list and session state |
-| `comms/imessage/state/drafts/` | Individual draft JSON files |
-| `comms/imessage/logs/imessage_outbound.log` | Send audit log |
-| `comms/mail/state/mail_state.json` | Mail subsystem state |
-| `comms/config/comms_config.json` | Main config |
+| `mouth/comms/imessage/state/imessage_state.json` | Draft list and session state |
+| `mouth/comms/imessage/state/drafts/` | Individual draft JSON files |
+| `mouth/comms/imessage/logs/imessage_outbound.log` | Send audit log |
+| `mouth/comms/mail/state/mail_state.json` | Mail subsystem state |
+| `mouth/mouth/comms/config/comms_config.json` | Main config |
 
 ---
 
@@ -74,11 +74,11 @@ If the subsystem is in a bad state:
 
 ```bash
 # Clear drafts (they haven't been sent)
-rm ~/SuneelWorkSpace/comms/imessage/state/drafts/*.json 2>/dev/null
+rm ~/SuneelWorkSpace/mouth/comms/imessage/state/drafts/*.json 2>/dev/null
 
 # Reset state
 echo '{"drafts": [], "last_checked": null}' > \
-  ~/SuneelWorkSpace/comms/imessage/state/imessage_state.json
+  ~/SuneelWorkSpace/mouth/comms/imessage/state/imessage_state.json
 
 # Verify
 comms-doctor

@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path("/Users/MAC/SuneelWorkSpace")
-COMMANDS = ["python3 adwi/scripts/validate_obsidian_vault.py", "python3 -m unittest adwi/tests/test_obsidian_utils.py", "python3 -m unittest adwi/simlab/tests/test_nlu_regex.py"]
+COMMANDS = ["python3 adwi/scripts/validate_obsidian_vault.py", "python3 -m unittest adwi/lab/tests/test_obsidian_utils.py", "python3 -m unittest adwi/simlab/lab/tests/test_nlu_regex.py"]
 WORKFLOW_NAME = "Obsidian Upgrade Handoff"
 SOURCE_NOTE = "/Users/MAC/SuneelWorkSpace/brain/knowledge/Obsidian Upgrade Handoff.md"
 

@@ -30,11 +30,11 @@ Summary: Automatic closeout checkpoint (shell-exit). 30 recently modified files 
 Changed:
 
 - `.gitignore`
-- `.playwright-nervous/mcp/console-2026-06-26T20-38-10-561Z.log`
-- `.playwright-nervous/mcp/page-2026-06-26T20-38-10-642Z.yml`
-- `.playwright-nervous/mcp/page-2026-06-26T20-38-19-673Z.yml`
-- `.playwright-nervous/mcp/page-2026-06-26T20-39-04-949Z.yml`
-- `.playwright-nervous/mcp/page-2026-06-26T20-39-11-642Z.yml`
+- `.playwright-nervous/nervous/mcp/console-2026-06-26T20-38-10-561Z.log`
+- `.playwright-nervous/nervous/mcp/page-2026-06-26T20-38-10-642Z.yml`
+- `.playwright-nervous/nervous/mcp/page-2026-06-26T20-38-19-673Z.yml`
+- `.playwright-nervous/nervous/mcp/page-2026-06-26T20-39-04-949Z.yml`
+- `.playwright-nervous/nervous/mcp/page-2026-06-26T20-39-11-642Z.yml`
 - `.pytest_cache/.gitignore`
 - `.pytest_cache/CACHEDIR.TAG`
 - `.pytest_cache/README.md`

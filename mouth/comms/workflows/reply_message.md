@@ -13,7 +13,7 @@ imsg-search "meeting"
 #    comms_create_imessage_draft("+1XXXXXXXXXX", "draft text")
 
 # 4. Review the draft
-cat ~/SuneelWorkSpace/comms/imessage/state/drafts/draft_*.json | tail -1
+cat ~/SuneelWorkSpace/mouth/comms/imessage/state/drafts/draft_*.json | tail -1
 
 # 5. Send (terminal only, requires confirmation)
 imsg-send-confirmed draft_YYYYMMDD_HHMMSS

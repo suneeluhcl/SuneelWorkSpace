@@ -16,7 +16,7 @@ imsg-recent
 #    comms_convert_to_task("imessage", "message_id", "Task description", "high")
 
 # 3. Verify task was added
-cat ~/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md
+cat ~/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md
 ```
 
 ## Goal conversion (larger items)

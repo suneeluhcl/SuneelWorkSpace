@@ -52,7 +52,7 @@ Mail.app is **not installed** on this system. No Mail permissions are needed unt
 2. Use the Gmail plugin (`claude plugin install gmail@claude-plugins-official`) — requires Google OAuth
 3. Configure IMAP/SMTP manually — requires credentials, not recommended for first setup
 
-See: `comms/reports/plugin_recommendations.md` for evaluation of each option.
+See: `mouth/comms/reports/plugin_recommendations.md` for evaluation of each option.
 
 ---
 

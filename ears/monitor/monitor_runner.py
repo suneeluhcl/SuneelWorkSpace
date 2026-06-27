@@ -7,10 +7,10 @@ from pathlib import Path
 # Allow running from any directory
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from monitor.sources.rss_monitor import run as run_rss
-from monitor.sources.github_monitor import run as run_github
-from monitor.sources.arxiv_monitor import run as run_arxiv
-from monitor.digest.digest_builder import build as build_digest
+from ears.monitor.sources.rss_monitor import run as run_rss
+from ears.monitor.sources.github_monitor import run as run_github
+from ears.monitor.sources.arxiv_monitor import run as run_arxiv
+from ears.monitor.digest.digest_builder import build as build_digest
 
 
 def run(source: str | None = None, dry_run: bool = False, skip_digest: bool = False) -> None:

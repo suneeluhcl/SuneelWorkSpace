@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-MEMORY_FILE = WORKSPACE / 'anticipation/prediction_memory.json'
+MEMORY_FILE = WORKSPACE / 'brain/anticipation/prediction_memory.json'
 
 BOOTSTRAP_PATTERNS = [
     # idea → goal → execute flow
@@ -33,7 +33,7 @@ BOOTSTRAP_PATTERNS = [
     {"sequence": ["workspace-index"], "next": "memory-search", "confidence": 0.65},
     {"sequence": ["mcp-reindex"], "next": "mcp-status", "confidence": 0.78},
     {"sequence": ["mcp-status"], "next": "mcp-reindex", "confidence": 0.62},
-    # audit/improvement flow
+    # spine/audit/improvement flow
     {"sequence": ["agent-doctor"], "next": "workspace-ci", "confidence": 0.70},
     {"sequence": ["workspace-ci"], "next": "agent-repair", "confidence": 0.65},
     {"sequence": ["duplication-guard"], "next": "integrity-guard", "confidence": 0.72},

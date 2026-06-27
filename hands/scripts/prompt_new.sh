@@ -3,7 +3,7 @@
 set -euo pipefail
 
 WORKSPACE="${WORKSPACE:-$HOME/SuneelWorkSpace}"
-VERSIONS_DIR="$WORKSPACE/dna/identity/prompts/versions"
+VERSIONS_DIR="$WORKSPACE/dna/dna/dna/identity/prompts/versions"
 LOG_FILE="$WORKSPACE/blood/logs/prompt_versions.log"
 TODAY=$(date +"%Y-%m-%d")
 
@@ -29,7 +29,7 @@ fi
 # Copy current as new version with updated header
 CURRENT_FILE="$VERSIONS_DIR/identity_prompt_v${CURRENT_NUM}.md"
 if [[ ! -f "$CURRENT_FILE" ]]; then
-  CURRENT_FILE="$WORKSPACE/dna/identity/prompts/identity_prompt.md"
+  CURRENT_FILE="$WORKSPACE/dna/dna/dna/identity/prompts/identity_prompt.md"
 fi
 
 # Write new version file with YAML frontmatter

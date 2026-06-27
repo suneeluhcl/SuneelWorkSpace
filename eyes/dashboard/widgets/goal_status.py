@@ -2,7 +2,7 @@
 import os
 import re
 
-GOALS_FILE = "/Users/MAC/SuneelWorkSpace/goal-engine/goals/active_goals.md"
+GOALS_FILE = "/Users/MAC/SuneelWorkSpace/heart/goals/goals/active_goals.md"
 
 def get_active_goals():
     if not os.path.exists(GOALS_FILE):

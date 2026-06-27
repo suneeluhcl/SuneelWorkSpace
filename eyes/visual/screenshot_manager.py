@@ -1,7 +1,7 @@
 """
 screenshot_manager.py
 Takes, organizes, archives, and manages all workspace screenshots.
-NEVER saves screenshots to workspace root — always to visual/screenshots/.
+NEVER saves screenshots to workspace root — always to eyes/visual/screenshots/.
 """
 import glob
 import json
@@ -16,11 +16,11 @@ from pathlib import Path
 _HERE = Path(__file__).parent
 WORKSPACE = _HERE.parent
 
-SCREENSHOT_DIR = WORKSPACE / "visual/screenshots/dashboard"
-UPLOAD_DIR     = WORKSPACE / "visual/screenshots/user_uploads"
-ARCHIVE_DIR    = WORKSPACE / "visual/screenshots/archive"
-STATE_PATH     = WORKSPACE / "visual/visual_state.json"
-REPAIR_LOG     = WORKSPACE / "visual/visual_repair_log.jsonl"
+SCREENSHOT_DIR = WORKSPACE / "eyes/visual/screenshots/dashboard"
+UPLOAD_DIR     = WORKSPACE / "eyes/visual/screenshots/user_uploads"
+ARCHIVE_DIR    = WORKSPACE / "eyes/visual/screenshots/archive"
+STATE_PATH     = WORKSPACE / "eyes/visual/visual_state.json"
+REPAIR_LOG     = WORKSPACE / "eyes/visual/visual_repair_log.jsonl"
 
 MAX_DASHBOARD_SCREENSHOTS = 50
 ARCHIVE_AFTER_DAYS = 7

@@ -8,7 +8,7 @@ WORKSPACE = os.path.expanduser("~/SuneelWorkSpace")
 def get_data() -> dict:
     try:
         sys.path.insert(0, WORKSPACE)
-        from agent_system.model_router.quota_tracker import get_status
+        from heart.model_router.quota_tracker import get_status
         return get_status()
     except Exception as e:
         return {"models": [], "error": str(e)[:100]}

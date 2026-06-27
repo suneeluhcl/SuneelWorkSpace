@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Ingest feedback .md files → JSONL training records → autolab/training_data/."""
+"""Ingest feedback .md files → JSONL training records → lab/autolab/training_data/."""
 
 import json
 import re
@@ -124,7 +124,7 @@ def main() -> None:
     else:
         records = run_all()
         if records:
-            print(f"\n{len(records)} feedback record(s) ingested → autolab/training_data/")
+            print(f"\n{len(records)} feedback record(s) ingested → lab/autolab/training_data/")
             print("Run 'autolab-run' to trigger eval cycle.")
 
 

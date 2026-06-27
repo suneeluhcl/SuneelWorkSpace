@@ -16,7 +16,7 @@
 
 - Existing files and commands under `~/SuneelWorkSpace`.
 - Relevant MCP resources and shared memory entries.
-- Local CLI/app capabilities from `tools/tool_inventory.json`.
+- Local CLI/app capabilities from `spine/tools/tool_inventory.json`.
 - Fresh web or vendor documentation only when explicitly requested or required for current facts.
 
 ## Output

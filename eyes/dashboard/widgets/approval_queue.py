@@ -3,7 +3,7 @@ import json
 import os
 
 WORKSPACE = os.path.expanduser("~/SuneelWorkSpace")
-APPROVAL_QUEUE_PATH = os.path.join(WORKSPACE, "visual/visual_approval_queue.json")
+APPROVAL_QUEUE_PATH = os.path.join(WORKSPACE, "eyes/visual/visual_approval_queue.json")
 
 
 def get_data() -> dict:

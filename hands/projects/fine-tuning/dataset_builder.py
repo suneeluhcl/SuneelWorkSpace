@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-FEEDBACK_FILE = WORKSPACE / 'dna/identity/adaptive/feedback_log.json'
+FEEDBACK_FILE = WORKSPACE / 'dna/dna/dna/identity/adaptive/feedback_log.json'
 OUTPUT_DIR = WORKSPACE / 'projects/fine-tuning/datasets'
 
 
@@ -62,7 +62,7 @@ def main():
         placeholder = OUTPUT_DIR / 'README.md'
         if not placeholder.exists():
             placeholder.write_text(
-                "# Fine-Tuning Datasets\n\nDatasets built from dna/identity/adaptive/feedback_log.json.\n"
+                "# Fine-Tuning Datasets\n\nDatasets built from dna/dna/dna/identity/adaptive/feedback_log.json.\n"
                 "Run `build-training-data` after collecting feedback.\n"
             )
         return

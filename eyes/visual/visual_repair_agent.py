@@ -65,7 +65,7 @@ def _generate_and_apply_fix(issue: dict) -> dict:
         r = subprocess.run(
             [sys.executable, "-c",
              "import sys; sys.path.insert(0, '.'); "
-             "from autolab.hypothesis_generator import generate_hypotheses; generate_hypotheses()"],
+             "from lab.autolab.hypothesis_generator import generate_hypotheses; generate_hypotheses()"],
             capture_output=True, text=True, timeout=30, cwd=str(WORKSPACE),
         )
         result["applied"] = r.returncode == 0
@@ -73,7 +73,7 @@ def _generate_and_apply_fix(issue: dict) -> dict:
 
     elif issue_id in ("no_gap_analysis", "stale_gap_analysis"):
         r = subprocess.run(
-            [sys.executable, "evolution/gap_finder.py"],
+            [sys.executable, "lab/evolution/gap_finder.py"],
             capture_output=True, text=True, timeout=60, cwd=str(WORKSPACE),
         )
         result["applied"] = r.returncode == 0
@@ -159,8 +159,8 @@ def enqueue_from_analysis(analysis: dict) -> int:
 
 if __name__ == "__main__":
     sys.path.insert(0, str(WORKSPACE))
-    from visual.vision_analyzer import analyze_screenshot
-    from visual.screenshot_manager import get_latest_screenshot
+    from eyes.visual.vision_analyzer import analyze_screenshot
+    from eyes.visual.screenshot_manager import get_latest_screenshot
 
     shot = get_latest_screenshot()
     analysis = analyze_screenshot(shot["path"] if shot else None)

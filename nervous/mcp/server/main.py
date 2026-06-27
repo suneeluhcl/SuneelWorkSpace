@@ -2,7 +2,7 @@
 """
 workspace-brain MCP server
 Local MCP server exposing SuneelWorkSpace agent-system intelligence.
-Run via: uv run --with mcp python3 /Users/MAC/SuneelWorkSpace/mcp/server/main.py
+Run via: uv run --with mcp python3 /Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/main.py
 """
 
 import json
@@ -18,7 +18,7 @@ import textwrap
 from datetime import datetime, timezone
 from typing import Optional
 
-from mcp.server.fastmcp import FastMCP
+from nervous.mcp.server.fastmcp import FastMCP
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -233,35 +233,35 @@ def build_index() -> dict:
 
     sources = [
         # (path_rel_or_abs, category, label)
-        ("agent-system/shared/AGENT_SYSTEM.md",       "instructions", "workspace-overview"),
-        ("agent-system/shared/IDENTITY.md",            "instructions", "identity"),
-        ("agent-system/shared/WORKFLOW_RULES.md",      "instructions", "workflow-rules"),
-        ("agent-system/shared/SAFETY_BOUNDARIES.md",   "instructions", "safety-boundaries"),
-        ("agent-system/shared/STARTUP_CHECKLIST.md",   "instructions", "startup-checklist"),
-        ("agent-system/memory/MEMORY.md",              "memory",       "memory"),
-        ("agent-system/memory/DECISIONS.md",           "memory",       "decisions"),
-        ("agent-system/memory/SESSION_HANDOFF.md",     "memory",       "session-handoff"),
-        ("agent-system/memory/NOTES.md",               "memory",       "notes"),
-        ("agent-system/tasks/ACTIVE_TASKS.md",         "tasks",        "active-tasks"),
-        ("agent-system/tasks/TASK_QUEUE.md",           "tasks",        "task-queue"),
-        ("agent-system/tasks/COMPLETED_TASKS.md",      "tasks",        "completed-tasks"),
-        ("agent-system/state/CURRENT_STATE.json",      "state",        "current-state"),
-        ("agent-system/state/WORKSPACE_HEALTH.json",   "state",        "workspace-health"),
-        ("autolab/current_frontier.md",                "autolab",      "autolab-frontier"),
-        ("autolab/program.md",                         "autolab",      "autolab-program"),
-        ("autolab/meta/insights.md",                   "autolab",      "autolab-insights"),
-        ("autolab/meta/patterns.json",                 "autolab",      "autolab-patterns"),
-        ("autolab/meta/failure_patterns.json",         "autolab",      "autolab-failures"),
-        ("autolab/meta/learning_log.md",               "autolab",      "autolab-learning"),
-        ("autolab/results.tsv",                        "autolab",      "autolab-results"),
-        ("agent-system/logs/SESSION_LOG.md",                       "logs",         "session-log"),
-        ("orchestrator/router/router.md",                          "orchestrator", "router-guide"),
-        ("orchestrator/router/decision_policy.md",                 "orchestrator", "decision-policy"),
-        ("orchestrator/router/agent_profiles.json",                "orchestrator", "agent-profiles"),
-        ("orchestrator/router/task_types.json",                    "orchestrator", "task-types"),
-        ("orchestrator/models/routing_patterns.json",              "orchestrator", "routing-patterns"),
-        ("orchestrator/reports/agent_performance.md",              "orchestrator", "agent-performance"),
-        ("orchestrator/state/current_routing_state.json",          "orchestrator", "routing-state"),
+        ("skeleton/rules/AGENT_SYSTEM.md",       "instructions", "workspace-overview"),
+        ("skeleton/rules/IDENTITY.md",            "instructions", "identity"),
+        ("skeleton/rules/WORKFLOW_RULES.md",      "instructions", "workflow-rules"),
+        ("skeleton/rules/SAFETY_BOUNDARIES.md",   "instructions", "safety-boundaries"),
+        ("skeleton/rules/STARTUP_CHECKLIST.md",   "instructions", "startup-checklist"),
+        ("brain/memory/MEMORY.md",              "memory",       "memory"),
+        ("brain/memory/DECISIONS.md",           "memory",       "decisions"),
+        ("brain/memory/SESSION_HANDOFF.md",     "memory",       "session-handoff"),
+        ("brain/memory/NOTES.md",               "memory",       "notes"),
+        ("heart/tasks/ACTIVE_TASKS.md",         "tasks",        "active-tasks"),
+        ("heart/tasks/TASK_QUEUE.md",           "tasks",        "task-queue"),
+        ("heart/tasks/COMPLETED_TASKS.md",      "tasks",        "completed-tasks"),
+        ("spine/state/CURRENT_STATE.json",      "state",        "current-state"),
+        ("spine/state/WORKSPACE_HEALTH.json",   "state",        "workspace-health"),
+        ("lab/autolab/current_frontier.md",                "autolab",      "autolab-frontier"),
+        ("lab/autolab/program.md",                         "autolab",      "autolab-program"),
+        ("lab/autolab/meta/insights.md",                   "autolab",      "autolab-insights"),
+        ("lab/autolab/meta/patterns.json",                 "autolab",      "autolab-patterns"),
+        ("lab/autolab/meta/failure_patterns.json",         "autolab",      "autolab-failures"),
+        ("lab/autolab/meta/learning_log.md",               "autolab",      "autolab-learning"),
+        ("lab/autolab/results.tsv",                        "autolab",      "autolab-results"),
+        ("blood/logs/SESSION_LOG.md",                       "logs",         "session-log"),
+        ("heart/heart/orchestrator/router/router.md",                          "orchestrator", "router-guide"),
+        ("heart/heart/orchestrator/router/decision_policy.md",                 "orchestrator", "decision-policy"),
+        ("heart/heart/orchestrator/router/agent_profiles.json",                "orchestrator", "agent-profiles"),
+        ("heart/heart/orchestrator/router/task_types.json",                    "orchestrator", "task-types"),
+        ("heart/orchestrator/models/routing_patterns.json",              "orchestrator", "routing-patterns"),
+        ("heart/orchestrator/reports/agent_performance.md",              "orchestrator", "agent-performance"),
+        ("heart/orchestrator/state/current_routing_state.json",          "orchestrator", "routing-state"),
     ]
 
     total = 0
@@ -402,35 +402,35 @@ def res_health() -> str:
     """Workspace health JSON"""
     return _resource_from_map("workspace://health")
 
-@mcp.resource("workspace://autolab/frontier")
+@mcp.resource("workspace://lab/autolab/frontier")
 def res_autolab_frontier() -> str:
     """Autolab current frontier"""
-    return _resource_from_map("workspace://autolab/frontier")
+    return _resource_from_map("workspace://lab/autolab/frontier")
 
-@mcp.resource("workspace://autolab/program")
+@mcp.resource("workspace://lab/autolab/program")
 def res_autolab_program() -> str:
     """Autolab program and strategy"""
-    return _resource_from_map("workspace://autolab/program")
+    return _resource_from_map("workspace://lab/autolab/program")
 
-@mcp.resource("workspace://autolab/insights")
+@mcp.resource("workspace://lab/autolab/insights")
 def res_autolab_insights() -> str:
     """Autolab meta insights"""
-    return _resource_from_map("workspace://autolab/insights")
+    return _resource_from_map("workspace://lab/autolab/insights")
 
-@mcp.resource("workspace://autolab/patterns")
+@mcp.resource("workspace://lab/autolab/patterns")
 def res_autolab_patterns() -> str:
     """Autolab patterns JSON"""
-    return _resource_from_map("workspace://autolab/patterns")
+    return _resource_from_map("workspace://lab/autolab/patterns")
 
-@mcp.resource("workspace://autolab/failures")
+@mcp.resource("workspace://lab/autolab/failures")
 def res_autolab_failures() -> str:
     """Autolab failure patterns JSON"""
-    return _resource_from_map("workspace://autolab/failures")
+    return _resource_from_map("workspace://lab/autolab/failures")
 
-@mcp.resource("workspace://autolab/learning")
+@mcp.resource("workspace://lab/autolab/learning")
 def res_autolab_learning() -> str:
     """Autolab learning log"""
-    return _resource_from_map("workspace://autolab/learning")
+    return _resource_from_map("workspace://lab/autolab/learning")
 
 @mcp.resource("workspace://logs/recent")
 def res_logs_recent() -> str:
@@ -455,7 +455,7 @@ def res_digest() -> str:
         parts.append(f"## {label}\n{_resource_from_map(key)}")
     return "\n\n---\n\n".join(parts)
 
-@mcp.resource("workspace://mcp/state")
+@mcp.resource("workspace://nervous/mcp/state")
 def res_mcp_state() -> str:
     """MCP subsystem state"""
     if not STATE_FILE.exists():
@@ -511,7 +511,7 @@ def res_brain_system() -> str:
 @mcp.resource("workspace://brain/patterns")
 def res_brain_patterns() -> str:
     """List of all behavioral patterns in the system"""
-    p = WORKSPACE / "anticipation/behavior_patterns.json"
+    p = WORKSPACE / "brain/anticipation/behavior_patterns.json"
     if p.exists():
         return p.read_text(errors="replace")
     return "[]"
@@ -972,7 +972,7 @@ def list_active_hypotheses() -> str:
     """List current autolab experiment queue and active hypotheses."""
     _access("list_active_hypotheses")
     queue_path = AUTOLAB / "experiment_queue.md"
-    frontier = _resource_from_map("workspace://autolab/frontier")
+    frontier = _resource_from_map("workspace://lab/autolab/frontier")
     queue_content = _read_workspace_file(str(queue_path)) if queue_path.exists() else "[No experiment queue found]"
     return f"## FRONTIER\n{frontier}\n\n## EXPERIMENT QUEUE\n{queue_content}"
 
@@ -1252,9 +1252,9 @@ def workspace_status_brief() -> str:
 @mcp.prompt()
 def autolab_summary() -> str:
     """Autolab learning and experiment summary."""
-    frontier = _resource_from_map("workspace://autolab/frontier")
-    insights = _resource_from_map("workspace://autolab/insights")
-    failures = _resource_from_map("workspace://autolab/failures")
+    frontier = _resource_from_map("workspace://lab/autolab/frontier")
+    insights = _resource_from_map("workspace://lab/autolab/insights")
+    failures = _resource_from_map("workspace://lab/autolab/failures")
     return (
         f"# Autolab Summary\n\n"
         f"## Current Frontier\n{frontier[:1500]}\n\n"
@@ -1673,7 +1673,7 @@ def get_gstack_version() -> str:
 def verify_gstack_integrity() -> str:
     """Run a live integrity check on the gstack install.
 
-    Compares the installed commit to the pinned commit in mcp/config/gstack_version.json.
+    Compares the installed commit to the pinned commit in nervous/mcp/config/gstack_version.json.
     Also checks for dirty working tree and broken skill symlinks.
     Returns OK, DRIFT, or ERROR.
     """
@@ -1906,7 +1906,7 @@ _ensure_index()
 log.info("workspace-brain MCP server ready")
 
 # ---------------------------------------------------------------------------
-# COMMS — iMessage and Mail tools/resources
+# COMMS — iMessage and Mail spine/tools/resources
 # ---------------------------------------------------------------------------
 
 COMMS_ROOT = WORKSPACE / "comms"
@@ -1958,7 +1958,7 @@ def _redact_handle(h: str) -> str:
 
 # --- iMessage resources ---
 
-@mcp.resource("workspace://comms/status")
+@mcp.resource("workspace://mouth/comms/status")
 def res_comms_status() -> str:
     """Communications subsystem status overview."""
     cfg = _comms_config()
@@ -1973,13 +1973,13 @@ def res_comms_status() -> str:
         f"Confirmation required: YES\n"
     )
 
-@mcp.resource("workspace://comms/policy")
+@mcp.resource("workspace://mouth/comms/policy")
 def res_comms_policy() -> str:
     """Communications outbound policy."""
     p = COMMS_ROOT / "config/outbound_policy.json"
     return p.read_text() if p.exists() else "[outbound_policy.json not found]"
 
-@mcp.resource("workspace://comms/imessage/status")
+@mcp.resource("workspace://mouth/comms/imessage/status")
 def res_imsg_status() -> str:
     """iMessage subsystem status — FDA, message count, plugin status."""
     ok = _imsg_readable()
@@ -1998,7 +1998,7 @@ def res_imsg_status() -> str:
         f"Plugin: {_comms_config().get('imessage', {}).get('plugin_status', 'unknown')}\n"
     )
 
-@mcp.resource("workspace://comms/imessage/recent")
+@mcp.resource("workspace://mouth/comms/imessage/recent")
 def res_imsg_recent() -> str:
     """Recent iMessages (last 24h, up to 10, text previews only)."""
     if not _imsg_readable():
@@ -2029,7 +2029,7 @@ def res_imsg_recent() -> str:
     except Exception as e:
         return f"[Error reading messages: {e}]"
 
-@mcp.resource("workspace://comms/mail/status")
+@mcp.resource("workspace://mouth/comms/mail/status")
 def res_mail_status() -> str:
     """Mail subsystem status."""
     mail_ok = pathlib.Path("/Applications/Mail.app").exists()
@@ -2037,17 +2037,17 @@ def res_mail_status() -> str:
         f"# Mail Status\n"
         f"Mail.app installed: {'YES' if mail_ok else 'NO'}\n"
         f"Status: {'enabled (limited)' if mail_ok else 'disabled — Mail.app not installed'}\n"
-        f"See: comms/reports/plugin_recommendations.md for Gmail/IMAP options\n"
+        f"See: mouth/comms/reports/plugin_recommendations.md for Gmail/IMAP options\n"
     )
 
-@mcp.resource("workspace://comms/mail/recent")
+@mcp.resource("workspace://mouth/comms/mail/recent")
 def res_mail_recent() -> str:
     """Recent emails (stub — Mail.app not installed)."""
     if not pathlib.Path("/Applications/Mail.app").exists():
-        return "[Mail.app not installed — email disabled. See comms/reports/plugin_recommendations.md]"
+        return "[Mail.app not installed — email disabled. See mouth/comms/reports/plugin_recommendations.md]"
     return "[Mail.app present but adapter not yet configured]"
 
-@mcp.resource("workspace://comms/reports/latest")
+@mcp.resource("workspace://mouth/comms/reports/latest")
 def res_comms_latest_report() -> str:
     """Latest communications report."""
     p = COMMS_ROOT / "reports/latest_comms_report.md"
@@ -2221,7 +2221,7 @@ def comms_create_imessage_draft(recipient: str, message: str) -> str:
         f"  Draft ID:  {draft_id}\n"
         f"  To:        {recipient}\n"
         f"  Preview:   {message[:200]}\n"
-        f"\nReview: cat ~/SuneelWorkSpace/comms/imessage/state/drafts/{draft_id}.json\n"
+        f"\nReview: cat ~/SuneelWorkSpace/mouth/comms/imessage/state/drafts/{draft_id}.json\n"
         f"Send (in terminal): imsg-send-confirmed {draft_id}\n"
         f"Or call: comms_send_imessage_confirmed('{draft_id}')"
     )
@@ -2294,7 +2294,7 @@ def comms_get_mail_status() -> str:
             "  Mail.app not installed at /Applications/Mail.app\n"
             "\nOptions:\n"
             "  1. Install Apple Mail.app from the App Store\n"
-            "  2. Use Gmail plugin: see comms/reports/plugin_recommendations.md\n"
+            "  2. Use Gmail plugin: see mouth/comms/reports/plugin_recommendations.md\n"
             "  3. Configure IMAP/SMTP (requires credentials — ask agent when ready)\n"
         )
     return "Mail Status: Mail.app present (Automation permission may be required)"
@@ -2309,7 +2309,7 @@ def comms_list_recent_emails(limit: int = 10) -> str:
     """
     _access("comms_list_recent_emails")
     if not pathlib.Path("/Applications/Mail.app").exists():
-        return "[DISABLED] Mail.app not installed. See comms/reports/plugin_recommendations.md"
+        return "[DISABLED] Mail.app not installed. See mouth/comms/reports/plugin_recommendations.md"
     return "[Mail.app present but adapter not yet configured — run mail-recent in terminal]"
 
 
@@ -2322,7 +2322,7 @@ def comms_search_emails(query: str) -> str:
     """
     _access("comms_search_emails")
     if not pathlib.Path("/Applications/Mail.app").exists():
-        return "[DISABLED] Mail.app not installed. See comms/reports/plugin_recommendations.md"
+        return "[DISABLED] Mail.app not installed. See mouth/comms/reports/plugin_recommendations.md"
     return "[Mail.app present but search adapter not yet configured]"
 
 
@@ -2425,7 +2425,7 @@ def comms_convert_to_task(item_type: str, item_id: str, task_description: str, p
     _access("comms_convert_to_task")
     try:
         result = subprocess.run(
-            [str(WORKSPACE / "goal-engine/scripts/create-task"), "--description", task_description, "--priority", priority, "--source", f"comms:{item_type}:{item_id}"],
+            [str(WORKSPACE / "heart/goals/scripts/create-task"), "--description", task_description, "--priority", priority, "--source", f"comms:{item_type}:{item_id}"],
             capture_output=True, text=True, timeout=15
         )
         if result.returncode == 0:
@@ -2436,7 +2436,7 @@ def comms_convert_to_task(item_type: str, item_id: str, task_description: str, p
     import datetime as dt
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
     task_line = f"\n- [ ] [{ts}] (from {item_type}:{item_id}) {task_description}\n"
-    tasks_file = WORKSPACE / "agent-system/tasks/ACTIVE_TASKS.md"
+    tasks_file = WORKSPACE / "heart/tasks/ACTIVE_TASKS.md"
     if tasks_file.exists():
         with open(tasks_file, "a") as f:
             f.write(task_line)
@@ -2457,7 +2457,7 @@ def comms_convert_to_goal(item_type: str, item_id: str, goal_description: str, c
     _access("comms_convert_to_goal")
     try:
         result = subprocess.run(
-            [str(WORKSPACE / "goal-engine/scripts/goal-create"), goal_description, "--complexity", complexity, "--source", f"comms:{item_type}:{item_id}"],
+            [str(WORKSPACE / "heart/goals/scripts/goal-create"), goal_description, "--complexity", complexity, "--source", f"comms:{item_type}:{item_id}"],
             capture_output=True, text=True, timeout=15
         )
         if result.returncode == 0:

@@ -11,14 +11,14 @@ Antigravity, Claude Code, and Codex CLI all share the same memory, task state, l
 ## Source Of Truth
 
 - Canonical workspace: `~/SuneelWorkSpace`
-- Canonical instruction file: `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
+- Canonical instruction file: `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
 - Workspace entrypoints: `~/SuneelWorkSpace/AGENTS.md` and `~/SuneelWorkSpace/CLAUDE.md`
 - Antigravity global entrypoint: `~/.gemini/config/AGENTS.md`
 - Antigravity workspace customization: `~/SuneelWorkSpace/.agents/AGENTS.md`
-- Codex global entrypoint: `~/.codex/AGENTS.md`
+- Codex global entrypoint: `~/.hands/codex/AGENTS.md`
 - Claude global entrypoint: `~/.claude/CLAUDE.md`
 
-If instructions conflict inside this workspace, the canonical shared docs under `~/SuneelWorkSpace/agent-system/` are the source of truth.
+If instructions conflict inside this workspace, the canonical shared docs under `~/SuneelWorkSpace/brain/memory/` are the source of truth.
 
 ## Rules
 
@@ -37,18 +37,18 @@ If instructions conflict inside this workspace, the canonical shared docs under 
 
 Before meaningful work, read these files in order:
 
-1. `~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
-2. `~/SuneelWorkSpace/agent-system/shared/IDENTITY.md`
-3. `~/SuneelWorkSpace/agent-system/shared/WORKFLOW_RULES.md`
-4. `~/SuneelWorkSpace/agent-system/shared/SAFETY_BOUNDARIES.md`
-5. `~/SuneelWorkSpace/agent-system/shared/STARTUP_CHECKLIST.md`
-6. `~/SuneelWorkSpace/agent-system/memory/MEMORY.md`
-7. `~/SuneelWorkSpace/agent-system/memory/DECISIONS.md`
-8. `~/SuneelWorkSpace/agent-system/tasks/ACTIVE_TASKS.md`
-9. `~/SuneelWorkSpace/agent-system/tasks/TASK_QUEUE.md`
-10. `~/SuneelWorkSpace/agent-system/memory/SESSION_HANDOFF.md`
-11. `~/SuneelWorkSpace/agent-system/state/CURRENT_STATE.json`
-12. `~/SuneelWorkSpace/agent-system/state/WORKSPACE_HEALTH.json`
+1. `~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
+2. `~/SuneelWorkSpace/skeleton/rules/IDENTITY.md`
+3. `~/SuneelWorkSpace/skeleton/rules/WORKFLOW_RULES.md`
+4. `~/SuneelWorkSpace/skeleton/rules/SAFETY_BOUNDARIES.md`
+5. `~/SuneelWorkSpace/skeleton/rules/STARTUP_CHECKLIST.md`
+6. `~/SuneelWorkSpace/brain/memory/MEMORY.md`
+7. `~/SuneelWorkSpace/brain/memory/DECISIONS.md`
+8. `~/SuneelWorkSpace/heart/tasks/ACTIVE_TASKS.md`
+9. `~/SuneelWorkSpace/heart/tasks/TASK_QUEUE.md`
+10. `~/SuneelWorkSpace/brain/memory/SESSION_HANDOFF.md`
+11. `~/SuneelWorkSpace/spine/state/CURRENT_STATE.json`
+12. `~/SuneelWorkSpace/spine/state/WORKSPACE_HEALTH.json`
 
 Use `~/SuneelWorkSpace/bin/agent-start` or `~/SuneelWorkSpace/bin/workspace-context` to print the startup brief.
 
@@ -63,12 +63,12 @@ Mandatory startup behavior:
 
 After completing meaningful work, update:
 
-- `agent-system/memory/SESSION_HANDOFF.md`
-- `agent-system/tasks/ACTIVE_TASKS.md` and/or `agent-system/tasks/COMPLETED_TASKS.md`
-- `agent-system/logs/SESSION_LOG.md`
-- `agent-system/state/CURRENT_STATE.json`
-- `agent-system/state/WORKSPACE_HEALTH.json` if system condition changed
-- `agent-system/memory/MEMORY.md` or `agent-system/memory/DECISIONS.md` if durable knowledge was created
+- `brain/memory/SESSION_HANDOFF.md`
+- `heart/tasks/ACTIVE_TASKS.md` and/or `heart/tasks/COMPLETED_TASKS.md`
+- `blood/logs/SESSION_LOG.md`
+- `spine/state/CURRENT_STATE.json`
+- `spine/state/WORKSPACE_HEALTH.json` if system condition changed
+- `brain/memory/MEMORY.md` or `brain/memory/DECISIONS.md` if durable knowledge was created
 
 Use `~/SuneelWorkSpace/bin/agent-finish "summary"` for simple closeouts.
 

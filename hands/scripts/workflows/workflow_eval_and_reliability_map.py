@@ -8,7 +8,7 @@ import subprocess
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path("/Users/MAC/SuneelWorkSpace")
-COMMANDS = ["python3 -m unittest adwi/simlab/tests/test_nlu_regex.py", "python3 adwi/logs/simeval/run_large_eval.py --workers 3", "python3 adwi/logs/simeval/run_large_eval_p2.py --workers 3", "python3 adwi/logs/simeval/generate_master_report.py \\"]
+COMMANDS = ["python3 -m unittest adwi/simlab/lab/tests/test_nlu_regex.py", "python3 adwi/logs/simeval/run_large_eval.py --workers 3", "python3 adwi/logs/simeval/run_large_eval_p2.py --workers 3", "python3 adwi/logs/simeval/generate_master_report.py \\"]
 WORKFLOW_NAME = "Eval And Reliability Map"
 SOURCE_NOTE = "/Users/MAC/SuneelWorkSpace/brain/knowledge/Eval and Reliability Map.md"
 

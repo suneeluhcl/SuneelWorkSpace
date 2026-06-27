@@ -176,7 +176,7 @@ def run_daily_evolution():
             
     # Detect inefficiencies / failures
     inefficiencies = []
-    failure_log_path = ROOT / "testing/failure_log.json"
+    failure_log_path = ROOT / "lab/testing/failure_log.json"
     if failure_log_path.exists():
         failures = read_json(failure_log_path, [])
         for f in failures[-5:]:
@@ -526,10 +526,10 @@ def run_life_automation(phrase: str):
 # ---------------------------------------------------------------------------
 def run_self_training():
     print("📈 Running Self-Training & Model Optimization Loop...")
-    feedback_path = ROOT / "dna/identity/adaptive/feedback_log.json"
-    failure_path = ROOT / "testing/failure_log.json"
-    state_path = ROOT / "dna/identity/adaptive/adaptation_state.json"
-    patterns_path = ROOT / "dna/identity/adaptive/pattern_updates.json"
+    feedback_path = ROOT / "dna/dna/dna/identity/adaptive/feedback_log.json"
+    failure_path = ROOT / "lab/testing/failure_log.json"
+    state_path = ROOT / "dna/dna/dna/identity/adaptive/adaptation_state.json"
+    patterns_path = ROOT / "dna/dna/dna/identity/adaptive/pattern_updates.json"
     
     feedback = read_json(feedback_path, {})
     events = feedback.get("events", []) if isinstance(feedback, dict) else feedback
@@ -573,7 +573,7 @@ def run_self_training():
     write_json(patterns_path, pattern_updates)
     
     # Update anticipation engine records
-    pred_memory_path = ROOT / "brain/anticipation/prediction_memory.json"
+    pred_memory_path = ROOT / "brain/brain/anticipation/prediction_memory.json"
     if pred_memory_path.exists():
         try:
             pred_mem = json.loads(pred_memory_path.read_text())

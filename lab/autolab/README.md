@@ -8,7 +8,7 @@ It does not train model weights. It improves the workspace itself: prompts, rule
 
 ## How It Works
 
-1. Read `autolab/program.md`.
+1. Read `lab/autolab/program.md`.
 2. Pick one small bounded improvement.
 3. Snapshot the allowed mutable surface.
 4. Apply the change only inside allowed paths.
@@ -19,11 +19,11 @@ It does not train model weights. It improves the workspace itself: prompts, rule
 ## Main Commands
 
 ```sh
-~/SuneelWorkSpace/autolab/scripts/autolab-eval
-~/SuneelWorkSpace/autolab/scripts/autolab-once
-~/SuneelWorkSpace/autolab/scripts/autolab-report
-~/SuneelWorkSpace/autolab/scripts/autolab-frontier
-~/SuneelWorkSpace/autolab/scripts/autolab-enqueue "docs" "Improve operator guide clarity"
+~/SuneelWorkSpace/lab/autolab/scripts/autolab-eval
+~/SuneelWorkSpace/lab/autolab/scripts/autolab-once
+~/SuneelWorkSpace/lab/autolab/scripts/autolab-report
+~/SuneelWorkSpace/lab/autolab/scripts/autolab-frontier
+~/SuneelWorkSpace/lab/autolab/scripts/autolab-enqueue "docs" "Improve operator guide clarity"
 ```
 
 Periodic background automation runs light evaluation. Mutating experiments are bounded and conservative.
@@ -42,12 +42,12 @@ It tracks:
 
 Learning files live in:
 
-`~/SuneelWorkSpace/autolab/meta/`
+`~/SuneelWorkSpace/lab/autolab/meta/`
 
 Run:
 
 ```sh
-~/SuneelWorkSpace/autolab/scripts/autolab-analyze
+~/SuneelWorkSpace/lab/autolab/scripts/autolab-analyze
 ```
 
 ## What To Remember

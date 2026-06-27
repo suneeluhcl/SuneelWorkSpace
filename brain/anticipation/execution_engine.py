@@ -82,10 +82,10 @@ def map_text_to_command(text: str) -> str:
         return "bin/agent-doctor"
     elif "mcp-reindex" in text_lower:
         return "bin/mcp-reindex"
-    elif "open audit/improvement_plan.md" in text_lower:
-        return "cat audit/improvement_plan.md"
-    elif "review audit/gap_analysis.md" in text_lower:
-        return "cat audit/gap_analysis.md"
+    elif "open spine/audit/improvement_plan.md" in text_lower:
+        return "cat spine/audit/improvement_plan.md"
+    elif "review spine/audit/gap_analysis.md" in text_lower:
+        return "cat spine/audit/gap_analysis.md"
     elif "system-gaps" in text_lower:
         return "bin/system-gaps"
     elif "git status" in text_lower:

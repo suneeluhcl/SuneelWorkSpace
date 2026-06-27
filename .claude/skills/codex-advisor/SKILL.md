@@ -34,7 +34,7 @@ git -C ~/SuneelWorkSpace diff --name-only HEAD
 grep -oP '\*\*~\K[0-9]+\.[0-9]+%' ~/SuneelWorkSpace/CLAUDE.md 2>/dev/null | tail -1
 ```
 ```bash
-grep -c "🔴 Open" ~/SuneelWorkSpace/adwi/docs/NLU_REPAIR_BACKLOG.md 2>/dev/null
+grep -c "🔴 Open" ~/SuneelWorkSpace/adwi/spine/docs/NLU_REPAIR_BACKLOG.md 2>/dev/null
 ```
 
 **Do NOT include in the Codex brief:**

@@ -45,7 +45,7 @@ If the score is equal or lower, revert.
 
 ## Stronger Bar For Evaluator Changes
 
-Changes to `autolab/evaluator.md`, `autolab/scripts/autolab-core`, or safety gate logic require:
+Changes to `lab/autolab/evaluator.md`, `lab/autolab/scripts/autolab-core`, or safety gate logic require:
 
 - No safety gate failures.
 - No score drop.
@@ -70,13 +70,13 @@ These fields help Autolab choose future experiments. They do not override safety
 
 Pattern analysis writes:
 
-- `autolab/meta/insights.md`
-- `autolab/meta/patterns.json`
-- `autolab/meta/failure_patterns.json`
-- `autolab/meta/experiment_embeddings.json`
-- `autolab/reports/top_improvements.md`
-- `autolab/reports/risky_changes.md`
-- `autolab/reports/experiment_categories.md`
+- `lab/autolab/meta/insights.md`
+- `lab/autolab/meta/patterns.json`
+- `lab/autolab/meta/failure_patterns.json`
+- `lab/autolab/meta/experiment_embeddings.json`
+- `lab/autolab/reports/top_improvements.md`
+- `lab/autolab/reports/risky_changes.md`
+- `lab/autolab/reports/experiment_categories.md`
 
 The confidence score is a simple local heuristic, not a machine learning model.
 

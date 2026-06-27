@@ -25,16 +25,16 @@ cp ~/SuneelWorkSpace/.agent-backups/TIMESTAMP/path/to/file ~/path/to/file
 ## Recreate Workspace Symlinks
 
 ```sh
-ln -sfn ~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md ~/SuneelWorkSpace/AGENTS.md
-ln -sfn ~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md ~/SuneelWorkSpace/CLAUDE.md
+ln -sfn ~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md ~/SuneelWorkSpace/AGENTS.md
+ln -sfn ~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md ~/SuneelWorkSpace/CLAUDE.md
 ```
 
 ## Recreate Global Symlinks
 
 ```sh
 mkdir -p ~/.codex ~/.claude
-ln -sfn ~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md ~/.codex/AGENTS.md
-ln -sfn ~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md ~/.claude/CLAUDE.md
+ln -sfn ~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md ~/.hands/codex/AGENTS.md
+ln -sfn ~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md ~/.claude/CLAUDE.md
 ```
 
 ## Validate
@@ -42,9 +42,9 @@ ln -sfn ~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md ~/.claude/CLAUDE.m
 ```sh
 ~/SuneelWorkSpace/bin/agent-status
 ~/SuneelWorkSpace/bin/agent-doctor
-python3 -m json.tool ~/SuneelWorkSpace/agent-system/state/CURRENT_STATE.json >/dev/null
-python3 -m json.tool ~/SuneelWorkSpace/agent-system/state/WORKSPACE_HEALTH.json >/dev/null
-python3 -m json.tool ~/SuneelWorkSpace/agent-system/state/INDEX.json >/dev/null
+python3 -m json.tool ~/SuneelWorkSpace/spine/state/CURRENT_STATE.json >/dev/null
+python3 -m json.tool ~/SuneelWorkSpace/spine/state/WORKSPACE_HEALTH.json >/dev/null
+python3 -m json.tool ~/SuneelWorkSpace/spine/state/INDEX.json >/dev/null
 ```
 
 ## Run Safe Repair
@@ -64,7 +64,7 @@ Replace the symlink with a tiny loader file that says:
 
 Read and follow:
 
-`~/SuneelWorkSpace/agent-system/shared/AGENT_SYSTEM.md`
+`~/SuneelWorkSpace/skeleton/rules/AGENT_SYSTEM.md`
 ```
 
 Then run:

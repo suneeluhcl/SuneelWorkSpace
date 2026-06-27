@@ -20,7 +20,7 @@
 
 - Suneel Bikkasani, Apple M4 Max, macOS 15.
 - New projects should generally live under `~/SuneelWorkSpace/projects/`.
-- Codex bootstrap files live in `~/SuneelWorkSpace/codex/`.
+- Codex bootstrap files live in `~/SuneelWorkSpace/hands/codex/`.
 - Adwi local AI OS archive: `https://github.com/sndboxTesting/adwi`.
 - Background maintenance is local, lightweight, implemented with launchd calling workspace scripts.
 
@@ -28,7 +28,7 @@
 
 - **Antigravity (agy)**: Primary orchestrator. Global: `~/.gemini/config/AGENTS.md`. Workspace: `~/SuneelWorkSpace/.agents/AGENTS.md`. MCP: headroom + workspace-brain.
 - **Claude Code**: Deep coding. Global: `~/.claude/CLAUDE.md`. Workspace: `~/SuneelWorkSpace/CLAUDE.md` + `.claude/settings.local.json`.
-- **Codex CLI**: Agentic runs. Global: `~/.codex/AGENTS.md`. Config: `~/.codex/config.toml`.
+- **Codex CLI**: Agentic runs. Global: `~/.hands/codex/AGENTS.md`. Config: `~/.hands/codex/config.toml`.
 - **Gemini CLI**: Free fallback (1K req/day). Launch: `swgemini`. Config: `~/.gemini/settings.json`. Workspace: `~/SuneelWorkSpace/GEMINI.md`.
 - **OpenCode**: Free fallback (Groq). Launch: `swopencode`. Config: `~/SuneelWorkSpace/opencode.json`.
 
@@ -52,28 +52,28 @@
 ## 2026-06-26 - Personal AI operating system upgrade
 
 - The workspace now has a bounded system intelligence layer: `system-audit`, `system-gaps`, `system-capabilities`, `system-recommend`, and `improve-system`.
-- Durable audit artifacts live in `audit/`; safe machine metadata lives in `system-context/system_profile.json`; local tool discovery lives in `tools/`.
-- The research engine lives in `research-engine/` and supports `idea-start`, `idea-run`, and lower-level `idea-*` scripts for idea capture, research plans, analyses, and decisions.
-- Bounded self-upgrade policy is documented in `agent-system/shared/BOUNDED_SELF_UPGRADE.md`.
+- Durable audit artifacts live in `spine/audit/`; safe machine metadata lives in `spine/system-context/system_profile.json`; local tool discovery lives in `spine/tools/`.
+- The research engine lives in `brain/research/` and supports `idea-start`, `idea-run`, and lower-level `idea-*` scripts for idea capture, research plans, analyses, and decisions.
+- Bounded self-upgrade policy is documented in `skeleton/rules/BOUNDED_SELF_UPGRADE.md`.
 
 ## 2026-06-26 - Suneel identity capture
 
-- Identity subsystem lives in `identity/`.
+- Identity subsystem lives in `dna/identity/`.
 - Suneel's preferred voice is short, direct, casual, conversational, smart, structured, softened, and never harsh or condescending.
 - Suneel prefers autopilot by default, with questions only for serious system risk or safety-gated actions.
 - Suneel chooses tools by simplicity, cost, power, speed, then reliability.
 - Hard boundary: never wipe the system or delete important files automatically.
-- Adaptive identity loop lives in `identity/adaptive/` and learns slowly from accepted, edited, rejected, and adjusted outputs while preserving the original identity profile.
-- Adaptive identity now uses weighted signals from `identity/adaptive/signal_weights.json` so rejected/manual/heavy-edit feedback influences learning more than simple acceptance.
+- Adaptive identity loop lives in `dna/dna/identity/adaptive/` and learns slowly from accepted, edited, rejected, and adjusted outputs while preserving the original identity profile.
+- Adaptive identity now uses weighted signals from `dna/dna/identity/adaptive/signal_weights.json` so rejected/manual/heavy-edit feedback influences learning more than simple acceptance.
 
 ## 2026-06-26 - Anticipatory intelligence
 
-- Anticipation subsystem lives in `anticipation/`.
-- Prediction engine path: `anticipation/prediction_engine.py`.
-- Prediction memory path: `anticipation/prediction_memory.json`.
-- Current suggestions path: `anticipation/action_suggestions.md`.
+- Anticipation subsystem lives in `brain/anticipation/`.
+- Prediction engine path: `brain/anticipation/prediction_engine.py`.
+- Prediction memory path: `brain/anticipation/prediction_memory.json`.
+- Current suggestions path: `brain/anticipation/action_suggestions.md`.
 - Anticipation suggests next actions only; it never auto-executes or overrides safety boundaries.
 - `README.md` is now the complete system blueprint and AI-agent drop-in context.
-- Intent detection stores current intent in `anticipation/current_context.json` using categories: messaging, email, research, system_improvement, development, idea_execution, maintenance, unknown.
+- Intent detection stores current intent in `brain/anticipation/current_context.json` using categories: messaging, email, research, system_improvement, development, idea_execution, maintenance, unknown.
 - Suggestions are ranked with `frequency_weight + success_weight + recency_weight + identity_alignment + intent_alignment` and limited to top 3-5.
 - Session boot contract in `README.md` requires agents to say `✅ Loading workspace shared brain` and confirm context loaded before meaningful work.
