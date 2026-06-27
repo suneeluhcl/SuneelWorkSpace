@@ -71,10 +71,34 @@ spine/backups/
 # Auto-generated README in root bin/ (not a workspace organ)
 /bin/README.md
 
-# README pipeline runtime logs (overwritten nightly)
+# Runtime logs (overwritten continuously)
 blood/logs/readme-nightly.out.log
 blood/logs/readme-nightly.err.log
 blood/logs/auto_commit.log
+blood/logs/MAINTENANCE_LOG.md
 
 # Auto-repair state (regenerated on every readme-repair run)
 spine/readme_repair_report.json
+
+# Runtime state — changes continuously, not meaningful to track
+spine/state/WORKSPACE_HEALTH.json
+spine/state/ACTIVE_CONTEXT.json
+spine/state/ACTIVE_SESSION.json
+spine/state/INDEX.json
+spine/state/CURRENT_STATE.json
+spine/state/LAST_KNOWN_GOOD.json
+
+# MCP server runtime state
+nervous/mcp/server/state/
+
+# Model router runtime state
+heart/model_router/quota_state.json
+
+# Vector database (binary, large, regenerated)
+brain/memory/vector/chroma_store/
+
+# Repair run reports (one JSON per run, accumulate forever)
+blood/logs/repair_reports/
+
+# Misplaced paths from wrong WORKSPACE resolution (should never exist)
+eyes/blood/

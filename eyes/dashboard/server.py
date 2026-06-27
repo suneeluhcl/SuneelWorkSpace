@@ -28,7 +28,7 @@ from widgets.anticipation import get_suggestions
 from widgets.autolab_status import get_autolab_status
 from widgets.readme_health import get_readme_health, get_readme_priority, get_readme_trends
 
-WORKSPACE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+WORKSPACE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 LOG_DIR = os.path.join(WORKSPACE, "blood", "logs")
 HISTORY_FILE = os.path.join(LOG_DIR, "execution_history.jsonl")
 os.makedirs(LOG_DIR, exist_ok=True)
