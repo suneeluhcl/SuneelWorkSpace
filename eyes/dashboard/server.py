@@ -26,7 +26,7 @@ from widgets.memory_health import get_memory_health
 from widgets.mcp_status import get_mcp_status
 from widgets.anticipation import get_suggestions
 from widgets.autolab_status import get_autolab_status
-from widgets.readme_health import get_readme_health
+from widgets.readme_health import get_readme_health, get_readme_priority, get_readme_trends
 
 WORKSPACE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOG_DIR = os.path.join(WORKSPACE, "agent-system", "logs")
@@ -295,6 +295,45 @@ async def api_autolab() -> Any:
 @app.get("/api/readme-health")
 async def api_readme_health() -> Any:
     return get_readme_health()
+
+
+@app.get("/api/readme-priority")
+async def api_readme_priority() -> Any:
+    return get_readme_priority()
+
+
+@app.get("/api/readme-trends")
+async def api_readme_trends() -> Any:
+    return get_readme_trends()
+
+
+@app.get("/api/readme-reconcile")
+async def api_readme_reconcile() -> Any:
+    reconcile_path = Path(os.path.join(WORKSPACE, "spine/readme_reconcile_report.json"))
+    if not reconcile_path.exists():
+        return {"error": "no reconcile report — run: readme-reconcile"}
+    try:
+        return json.loads(reconcile_path.read_text())
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/readme-reflect")
+async def api_readme_reflect() -> Any:
+    reflect_path = Path(os.path.join(WORKSPACE, "spine/readme_self_reflection.json"))
+    if not reflect_path.exists():
+        return {"error": "no reflection data — run: readme-reflect"}
+    try:
+        data = json.loads(reflect_path.read_text())
+        return {
+            "latest_accuracy": data.get("latest_accuracy"),
+            "latest_missed_count": data.get("latest_missed_count"),
+            "accuracy_trend": data.get("accuracy_trend"),
+            "last_run": data.get("last_run"),
+            "recent_sessions": data.get("sessions", [])[-5:],
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.get("/api/health")

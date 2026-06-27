@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# readme-trends [--record] [--summary] [--days N] — health trend analytics
+WORKSPACE="$(cd "$(dirname "$0")/../.." && pwd)"
+exec "$WORKSPACE/.venv/bin/python3" "$WORKSPACE/hands/automation/readme/trend_analytics.py" "$@"

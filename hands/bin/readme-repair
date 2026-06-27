@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# readme-repair [folder] [--approve] [--dry-run] — auto-repair README and structure issues
+WORKSPACE="$(cd "$(dirname "$0")/../.." && pwd)"
+exec "$WORKSPACE/.venv/bin/python3" "$WORKSPACE/hands/automation/readme/auto_repair_engine.py" "$@"

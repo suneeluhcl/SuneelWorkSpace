@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# readme-priority [--top N] [--rebuild] — show README issue priority queue
+WORKSPACE="$(cd "$(dirname "$0")/../.." && pwd)"
+exec "$WORKSPACE/.venv/bin/python3" "$WORKSPACE/hands/automation/readme/priority_engine.py" "$@"

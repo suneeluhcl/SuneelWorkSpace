@@ -1,0 +1,74 @@
+{
+  "version": "3.0",
+  "updated": "2026-06-27",
+  "description": "Smart push policy for README Intelligence System. Controls push behavior based on issue severity.",
+  "rules": [
+    {
+      "id": "missing_readme",
+      "description": "Folder modified but README.md is missing",
+      "severity": "critical",
+      "action": "block",
+      "message": "BLOCKED: Missing README.md in changed folder(s). Run: readme-repair"
+    },
+    {
+      "id": "outdated_readme",
+      "description": "README older than folder content by > 120 seconds",
+      "severity": "high",
+      "action": "block",
+      "message": "BLOCKED: README drift detected. Run: readme-update <folder>"
+    },
+    {
+      "id": "missing_required_sections",
+      "description": "README exists but missing Purpose / Contents / Change Log sections",
+      "severity": "medium",
+      "action": "warn",
+      "message": "WARNING: README missing required sections. Run: readme-repair <folder>"
+    },
+    {
+      "id": "broken_python_syntax",
+      "description": "Python files with syntax errors in changed folder",
+      "severity": "critical",
+      "action": "block",
+      "message": "BLOCKED: Python syntax errors detected. Fix syntax before pushing."
+    },
+    {
+      "id": "health_score_critical",
+      "description": "Folder health score below 40",
+      "severity": "critical",
+      "action": "block",
+      "message": "BLOCKED: Critical health score. Run: readme-score <folder>"
+    },
+    {
+      "id": "health_score_low",
+      "description": "Folder health score 40-59",
+      "severity": "medium",
+      "action": "warn",
+      "message": "WARNING: Low health score detected."
+    },
+    {
+      "id": "root_readme_stale",
+      "description": "Root README.md not rebuilt after organ changes",
+      "severity": "high",
+      "action": "block",
+      "message": "BLOCKED: Root README stale. Run: readme-root-build"
+    },
+    {
+      "id": "validator_failed",
+      "description": "readme-validate returned non-zero exit",
+      "severity": "critical",
+      "action": "block",
+      "message": "BLOCKED: Validation failed. Run: readme-validate to see issues."
+    }
+  ],
+  "safe_mode": {
+    "enabled": false,
+    "description": "When true: disable Claude, use rule-based only, never block push (warn only)",
+    "env_override": "README_SAFE_MODE"
+  },
+  "thresholds": {
+    "readme_drift_seconds": 120,
+    "health_block_threshold": 40,
+    "health_warn_threshold": 60,
+    "max_stale_days_warn": 7
+  }
+}

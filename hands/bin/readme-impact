@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# readme-impact [folder] — show failure cascade impact for a folder
+WORKSPACE="$(cd "$(dirname "$0")/../.." && pwd)"
+exec "$WORKSPACE/.venv/bin/python3" "$WORKSPACE/hands/automation/readme/failure_cascade.py" "$@"

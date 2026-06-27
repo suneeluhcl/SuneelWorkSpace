@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Nightly README refresh — updates all READMEs, rebuilds root, validates.
+# Nightly README refresh — updates all READMEs, rebuilds root, validates, indexes, evolves.
 # Runs at 00:00 via LaunchAgent com.suneelworkspace.readme.plist
 set -uo pipefail
 
@@ -14,7 +14,7 @@ mkdir -p "$(dirname "$LOG")"
 log "=== Nightly README refresh started ==="
 
 # Step 1: Update all READMEs (rule-based, no Claude API cost)
-log "Step 1/4: Updating all folder READMEs..."
+log "Step 1/10: Updating all folder READMEs..."
 if "$VENV_PY" "$WORKSPACE/hands/automation/readme/run_update_all.py" --no-claude --quiet \
    >> "$LOG" 2>&1; then
   log "  ✅ All READMEs updated"
@@ -23,33 +23,35 @@ else
 fi
 
 # Step 2: Rebuild root README
-log "Step 2/4: Rebuilding root README..."
+log "Step 2/10: Rebuilding root README..."
 if "$VENV_PY" "$WORKSPACE/hands/automation/readme/root_synthesizer.py" >> "$LOG" 2>&1; then
   log "  ✅ Root README rebuilt"
 else
   log "  ❌ Root rebuild failed"
 fi
 
-# Step 3: Rebuild dependency map
-log "Step 3/4: Rebuilding dependency map..."
-if "$VENV_PY" - << 'PYEOF' >> "$LOG" 2>&1
+# Step 3: Rebuild dependency map (fixed: no heredoc, uses temp script)
+log "Step 3/10: Rebuilding dependency map..."
+TMPSCRIPT="$(mktemp /tmp/readme_depmap_XXXXXX.py)"
+cat > "$TMPSCRIPT" << EOF
 import sys, json, datetime
 sys.path.insert(0, '$WORKSPACE')
 from hands.automation.readme.intelligence_engine import analyze_workspace, build_dependency_map
-analyses = analyze_workspace()
+analyses = analyze_workspace('$WORKSPACE')
 dep_map = build_dependency_map(analyses)
 out = {'generated': datetime.datetime.now().isoformat(), 'folder_count': len(dep_map), 'folders': dep_map}
 open('$WORKSPACE/spine/readme_dependency_map.json', 'w').write(json.dumps(out, indent=2))
 print(f'Wrote {len(dep_map)} entries to dependency map')
-PYEOF
-then
+EOF
+if "$VENV_PY" "$TMPSCRIPT" >> "$LOG" 2>&1; then
   log "  ✅ Dependency map rebuilt"
 else
   log "  ⚠️  Dependency map failed (non-fatal)"
 fi
+rm -f "$TMPSCRIPT"
 
 # Step 4: Validate
-log "Step 4/6: Running validation..."
+log "Step 4/10: Running validation..."
 if "$VENV_PY" "$WORKSPACE/hands/automation/readme/validator.py" >> "$LOG" 2>&1; then
   log "  ✅ Validation passed"
 else
@@ -57,7 +59,7 @@ else
 fi
 
 # Step 5: Build knowledge index
-log "Step 5/6: Building knowledge index..."
+log "Step 5/10: Building knowledge index..."
 if "$VENV_PY" "$WORKSPACE/hands/automation/readme/knowledge_indexer.py" >> "$LOG" 2>&1; then
   log "  ✅ Knowledge index built"
 else
@@ -65,15 +67,47 @@ else
 fi
 
 # Step 6: Trigger lab evolution for low-health folders
-log "Step 6/6: Checking for low-health folders (threshold=60)..."
+log "Step 6/10: Checking for low-health folders (threshold=60)..."
 if "$VENV_PY" "$WORKSPACE/hands/automation/readme/lab_bridge.py" --threshold 60 >> "$LOG" 2>&1; then
   log "  ✅ Lab bridge check complete"
 else
   log "  ⚠️  Lab bridge failed (non-fatal)"
 fi
 
+# Step 7: Compute priority queue
+log "Step 7/10: Computing priority queue..."
+if "$VENV_PY" "$WORKSPACE/hands/automation/readme/priority_engine.py" --rebuild >> "$LOG" 2>&1; then
+  log "  ✅ Priority queue updated"
+else
+  log "  ⚠️  Priority queue failed (non-fatal)"
+fi
+
+# Step 8: Record trend snapshot
+log "Step 8/10: Recording health trend snapshot..."
+if "$VENV_PY" "$WORKSPACE/hands/automation/readme/trend_analytics.py" --record >> "$LOG" 2>&1; then
+  log "  ✅ Trend snapshot recorded"
+else
+  log "  ⚠️  Trend snapshot failed (non-fatal)"
+fi
+
+# Step 9: Auto-repair SAFE issues
+log "Step 9/10: Auto-repairing SAFE issues..."
+if "$VENV_PY" "$WORKSPACE/hands/automation/readme/auto_repair_engine.py" --quiet >> "$LOG" 2>&1 2>/dev/null; then
+  log "  ✅ Auto-repair complete"
+else
+  log "  ⚠️  Auto-repair failed (non-fatal)"
+fi
+
+# Step 10: Self-reflection
+log "Step 10/10: Running self-reflection..."
+if "$VENV_PY" "$WORKSPACE/hands/automation/readme/self_reflection.py" >> "$LOG" 2>&1; then
+  log "  ✅ Self-reflection complete"
+else
+  log "  ⚠️  Self-reflection failed (non-fatal)"
+fi
+
 # Notify nervous system
 "$VENV_PY" "$WORKSPACE/nervous/nerve_propagator.py" notify spine "nightly_readme_refresh" \
   >> /dev/null 2>&1 || true
 
-log "=== Nightly README refresh complete (6 steps) ==="
+log "=== Nightly README refresh complete (10 steps) ==="

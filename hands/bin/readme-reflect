@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# readme-reflect [--report] — run system self-reflection and accuracy report
+WORKSPACE="$(cd "$(dirname "$0")/../.." && pwd)"
+exec "$WORKSPACE/.venv/bin/python3" "$WORKSPACE/hands/automation/readme/self_reflection.py" "$@"

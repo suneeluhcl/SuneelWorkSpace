@@ -325,10 +325,73 @@ def _add_health_sections(content: str, folder_path: Path) -> str:
     return content
 
 
+def _add_phase3_sections(content: str, folder_path: Path) -> str:
+    """Inject Phase 3 control plane sections into README content."""
+    safe_mode = os.environ.get("README_SAFE_MODE", "").lower() in {"1", "true", "yes"}
+
+    def _replace_or_append(text: str, header: str, new_section: str) -> str:
+        if header in text:
+            pattern = re.escape(header) + r".*?(?=\n## |\Z)"
+            return re.sub(pattern, new_section.rstrip() + "\n", text, flags=re.DOTALL)
+        return text.rstrip() + f"\n\n{new_section}\n"
+
+    # State Alignment
+    try:
+        from hands.automation.readme.state_reconciler import reconcile_folder, build_state_alignment_section
+        result = reconcile_folder(str(folder_path))
+        section = build_state_alignment_section(result)
+        content = _replace_or_append(content, "## 🧬 State Alignment", section)
+    except Exception:
+        pass
+
+    # Intent Alignment
+    try:
+        from hands.automation.readme.intent_alignment import align_folder, build_intent_section
+        result = align_folder(str(folder_path))
+        section = build_intent_section(result)
+        content = _replace_or_append(content, "## 🎯 Intent Alignment", section)
+    except Exception:
+        pass
+
+    # Failure Impact Map
+    try:
+        from hands.automation.readme.failure_cascade import compute_failure_impact, build_failure_impact_section
+        result = compute_failure_impact(str(folder_path))
+        section = build_failure_impact_section(result)
+        content = _replace_or_append(content, "## 🌐 Failure Impact Map", section)
+    except Exception:
+        pass
+
+    # Evolution Outcomes (only if lab data exists)
+    if not safe_mode:
+        try:
+            from hands.automation.readme.evolution_feedback import get_evolution_outcomes, build_evolution_section
+            result = get_evolution_outcomes(str(folder_path))
+            if result.get("has_outcomes"):
+                section = build_evolution_section(result)
+                content = _replace_or_append(content, "## 🧪 Evolution Outcomes", section)
+        except Exception:
+            pass
+
+    # Trend Analytics (workspace-wide — only on high-impact folders)
+    try:
+        from hands.automation.readme.trend_analytics import build_trends_section
+        section = build_trends_section(str(folder_path))
+        content = _replace_or_append(content, "## 📈 Trends", section)
+    except Exception:
+        pass
+
+    return content
+
+
 def update_readme_for_folder(folder_path: str, use_claude: bool = True) -> bool:
     path = Path(folder_path).resolve()
     if not path.is_dir():
         return False
+
+    # Safe mode override: disable Claude when README_SAFE_MODE=1
+    if os.environ.get("README_SAFE_MODE", "").lower() in {"1", "true", "yes"}:
+        use_claude = False
 
     # README.lock guard — skip auto-update for manually managed folders
     if (path / "README.lock").exists():
@@ -345,8 +408,11 @@ def update_readme_for_folder(folder_path: str, use_claude: bool = True) -> bool:
     # Tiered generation: Claude CLI → rule-based
     new_content = generate_readme(analysis, existing, use_claude=use_claude)
 
-    # Inject health score sections
+    # Inject health score sections (Phase 1/2)
     new_content = _add_health_sections(new_content, path)
+
+    # Inject Phase 3 control plane sections
+    new_content = _add_phase3_sections(new_content, path)
 
     # Inject git changelog
     git_log = _get_git_changelog(path)
