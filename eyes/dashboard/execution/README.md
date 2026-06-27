@@ -37,13 +37,15 @@ Emits `readme_updated` events to nervous system on change.
 
 
 ## 🏥 Health Score
-🟢 **90/100**
+🟡 **75/100**
 
 | Category | Deduction |
 |----------|----------|
+| readme_drift | -15 |
 | no_tests | -10 |
 
 ## 🔥 Critical Issues
+- README is older than folder contents
 - No test files detected
 
 ## ✅ Runtime Status
@@ -62,13 +64,13 @@ Emits `readme_updated` events to nervous system on change.
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-27T00:25:49*
+*Last reconciled: 2026-06-27T00:53:52*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-27T00:25:49*
+*Last checked: 2026-06-27T00:53:52*
 
 ## 🌐 Failure Impact Map
 
@@ -76,7 +78,7 @@ Emits `readme_updated` events to nervous system on change.
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-27T00:25:49*
+*Computed: 2026-06-27T00:53:52*
 
 ## 📈 Trends
 

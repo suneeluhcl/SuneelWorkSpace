@@ -25,6 +25,7 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `intent_alignment.py`
 - `knowledge_indexer.py`
 - `lab_bridge.py`
+- `overnight_loop.sh`
 - `priority_engine.py`
 - `readme_generator.py`
 - `requirements.txt`
@@ -72,7 +73,7 @@ Emits `readme_updated` events to nervous system on change.
 
 ## ✅ Runtime Status
 - Python files: 23 (23 valid, 0 broken)
-- Shell scripts: 1 (1 valid)
+- Shell scripts: 2 (2 valid)
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
@@ -81,14 +82,10 @@ Emits `readme_updated` events to nervous system on change.
 
 ## 🧬 State Alignment
 
-**Status:** ❌ CRITICAL
+**Status:** ⚠️ DRIFTED
 
 **Undocumented files on disk:**
-- `auto_repair_engine.py` *(not in README Contents)*
-- `evolution_feedback.py` *(not in README Contents)*
-- `failure_cascade.py` *(not in README Contents)*
-- `intent_alignment.py` *(not in README Contents)*
-- `priority_engine.py` *(not in README Contents)*
+- `overnight_loop.sh` *(not in README Contents)*
 
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
@@ -96,13 +93,13 @@ Emits `readme_updated` events to nervous system on change.
 **Wiring mismatches:**
 - README links hands/ but not in dep map
 
-*Last reconciled: 2026-06-27T00:25:49*
+*Last reconciled: 2026-06-27T00:53:52*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-27T00:25:49*
+*Last checked: 2026-06-27T00:53:52*
 
 ## 🌐 Failure Impact Map
 
@@ -110,7 +107,7 @@ Emits `readme_updated` events to nervous system on change.
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-27T00:25:49*
+*Computed: 2026-06-27T00:53:52*
 
 ## 📈 Trends
 

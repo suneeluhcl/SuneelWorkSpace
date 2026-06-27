@@ -20,6 +20,7 @@ Part of the **spine** organ in the 12-organ SuneelWorkSpace architecture.
 - `readme_metrics_history.json`
 - `readme_policy.json`
 - `readme_priority_queue.json`
+- `readme_repair_report.json`
 - `readme_self_reflection.json`
 - `audit/` *(directory)*
 - `backups/` *(directory)*
@@ -71,24 +72,21 @@ Emits `readme_updated` events to nervous system on change.
 
 ## 🧬 State Alignment
 
-**Status:** ❌ CRITICAL
+**Status:** ⚠️ DRIFTED
 
 **Undocumented files on disk:**
-- `readme_metrics_history.json` *(not in README Contents)*
-- `readme_policy.json` *(not in README Contents)*
-- `readme_priority_queue.json` *(not in README Contents)*
-- `readme_self_reflection.json` *(not in README Contents)*
+- `readme_repair_report.json` *(not in README Contents)*
 
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-27T00:25:49*
+*Last reconciled: 2026-06-27T00:53:53*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-27T00:25:49*
+*Last checked: 2026-06-27T00:53:53*
 
 ## 🌐 Failure Impact Map
 
@@ -100,7 +98,7 @@ Emits `readme_updated` events to nervous system on change.
 **Cascade (depth 1-1):**
 - Depth 1: `nervous`
 
-*Computed: 2026-06-27T00:25:49*
+*Computed: 2026-06-27T00:53:53*
 
 ## 📈 Trends
 

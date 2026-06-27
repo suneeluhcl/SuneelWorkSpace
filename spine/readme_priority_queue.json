@@ -1,10 +1,10 @@
 {
-  "generated": "2026-06-27T00:25:50.888540",
-  "total": 269,
+  "generated": "2026-06-27T00:53:54.069562",
+  "total": 271,
   "p0_count": 1,
   "p1_count": 0,
   "p2_count": 0,
-  "p3_count": 268,
+  "p3_count": 270,
   "queue": [
     {
       "priority": "P0",
@@ -430,6 +430,16 @@
       "priority": "P3",
       "priority_score": 20,
       "folder": "hands/automation/ci",
+      "health_score": 90,
+      "blast_radius": 0,
+      "critical_issues": [],
+      "days_since_update": 0,
+      "readme_missing": false
+    },
+    {
+      "priority": "P3",
+      "priority_score": 20,
+      "folder": "hands/automation/git",
       "health_score": 90,
       "blast_radius": 0,
       "critical_issues": [],
@@ -990,16 +1000,6 @@
       "priority": "P3",
       "priority_score": 0,
       "folder": ".agent-backups/20260626-064830",
-      "health_score": 100,
-      "blast_radius": 0,
-      "critical_issues": [],
-      "days_since_update": 0,
-      "readme_missing": false
-    },
-    {
-      "priority": "P3",
-      "priority_score": 0,
-      "folder": ".agent-backups/20260626-064830/workspace-core",
       "health_score": 100,
       "blast_radius": 0,
       "critical_issues": [],
