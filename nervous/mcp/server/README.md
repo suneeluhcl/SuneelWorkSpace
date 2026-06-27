@@ -41,13 +41,15 @@ Emits `readme_updated` events to nervous system on change.
 
 
 ## 🏥 Health Score
-🟢 **90/100**
+🟡 **75/100**
 
 | Category | Deduction |
 |----------|----------|
+| readme_drift | -15 |
 | no_tests | -10 |
 
 ## 🔥 Critical Issues
+- README is older than folder contents
 - No test files detected
 
 ## ✅ Runtime Status
@@ -69,13 +71,13 @@ Emits `readme_updated` events to nervous system on change.
 **Wiring mismatches:**
 - README links nervous/ but not in dep map
 
-*Last reconciled: 2026-06-27T02:24:16*
+*Last reconciled: 2026-06-27T02:54:24*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-27T02:24:16*
+*Last checked: 2026-06-27T02:54:24*
 
 ## 🌐 Failure Impact Map
 
@@ -83,7 +85,7 @@ Emits `readme_updated` events to nervous system on change.
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-27T02:24:16*
+*Computed: 2026-06-27T02:54:24*
 
 ## 📈 Trends
 

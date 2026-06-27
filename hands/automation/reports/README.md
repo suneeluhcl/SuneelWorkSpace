@@ -37,14 +37,14 @@ Emits `readme_updated` events to nervous system on change.
 
 
 ## 🏥 Health Score
-🟢 **100/100**
+🟢 **85/100**
 
 | Category | Deduction |
 |----------|----------|
-_No deductions_
+| readme_drift | -15 |
 
 ## 🔥 Critical Issues
-None — folder is healthy ✅
+- README is older than folder contents
 
 ## ✅ Runtime Status
 - Python files: 0 (0 valid, 0 broken)
@@ -62,13 +62,13 @@ None — folder is healthy ✅
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-27T02:24:15*
+*Last reconciled: 2026-06-27T02:54:23*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-27T02:24:15*
+*Last checked: 2026-06-27T02:54:23*
 
 ## 🌐 Failure Impact Map
 
@@ -76,7 +76,7 @@ None — folder is healthy ✅
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-27T02:24:15*
+*Computed: 2026-06-27T02:54:23*
 
 ## 📈 Trends
 
