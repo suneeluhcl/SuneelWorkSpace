@@ -397,6 +397,123 @@
       ],
       "execution_level": "CONTROLLED",
       "task_type": "maintenance"
+    },
+    "ollama_stack_start": {
+      "command": "ollama-stack-start",
+      "args": [],
+      "task_type": "maintenance",
+      "keywords": [
+        "start ollama",
+        "start stack",
+        "ollama stack",
+        "start intelligence",
+        "start engines",
+        "launch ollama"
+      ],
+      "execution_level": "SAFE",
+      "description": "Start the full Ollama intelligence stack"
+    },
+    "ollama_stack_stop": {
+      "command": "ollama-stack-stop",
+      "args": [],
+      "task_type": "maintenance",
+      "keywords": [
+        "stop ollama",
+        "stop stack",
+        "stop engines",
+        "kill ollama stack"
+      ],
+      "execution_level": "SAFE",
+      "description": "Stop the Ollama intelligence stack"
+    },
+    "ollama_stack_status": {
+      "command": "ollama-stack-status",
+      "args": [],
+      "task_type": "maintenance",
+      "keywords": [
+        "ollama status",
+        "stack status",
+        "engine status",
+        "is ollama running",
+        "ollama engines"
+      ],
+      "execution_level": "SAFE",
+      "description": "Show Ollama stack and engine status"
+    },
+    "code_review": {
+      "command": "ollama-review",
+      "args": [],
+      "task_type": "autolab",
+      "keywords": [
+        "code review",
+        "review code",
+        "check code",
+        "find bugs",
+        "ollama review",
+        "lint code",
+        "code quality"
+      ],
+      "execution_level": "SAFE",
+      "description": "Run Ollama code review across workspace"
+    },
+    "nerve_heal": {
+      "command": "nerve-heal",
+      "args": ["--check"],
+      "task_type": "maintenance",
+      "keywords": [
+        "nerve heal",
+        "heal nerves",
+        "fix connections",
+        "broken connections",
+        "nerve check",
+        "heal workspace"
+      ],
+      "execution_level": "SAFE",
+      "description": "Check and heal broken nerve connections"
+    },
+    "memory_curate": {
+      "command": "memory-curate",
+      "args": [],
+      "task_type": "brain",
+      "keywords": [
+        "curate memory",
+        "memory curation",
+        "update memory",
+        "clean memory",
+        "memory maintenance",
+        "stale memory"
+      ],
+      "execution_level": "SAFE",
+      "description": "Curate and update brain memory files"
+    },
+    "security_scan": {
+      "command": "security-scan",
+      "args": [],
+      "task_type": "security",
+      "keywords": [
+        "security scan",
+        "scan security",
+        "find secrets",
+        "check security",
+        "api keys exposed",
+        "security check"
+      ],
+      "execution_level": "SAFE",
+      "description": "Scan workspace for security issues"
+    },
+    "morning_brief_personal": {
+      "command": "morning-brief-personal",
+      "args": [],
+      "task_type": "monitor",
+      "keywords": [
+        "personal brief",
+        "personalized brief",
+        "my morning brief",
+        "goal brief",
+        "brief for me"
+      ],
+      "execution_level": "SAFE",
+      "description": "Generate personalized morning brief from active goals"
     }
   }
 }
