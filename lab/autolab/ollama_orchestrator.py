@@ -77,6 +77,22 @@ ENGINES = {
         "description": "Generates skills from completed experiments",
         "requires_model": "suneelworkspace",
     },
+    "suggestion_consumer": {
+        "command": "python3 lab/autolab/suggestion_consumer.py",
+        "interval_day_hours": 2,
+        "interval_night_hours": 1,
+        "priority": 2,
+        "description": "Closes the output→action loop: converts suggestions into tasks",
+        "requires_model": None,
+    },
+    "rebuild_context": {
+        "command": "python3 dna/agents/hermes/ollama_models/build_modelfile.py",
+        "interval_day_hours": 168,
+        "interval_night_hours": 168,
+        "priority": 8,
+        "description": "Rebuilds suneelworkspace Modelfile with fresh context (weekly)",
+        "requires_model": None,
+    },
 }
 
 NIGHT_HOURS = list(range(22, 24)) + list(range(0, 8))

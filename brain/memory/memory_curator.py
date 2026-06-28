@@ -23,7 +23,13 @@ CURATION_LOG = "blood/logs/memory_curation.jsonl"
 CURATION_REPORT = "blood/logs/memory_curation_report.md"
 
 
-def ask_ollama(prompt: str, model: str = "llama3.1", timeout: int = 180) -> str:
+def ask_ollama(prompt: str, model: str = "suneelworkspace", timeout: int = 180) -> str:
+    try:
+        from lab.autolab.context_injector import ask_ollama_with_context
+        return ask_ollama_with_context(prompt, model=model, task_type="general",
+                                       timeout=timeout, temperature=0.3, num_ctx=8192)
+    except ImportError:
+        pass
     payload = json.dumps({
         "model": model,
         "prompt": prompt,

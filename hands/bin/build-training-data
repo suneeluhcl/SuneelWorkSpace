@@ -1,3 +1,1 @@
-#!/usr/bin/env bash
-WORKSPACE="${WORKSPACE:-$HOME/SuneelWorkSpace}"
-python3 "$WORKSPACE/projects/fine-tuning/dataset_builder.py" "$@"
+/Users/MAC/SuneelWorkSpace/dna/agents/hermes/ollama_models/build_training_data.py

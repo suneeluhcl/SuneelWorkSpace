@@ -28,6 +28,11 @@ def is_ollama_running() -> bool:
 def ask_ollama(prompt: str, model: str = "suneelworkspace", timeout: int = 120) -> str:
     if not is_ollama_running():
         return ""
+    try:
+        from lab.autolab.context_injector import ask_ollama_with_context
+        return ask_ollama_with_context(prompt, model=model, task_type="repair", timeout=timeout)
+    except ImportError:
+        pass
 
     payload = json.dumps({
         "model": model,
