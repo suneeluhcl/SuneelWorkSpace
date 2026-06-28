@@ -36,15 +36,17 @@ if [ -z "$RESPONSE" ]; then
   exit 0
 fi
 
-# Log the review
+# Log the review — all dynamic values passed via argv, nothing interpolated into code
+DIFF_LINES=$(printf '%s' "$DIFF" | wc -l | tr -d ' ')
 python3 -c "
 import json, os, sys
 from datetime import datetime, timezone
-log = '$LOG'
+log, response, diff_lines = sys.argv[1], sys.argv[2], int(sys.argv[3])
 os.makedirs(os.path.dirname(log), exist_ok=True)
 with open(log, 'a') as f:
-    f.write(json.dumps({'ts': datetime.now(timezone.utc).isoformat(), 'response': sys.argv[1][:500], 'diff_lines': len('$DIFF'.splitlines())}) + '\n')
-" "$RESPONSE" 2>/dev/null || true
+    f.write(json.dumps({'ts': datetime.now(timezone.utc).isoformat(),
+                        'response': response[:500], 'diff_lines': diff_lines}) + '\n')
+" "$LOG" "$RESPONSE" "$DIFF_LINES" 2>/dev/null || true
 
 # Print review — warn only, don't block
 if echo "$RESPONSE" | grep -qiE "issue|error|warning|security|bug|problem|risk|CRITICAL|HIGH"; then
