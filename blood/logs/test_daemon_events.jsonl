@@ -8711,3 +8711,150 @@
 {"ts": "2026-06-29T04:58:01.987781+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
 {"ts": "2026-06-29T04:58:02.650445+00:00", "type": "test_start", "organ": "heart"}
 {"ts": "2026-06-29T04:58:02.650445+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:03.333027+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:03.333027+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:04.026001+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:04.026001+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.02s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:04.772824+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:04.772824+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:05.463651+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:05.463651+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.02s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:06.163516+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:06.163516+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:06.854559+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:06.854559+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:07.528712+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:07.528712+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:08.198046+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:08.198046+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:08.860428+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:08.860428+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:09.528605+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:09.528605+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:10.204478+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:10.204478+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:10.880790+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:10.880790+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:11.551059+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:11.551059+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:12.217688+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:12.217688+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:13.579555+00:00", "type": "test_start", "organ": "spine"}
+{"ts": "2026-06-29T04:58:13.579441+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:13.579555+00:00", "type": "test_result", "organ": "spine", "skipped": true, "reason": "missing: tests/organs/spine/test_spine.py"}
+{"ts": "2026-06-29T04:58:13.579441+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:14.232840+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:14.232840+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:14.887854+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:14.887854+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:15.546763+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:15.546763+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:16.208845+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:16.208845+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:16.993468+00:00", "type": "test_start", "organ": "brain"}
+{"ts": "2026-06-29T04:58:16.993346+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:16.993468+00:00", "type": "test_result", "organ": "brain", "passed": true, "returncode": 0, "output": ".........                                                                [100%]\n9 passed in 0.01s\n", "test_file": "tests/organs/brain/test_brain.py"}
+{"ts": "2026-06-29T04:58:16.993346+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:17.652987+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:17.652987+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:18.304092+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:18.304092+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:18.951193+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:18.951193+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:19.962930+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:19.963138+00:00", "type": "test_start", "organ": "brain"}
+{"ts": "2026-06-29T04:58:19.963138+00:00", "type": "test_result", "organ": "brain", "passed": true, "returncode": 0, "output": ".........                                                                [100%]\n9 passed in 0.01s\n", "test_file": "tests/organs/brain/test_brain.py"}
+{"ts": "2026-06-29T04:58:19.962930+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:21.440794+00:00", "type": "test_start", "organ": "nervous"}
+{"ts": "2026-06-29T04:58:21.440557+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:21.440698+00:00", "type": "test_start", "organ": "spine"}
+{"ts": "2026-06-29T04:58:21.440698+00:00", "type": "test_result", "organ": "spine", "skipped": true, "reason": "missing: tests/organs/spine/test_spine.py"}
+{"ts": "2026-06-29T04:58:21.440557+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:21.440794+00:00", "type": "test_result", "organ": "nervous", "passed": true, "returncode": 0, "output": "..............                                                           [100%]\n14 passed in 0.02s\n", "test_file": "tests/nerve_system/test_nervous.py"}
+{"ts": "2026-06-29T04:58:22.112709+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:22.112709+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:22.777113+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:22.777113+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:23.449091+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:23.449091+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:24.111322+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:24.111322+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:24.773515+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:24.773515+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:25.439426+00:00", "type": "test_start", "organ": "hands"}
+{"ts": "2026-06-29T04:58:25.439535+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:25.439426+00:00", "type": "test_result", "organ": "hands", "skipped": true, "reason": "missing: tests/organs/hands/test_hands.py"}
+{"ts": "2026-06-29T04:58:25.439535+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:26.112787+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:26.112787+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:26.777112+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:26.777112+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:27.450761+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:27.450761+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:28.465983+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:28.466157+00:00", "type": "test_start", "organ": "spine"}
+{"ts": "2026-06-29T04:58:28.466157+00:00", "type": "test_result", "organ": "spine", "skipped": true, "reason": "missing: tests/organs/spine/test_spine.py"}
+{"ts": "2026-06-29T04:58:28.465983+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:29.140304+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:29.140304+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:29.810199+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:29.810199+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:30.481601+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:30.481601+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:31.165124+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:31.165124+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:31.833662+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:31.833662+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:32.501436+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:32.501436+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:33.170516+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:33.170516+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.02s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:33.838533+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:33.838533+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:34.507950+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:34.507950+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:35.175058+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:35.175058+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:35.843486+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:35.843486+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:36.508279+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:36.508279+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:37.183312+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:37.183312+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:37.849379+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:37.849379+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:38.507846+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:38.507846+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:39.174669+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:39.174669+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:39.854314+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:39.854314+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:40.518871+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:40.518871+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:41.186074+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:41.186074+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:41.855003+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:41.855003+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:42.516002+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:42.516002+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:43.181067+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:43.181067+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.02s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:43.854418+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:43.854418+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:44.514171+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:44.514171+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:45.187480+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:45.187480+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:45.852052+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:45.852052+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:46.515274+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:46.515274+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:47.199586+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:47.199586+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:47.867218+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:47.867218+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:48.531502+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:48.531502+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:49.199666+00:00", "type": "test_start", "organ": "heart"}
+{"ts": "2026-06-29T04:58:49.199666+00:00", "type": "test_result", "organ": "heart", "passed": true, "returncode": 0, "output": "................                                                         [100%]\n16 passed in 0.01s\n", "test_file": "tests/organs/heart/test_heart.py"}
+{"ts": "2026-06-29T04:58:49.861607+00:00", "type": "test_start", "organ": "heart"}

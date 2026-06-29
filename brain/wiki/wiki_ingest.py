@@ -113,8 +113,10 @@ def _extract_entities(text: str, source_name: str) -> list[dict]:
         match = re.search(r"\[.*?\]", response, re.DOTALL)
         if match:
             return json.loads(match.group())
-    except Exception:
-        pass
+        else:
+            print(f"      [DEBUG] No JSON bracket match in response: {response}", file=sys.stderr)
+    except Exception as e:
+        print(f"      [DEBUG] JSON parse error: {e}. Raw response: {response}", file=sys.stderr)
     return []
 
 
