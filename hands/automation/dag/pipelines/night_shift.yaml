@@ -114,11 +114,25 @@ steps:
       attempts) → decision promotion to DECISIONS.md on success. Results logged
       to blood/logs/autoresearch.jsonl.
 
+  - id: wiki_lint
+    name: "Wiki Health Check — Broken Links, Orphans & Conceptual Gaps"
+    command: python3
+    args: ["brain/wiki/wiki_lint.py"]
+    depends_on: [autoresearch]
+    execution_level: SAFE
+    on_failure:
+      action: continue
+    description: >
+      Scans brain/vault/wiki/ for broken [[links]], orphan notes, and
+      frequently-mentioned concepts lacking their own wiki page. Writes
+      brain/vault/wiki/Wiki Health.md. Non-zero exit on broken links or
+      orphans; pipeline continues regardless.
+
   - id: chaos_test
     name: "Chaos Engineering — Inject Anomaly & Verify Self-Healing"
     command: python3
     args: ["tests/chaos_monkey.py"]
-    depends_on: [autoresearch]
+    depends_on: [wiki_lint]
     execution_level: SAFE
     on_failure:
       action: continue

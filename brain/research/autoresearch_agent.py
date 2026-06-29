@@ -137,7 +137,7 @@ def _search_arxiv(query: str, max_results: int = 5) -> list[dict]:
     """Hit the arXiv Atom API and return list of {title, authors, abstract, url}."""
     encoded = urllib.parse.quote(query)
     url = (
-        f"http://export.arxiv.org/api/query"
+        f"https://export.arxiv.org/api/query"     # HTTPS prevents MITM on content fed to LLM
         f"?search_query=all:{encoded}&max_results={max_results}&sortBy=relevance"
     )
     try:
@@ -161,9 +161,13 @@ def _search_arxiv(query: str, max_results: int = 5) -> list[dict]:
                 if a.find("a:name", _ARXIV_NS) is not None
             ]
             results.append({
-                "title":    (title_el.text or "").strip().replace("\n", " "),
-                "authors":  ", ".join(authors[:3]) + (" et al." if len(authors) > 3 else ""),
-                "abstract": (abstract_el.text or "").strip().replace("\n", " ")[:600],
+                "title":    _sanitize_external_text((title_el.text or "").replace("\n", " "), 200),
+                "authors":  _sanitize_external_text(
+                    ", ".join(authors[:3]) + (" et al." if len(authors) > 3 else ""), 200
+                ),
+                "abstract": _sanitize_external_text(
+                    (abstract_el.text or "").replace("\n", " "), 500
+                ),
                 "url":      (url_el.text or "").strip(),
             })
     except Exception as e:
@@ -319,13 +323,62 @@ Wrap the code in a single ```python ... ``` block. Nothing else."""
     return {"prototype_path": str(proto_path), "code": code, "raw_response": response[:500]}
 
 
-# ── Phase 4: Sandboxed Execution ──────────────────────────────────────────────
+# ── Phase 4: Prototype Execution ──────────────────────────────────────────────
+#
+# SECURITY NOTE: _run_prototype_unconfined() runs LLM-generated code with your
+# full user account privileges — same filesystem access, env vars (AWS_*, GH_TOKEN,
+# ssh-agent), and network as the calling process.  It is NOT a true OS-level
+# sandbox.  The working directory is isolated to /tmp/suneelworkspace-sandbox/
+# and env vars are stripped, but that is not sufficient to prevent a malicious
+# script from reading ~/.ssh, cloud credentials, or calling curl.
+#
+# Phase 4 requires the explicit --allow-execute flag so it never runs
+# automatically from night_shift.yaml or other scheduled pipelines.
+# Manual review of the generated script (Phase 3 output) is strongly recommended
+# before passing --allow-execute.
+#
+# Future hardening: wrap the subprocess.run() call with macOS `sandbox-exec`
+# or a Docker container (`docker run --rm --network=none --read-only ...`).
 
-def _run_in_sandbox(prototype_path: Path, sandbox_dir: Path, timeout: int = 30) -> dict:
-    """Copy prototype into sandbox and execute it. Returns {success, stdout, stderr}."""
-    sandbox_dir.mkdir(parents=True, exist_ok=True)
-    sandbox_script = sandbox_dir / prototype_path.name
+
+def _sanitize_external_text(text: str, max_len: int = 500) -> str:
+    """Strip untrusted content before inserting into Ollama prompts.
+
+    Prevents prompt injection via arXiv abstracts or MCP web snippets:
+    - Caps length to avoid context stuffing
+    - Removes HTML/script tags
+    - Neutralises backtick sequences that could break code-block delimiters
+    - Strips null bytes
+    """
+    text = text[:max_len]
+    text = re.sub(r"<[^>]{0,200}>", "", text)       # strip HTML tags
+    text = text.replace("```", "~~~")               # neutralise code-block delimiters
+    text = re.sub(r"\x00", "", text)                # strip null bytes
+    # Block obvious prompt-injection phrases
+    text = re.sub(r"(?i)ignore previous instructions?", "[redacted]", text)
+    text = re.sub(r"(?i)system:\s", "[redacted]", text)
+    return text.strip()
+
+
+def _run_prototype_unconfined(prototype_path: Path, work_dir: Path,
+                              timeout: int = 30) -> dict:
+    """
+    Run the prototype script in an isolated working directory with a stripped
+    environment.  NOT a true OS-level sandbox — see SECURITY NOTE above.
+    """
+    work_dir.mkdir(parents=True, exist_ok=True)
+    sandbox_script = work_dir / prototype_path.name
     shutil.copy2(prototype_path, sandbox_script)
+
+    # Strip sensitive env vars before execution
+    clean_env = {
+        k: v for k, v in os.environ.items()
+        if not any(k.startswith(prefix) for prefix in (
+            "AWS_", "GH_", "GITHUB_", "OPENAI_", "ANTHROPIC_",
+            "SSH_", "GPG_", "KEYCHAIN", "HOMEBREW_GITHUB",
+        ))
+    }
+    clean_env["HOME"] = str(work_dir)   # redirect ~ away from real home
 
     try:
         r = subprocess.run(
@@ -333,7 +386,8 @@ def _run_in_sandbox(prototype_path: Path, sandbox_dir: Path, timeout: int = 30) 
             capture_output=True,
             text=True,
             timeout=timeout,
-            cwd=str(sandbox_dir),
+            cwd=str(work_dir),
+            env=clean_env,
         )
         return {
             "success": r.returncode == 0,
@@ -361,9 +415,23 @@ def _patch_with_ollama(code: str, traceback: str, iteration: int) -> str:
     return patched if len(patched) > 20 else code
 
 
-def phase4_sandbox_execute(idea_id: str, prototype_path: str) -> dict:
-    """Execute prototype in sandbox with up to 3 Ollama-assisted repair iterations."""
-    print("  [phase-4] Running prototype in sandbox…")
+def phase4_sandbox_execute(idea_id: str, prototype_path: str,
+                           allow_execute: bool = False) -> dict:
+    """
+    Execute prototype with up to 3 Ollama-assisted repair iterations.
+
+    Requires allow_execute=True (passed via --allow-execute CLI flag).
+    Never set allow_execute=True in automated/scheduled pipeline runs —
+    always review the generated script first.
+    """
+    if not allow_execute:
+        print("  [phase-4] SKIPPED — pass --allow-execute to run LLM-generated code")
+        print("            Review the script first:")
+        print(f"            cat '{prototype_path}'")
+        return {"success": False, "skipped": True, "stdout": "", "stderr": "",
+                "iterations": [], "total_attempts": 0}
+
+    print("  [phase-4] Running prototype (unconfined)…")
     ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     sandbox_dir = SANDBOX_BASE / f"{ts}-{idea_id[:30]}"
     proto = Path(prototype_path)
@@ -374,7 +442,7 @@ def phase4_sandbox_execute(idea_id: str, prototype_path: str) -> dict:
 
     for attempt in range(1, 4):
         print(f"  [phase-4] Attempt {attempt}/3…")
-        result = _run_in_sandbox(proto, sandbox_dir, timeout=30)
+        result = _run_prototype_unconfined(proto, sandbox_dir, timeout=30)
         iterations.append({"attempt": attempt, **result})
 
         if result["success"]:
@@ -548,7 +616,8 @@ def _get_idea(idea_id: str | None) -> tuple[str, str, str] | None:
 
 # ── main runner ────────────────────────────────────────────────────────────────
 
-def run(idea_id: str | None = None, phase_limit: int | None = None) -> dict:
+def run(idea_id: str | None = None, phase_limit: int | None = None,
+        allow_execute: bool = False) -> dict:
     """Run the full 5-phase autoresearch loop for one idea."""
     ts_start = time.monotonic()
 
@@ -591,7 +660,8 @@ def run(idea_id: str | None = None, phase_limit: int | None = None) -> dict:
         return record
 
     # Phase 4
-    sandbox = phase4_sandbox_execute(iid, synth["prototype_path"])
+    sandbox = phase4_sandbox_execute(iid, synth["prototype_path"],
+                                     allow_execute=allow_execute)
     record["phase4"] = {
         "success": sandbox["success"],
         "attempts": sandbox["total_attempts"],
@@ -629,6 +699,9 @@ def main() -> None:
     parser.add_argument("--list", action="store_true", help="List all ideas")
     parser.add_argument("--phase", type=int, choices=[1, 2, 3, 4, 5], default=None,
                         help="Run only up to this phase number")
+    parser.add_argument("--allow-execute", action="store_true",
+                        help="Allow Phase 4 to run LLM-generated code. "
+                             "Review the generated script (Phase 3 output) before using this flag.")
     args = parser.parse_args()
 
     if args.list:
@@ -641,7 +714,8 @@ def main() -> None:
             print(f"               {i.get('title', '')}")
         return
 
-    result = run(idea_id=args.idea_id, phase_limit=args.phase)
+    result = run(idea_id=args.idea_id, phase_limit=args.phase,
+                 allow_execute=args.allow_execute)
     sys.exit(0 if result.get("status") in ("completed", "partial") else 1)
 
 
