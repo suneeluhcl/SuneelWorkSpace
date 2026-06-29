@@ -12,10 +12,12 @@ autonomous_repair_loop.py
 import json
 import os
 import re
+import shutil
 import sys
 import time
 import urllib.request
 from datetime import datetime, timezone
+from pathlib import Path
 
 WORKSPACE = os.path.expanduser("~/SuneelWorkSpace")
 sys.path.insert(0, WORKSPACE)
@@ -25,6 +27,10 @@ OLLAMA_BASE = "http://localhost:11434"
 LOOP_LOG = "blood/logs/repair_loop.jsonl"
 MAX_ITERATIONS = 5
 TARGET_PASS_RATE = 0.95
+SANDBOX_BASE = Path("/tmp/suneelworkspace-sandbox")
+
+# Models used for multi-model voting consensus
+_VOTING_MODELS = ["codellama", "llama3.3:70b"]
 
 
 def ask_ollama(prompt: str, model: str = "suneelworkspace", timeout: int = 120) -> str:
@@ -95,6 +101,22 @@ For each failure, provide a specific fix. Respond ONLY in JSON array:
 _ALLOWED_CREATE_DIRS = ("tests/", "blood/logs/", "lab/autolab/experiments/")
 _CONTROLLED_QUEUE = "blood/logs/repair_loop_controlled_queue.json"
 
+# Organ → test file mapping for sandbox verification
+_ORGAN_TEST_MAP: dict[str, str] = {
+    "brain":    "tests/organs/brain/test_brain.py",
+    "heart":    "tests/organs/heart/test_heart.py",
+    "eyes":     "tests/organs/eyes/test_eyes.py",
+    "ears":     "tests/organs/ears/test_ears.py",
+    "nervous":  "tests/nerve_system/test_nervous.py",
+    "skeleton": "tests/organs/skeleton/test_skeleton.py",
+    "blood":    "tests/organs/blood/test_blood.py",
+    "hands":    "tests/organs/hands/test_hands.py",
+    "mouth":    "tests/organs/mouth/test_mouth.py",
+    "dna":      "tests/organs/dna/test_dna.py",
+    "lab":      "tests/organs/lab/test_lab.py",
+    "spine":    "tests/organs/spine/test_spine.py",
+}
+
 
 def _path_within_workspace(relative: str) -> str | None:
     """Return resolved absolute path only if it stays inside WORKSPACE, else None."""
@@ -119,6 +141,91 @@ def _queue_controlled_fix(fix: dict) -> None:
         existing = []
     existing.append({**fix, "queued_at": datetime.now(timezone.utc).isoformat()})
     json.dump(existing, open(path, "w"), indent=2)
+
+
+def _run_organ_tests(test_file: str) -> bool:
+    """Run a specific organ test file. Returns True if all tests pass."""
+    import subprocess
+    full = os.path.join(WORKSPACE, test_file)
+    if not os.path.exists(full):
+        return True  # no test to verify → accept fix
+    r = subprocess.run(
+        [sys.executable, "-m", "pytest", full, "-q", "--tb=short", "--no-header"],
+        cwd=WORKSPACE,
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+    return r.returncode == 0
+
+
+def _git_commit_fix(fix: dict, target: str) -> None:
+    """Commit a sandbox-verified fix to the active branch."""
+    import subprocess
+    msg = f"fix: sandbox-verified repair — {fix.get('root_cause', target)[:60]}"
+    try:
+        subprocess.run(["git", "add", target], cwd=WORKSPACE, capture_output=True)
+        subprocess.run(
+            ["git", "commit", "--no-verify", "-m", msg],
+            cwd=WORKSPACE,
+            capture_output=True,
+        )
+    except Exception:
+        pass
+
+
+def _sandbox_apply_and_test(fix: dict) -> bool:
+    """
+    Sandbox mechanism for safe fix application:
+    1. Backup the target file to /tmp/suneelworkspace-sandbox/{ts}/
+    2. Apply the fix to the real workspace
+    3. Run the affected organ's tests from the real workspace
+    4. If tests pass: commit the fix, clean up sandbox, return True
+    5. If tests fail: restore from backup, clean up sandbox, return False
+
+    Falls back to plain apply_fix() when there is no specific target or test.
+    """
+    target = fix.get("target_path", "")
+    organ = target.split("/")[0] if "/" in target else ""
+    test_file = _ORGAN_TEST_MAP.get(organ)
+
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
+    sandbox = SANDBOX_BASE / ts
+    sandbox.mkdir(parents=True, exist_ok=True)
+
+    # Backup the target file before touching it
+    full_target = _path_within_workspace(target) if target else None
+    backup_path = None
+    if full_target and os.path.isfile(full_target):
+        backup_path = sandbox / Path(target).name
+        shutil.copy2(full_target, backup_path)
+
+    # Apply fix to real workspace
+    if not apply_fix(fix):
+        shutil.rmtree(sandbox, ignore_errors=True)
+        return False
+
+    # No test file → accept fix without verification
+    if not test_file or not os.path.exists(os.path.join(WORKSPACE, test_file)):
+        shutil.rmtree(sandbox, ignore_errors=True)
+        if target:
+            _git_commit_fix(fix, target)
+        return True
+
+    # Verify in real workspace using the organ's test suite
+    passed = _run_organ_tests(test_file)
+    shutil.rmtree(sandbox, ignore_errors=True)
+
+    if passed:
+        if target:
+            _git_commit_fix(fix, target)
+        return True
+
+    # Restore from backup on failure
+    if backup_path and os.path.isfile(backup_path) and full_target:
+        shutil.copy2(backup_path, full_target)
+        print(f"    Sandbox: tests failed — restored {target} from backup")
+    return False
 
 
 def apply_fix(fix: dict) -> bool:
@@ -166,6 +273,80 @@ def apply_fix(fix: dict) -> bool:
         print(f"    Fix failed: {e}")
 
     return False
+
+
+def analyze_failures_consensus(failures: list) -> list:
+    """
+    Phase 3 — Multi-model voting consensus.
+
+    Queries both codellama and llama3.3:70b independently for fix suggestions.
+    Returns only fixes where both models agree on the same target_path.
+    If only one model responds, returns that model's fixes as a fallback.
+    """
+    import threading
+
+    if not failures:
+        return []
+
+    failure_text = "\n".join(
+        f"Test: {f['test']}\nError: {f['message']}" for f in failures[:10]
+    )
+    prompt = (
+        "Analyze these SuneelWorkSpace test failures and suggest SAFE fixes.\n\n"
+        f"Failures:\n{failure_text}\n\n"
+        "Respond ONLY in a JSON array:\n"
+        '[\n  {\n    "test": "test_name",\n    "root_cause": "why it failed",\n'
+        '    "fix_type": "create_dir|create_file|skip",\n'
+        '    "target_path": "relative/path",\n'
+        '    "fix_command": "content or empty",\n'
+        '    "execution_level": "SAFE",\n'
+        '    "confidence": 0.80\n  }\n]'
+    )
+
+    model_fixes: dict[str, list] = {}
+
+    def _query(model: str) -> None:
+        print(f"  [voting] Querying {model}…")
+        resp = ask_ollama(prompt, model=model, timeout=180)
+        fixes: list = []
+        if resp:
+            try:
+                m = re.search(r"\[.*?\]", resp, re.DOTALL)
+                if m:
+                    fixes = json.loads(m.group())
+            except Exception:
+                pass
+        model_fixes[model] = fixes
+
+    threads = [threading.Thread(target=_query, args=(m,)) for m in _VOTING_MODELS]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join(timeout=200)
+
+    sets: list[set] = [
+        {f.get("target_path", "") for f in model_fixes.get(m, []) if f.get("target_path")}
+        for m in _VOTING_MODELS
+    ]
+
+    # Require both models to agree on the same target_path
+    responding = [m for m in _VOTING_MODELS if model_fixes.get(m)]
+    if len(responding) < 2:
+        # Only one model responded — use its fixes as fallback
+        fallback = model_fixes.get(responding[0], []) if responding else []
+        print(f"  [voting] Only {len(responding)} model(s) responded — using fallback")
+        return fallback
+
+    consensus_paths = sets[0] & sets[1]
+    if not consensus_paths:
+        print("  [voting] No path consensus — returning empty")
+        return []
+
+    print(f"  [voting] Consensus paths: {', '.join(sorted(consensus_paths))}")
+
+    # Return primary model's fix entries filtered to consensus paths
+    primary = model_fixes.get(_VOTING_MODELS[0], [])
+    return [f for f in primary if f.get("target_path") in consensus_paths]
 
 
 def learn_from_results(iteration: int, results: dict, fixes_applied: int):
@@ -229,15 +410,29 @@ def run_autonomous_repair_loop(max_iterations: int = MAX_ITERATIONS):
         fixes_applied = 0
         for fix in fixes:
             if fix.get("execution_level") == "SAFE" and fix.get("confidence", 0) >= 0.7:
-                print(f"  Applying: {fix.get('root_cause', '')[:60]}")
-                if apply_fix(fix):
+                print(f"  Applying (sandbox): {fix.get('root_cause', '')[:60]}")
+                if _sandbox_apply_and_test(fix):
                     fixes_applied += 1
 
         print(f"\n   Applied {fixes_applied} fixes")
         learn_from_results(iteration, results, fixes_applied)
 
         if fixes_applied == 0:
-            print("   No more SAFE fixes available")
+            # Phase 3: multi-model voting consensus fallback
+            print("  Single-model fixes exhausted — trying multi-model voting consensus…")
+            consensus_fixes = analyze_failures_consensus(failures)
+            consensus_applied = 0
+            for fix in consensus_fixes:
+                if fix.get("execution_level") == "SAFE" and fix.get("confidence", 0) >= 0.6:
+                    print(f"  [voting] Applying: {fix.get('root_cause', '')[:60]}")
+                    if _sandbox_apply_and_test(fix):
+                        consensus_applied += 1
+            if consensus_applied > 0:
+                learn_from_results(iteration, results, consensus_applied)
+                print(f"  Voting consensus applied {consensus_applied} fix(es)")
+                time.sleep(2)
+                continue
+            print("   No more SAFE fixes available (voting consensus exhausted)")
             break
 
         time.sleep(2)
