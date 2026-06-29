@@ -119,3 +119,8 @@ blood/logs/repair_loop.jsonl
 
 # High-churn auto-sync logs (updated every 30 min by background process)
 blood/logs/readme_intelligence.log
+
+# Runtime logs — continuously written by background daemons; not tracked in git
+blood/logs/model_rotation.jsonl
+blood/logs/test_daemon_events.jsonl
+blood/logs/nerve_events.jsonl
