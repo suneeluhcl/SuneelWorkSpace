@@ -113,8 +113,29 @@ def _build_context(task_type: str = "general") -> str:
     return ctx
 
 
+def _rag_snippets(prompt: str) -> str:
+    """Call workspace_rag to retrieve top-3 relevant snippets for the prompt."""
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "workspace_rag", WORKSPACE / "brain/research/workspace_rag.py"
+        )
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod.get_context_for_prompt(prompt, top_k=3)
+    except Exception:
+        return ""
+
+
 def _ask_ollama(prompt: str, model: str, task_type: str, temperature: float, num_ctx: int) -> str:
     ctx = _build_context(task_type)
+
+    # Prepend semantically relevant RAG snippets for deeper prompts
+    if len(prompt) > 40:
+        rag = _rag_snippets(prompt)
+        if rag:
+            ctx = rag + "\n\n" + ctx
+
     system = (
         "You are an AI engine inside SuneelWorkSpace — a living, self-maintaining local AI workspace.\n\n"
         f"{ctx}\n\n"

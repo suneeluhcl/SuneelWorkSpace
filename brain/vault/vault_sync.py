@@ -158,7 +158,7 @@ def generate_organ_note(organ: str) -> str:
 
 
 def forward_sync(organs: list[str] | None = None) -> dict:
-    """Write/refresh vault notes for all (or specified) organs."""
+    """Write/refresh vault notes for all (or specified) organs, then run vault_graph."""
     VAULT_ORGANS.mkdir(parents=True, exist_ok=True)
     target = organs or ORGANS
     written = []
@@ -168,7 +168,28 @@ def forward_sync(organs: list[str] | None = None) -> dict:
         path.write_text(note)
         written.append(organ)
         _notify(organ, "vault_note_updated", str(path))
-    return {"written": written, "ts": datetime.now(timezone.utc).isoformat()}
+
+    # Run vault_graph: autolink + regenerate canvas after notes are refreshed
+    try:
+        from brain.vault.vault_graph import run as _graph_run
+        graph_result = _graph_run()
+    except Exception:
+        try:
+            import importlib.util, sys as _sys
+            spec = importlib.util.spec_from_file_location(
+                "vault_graph", WORKSPACE / "brain/vault/vault_graph.py"
+            )
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            graph_result = mod.run()
+        except Exception as e:
+            graph_result = {"error": str(e)}
+
+    return {
+        "written": written,
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "graph": graph_result,
+    }
 
 
 # ── daily evolution feed ────────────────────────────────────────────────────────
