@@ -3,3 +3,9 @@
 {"ts": "2026-06-29T02:40:22.268802+00:00", "type": "test_result", "organ": "hands", "skipped": true, "reason": "missing: tests/organs/hands/test_hands.py"}
 {"ts": "2026-06-29T02:40:50.925579+00:00", "type": "test_start", "organ": "hands"}
 {"ts": "2026-06-29T02:40:50.925579+00:00", "type": "test_result", "organ": "hands", "skipped": true, "reason": "missing: tests/organs/hands/test_hands.py"}
+{"ts": "2026-06-29T02:40:55.049890+00:00", "type": "test_start", "organ": "brain"}
+{"ts": "2026-06-29T02:40:55.049794+00:00", "type": "test_start", "organ": "hands"}
+{"ts": "2026-06-29T02:40:55.050024+00:00", "type": "test_start", "organ": "lab"}
+{"ts": "2026-06-29T02:40:55.049794+00:00", "type": "test_result", "organ": "hands", "skipped": true, "reason": "missing: tests/organs/hands/test_hands.py"}
+{"ts": "2026-06-29T02:40:55.049890+00:00", "type": "test_result", "organ": "brain", "passed": true, "returncode": 0, "output": ".........                                                                [100%]\n9 passed in 0.01s\n", "test_file": "tests/organs/brain/test_brain.py"}
+{"ts": "2026-06-29T02:40:55.050024+00:00", "type": "test_result", "organ": "lab", "passed": true, "returncode": 0, "output": "...........................                                              [100%]\n27 passed in 2.40s\n", "test_file": "tests/ollama_engines/test_ollama_engines.py"}

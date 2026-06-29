@@ -21,3 +21,8 @@ Daemons available:
 - `test-daemon-start` — real-time organ file watcher + repair trigger
 - `evolution-start` — 5-minute evolution tick daemon
 - `vault-sync` — sync workspace state → Obsidian organ notes
+
+## 2026-06-29 02:40 UTC
+
+✅ Auto-fix applied: `gstack_drift`
+touched file: hands/bin/gstack-verify
