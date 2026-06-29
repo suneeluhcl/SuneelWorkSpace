@@ -15,3 +15,5 @@
 | [[Karpathy]] | person | 2026-06-29 |
 | [[Personal-Knowledge-Base]] | concept | 2026-06-29 |
 | [[Research]] | concept | 2026-06-29 |
+
+| [[synthesis-20260629-050559-explain-the-llm-wiki-pattern-and-compare]] | synthesis | 2026-06-29 |
