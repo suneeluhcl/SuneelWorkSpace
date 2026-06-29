@@ -99,11 +99,26 @@ steps:
     on_failure:
       action: continue
 
+  - id: autoresearch
+    name: "Autonomous Research — Karpathy-Style arXiv + RAG + Prototype Loop"
+    command: python3
+    args: ["brain/research/autoresearch_agent.py"]
+    depends_on: [vault_sync]
+    execution_level: SAFE
+    on_failure:
+      action: continue
+    description: >
+      Picks the first captured idea from brain/research/ideas/index.json and runs
+      the 5-phase research loop: arXiv literature search → workspace RAG query →
+      Ollama synthesis + prototype generation → sandboxed execution (3 repair
+      attempts) → decision promotion to DECISIONS.md on success. Results logged
+      to blood/logs/autoresearch.jsonl.
+
   - id: chaos_test
     name: "Chaos Engineering — Inject Anomaly & Verify Self-Healing"
     command: python3
     args: ["tests/chaos_monkey.py"]
-    depends_on: [vault_sync]
+    depends_on: [autoresearch]
     execution_level: SAFE
     on_failure:
       action: continue
