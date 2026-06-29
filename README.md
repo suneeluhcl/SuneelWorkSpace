@@ -1,3 +1,4 @@
+<!-- README_PROTECTED: manual -->
 # SuneelWorkSpace — Complete System Blueprint
 
 > This README is the authoritative drop-in context for any AI agent, prompt engineer, or LLM entering this workspace. Reading this file alone is sufficient to understand the entire system: its architecture, identity, safety rules, memory, tasks, capabilities, and how to operate it.
@@ -131,17 +132,17 @@ What it does:
 
 Key files:
 ```
-brain/memory/MEMORY.md             ← durable workspace facts (single source of truth)
-brain/memory/DECISIONS.md          ← key decisions with reasoning
-brain/memory/PATTERNS.md           ← recurring operating patterns
-brain/memory/INSIGHTS.md           ← higher-level learnings
-brain/memory/SESSION_HANDOFF.md    ← latest session summary for continuity
-brain/memory/memory_curator.py     ← Ollama-powered curation (suneelworkspace model)
+brain/memory/MEMORY.md                 ← durable workspace facts (single source of truth)
+brain/memory/DECISIONS.md             ← key decisions with reasoning
+brain/memory/PATTERNS.md              ← recurring operating patterns
+brain/memory/INSIGHTS.md              ← higher-level learnings
+brain/memory/SESSION_HANDOFF.md       ← latest session summary for continuity
+brain/memory/memory_curator.py        ← Ollama-powered curation (suneelworkspace model)
 brain/memory/vector/semantic_search.py ← vector search
 brain/anticipation/prediction_engine.py ← next-action prediction
 brain/anticipation/action_suggestions.md ← current ranked suggestions
-brain/research/                    ← idea pipeline scripts
-brain/graph/build_graph.py         ← knowledge graph builder
+brain/research/                        ← idea pipeline scripts
+brain/graph/build_graph.py             ← knowledge graph builder
 ```
 
 CLI: `memory-search "q"`, `memory-curate`, `memory-reindex`, `morning-brief-personal`, `idea-start`, `idea-run`
@@ -198,27 +199,27 @@ What it does:
 
 Key files:
 ```
-eyes/dashboard/server.py          ← FastAPI app (33.7KB): all routes, WebSocket, pipeline
-eyes/dashboard/index.html         ← Dashboard UI (HTMX panels)
+eyes/dashboard/server.py           ← FastAPI app (33.7KB): all routes, WebSocket, pipeline
+eyes/dashboard/index.html          ← Dashboard UI (HTMX panels)
 eyes/dashboard/static/dashboard.js ← WebSocket client, polling, runTests(), runRepairLoop()
 eyes/dashboard/pipeline/pipeline.py ← 6-stage pipeline engine
-eyes/dashboard/widgets/           ← 13 widget renderers (all HTML-escaped)
-eyes/visual/screenshot_manager.py ← screenshot capture
+eyes/dashboard/widgets/            ← 13 widget renderers (all HTML-escaped)
+eyes/visual/screenshot_manager.py  ← screenshot capture
 eyes/visual/visual_repair_agent.py ← Ollama visual repair
 ```
 
 API endpoints:
 ```
-GET  /api/health              health score
-GET  /api/tests/status        latest test run results (JSON)
-POST /api/tests/run           trigger test suite (background)
-POST /api/tests/repair-loop   trigger autonomous repair loop (background)
-GET  /api/nerve/status        all 12 organ statuses
-GET  /api/models/status       model rotation stats
-GET  /api/ollama/status       Ollama server + model list
-GET  /api/hermes/status       Hermes agent status
-POST /api/health/repair       launch 8-stage health repair pipeline
-GET  /api/readme-health       README freshness scores
+GET  /api/health               health score
+GET  /api/tests/status         latest test run results (JSON)
+POST /api/tests/run            trigger test suite (background)
+POST /api/tests/repair-loop    trigger autonomous repair loop (background)
+GET  /api/nerve/status         all 12 organ statuses
+GET  /api/models/status        model rotation stats
+GET  /api/ollama/status        Ollama server + model list
+GET  /api/hermes/status        Hermes agent status
+POST /api/health/repair        launch 8-stage health repair pipeline
+GET  /api/readme-health        README freshness scores
 ```
 
 Security: WebSocket origins validated; quick actions against server allowlist; all widget HTML uses `html.escape()`.
@@ -238,11 +239,11 @@ What it does:
 
 Key files:
 ```
-ears/monitor_runner.py     ← runs all monitors on schedule
-ears/digest_builder.py     ← assembles digest from monitor outputs
-ears/personalized_brief.py ← Ollama-powered personal scoring + ranking
-ears/monitors/             ← individual monitor scripts (RSS, GitHub, custom)
-ears/briefs/               ← historical brief archives
+ears/monitor_runner.py      ← runs all monitors on schedule
+ears/digest_builder.py      ← assembles digest from monitor outputs
+ears/personalized_brief.py  ← Ollama-powered personal scoring + ranking
+ears/monitors/              ← individual monitor scripts (RSS, GitHub, custom)
+ears/briefs/                ← historical brief archives
 ```
 
 CLI: `morning-brief`, `morning-brief-personal`, `monitor-run`, `monitor-status`
@@ -260,12 +261,12 @@ What it does:
 
 Key files:
 ```
-nervous/nerve_propagator.py    ← event bus: notify_change() + get_status()
-nervous/nerve_healer.py        ← Ollama healer (suneelworkspace model)
-nervous/nerve_registry.json    ← 12-organ dependency map
-nervous/nerve_status.py        ← prints organ statuses
-nervous/gateway/               ← MCP gateway
-nervous/mcp/                   ← MCP connectors (Claude, Codex)
+nervous/nerve_propagator.py   ← event bus: notify_change() + get_status()
+nervous/nerve_healer.py       ← Ollama healer (suneelworkspace model)
+nervous/nerve_registry.json   ← 12-organ dependency map
+nervous/nerve_status.py       ← prints organ statuses
+nervous/gateway/              ← MCP gateway
+nervous/mcp/                  ← MCP connectors (Claude, Codex)
 ```
 
 API (used by all organs):
@@ -275,7 +276,7 @@ from nervous.nerve_propagator import notify_change, get_status
 payload = notify_change("brain", "memory_updated", "brain/memory/MEMORY.md")
 # payload["event_type"] == "memory_updated"   ← KEY: use "event_type" not "change_type"
 
-status = get_status()   # returns {"brain": {"healthy": True, ...}, ...} for all 12 organs
+status = get_status()   # {"brain": {"healthy": True, ...}, ...} for all 12 organs
 ```
 
 Nerve.json format (v1.1) — every organ has one at its root:
@@ -305,11 +306,9 @@ skeleton/rules/AGENT_SYSTEM.md        ← canonical rules (source of truth for A
 skeleton/rules/IDENTITY.md            ← identity: voice, tone, communication style
 skeleton/rules/WORKFLOW_RULES.md      ← code changes, commit style, agent handoffs
 skeleton/rules/SAFETY_BOUNDARIES.md  ← hard limits (see Section 5 above)
-skeleton/rules/STARTUP_CHECKLIST.md  ← full ordered startup (Section 4 above)
+skeleton/rules/STARTUP_CHECKLIST.md  ← full ordered startup (see Section 4 above)
 skeleton/rules/BOUNDED_SELF_UPGRADE.md ← safe workspace self-modification rules
 ```
-
-No tests directly (static rule files). All other organ tests depend on these files being at the expected paths.
 
 ---
 
@@ -329,13 +328,12 @@ blood/logs/pre_commit_review.jsonl             ← codellama pre-commit code rev
 blood/logs/nerve_events.jsonl                  ← all organ nerve events
 blood/logs/execution_history.jsonl             ← 6-stage pipeline execution history
 blood/logs/ollama_suggestions.md               ← raw LLM suggestions from all engines
-blood/logs/code_review_report.md               ← Python file analysis from code_review_engine
+blood/logs/code_review_report.md               ← Python file analysis
 blood/logs/nerve_healer.jsonl                  ← organ healing events
-blood/logs/repair_loop.jsonl                   ← test repair iterations (gitignored)
 blood/logs/repair_loop_controlled_queue.json   ← LLM symlink fixes awaiting human approval
 blood/logs/suggestion_controlled_queue.json    ← low-confidence suggestions awaiting review
 blood/telemetry/telemetry.db                   ← SQLite metrics database
-blood/telemetry/log_query.py                   ← query telemetry + JSONL logs
+blood/telemetry/log_query.py                   ← query telemetry + JSONL
 blood/telemetry/anomaly_detector.py            ← anomaly flagging
 ```
 
@@ -350,10 +348,13 @@ What it does:
 - `hands/bin/` — 194 symlinks; every workspace command lives here
 - `hands/scripts/` — 50+ actual script implementations
 - `hands/automation/dag/pipelines/night_shift.yaml` — nightly DAG pipeline
-- `hands/automation/plists/` — launchd job configuration (loaded into `~/Library/LaunchAgents/`)
+- `hands/automation/plists/` — launchd job configuration
 - `hands/scripts/pre_commit_hook.sh` — codellama code review on every git commit
+- `hands/automation/readme/` — README intelligence system (synthesizer, generator, validator)
 
 **The symlink rule**: Every entry in `hands/bin/` must be a symlink (never a plain file). Enforced by `tests/organs/hands/test_hands.py`. To add a command: `ln -sf "$WORKSPACE/hands/scripts/script.sh" "$WORKSPACE/hands/bin/command-name"`.
+
+**README auto-system**: The pre-push hook at `.git/hooks/pre-push` calls `hands/automation/readme/root_synthesizer.py`. It respects `<!-- README_PROTECTED: manual -->` markers (skips regeneration when found).
 
 ---
 
@@ -386,22 +387,22 @@ What it does:
 - Identity profiles defining Suneel's voice, tone, and decision style
 - Hermes agent (tirith) built on Ollama — the local AI agent layer
 - `Modelfile.workspace` — builds the `suneelworkspace` Ollama model
-- Training data — 103 pairs extracted from workspace history for fine-tuning
+- Training data — 103 pairs extracted from workspace history
 - Adaptive identity loop learns slowly from accepted/rejected outputs
 
 Key files:
 ```
-dna/identity/prompts/identity_prompt.md              ← identity injection template
-dna/identity/prompts/communication_prompt.md         ← comm style prompt
-dna/identity/profile/identity_profile.md             ← who Suneel is (see Section 3)
-dna/identity/profile/tone_profile.md                 ← voice spec
-dna/identity/profile/decision_profile.md             ← decision-making style
-dna/agents/hermes/ollama_models/Modelfile.workspace  ← suneelworkspace definition (9,553 chars)
-dna/agents/hermes/ollama_models/build_modelfile.py   ← rebuilds Modelfile from live state
+dna/identity/prompts/identity_prompt.md               ← identity injection template
+dna/identity/prompts/communication_prompt.md          ← comm style prompt
+dna/identity/profile/identity_profile.md              ← who Suneel is
+dna/identity/profile/tone_profile.md                  ← voice spec
+dna/identity/profile/decision_profile.md              ← decision-making style
+dna/agents/hermes/ollama_models/Modelfile.workspace   ← suneelworkspace definition (9,553 chars)
+dna/agents/hermes/ollama_models/build_modelfile.py    ← rebuilds Modelfile from live state
 dna/agents/hermes/ollama_models/build_training_data.py ← extracts training pairs
-dna/agents/hermes/ollama_models/training_data.jsonl  ← 103 training pairs (~41KB)
-dna/agents/hermes/skills/                            ← Hermes skill definitions
-dna/feedback/                                        ← adapt loop feedback records
+dna/agents/hermes/ollama_models/training_data.jsonl   ← 103 training pairs (~41KB)
+dna/agents/hermes/skills/                             ← Hermes skill definitions
+dna/feedback/                                         ← adapt loop feedback records
 ```
 
 The `suneelworkspace` Ollama model:
@@ -458,9 +459,8 @@ response = ask_ollama_with_context(
 ```
 
 **Suggestion consumer** (`lab/autolab/suggestion_consumer.py`):
-- Reads `blood/logs/ollama_suggestions.md` + `blood/logs/code_review_report.md`
 - SAFE + confidence ≥ 0.75 → appends to `heart/tasks/TASK_QUEUE.md`
-- Below threshold → `blood/logs/suggestion_controlled_queue.json` (human review)
+- Below threshold → `blood/logs/suggestion_controlled_queue.json`
 
 **Security constraints**:
 - All LLM-provided paths → `_path_within_workspace()`: rejects absolute paths, `..`, NUL bytes
@@ -478,24 +478,21 @@ What it does:
 - `CURRENT_STATE.json` + `WORKSPACE_HEALTH.json` track live workspace state
 - Diagnostic scheduler runs periodic health checks across all organs
 - Audit logs, snapshots, backups
-- README intelligence system tracks freshness of all organ READMEs (auto-updates every 30 min)
+- README intelligence system tracks freshness across all organ READMEs (auto-updates every 30 min)
 - Enhancement logger records workspace improvements
 
 Key files:
 ```
-spine/state/CURRENT_STATE.json          ← live state: session, tasks, health score
-spine/state/WORKSPACE_HEALTH.json       ← health score, 7 issues, organ statuses
+spine/state/CURRENT_STATE.json            ← live state: session, tasks, health score
+spine/state/WORKSPACE_HEALTH.json         ← health score, open issues, organ statuses
 spine/diagnostics/diagnostic_scheduler.py ← periodic health check scheduler
-spine/enhancement_logger.py            ← records enhancements
-spine/audit/                           ← audit logs + decision records
-spine/backups/                         ← periodic state backups
-spine/snapshots/                       ← point-in-time snapshots
-spine/readme_health_cache.json         ← cached README health scores
-spine/readme_metrics_history.json      ← health score history
-spine/readme_dependency_map.json       ← cross-README dependency graph
-spine/readme_policy.json               ← README update policy
-spine/readme_priority_queue.json       ← READMEs queued for update
-spine/readme_repair_report.json        ← last README repair analysis
+spine/enhancement_logger.py               ← records enhancements
+spine/audit/                              ← audit logs + decision records
+spine/backups/ + spine/snapshots/         ← periodic state backups
+spine/readme_health_cache.json            ← cached README health scores
+spine/readme_metrics_history.json         ← health score history
+spine/readme_dependency_map.json          ← cross-README dependency graph
+spine/readme_policy.json                  ← README update policy rules
 ```
 
 CLI: `agent-doctor`
@@ -506,21 +503,21 @@ CLI: `agent-doctor`
 
 **6 local models** × **9 engines** = the workspace AI layer.
 
-All engines use `context_injector.py` for workspace-aware prompting. The `suneelworkspace` model has Suneel's identity, all 12 organs, tasks, and decisions baked into its 9,553-char system prompt — it is never a generic LLM.
+All engines use `lab/autolab/context_injector.py` for workspace-aware prompting. The `suneelworkspace` model has Suneel's identity, all 12 organs, tasks, and decisions baked into its 9,553-char system prompt — it is never a generic LLM.
 
 ```bash
-ollama-stack-start     # tmux: session 'ollama-orchestrator' + 'nerve-healer'
+ollama-stack-start     # tmux: 'ollama-orchestrator' + 'nerve-healer' sessions
 ollama-stack-status    # show each engine: DUE (needs to run) vs IDLE (wait)
 ollama-stack-stop      # kill both tmux sessions
 rebuild-model          # regenerate Modelfile.workspace → ollama create suneelworkspace
-consume-suggestions    # manually flush suggestion → task queue
+consume-suggestions    # manually flush suggestions → TASK_QUEUE.md
 ```
 
 ---
 
 ## 8. Memory System
 
-All persistent workspace knowledge lives in plain Markdown files:
+All persistent workspace knowledge lives in plain Markdown:
 
 | File | Updated By | Purpose |
 |------|-----------|---------|
@@ -530,10 +527,7 @@ All persistent workspace knowledge lives in plain Markdown files:
 | `brain/memory/INSIGHTS.md` | Curator | Higher-level learnings |
 | `brain/memory/SESSION_HANDOFF.md` | `agent-finish` | Latest session summary for next agent |
 
-**Memory rules**:
-- Store only stable, useful facts — not temporary state, not secrets
-- Prefer updating existing bullets over adding duplicates
-- Curator runs every 12h: appends insights, marks stale entries with `[STALE]`, never deletes
+**Rules**: store only stable facts; prefer updating over duplicating; curator runs every 12h (marks stale with `[STALE]`, never deletes).
 
 ---
 
@@ -542,20 +536,20 @@ All persistent workspace knowledge lives in plain Markdown files:
 **Status**: 103/103 passing (0.4s)
 
 ```bash
-run-tests       # pytest + JUnit XML + JSON report → tests/reports/latest.json
-repair-loop     # autonomous repair: Ollama analyzes failures, applies SAFE fixes, retries ≤5x
-readme-sync     # update all READMEs with latest test results
-install-git-hooks  # install codellama pre-commit hook
+run-tests              # pytest + JUnit XML + JSON report → tests/reports/latest.json
+repair-loop            # Ollama analyzes failures, applies SAFE fixes, retries ≤5x (target 95%)
+readme-sync            # sync all READMEs with test results
+install-git-hooks      # install codellama pre-commit hook
 ```
 
 Test structure:
 ```
 tests/
-  conftest.py                                ← shared fixtures (WORKSPACE, organ paths)
-  test_runner.py                             ← master runner: JUnit XML + JSON reports
-  autonomous_repair_loop.py                  ← Ollama-powered test repair loop
-  readme_sync.py                             ← README test status updater
-  reports/latest.json                        ← most recent run (+ historical archives)
+  conftest.py                                 ← shared fixtures
+  test_runner.py                              ← master runner + JUnit XML + JSON reports
+  autonomous_repair_loop.py                   ← Ollama-powered repair loop
+  readme_sync.py                              ← README updater
+  reports/latest.json                         ← most recent results
   organs/{brain,heart,eyes,ears,mouth,hands,blood,dna,spine}/test_*.py
   integration/test_full_pipeline.py
   nerve_system/test_nervous.py
@@ -564,35 +558,25 @@ tests/
   performance/test_performance.py
 ```
 
-**Autonomous repair loop security**:
-- `_path_within_workspace()` validates every LLM-provided path
-- `create_file` allowed only in `("tests/", "blood/logs/", "lab/autolab/experiments/")`
-- `fix_symlink` NEVER auto-applied — always to controlled queue
-- Uses `defusedxml` (not stdlib ET) for JUnit XML parsing
-
 **Pre-commit hook** (`hands/scripts/pre_commit_hook.sh`):
-- Triggers on every `git commit`
-- Captures staged Python diff → sends to `codellama` (warn-only, never blocks)
-- Logs to `blood/logs/pre_commit_review.jsonl`
-- Security: zero shell variable interpolation into code strings (all via `sys.argv`)
+- Triggers on every `git commit`; staged Python diff → `codellama` (warn-only, never blocks)
+- Security: zero shell variable interpolation into code strings (all dynamic values via `sys.argv`)
 
 ---
 
 ## 10. Night Shift Pipeline
 
-`hands/automation/dag/pipelines/night_shift.yaml` — runs nightly via launchd (`com.suneelworkspace.maintenance`):
+`hands/automation/dag/pipelines/night_shift.yaml` — nightly via launchd (`com.suneelworkspace.maintenance`, loaded ✅):
 
 ```
-memory_curate        → curate MEMORY.md (Ollama)
-brain_synthesize     → synthesize context
-ollama_learn         → generate skills from experiments
-hermes_brief         → build morning brief
-run_tests            → full 103-test pytest suite
-repair_loop          → autonomous repair (only if TEST_FAILURES > 0, max 3 iterations)
-readme_sync          → sync all READMEs with test results
+memory_curate     → curate MEMORY.md (Ollama)
+brain_synthesize  → synthesize context
+ollama_learn      → generate skills from experiments
+hermes_brief      → build morning brief
+run_tests         → full 103-test pytest suite
+repair_loop       → autonomous repair (only if TEST_FAILURES > 0, max 3 iterations)
+readme_sync       → sync all READMEs
 ```
-
-Launchd status: `com.suneelworkspace.maintenance` — loaded ✅
 
 ---
 
@@ -602,7 +586,7 @@ Launchd status: `com.suneelworkspace.maintenance` — loaded ✅
 ```bash
 agent-start              # load startup context, print workspace brief
 agent-finish "summary"   # close session: update handoffs, log, state
-agent-doctor             # run full diagnostic → update WORKSPACE_HEALTH.json
+agent-doctor             # full diagnostic → update WORKSPACE_HEALTH.json
 workspace-context        # print CURRENT_STATE.json brief
 workspace-dashboard      # start FastAPI dashboard at port 7777
 ```
@@ -632,7 +616,7 @@ ollama-stack-start       # start orchestrator + healer in tmux
 ollama-stack-status      # check engine DUE/IDLE status
 ollama-stack-stop        # stop tmux sessions
 ollama-orchestrate       # run one scheduler pass
-ollama-repair            # run repair engine
+ollama-repair            # run repair engine directly
 ollama-review            # run code review engine
 ollama-learn             # run learning engine
 security-scan            # run security scanner (mistral)
@@ -647,7 +631,6 @@ goal-create              # create a goal
 goal-status              # view active goals
 goal-execute             # execute a goal step
 goal-complete            # mark goal complete
-goal-monitor             # monitor goal progress
 ```
 
 ### Model Routing
@@ -665,26 +648,32 @@ nerve-heal               # run Ollama nerve healer
 nerve-check              # validate all nerve.json files
 ```
 
+### README System
+```bash
+readme-root-build        # rebuild root README (skips if README_PROTECTED marker found)
+readme-update <folder>   # update a single organ README
+readme-update-all        # update all organ READMEs
+readme-validate          # validate README freshness
+readme-repair            # repair stale/missing READMEs
+git-safe-push            # validate + push (README guard enforced)
+```
+
 ---
 
-## 12. Token Optimization
+## 12. Token Optimization (RTK)
 
-All bash commands should be prefixed with `rtk` (Rust Token Killer) for 60–90% output token savings:
+All bash commands should be prefixed with `rtk` for 60–90% output token savings:
 
 ```bash
-rtk git status           # compact git status
+rtk git status           # compact status
 rtk git diff             # compact diff (80% savings)
-rtk cargo test           # test failures only (90% savings)
-rtk next build           # Next.js build (87% savings)
+rtk cargo test           # failures only (90% savings)
+rtk next build           # route metrics (87% savings)
+rtk gain                 # view savings analytics
+rtk gain --history       # command history with savings
 ```
 
 **Headroom proxy** at `http://127.0.0.1:8787` (`ANTHROPIC_BASE_URL`) compresses context on every Claude API call.
-
-```bash
-rtk gain                 # view token savings analytics
-rtk gain --history       # command history with savings
-rtk discover             # find missed RTK usage in session history
-```
 
 ---
 
@@ -692,7 +681,7 @@ rtk discover             # find missed RTK usage in session history
 
 | File | Purpose |
 |------|---------|
-| `skeleton/rules/AGENT_SYSTEM.md` | Canonical rules (read this first) |
+| `skeleton/rules/AGENT_SYSTEM.md` | Canonical rules — read this first |
 | `skeleton/rules/SAFETY_BOUNDARIES.md` | Hard limits |
 | `brain/memory/MEMORY.md` | Durable workspace facts |
 | `brain/memory/DECISIONS.md` | Architectural decisions |
@@ -710,7 +699,7 @@ rtk discover             # find missed RTK usage in session history
 | `nervous/nerve_registry.json` | 12-organ dependency map |
 | `hands/automation/dag/pipelines/night_shift.yaml` | Nightly pipeline |
 | `hands/scripts/pre_commit_hook.sh` | codellama pre-commit review |
-| `tests/test_runner.py` | pytest master runner |
+| `hands/automation/readme/root_synthesizer.py` | Root README builder (respects this marker) |
 | `tests/autonomous_repair_loop.py` | Ollama repair loop |
 | `blood/logs/repair_loop_controlled_queue.json` | Awaiting human review |
 | `blood/logs/suggestion_controlled_queue.json` | Awaiting human review |
@@ -729,16 +718,14 @@ rtk discover             # find missed RTK usage in session history
 | Nerve system | 12/12 organs — nerve.json v1.1 |
 | Pre-commit hook | installed (codellama, warn-only) |
 | Night shift | launchd loaded ✅ |
-| Health status | `repairable` (7 issues, non-blocking) |
+| Health status | `repairable` (7 open issues, none blocking) |
 
-Open issues (non-critical, from `WORKSPACE_HEALTH.json`):
-- `gstack_drift` — gstack-verify binary drift (warning)
-- `codex_not_on_path` / `claude_not_on_path` — CLI tools not in shell PATH (info only)
+Open issues (`spine/state/WORKSPACE_HEALTH.json`):
+- `gstack_drift` — gstack-verify binary drift (warning, non-blocking)
+- `codex_not_on_path` / `claude_not_on_path` — CLI tools not in current shell PATH (info only)
 - `internal_script_duplication` — duplicate `_run` in `eyes/dashboard/server.py:828` (warning)
 - `non_symlink_bin_file` — `hands/bin/README.md` is a plain file not a symlink (warning)
-- `misplaced_script` / `misplaced_config` — diagnostic tool flagging `tests/` and `spine/` files (false positives from overly strict rules)
-
-None of these block operation.
+- `misplaced_script` / `misplaced_config` — overly strict diagnostic flagging `tests/` files (false positives)
 
 ---
 
@@ -762,7 +749,8 @@ None of these block operation.
 | 2026-06-28 | Context injection in every Ollama call (4,000 chars, 5-min TTL) |
 | 2026-06-28 | Suggestion consumer closes output→action loop |
 | 2026-06-28 | LLM symlink fixes always queued, never auto-applied |
-| 2026-06-28 | Shell vars never interpolated into python -c strings (sys.argv only) |
+| 2026-06-28 | Shell vars never interpolated into `python3 -c` strings (sys.argv only) |
+| 2026-06-28 | README_PROTECTED marker prevents root_synthesizer from clobbering hand-crafted README |
 
 ---
 

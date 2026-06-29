@@ -71,9 +71,18 @@ def _load_dep_stats() -> dict:
     return {}
 
 
+PROTECTED_MARKER = "<!-- README_PROTECTED: manual -->"
+
+
 def synthesize_root() -> None:
     existing_path = WORKSPACE / "README.md"
     existing = existing_path.read_text(errors="ignore") if existing_path.exists() else ""
+
+    # If the README is marked as manually maintained, skip regeneration entirely.
+    if PROTECTED_MARKER in existing:
+        print("✅ Root README is manually maintained (protected marker found) — skipping regeneration.")
+        return
+
     manual_blocks = MANUAL_BLOCK_RE.findall(existing)
 
     dep_stats = _load_dep_stats()
