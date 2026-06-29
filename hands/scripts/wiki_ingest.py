@@ -110,9 +110,10 @@ def _extract_entities(text: str, source_name: str) -> list[dict]:
         print(f"      [DEBUG] ollama call returned: {response}", file=sys.stderr)
         return []
     try:
-        match = re.search(r"\[.*?\]", response, re.DOTALL)
-        if match:
-            return json.loads(match.group())
+        start = response.find("[")
+        end = response.rfind("]")
+        if start != -1 and end != -1 and end > start:
+            return json.loads(response[start:end+1])
         else:
             print(f"      [DEBUG] No JSON bracket match in response: {response}", file=sys.stderr)
     except Exception as e:
