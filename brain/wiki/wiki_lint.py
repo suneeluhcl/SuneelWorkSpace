@@ -35,6 +35,10 @@ REPORT_PATH = WIKI_DIR / "Wiki Health.md"
 _SKIP_FILES = {"index.md", "log.md", "Wiki Health.md"}
 _LINK_RE    = re.compile(r"\[\[([^\]|#]+?)(?:[|#][^\]]*?)?\]\]")
 
+# Only slugs that are entirely safe single-path-components may become filenames.
+# Rejects anything with slashes, dots sequences, null bytes, or unusual chars.
+_SAFE_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9_-]{0,80}$")
+
 # Minimum occurrences for a phrase to be flagged as a conceptual gap
 _GAP_THRESHOLD = 3
 # Minimum word length to be considered a gap candidate
@@ -54,8 +58,20 @@ _STOP_WORDS = {
 # ── scanner ───────────────────────────────────────────────────────────────────
 
 def _slug(name: str) -> str:
-    """Normalise a link target to a filename stem for comparison."""
-    return re.sub(r"\s+", "-", name.strip().lower())
+    """
+    Normalise a link target to a safe filename stem.
+
+    Strips path-traversal sequences (..  /  \\  null bytes) and any char
+    that is not alphanumeric, hyphen, or whitespace before collapsing spaces
+    to hyphens.  Returns an empty string if the result would be unsafe.
+    """
+    s = name.strip().lower()
+    s = s.replace("\x00", "")               # null bytes
+    s = re.sub(r"[/\\]", "", s)             # forward and back slashes
+    s = re.sub(r"\.{2,}", "", s)            # .. sequences
+    s = re.sub(r"[^\w\s-]", "", s)          # non-word chars (keeps letters, digits, _, -)
+    s = re.sub(r"\s+", "-", s).strip("-")
+    return s
 
 
 def _note_slug(path: Path) -> str:
@@ -219,10 +235,24 @@ def write_report(result: dict) -> Path:
 
 
 def create_stubs(broken_links: list[tuple[str, str]]) -> int:
-    """Create stub notes for broken link targets."""
+    """
+    Create stub notes for broken link targets.
+
+    Each target slug is validated with _SAFE_SLUG_RE and confirmed to resolve
+    inside WIKI_DIR before any file is written, preventing path traversal.
+    """
+    wiki_real = WIKI_DIR.resolve()
     created = 0
     for _, target in broken_links:
-        stub_path = WIKI_DIR / f"{target}.md"
+        # Reject slugs that don't match the safe single-component pattern
+        if not _SAFE_SLUG_RE.match(target):
+            continue
+        stub_path = (WIKI_DIR / f"{target}.md").resolve()
+        # Double-check the resolved path stays inside the wiki directory
+        try:
+            stub_path.relative_to(wiki_real)
+        except ValueError:
+            continue  # resolved outside WIKI_DIR — skip
         if stub_path.exists():
             continue
         entity_name = target.replace("-", " ").title()
