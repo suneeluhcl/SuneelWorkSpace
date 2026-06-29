@@ -1,0 +1,135 @@
+{
+  "nodes": [
+    {
+      "id": "title",
+      "type": "text",
+      "text": "# SuneelWorkSpace Neural Map\nLast updated: 2026-06-29 04:10 UTC",
+      "x": -60,
+      "y": -380,
+      "width": 340,
+      "height": 60,
+      "color": "6"
+    },
+    {
+      "id": "organ_brain",
+      "type": "text",
+      "text": "🧠 brain\nmemory · search · RAG",
+      "x": -450,
+      "y": -260,
+      "width": 180,
+      "height": 80,
+      "color": "1"
+    },
+    {
+      "id": "organ_heart",
+      "type": "text",
+      "text": "❤️ heart\ntasks · routing · goals",
+      "x": -210,
+      "y": -260,
+      "width": 180,
+      "height": 80,
+      "color": "1"
+    },
+    {
+      "id": "organ_eyes",
+      "type": "text",
+      "text": "👁️ eyes\ndashboard · port 7777",
+      "x": 30,
+      "y": -260,
+      "width": 180,
+      "height": 80,
+      "color": "1"
+    },
+    {
+      "id": "organ_ears",
+      "type": "text",
+      "text": "👂 ears\nRSS · GitHub monitors",
+      "x": 270,
+      "y": -260,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    },
+    {
+      "id": "organ_nervous",
+      "type": "text",
+      "text": "⚡ nervous\ngateway · nerve propagator",
+      "x": -450,
+      "y": -40,
+      "width": 180,
+      "height": 80,
+      "color": "1"
+    },
+    {
+      "id": "organ_skeleton",
+      "type": "text",
+      "text": "🦴 skeleton\nrules · safety boundaries",
+      "x": -210,
+      "y": -40,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    },
+    {
+      "id": "organ_blood",
+      "type": "text",
+      "text": "🩸 blood\nSQLite · logs · telemetry",
+      "x": 30,
+      "y": -40,
+      "width": 180,
+      "height": 80,
+      "color": "1"
+    },
+    {
+      "id": "organ_hands",
+      "type": "text",
+      "text": "🙌 hands\nscripts · bin · CI runner",
+      "x": 270,
+      "y": -40,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    },
+    {
+      "id": "organ_mouth",
+      "type": "text",
+      "text": "💬 mouth\nmail · iMessage dispatcher",
+      "x": -450,
+      "y": 180,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    },
+    {
+      "id": "organ_dna",
+      "type": "text",
+      "text": "🧬 dna\nidentity · voice · adapt",
+      "x": -210,
+      "y": 180,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    },
+    {
+      "id": "organ_lab",
+      "type": "text",
+      "text": "🔬 lab\nautolab · Ollama engines",
+      "x": 30,
+      "y": 180,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    },
+    {
+      "id": "organ_spine",
+      "type": "text",
+      "text": "🦴 spine\nhealth · state · index",
+      "x": 270,
+      "y": 180,
+      "width": 180,
+      "height": 80,
+      "color": "4"
+    }
+  ],
+  "edges": []
+}

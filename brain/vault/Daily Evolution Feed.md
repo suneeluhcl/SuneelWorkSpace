@@ -31,3 +31,8 @@ touched file: hands/bin/gstack-verify
 
 ✅ Auto-fix applied: `internal_script_duplication`
 skipped (already exists): eyes/dashboard/server.py
+
+## 2026-06-29 02:41 UTC
+
+✅ Auto-fix applied: `non_symlink_bin_file`
+touched file: hands/bin/README.md.symlink

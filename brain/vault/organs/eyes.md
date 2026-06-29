@@ -1,7 +1,7 @@
 ---
 organ: "eyes"
 workspace_health: ?
-last_sync: "2026-06-29 02:39 UTC"
+last_sync: "2026-06-29 04:54 UTC"
 issues: 2
 tags:
   - organ/eyes
@@ -9,7 +9,7 @@ tags:
 ---
 # eyes
 
-> Synced from SuneelWorkSpace — 2026-06-29 02:39 UTC
+> Synced from SuneelWorkSpace — 2026-06-29 04:54 UTC
 
 ## Capabilities
 **Provides**: dashboard, dashboard_index, visual_monitor, widgets, nerve_monitor, ollama_status, hermes_status
@@ -26,7 +26,7 @@ tags:
 ## Diagnostic Warnings
 
 - ⚠️ Script 'eyes/dashboard/server.py' contains duplicate definition for function '_run' (line 828).
-- ⚠️ Scripts found outside canonical subsystem directories: conftest.py, readme_sync.py, __init__.py, test_daemon.py, autonomous_repair_loop.py, test_runner.py, __init__.py, test_ollama_engines.py, __init__.py, test_full_pipeline.py, __init__.py, __init__.py, __init__.py, __init__.py, test_nervous.py, __init__.py, __init__.py, __init__.py, test_heart.py, __init__.py, __init__.py, __init__.py, __init__.py, test_blood.py, __init__.py, __init__.py, __init__.py, test_brain.py, __init__.py, __init__.py, __init__.py, test_eyes.py
+- ⚠️ Scripts found outside canonical subsystem directories: scenario_runner.py, conftest.py, readme_sync.py, __init__.py, test_daemon.py, autonomous_repair_loop.py, test_runner.py, chaos_monkey.py, __init__.py, test_ollama_engines.py, __init__.py, test_full_pipeline.py, __init__.py, __init__.py, __init__.py, __init__.py, test_nervous.py, __init__.py, __init__.py, __init__.py, test_heart.py, __init__.py, __init__.py, __init__.py, __init__.py, test_blood.py, __init__.py, __init__.py, __init__.py, test_brain.py, __init__.py, __init__.py, __init__.py, test_eyes.py
 
 ## Commands
 

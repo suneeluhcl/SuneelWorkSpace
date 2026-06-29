@@ -32,3 +32,21 @@ It appears that there are several nerve events missing from the record. This may
 
 The recent Ollama integration has introduced new performance metrics that should be tracked and monitored.
 
+
+
+---
+*Added by memory curator — 2026-06-28*
+
+## Recent Ollama Performance Metrics
+
+The recent Ollama integration has introduced new performance metrics that should be tracked and monitored. These metrics include:
+* [list specific metrics]
+
+## Nerve Event Logging Issue
+
+There are several nerve events missing from the record, indicating a problem with the logging mechanism or a failure to update the memory file. This issue should be addressed to ensure accurate tracking of workspace activity.
+
+## Ollama Integration Impact on Workspace Performance
+
+The recent Ollama integration has had a significant impact on workspace performance. The new metrics and suggestions indicate that there are opportunities for improvement in areas such as model rotation, versioning, predictive maintenance, and self-healing.
+

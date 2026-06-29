@@ -41,7 +41,7 @@ LOG_PATH    = WIKI_DIR / "log.md"
 INDEX_PATH  = WIKI_DIR / "index.md"
 
 SIDECAR_URL  = "http://127.0.0.1:11435"
-OLLAMA_BASE  = "http://localhost:11434"
+OLLAMA_BASE  = "http://127.0.0.1:11434"
 OLLAMA_MODEL = "suneelworkspace"
 
 _VENV_PY = str(WORKSPACE / ".venv/bin/python3")
@@ -83,7 +83,7 @@ def _call_ollama(prompt: str) -> str:
         headers={"Content-Type": "application/json"}, method="POST",
     )
     try:
-        with urllib.request.urlopen(req, timeout=120) as r:
+        with urllib.request.urlopen(req, timeout=180) as r:
             return json.loads(r.read()).get("response", "").strip()
     except Exception as e:
         return f"[ollama error: {e}]"
@@ -105,8 +105,9 @@ def _extract_entities(text: str, source_name: str) -> list[dict]:
         f"{truncated}\n\n"
         "Extract entities and facts as JSON array."
     )
-    response = _call_sidecar(prompt) if _sidecar_up() else _call_ollama(prompt)
+    response = _call_ollama(prompt)
     if not response or response.startswith("[ollama error"):
+        print(f"      [DEBUG] ollama call returned: {response}", file=sys.stderr)
         return []
     try:
         match = re.search(r"\[.*?\]", response, re.DOTALL)

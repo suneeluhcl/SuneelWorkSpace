@@ -1,7 +1,7 @@
 ---
 organ: "mouth"
 workspace_health: ?
-last_sync: "2026-06-29 02:39 UTC"
+last_sync: "2026-06-29 04:54 UTC"
 issues: 0
 tags:
   - organ/mouth
@@ -9,7 +9,7 @@ tags:
 ---
 # mouth
 
-> Synced from SuneelWorkSpace — 2026-06-29 02:39 UTC
+> Synced from SuneelWorkSpace — 2026-06-29 04:54 UTC
 
 ## Capabilities
 **Provides**: ws_dispatcher, intent_classifier, intent_map, communication_plugins
