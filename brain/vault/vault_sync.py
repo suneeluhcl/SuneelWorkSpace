@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 brain/vault/vault_sync.py
 Bidirectional sync between SuneelWorkSpace state and the Obsidian vault.

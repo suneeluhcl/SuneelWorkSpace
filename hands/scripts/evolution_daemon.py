@@ -152,27 +152,30 @@ def _apply_fix(fix: dict, dry_run: bool) -> str:
     if dry_run:
         return f"[dry-run] would apply {fix_type} → {path.relative_to(WORKSPACE)}"
 
-    if fix_type == "create_dir":
-        path.mkdir(parents=True, exist_ok=True)
-        return f"created directory: {path.relative_to(WORKSPACE)}"
+    try:
+        if fix_type == "create_dir":
+            path.mkdir(parents=True, exist_ok=True)
+            return f"created directory: {path.relative_to(WORKSPACE)}"
 
-    elif fix_type == "touch_file":
-        path.parent.mkdir(parents=True, exist_ok=True)
-        if not path.exists():
-            path.touch()
-        return f"touched file: {path.relative_to(WORKSPACE)}"
+        elif fix_type == "touch_file":
+            path.parent.mkdir(parents=True, exist_ok=True)
+            if not path.exists():
+                path.touch()
+            return f"touched file: {path.relative_to(WORKSPACE)}"
 
-    elif fix_type == "write_stub":
-        content = fix.get("content", "")[:2000]  # cap content length
-        path.parent.mkdir(parents=True, exist_ok=True)
-        if not path.exists():
-            path.write_text(content)
-            return f"wrote stub: {path.relative_to(WORKSPACE)}"
-        return f"skipped (already exists): {path.relative_to(WORKSPACE)}"
+        elif fix_type == "write_stub":
+            content = fix.get("content", "")[:2000]  # cap content length
+            path.parent.mkdir(parents=True, exist_ok=True)
+            if not path.exists():
+                path.write_text(content)
+                return f"wrote stub: {path.relative_to(WORKSPACE)}"
+            return f"skipped (already exists): {path.relative_to(WORKSPACE)}"
 
-    elif fix_type == "fix_permissions":
-        subprocess.run(["chmod", "+x", str(path)], check=False)
-        return f"fixed permissions: {path.relative_to(WORKSPACE)}"
+        elif fix_type == "fix_permissions":
+            subprocess.run(["chmod", "+x", str(path)], check=False)
+            return f"fixed permissions: {path.relative_to(WORKSPACE)}"
+    except Exception as e:
+        return f"failed to apply {fix_type} on {path.relative_to(WORKSPACE)}: {e}"
 
     return f"unknown fix_type: {fix_type}"
 
