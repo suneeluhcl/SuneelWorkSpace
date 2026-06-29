@@ -21,3 +21,18 @@ Daemons available:
 - `test-daemon-start` — real-time organ file watcher + repair trigger
 - `evolution-start` — 5-minute evolution tick daemon
 - `vault-sync` — sync workspace state → Obsidian organ notes
+
+## 2026-06-29 02:40 UTC
+
+✅ Auto-fix applied: `gstack_drift`
+touched file: hands/bin/gstack-verify
+
+## 2026-06-29 02:41 UTC
+
+✅ Auto-fix applied: `internal_script_duplication`
+skipped (already exists): eyes/dashboard/server.py
+
+## 2026-06-29 02:41 UTC
+
+✅ Auto-fix applied: `non_symlink_bin_file`
+touched file: hands/bin/README.md.symlink

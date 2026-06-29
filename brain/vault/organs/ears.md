@@ -1,7 +1,7 @@
 ---
 organ: "ears"
 workspace_health: ?
-last_sync: "2026-06-29 04:59 UTC"
+last_sync: "2026-06-29 04:54 UTC"
 issues: 0
 tags:
   - organ/ears
@@ -9,7 +9,7 @@ tags:
 ---
 # ears
 
-> Synced from SuneelWorkSpace — 2026-06-29 04:59 UTC
+> Synced from SuneelWorkSpace — 2026-06-29 04:54 UTC
 
 ## Capabilities
 **Provides**: world_monitor, rss_cache, digest_builder, personalized_brief, sources_config

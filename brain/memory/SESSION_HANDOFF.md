@@ -2,9 +2,9 @@
 
 ## Latest Handoff
 
-Date: 2026-06-29
+Date: 2026-06-28
 
-Summary: Fully verified LLM-Wiki ingest, query, and linting pipelines; resolved regex nesting JSON parser bugs; moved scripts to hands/scripts for canonical subsystem compliance
+Summary: Implemented Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines
 
 Changed:
 

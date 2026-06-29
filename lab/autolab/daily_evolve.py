@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 lab/autolab/daily_evolve.py
 Daily evolution coordinator — runs all learning passes in sequence.
@@ -60,16 +61,20 @@ def run() -> list[dict]:
         ("memory_curate",   "brain/memory/memory_curator.py"),
         ("experiment_skills", "lab/autolab/experiment_skill_generator.py"),
         ("vault_sync",      "brain/vault/vault_sync.py"),
+        ("autotrainer",     "dna/agents/hermes/ollama_models/autotrainer.py"),
+        ("scenario_runner", "tests/scenario_runner.py", ["--dry-run"]),
     ]
 
-    for label, path in passes:
+    for entry in passes:
+        label, path = entry[0], entry[1]
+        extra_args = list(entry[2]) if len(entry) > 2 else []
         full = WORKSPACE / path
         if not full.exists():
             results.append({"pass": label, "status": "skipped", "reason": f"not found: {path}"})
             print(f"  [{label}] skipped — {path} not found")
             continue
         print(f"  [{label}] running...", end=" ", flush=True)
-        r = _run_pass(label, path)
+        r = _run_pass(label, path, args=extra_args)
         results.append(r)
         print(f"{r['status']} ({r.get('elapsed_s', '?')}s)")
 

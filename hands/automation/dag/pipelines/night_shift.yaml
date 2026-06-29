@@ -98,3 +98,46 @@ steps:
     execution_level: SAFE
     on_failure:
       action: continue
+
+  - id: autoresearch
+    name: "Autonomous Research — Karpathy-Style arXiv + RAG + Prototype Loop"
+    command: python3
+    args: ["brain/research/autoresearch_agent.py"]
+    depends_on: [vault_sync]
+    execution_level: SAFE
+    on_failure:
+      action: continue
+    description: >
+      Picks the first captured idea from brain/research/ideas/index.json and runs
+      the 5-phase research loop: arXiv literature search → workspace RAG query →
+      Ollama synthesis + prototype generation → sandboxed execution (3 repair
+      attempts) → decision promotion to DECISIONS.md on success. Results logged
+      to blood/logs/autoresearch.jsonl.
+
+  - id: wiki_lint
+    name: "Wiki Health Check — Broken Links, Orphans & Conceptual Gaps"
+    command: python3
+    args: ["brain/wiki/wiki_lint.py"]
+    depends_on: [autoresearch]
+    execution_level: SAFE
+    on_failure:
+      action: continue
+    description: >
+      Scans brain/vault/wiki/ for broken [[links]], orphan notes, and
+      frequently-mentioned concepts lacking their own wiki page. Writes
+      brain/vault/wiki/Wiki Health.md. Non-zero exit on broken links or
+      orphans; pipeline continues regardless.
+
+  - id: chaos_test
+    name: "Chaos Engineering — Inject Anomaly & Verify Self-Healing"
+    command: python3
+    args: ["tests/chaos_monkey.py"]
+    depends_on: [wiki_lint]
+    execution_level: SAFE
+    on_failure:
+      action: continue
+    description: >
+      Injects a safe random anomaly (broken symlink, corrupt JSON, deleted cache,
+      or bad test syntax), verifies health drops, runs the repair loop, then
+      verifies healing. The anomaly is always restored on exit. Results logged
+      to blood/logs/chaos_monkey.jsonl.

@@ -854,6 +854,22 @@
 
 - Hermes Completion + Ollama integration: Ollama running, suneelworkspace model created, repair+learning engines in lab/autolab/, hands/bin/ollama-repair and ollama-learn wired, night_shift.yaml 3 new steps, dashboard Ollama panel + routes, model_registry.json 6 Ollama models added, Hermes configured for Ollama
 
-## 2026-06-29
+## 2026-06-28
 
-- Fully verified LLM-Wiki ingest, query, and linting pipelines; resolved regex nesting JSON parser bugs; moved scripts to hands/scripts for canonical subsystem compliance
+- Suggested enhancements for local Ollama, real-time tests, log learning, Obsidian integration, and hyper-evolution via a master prompt
+
+## 2026-06-28
+
+- Verified and launched Phase 1-5 updates; resolved script shebangs and path resolution bugs; initialized reasoning sidecar, vault-sync, test daemon, and evolution tick
+
+## 2026-06-28
+
+- Refined daily-evolve and evolution-start scripts; proposed Karpathy-style autoresearch integration
+
+## 2026-06-28
+
+- Implemented Karpathy-style autoresearch loop linking arXiv MCP, Brave Search, and sandboxed validation
+
+## 2026-06-28
+
+- Implemented Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines

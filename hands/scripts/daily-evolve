@@ -5,7 +5,7 @@ WORKSPACE="${WORKSPACE:-$ROOT}"
 # Capture health score BEFORE
 BEFORE_SCORE=$(python3 "$ROOT/hands/automation/evolution_scorer.py" before 2>/dev/null | grep BEFORE_SCORE | cut -d= -f2 || echo "0")
 
-python3 "$ROOT/scripts/daily_evolve.py" "$@"
+python3 "$ROOT/hands/scripts/daily_evolve.py" "$@"
 STATUS="$?"
 
 # Capture health score AFTER and log delta

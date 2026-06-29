@@ -36,3 +36,14 @@ With the integration of Ollama and Hermes, we can now anticipate potential issue
 
 * Record command and workflow events in `brain/anticipation/prediction_memory.json` with consideration for Ollama's repair and learning engines.
 
+
+
+---
+*Added by memory curator — 2026-06-28*
+
+## Proactive Maintenance Pattern
+Record proactive maintenance events in `brain/anticipation/proactive_maintenance.json` with consideration for Ollama's repair and learning engines. Use this pattern to anticipate potential issues before they occur.
+
+## Hyper-Evolution Pattern
+Capture hyper-evolution ideas in `brain/hyper_evolution/ideas.json`. Use this pattern to store and connect concepts, entities, and relationships related to hyper-evolution.
+
