@@ -4,7 +4,7 @@
 
 Date: 2026-06-28
 
-Summary: Hermes Completion + Ollama integration: Ollama running, suneelworkspace model created, repair+learning engines in lab/autolab/, hands/bin/ollama-repair and ollama-learn wired, night_shift.yaml 3 new steps, dashboard Ollama panel + routes, model_registry.json 6 Ollama models added, Hermes configured for Ollama
+Summary: Suggested enhancements for local Ollama, real-time tests, log learning, Obsidian integration, and hyper-evolution via a master prompt
 
 Changed:
 

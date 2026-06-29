@@ -1,0 +1,5 @@
+{"ts": "2026-06-29T02:39:56.877131+00:00", "type": "daemon_start", "pid": 79396}
+{"ts": "2026-06-29T02:40:22.268802+00:00", "type": "test_start", "organ": "hands"}
+{"ts": "2026-06-29T02:40:22.268802+00:00", "type": "test_result", "organ": "hands", "skipped": true, "reason": "missing: tests/organs/hands/test_hands.py"}
+{"ts": "2026-06-29T02:40:50.925579+00:00", "type": "test_start", "organ": "hands"}
+{"ts": "2026-06-29T02:40:50.925579+00:00", "type": "test_result", "organ": "hands", "skipped": true, "reason": "missing: tests/organs/hands/test_hands.py"}

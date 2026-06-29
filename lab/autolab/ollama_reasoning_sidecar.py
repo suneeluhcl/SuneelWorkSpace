@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 lab/autolab/ollama_reasoning_sidecar.py
 Lightweight context-cache sidecar on port 11435.

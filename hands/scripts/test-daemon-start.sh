@@ -4,7 +4,7 @@
 # Streams events to the dashboard via POST /api/tests/event.
 set -euo pipefail
 
-WORKSPACE="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+WORKSPACE="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
 VENV_PY="$WORKSPACE/.venv/bin/python3"
 PYTHON="${VENV_PY:-python3}"
 [[ -x "$VENV_PY" ]] && PYTHON="$VENV_PY"
