@@ -19,6 +19,7 @@ Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.
 - `PATTERNS.md`
 - `README.md`
 - `SESSION_HANDOFF.md`
+- `memory_curator.py`
 - `docs/` *(directory)*
 - `memory/` *(directory)*
 - `shared/` *(directory)*
@@ -28,7 +29,7 @@ Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.
 - `vector/` *(directory)*
 
 ## 🔄 Dependencies
-None detected
+- `lab/`
 
 ## 🧩 Interactions
 Emits `readme_updated` events to nervous system on change.
@@ -38,32 +39,34 @@ Emits `readme_updated` events to nervous system on change.
 
 ## ⚠️ Gaps & Weaknesses
 - No test coverage detected
-- No executable code found
 
 ## 🚀 Suggested Enhancements
 - Add unit and integration tests
 - Add semantic clustering for memory retrieval
 
 ## 🔗 Connected Modules
-*(no cross-organ references detected)*
+- [`../lab/README.md`](../lab/README.md)
 
 
 ## 🏥 Health Score
-🟢 **100/100**
+🟡 **75/100**
 
 | Category | Deduction |
 |----------|----------|
-_No deductions_
+| readme_drift | -15 |
+| no_tests | -10 |
 
 ## 🔥 Critical Issues
-None — folder is healthy ✅
+- README is older than folder contents
+- No test files detected
 
 ## ✅ Runtime Status
-- Python files: 0 (0 valid, 0 broken)
+- Python files: 1 (1 valid, 0 broken)
 - Shell scripts: 0 (0 valid)
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
 - 2026-06-27: README auto-updated by README Intelligence System
 - 2026-06-26: README auto-updated by README Intelligence System
@@ -72,16 +75,19 @@ None — folder is healthy ✅
 
 **Status:** ⚠️ DRIFTED
 
+**Undocumented files on disk:**
+- `memory_curator.py` *(not in README Contents)*
+
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-28T00:00:06*
+*Last reconciled: 2026-06-30T00:12:21*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-28T00:00:06*
+*Last checked: 2026-06-30T00:12:21*
 
 ## 🌐 Failure Impact Map
 
@@ -89,9 +95,15 @@ None — folder is healthy ✅
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-28T00:00:06*
+*Computed: 2026-06-30T00:12:21*
 
 ## 📈 Trends
 
-**7-day trend:** ❓ INSUFFICIENT_DATA
-*0 day(s) of history | updated daily by nightly automation*
+**7-day trend:** ➡️ STABLE
+**Score change:** +0.2 (97.8 → 98.0)
+
+**Recent history (last 5 snapshots):**
+- `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
+- `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+
+*2 day(s) of history | updated daily by nightly automation*

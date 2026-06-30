@@ -1,16 +1,286 @@
 {
-  "generated_at": "2026-06-29T04:10:36.433046+00:00",
-  "total_pairs": 315,
+  "generated_at": "2026-06-29T07:00:36.963109+00:00",
+  "total_pairs": 316,
   "source_counts": {
     "git_commits": 286,
     "daily_improvements": 3,
     "repair_log": 0,
     "nerve_json": 0,
-    "decisions": 19,
+    "decisions": 21,
     "safety_rules": 8
   },
   "system_prompt": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable.",
   "pairs": [
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: commit last runtime state files'?",
+      "response": "chore: commit last runtime state files\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: commit last runtime state files'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: commit last runtime state files\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: untrack daemon-written runtime log files from git'?",
+      "response": "chore: untrack daemon-written runtime log files from git\n\nThese 3 JSONL logs are written continuously by background daemons",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: untrack daemon-written runtime log files from git'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: untrack daemon-written runtime log files from git\n\nThese 3 JSONL logs are written continuously by background daemons"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: runtime log snapshot pre-merge'?",
+      "response": "chore: runtime log snapshot pre-merge\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: runtime log snapshot pre-merge'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: runtime log snapshot pre-merge\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: commit all remaining files before merge'?",
+      "response": "chore: commit all remaining files before merge\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: commit all remaining files before merge'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: commit all remaining files before merge\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: commit runtime logs before merge'?",
+      "response": "chore: commit runtime logs before merge\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: commit runtime logs before merge'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: commit runtime logs before merge\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: stage test_daemon_events before switch'?",
+      "response": "chore: stage test_daemon_events before switch\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: stage test_daemon_events before switch'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: stage test_daemon_events before switch\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: stage runtime files before branch switch'?",
+      "response": "chore: stage runtime files before branch switch\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: stage runtime files before branch switch'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: stage runtime files before branch switch\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: sync runtime state, logs, vault, and wiki'?",
+      "response": "chore: sync runtime state, logs, vault, and wiki\n\nAutomated runtime updates from daemons, evolution ticks, and agent sessions:",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: sync runtime state, logs, vault, and wiki'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: sync runtime state, logs, vault, and wiki\n\nAutomated runtime updates from daemons, evolution ticks, and agent sessions:"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'fix(security): path traversal / arbitrary file write in wiki_lint.py'?",
+      "response": "fix(security): path traversal / arbitrary file write in wiki_lint.py\n\nThree-layer defense in _slug() and create_stubs():",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'fix(security): path traversal / arbitrary file write in wiki_lint.py'?"
+        },
+        {
+          "role": "assistant",
+          "content": "fix(security): path traversal / arbitrary file write in wiki_lint.py\n\nThree-layer defense in _slug() and create_stubs():"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF — LLM-Wiki live, 103/103'?",
+      "response": "chore: update SESSION_HANDOFF — LLM-Wiki live, 103/103\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF — LLM-Wiki live, 103/103'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: update SESSION_HANDOFF — LLM-Wiki live, 103/103\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'feat: LLM-Wiki ingest system + autoresearch security hardening'?",
+      "response": "feat: LLM-Wiki ingest system + autoresearch security hardening\n\nLLM-Wiki (3 modules, 6 CLI symlinks):",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'feat: LLM-Wiki ingest system + autoresearch security hardening'?"
+        },
+        {
+          "role": "assistant",
+          "content": "feat: LLM-Wiki ingest system + autoresearch security hardening\n\nLLM-Wiki (3 modules, 6 CLI symlinks):"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF — autoresearch agent complete, 103/103'?",
+      "response": "chore: update SESSION_HANDOFF — autoresearch agent complete, 103/103\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF — autoresearch agent complete, 103/103'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: update SESSION_HANDOFF — autoresearch agent complete, 103/103\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'feat: Karpathy-style autonomous research agent (5-phase arXiv+RAG+sandbox loop)'?",
+      "response": "feat: Karpathy-style autonomous research agent (5-phase arXiv+RAG+sandbox loop)\n\nautoresearch_agent.py — 5-phase loop for any idea in ideas/index.json:",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'feat: Karpathy-style autonomous research agent (5-phase arXiv+RAG+sandbox loop)'?"
+        },
+        {
+          "role": "assistant",
+          "content": "feat: Karpathy-style autonomous research agent (5-phase arXiv+RAG+sandbox loop)\n\nautoresearch_agent.py — 5-phase loop for any idea in ideas/index.json:"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF — Phase 1-4 linked neural network complete'?",
+      "response": "chore: update SESSION_HANDOFF — Phase 1-4 linked neural network complete\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF — Phase 1-4 linked neural network complete'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: update SESSION_HANDOFF — Phase 1-4 linked neural network complete\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'feat: Phase 1-4 linked neural network — vault graph, workspace RAG, scenario runner, autotrainer'?",
+      "response": "feat: Phase 1-4 linked neural network — vault graph, workspace RAG, scenario runner, autotrainer\n\nPhase 1 — vault_graph.py: autolink [[organ]] backlinks in all Obsidian .md",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'feat: Phase 1-4 linked neural network — vault graph, workspace RAG, scenario runner, autotrainer'?"
+        },
+        {
+          "role": "assistant",
+          "content": "feat: Phase 1-4 linked neural network — vault graph, workspace RAG, scenario runner, autotrainer\n\nPhase 1 — vault_graph.py: autolink [[organ]] backlinks in all Obsidian .md"
+        }
+      ]
+    },
     {
       "instruction": "What workspace change does this commit represent: 'chore: update SESSION_HANDOFF.md — 3-phase sandbox/chaos/voting complete'?",
       "response": "chore: update SESSION_HANDOFF.md — 3-phase sandbox/chaos/voting complete\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
@@ -4890,276 +5160,6 @@
       ]
     },
     {
-      "instruction": "What workspace change does this commit represent: 'fix: update Phase 3 guard test to reflect Phase 23 migration'?",
-      "response": "fix: update Phase 3 guard test to reflect Phase 23 migration\n\nTestPhase3DiagnosticsCommands.test_mutating_commands_not_in_phase3",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'fix: update Phase 3 guard test to reflect Phase 23 migration'?"
-        },
-        {
-          "role": "assistant",
-          "content": "fix: update Phase 3 guard test to reflect Phase 23 migration\n\nTestPhase3DiagnosticsCommands.test_mutating_commands_not_in_phase3"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'adwi auto-backup 2026-06-20 00:45'?",
-      "response": "adwi auto-backup 2026-06-20 00:45",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'adwi auto-backup 2026-06-20 00:45'?"
-        },
-        {
-          "role": "assistant",
-          "content": "adwi auto-backup 2026-06-20 00:45"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: CommandRegistry Phase 23 — diagnostics + viewer cluster'?",
-      "response": "feat: CommandRegistry Phase 23 — diagnostics + viewer cluster\n\nExtends adwi/commands/diagnostics.py with 11 new handlers:",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: CommandRegistry Phase 23 — diagnostics + viewer cluster'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: CommandRegistry Phase 23 — diagnostics + viewer cluster\n\nExtends adwi/commands/diagnostics.py with 11 new handlers:"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'fix: Phase 21 — align registry intent keys with NLU + extend slot flattening'?",
-      "response": "fix: Phase 21 — align registry intent keys with NLU + extend slot flattening\n\nIntent name mismatches (Phase 20 audit finding):",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'fix: Phase 21 — align registry intent keys with NLU + extend slot flattening'?"
-        },
-        {
-          "role": "assistant",
-          "content": "fix: Phase 21 — align registry intent keys with NLU + extend slot flattening\n\nIntent name mismatches (Phase 20 audit finding):"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'adwi auto-backup 2026-06-20 00:15'?",
-      "response": "adwi auto-backup 2026-06-20 00:15",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'adwi auto-backup 2026-06-20 00:15'?"
-        },
-        {
-          "role": "assistant",
-          "content": "adwi auto-backup 2026-06-20 00:15"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 18 — Remote/HA read-only cluster in registry-first dispatch'?",
-      "response": "feat: Phase 18 — Remote/HA read-only cluster in registry-first dispatch\n\nNew module adwi/commands/remote.py registers /remote-status (+ /remote",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 18 — Remote/HA read-only cluster in registry-first dispatch'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 18 — Remote/HA read-only cluster in registry-first dispatch\n\nNew module adwi/commands/remote.py registers /remote-status (+ /remote"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 17 — Voice I/O cluster in registry-first dispatch'?",
-      "response": "feat: Phase 17 — Voice I/O cluster in registry-first dispatch\n\nNew module adwi/commands/voice.py registers /voice-in (+ /voice and",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 17 — Voice I/O cluster in registry-first dispatch'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 17 — Voice I/O cluster in registry-first dispatch\n\nNew module adwi/commands/voice.py registers /voice-in (+ /voice and"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 19 — E2E loop cancel command in registry-first dispatch'?",
-      "response": "feat: Phase 19 — E2E loop cancel command in registry-first dispatch\n\nAudit: /e2e-auto-loop-status and /e2e-auto-loop-report were already",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 19 — E2E loop cancel command in registry-first dispatch'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 19 — E2E loop cancel command in registry-first dispatch\n\nAudit: /e2e-auto-loop-status and /e2e-auto-loop-report were already"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 16B — Gmail inbox navigation cluster in registry-first dispatch'?",
-      "response": "feat: Phase 16B — Gmail inbox navigation cluster in registry-first dispatch\n\nMigrate 9 core Gmail inbox/navigation commands to CommandRegistry:",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 16B — Gmail inbox navigation cluster in registry-first dispatch'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 16B — Gmail inbox navigation cluster in registry-first dispatch\n\nMigrate 9 core Gmail inbox/navigation commands to CommandRegistry:"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 15 — CommandRegistry Gmail attachment cluster migration (Gmail complete)'?",
-      "response": "feat: Phase 15 — CommandRegistry Gmail attachment cluster migration (Gmail complete)\n\nMigrate /gmail-save-attachment, /gmail-summarize-attachment, /gmail-attach,",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 15 — CommandRegistry Gmail attachment cluster migration (Gmail complete)'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 15 — CommandRegistry Gmail attachment cluster migration (Gmail complete)\n\nMigrate /gmail-save-attachment, /gmail-summarize-attachment, /gmail-attach,"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 14 — CommandRegistry Gmail triage migration'?",
-      "response": "feat: Phase 14 — CommandRegistry Gmail triage migration\n\nMigrate /gmail-triage to CommandRegistry auto-discovery. Triage is the",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 14 — CommandRegistry Gmail triage migration'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 14 — CommandRegistry Gmail triage migration\n\nMigrate /gmail-triage to CommandRegistry auto-discovery. Triage is the"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 13 — CommandRegistry Gmail extract-tasks cluster migration'?",
-      "response": "feat: Phase 13 — CommandRegistry Gmail extract-tasks cluster migration\n\nMigrate /gmail-extract-tasks, /gmail-tasks-save, /gmail-tasks-remind to",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 13 — CommandRegistry Gmail extract-tasks cluster migration'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 13 — CommandRegistry Gmail extract-tasks cluster migration\n\nMigrate /gmail-extract-tasks, /gmail-tasks-save, /gmail-tasks-remind to"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 12 — CommandRegistry Gmail follow-up reminder cluster migration'?",
-      "response": "feat: Phase 12 — CommandRegistry Gmail follow-up reminder cluster migration\n\nMigrate /gmail-followup and /gmail-cancel-followup to CommandRegistry",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 12 — CommandRegistry Gmail follow-up reminder cluster migration'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 12 — CommandRegistry Gmail follow-up reminder cluster migration\n\nMigrate /gmail-followup and /gmail-cancel-followup to CommandRegistry"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Phase 11 — CommandRegistry Gmail schedule cluster migration'?",
-      "response": "feat: Phase 11 — CommandRegistry Gmail schedule cluster migration\n\nMigrate /gmail-schedule, /gmail-cancel-scheduled, /gmail-reschedule,",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Phase 11 — CommandRegistry Gmail schedule cluster migration'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Phase 11 — CommandRegistry Gmail schedule cluster migration\n\nMigrate /gmail-schedule, /gmail-cancel-scheduled, /gmail-reschedule,"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: CommandRegistry Phase 10 — Gmail draft-reply migration'?",
-      "response": "feat: CommandRegistry Phase 10 — Gmail draft-reply migration\n\nMigrate /gmail-draft-reply into registry-first plugin dispatch via",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: CommandRegistry Phase 10 — Gmail draft-reply migration'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: CommandRegistry Phase 10 — Gmail draft-reply migration\n\nMigrate /gmail-draft-reply into registry-first plugin dispatch via"
-        }
-      ]
-    },
-    {
       "instruction": "How was this workspace improvement implemented: '2026-06-29 02:40 UTC'?",
       "response": "**gstack_drift**: touched file: hands/bin/gstack-verify\nDiff:\n```\ndiff --git a/blood/logs/SESSION_LOG.md b/blood/logs/SESSION_LOG.md\nindex 3ebe156..c348151 100644\n--- a/blood/logs/SESSION_LOG.md\n+++ b/blood/logs/SESSION_LOG.md\n@@ -853,3 +853,7 @@\n ## 2026-06-28\n \n - Hermes Completion + Ollama integration: Ollama running, suneelworkspace model created, repair+learning engines in lab/autolab/, hands/bin/ollama-repair and ollama-learn wired, night_shift.yaml 3 new steps, dashboard Ollama panel + ro",
       "messages": [
@@ -5521,7 +5521,7 @@
     },
     {
       "instruction": "What is the architectural decision about 'Predictive Maintenance System'?",
-      "response": "Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.",
+      "response": "Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.\n\n\n\n---\n*Added by memory curator — 2026-06-29*",
       "messages": [
         {
           "role": "system",
@@ -5533,7 +5533,25 @@
         },
         {
           "role": "assistant",
-          "content": "Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies."
+          "content": "Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.\n\n\n\n---\n*Added by memory curator — 2026-06-29*"
+        }
+      ]
+    },
+    {
+      "instruction": "What is the architectural decision about 'Recent Nerve Events'?",
+      "response": "* blood -> ?: ...",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What is the architectural decision about 'Recent Nerve Events'?"
+        },
+        {
+          "role": "assistant",
+          "content": "* blood -> ?: ..."
         }
       ]
     },

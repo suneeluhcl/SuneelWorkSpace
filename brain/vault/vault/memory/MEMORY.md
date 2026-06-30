@@ -5,7 +5,7 @@
 - Canonical workspace path: `~/SuneelWorkSpace`.
 - This workspace is shared by ALL agents: Antigravity (agy), Claude Code, Codex CLI, Gemini CLI, and OpenCode.
 - All agents read and write the same shared memory, task state, handoff, and log files.
-- Suneel may use any agent at any time — they all share one brain.
+- Suneel may use any agent at any time — they all share one [[brain]].
 - Suneel wants local automation and workflows.
 - Suneel is new to development and prefers clear, precise, step-by-step behavior.
 - Approved local setup actions should be performed directly by the agent when safe.

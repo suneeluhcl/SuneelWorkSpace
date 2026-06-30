@@ -13,17 +13,28 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 
 ## 📂 Contents
 - `README.md`
+- `agent-doctor`
+- `agent-finish`
+- `agent-start`
 - `auto_repair_extensions.py`
 - `autolab_promote.sh`
 - `autolab_rollback.sh`
 - `autolab_run.sh`
 - `autolab_status.sh`
+- `autoresearch_agent.py`
 - `daily-evolve`
 - `daily_evolve.py`
 - `dashboard_start.sh`
+- `diagnostic_start.sh`
+- `diagnostic_stop.sh`
 - `duplication_guard.py`
+- `evolution_daemon.py`
 - `evolution_start.sh`
 - `evolution_stop.sh`
+- `hermes_continue.sh`
+- `hermes_night.sh`
+- `hermes_start.sh`
+- `install_git_hooks.sh`
 - `integrity_guard.py`
 - `knowledge_bridge.py`
 - `mcp_brave_search.py`
@@ -34,73 +45,98 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `mcp_shortcuts.py`
 - `memory_write_hook.sh`
 - `model_status.sh`
+- `morning_brief.sh`
+- `ollama_stack_start.sh`
+- `ollama_stack_status.sh`
+- `ollama_stack_stop.sh`
+- `pre_commit_hook.sh`
 - `prompt_new.sh`
 - `prompt_promote.sh`
 - `prompt_rollback.sh`
+- `readme_sync.sh`
+- `rebuild_model.sh`
+- `repair_loop.sh`
+- `run_tests.sh`
 - `system_intelligence.py`
+- `test-daemon-start.sh`
 - `update_all_paths.py`
 - `visual_monitor_start.sh`
+- `wiki_ingest.py`
+- `wiki_lint.py`
+- `wiki_query.py`
 - `workflow_optimizer.py`
 - `workflow_outcome_evaluator.py`
 - `workflow_priority_engine.py`
+- `workspace-dashboard`
 - `workflows/` *(directory)*
 
 ## 🔄 Dependencies
-None detected
+- `brain/`
+- `nervous/`
 
 ## 🧩 Interactions
 Emits `readme_updated` events to nervous system on change.
 
 ## 📈 Current Capabilities
 - Database storage
+- Test suite
 
 ## ⚠️ Gaps & Weaknesses
-- No test coverage detected
+None identified
 
 ## 🚀 Suggested Enhancements
-- Add unit and integration tests
+- Add metrics collection
+- Add integration tests
 
 ## 🔗 Connected Modules
-*(no cross-organ references detected)*
+- [`../brain/README.md`](../brain/README.md)
+- [`../nervous/README.md`](../nervous/README.md)
 
 
 ## 🏥 Health Score
-🟢 **90/100**
+🟡 **75/100**
 
 | Category | Deduction |
 |----------|----------|
+| readme_drift | -15 |
 | no_tests | -10 |
 
 ## 🔥 Critical Issues
+- README is older than folder contents
 - No test files detected
 
 ## ✅ Runtime Status
-- Python files: 16 (16 valid, 0 broken)
-- Shell scripts: 13 (13 valid)
+- Python files: 21 (21 valid, 0 broken)
+- Shell scripts: 29 (29 valid)
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
 - 2026-06-27: README auto-updated by README Intelligence System
 - 2026-06-26: README auto-updated by README Intelligence System
 
 ## 🧬 State Alignment
 
-**Status:** ⚠️ DRIFTED
+**Status:** ❌ CRITICAL
 
 **Undocumented files on disk:**
+- `agent-doctor` *(not in README Contents)*
+- `agent-finish` *(not in README Contents)*
+- `agent-start` *(not in README Contents)*
+- `autoresearch_agent.py` *(not in README Contents)*
 - `daily-evolve` *(not in README Contents)*
 
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-28T00:00:06*
+*Last reconciled: 2026-06-30T00:12:22*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-28T00:00:06*
+*Last checked: 2026-06-30T00:12:22*
 
 ## 🌐 Failure Impact Map
 
@@ -108,9 +144,15 @@ Emits `readme_updated` events to nervous system on change.
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-28T00:00:06*
+*Computed: 2026-06-30T00:12:22*
 
 ## 📈 Trends
 
-**7-day trend:** ❓ INSUFFICIENT_DATA
-*0 day(s) of history | updated daily by nightly automation*
+**7-day trend:** ➡️ STABLE
+**Score change:** +0.2 (97.8 → 98.0)
+
+**Recent history (last 5 snapshots):**
+- `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
+- `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+
+*2 day(s) of history | updated daily by nightly automation*

@@ -48,7 +48,7 @@ The following workflows are low-performing and have pending structural optimizat
   - *Controlled Update Candidate*: Verify MCP connectors availability across Mac system.
 
 ## 4. Selected Top 3 Safe Improvements
-1. **Re-index workspace-brain MCP server storage** | Type: `maintenance` | *Status: SAFE (Auto-Executable)*
+1. **Re-index workspace-[[brain]] MCP server storage** | Type: `maintenance` | *Status: SAFE (Auto-Executable)*
 2. **Run workspace auto-repair & doctor verification check** | Type: `maintenance` | *Status: SAFE (Auto-Executable)*
 3. **Re-train orchestrator router using recent decision logs** | Type: `optimization` | *Status: SAFE (Auto-Executable)*
 

@@ -13,6 +13,7 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 
 ## 📂 Contents
 - `README.md`
+- `README.md.symlink`
 - `agent-autoclose`
 - `agent-compare`
 - `agent-doctor`
@@ -28,6 +29,8 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `autolab-rollback`
 - `autolab-run`
 - `autolab-status`
+- `autoresearch-run`
+- `autotrainer`
 - `brain-graph-build`
 - `brain-graph-orphans`
 - `brain-graph-query`
@@ -40,17 +43,23 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `comms-permissions-check`
 - `comms-report`
 - `comms-status`
+- `consume-suggestions`
 - `context-reset`
 - `dag-run`
 - `dag-schedule`
 - `dag-validate`
 - `daily-evolve`
+- `deep-scan`
+- `diagnostics-start`
+- `diagnostics-status`
+- `diagnostics-stop`
 - `docker-mcp`
 - `duplication-guard`
 - `evolution-engine`
 - `evolution-start`
 - `evolution-stop`
 - `evolution-trend`
+- `experiment-skills`
 - `feedback-ingest`
 - `feedback-status`
 - `filesystem-mcp`
@@ -71,6 +80,9 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `gstack-create`
 - `gstack-repair`
 - `gstack-verify`
+- `hermes-continue`
+- `hermes-night`
+- `hermes-start`
 - `hypothesis-generate`
 - `hypothesis-rank`
 - `idea-run`
@@ -87,10 +99,12 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `imsg-recent`
 - `imsg-search`
 - `imsg-send-confirmed`
+- `install-git-hooks`
 - `install-imessage-plugin`
 - `integrity-guard`
 - `jupyter-mcp`
 - `log-enhancement`
+- `log-learn`
 - `macos-shortcuts-mcp`
 - `mail-draft-reply`
 - `mail-recent`
@@ -105,6 +119,7 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `mcp-status`
 - `mcp-stop`
 - `mcp-test`
+- `memory-curate`
 - `memory-reindex`
 - `memory-search`
 - `mesh-assign`
@@ -112,14 +127,24 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `mesh-monitor-stop`
 - `mesh-status`
 - `model-health`
+- `model-rotate`
 - `model-route`
 - `model-status`
 - `monitor-digest`
 - `monitor-run`
 - `morning-brief`
+- `morning-brief-personal`
+- `nerve-heal`
 - `nerve-status`
 - `next`
+- `ollama-learn`
 - `ollama-mcp`
+- `ollama-orchestrate`
+- `ollama-repair`
+- `ollama-review`
+- `ollama-stack-start`
+- `ollama-stack-status`
+- `ollama-stack-stop`
 - `prompt-eval`
 - `prompt-new`
 - `prompt-promote`
@@ -134,16 +159,23 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `readme-repair`
 - `readme-root-build`
 - `readme-score`
+- `readme-sync`
 - `readme-trends`
 - `readme-update`
 - `readme-update-all`
 - `readme-validate`
 - `readme-watch-start`
+- `rebuild-model`
+- `repair-loop`
 - `route-analyze`
 - `route-execute`
 - `route-learn`
 - `route-task`
+- `run-tests`
+- `scenario-runner`
 - `screenshot-take`
+- `security-scan`
+- `sidecar-start`
 - `system-audit`
 - `system-capabilities`
 - `system-gaps`
@@ -151,14 +183,20 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `telemetry-anomalies`
 - `telemetry-query`
 - `telemetry-write`
+- `test-daemon-start`
 - `use-claude`
 - `use-claude-imessage`
 - `use-codex`
 - `use-gemini`
 - `use-opencode`
 - `use-opencode-gemini`
+- `vault-graph`
+- `vault-sync`
 - `visual-monitor`
 - `visual-repair`
+- `wiki-ingest`
+- `wiki-lint`
+- `wiki-query`
 - `workflow-audit`
 - `workflow-claude-headroom-setup`
 - `workflow-code-improvement-workflow`
@@ -178,6 +216,7 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `workspace-context`
 - `workspace-dashboard`
 - `workspace-index`
+- `workspace-rag`
 - `workspace-report`
 - `ws`
 
@@ -204,14 +243,14 @@ Emits `readme_updated` events to nervous system on change.
 
 
 ## 🏥 Health Score
-🟢 **100/100**
+🟢 **85/100**
 
 | Category | Deduction |
 |----------|----------|
-_No deductions_
+| readme_drift | -15 |
 
 ## 🔥 Critical Issues
-None — folder is healthy ✅
+- README is older than folder contents
 
 ## ✅ Runtime Status
 - Python files: 0 (0 valid, 0 broken)
@@ -219,6 +258,7 @@ None — folder is healthy ✅
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
 - 2026-06-27: README auto-updated by README Intelligence System
 - 2026-06-26: README auto-updated by README Intelligence System
@@ -228,22 +268,22 @@ None — folder is healthy ✅
 **Status:** ❌ CRITICAL
 
 **Undocumented files on disk:**
+- `README.md.symlink` *(not in README Contents)*
 - `agent-autoclose` *(not in README Contents)*
 - `agent-compare` *(not in README Contents)*
 - `agent-doctor` *(not in README Contents)*
 - `agent-finish` *(not in README Contents)*
-- `agent-maintain` *(not in README Contents)*
 
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-28T00:00:06*
+*Last reconciled: 2026-06-30T00:12:22*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-28T00:00:06*
+*Last checked: 2026-06-30T00:12:22*
 
 ## 🌐 Failure Impact Map
 
@@ -251,9 +291,15 @@ None — folder is healthy ✅
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-28T00:00:06*
+*Computed: 2026-06-30T00:12:22*
 
 ## 📈 Trends
 
-**7-day trend:** ❓ INSUFFICIENT_DATA
-*0 day(s) of history | updated daily by nightly automation*
+**7-day trend:** ➡️ STABLE
+**Score change:** +0.2 (97.8 → 98.0)
+
+**Recent history (last 5 snapshots):**
+- `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
+- `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+
+*2 day(s) of history | updated daily by nightly automation*

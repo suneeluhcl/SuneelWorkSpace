@@ -17,6 +17,7 @@ Part of the **heart** organ in the 12-organ SuneelWorkSpace architecture.
 - `fallback_log.jsonl`
 - `health_checker.py`
 - `model_registry.json`
+- `model_rotator.py`
 - `quota_state.json`
 - `quota_tracker.py`
 - `router.py`
@@ -28,6 +29,7 @@ Part of the **heart** organ in the 12-organ SuneelWorkSpace architecture.
 Emits `readme_updated` events to nervous system on change.
 
 ## 📈 Current Capabilities
+- Database storage
 - Claude AI integration
 
 ## ⚠️ Gaps & Weaknesses
@@ -54,18 +56,22 @@ Emits `readme_updated` events to nervous system on change.
 - No test files detected
 
 ## ✅ Runtime Status
-- Python files: 4 (4 valid, 0 broken)
+- Python files: 5 (5 valid, 0 broken)
 - Shell scripts: 0 (0 valid)
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
 - 2026-06-27: README auto-updated by README Intelligence System
 - 2026-06-26: README auto-updated by README Intelligence System
 
 ## 🧬 State Alignment
 
-**Status:** ⚠️ DRIFTED
+**Status:** ❌ CRITICAL
+
+**Undocumented files on disk:**
+- `model_rotator.py` *(not in README Contents)*
 
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
@@ -74,13 +80,13 @@ Emits `readme_updated` events to nervous system on change.
 **Wiring mismatches:**
 - README links heart/ but not in dep map
 
-*Last reconciled: 2026-06-28T00:00:06*
+*Last reconciled: 2026-06-30T00:12:23*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-28T00:00:06*
+*Last checked: 2026-06-30T00:12:23*
 
 ## 🌐 Failure Impact Map
 
@@ -94,9 +100,15 @@ Emits `readme_updated` events to nervous system on change.
 **Cascade (depth 1-1):**
 - Depth 1: `eyes/dashboard`, `eyes/dashboard/widgets`, `eyes/visual`
 
-*Computed: 2026-06-28T00:00:06*
+*Computed: 2026-06-30T00:12:23*
 
 ## 📈 Trends
 
-**7-day trend:** ❓ INSUFFICIENT_DATA
-*0 day(s) of history | updated daily by nightly automation*
+**7-day trend:** ➡️ STABLE
+**Score change:** +0.2 (97.8 → 98.0)
+
+**Recent history (last 5 snapshots):**
+- `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
+- `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+
+*2 day(s) of history | updated daily by nightly automation*

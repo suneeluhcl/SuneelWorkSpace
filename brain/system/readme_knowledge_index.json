@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-28T00:00:08.840400",
+  "generated": "2026-06-30T00:12:45.276403",
   "workspace": "/Users/MAC/SuneelWorkSpace",
-  "folder_count": 321,
+  "folder_count": 424,
   "folders": {
     ".agent-backups": {
       "name": ".agent-backups",
@@ -1747,8 +1747,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-075121/workspace-core": {
@@ -1770,8 +1770,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-085126": {
@@ -1793,8 +1793,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-085126/workspace-core": {
@@ -1816,8 +1816,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-095131": {
@@ -1839,8 +1839,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-095131/workspace-core": {
@@ -1862,8 +1862,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-105137": {
@@ -1885,8 +1885,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-105137/workspace-core": {
@@ -1908,8 +1908,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-115143": {
@@ -1931,8 +1931,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-115143/workspace-core": {
@@ -1954,8 +1954,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-125149": {
@@ -1977,8 +1977,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-125149/workspace-core": {
@@ -2000,8 +2000,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-135155": {
@@ -2023,8 +2023,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-135155/workspace-core": {
@@ -2046,8 +2046,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-145202": {
@@ -2069,8 +2069,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-145202/workspace-core": {
@@ -2092,8 +2092,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-155210": {
@@ -2115,8 +2115,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-155210/workspace-core": {
@@ -2138,8 +2138,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-165218": {
@@ -2161,8 +2161,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-165218/workspace-core": {
@@ -2184,8 +2184,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-175226": {
@@ -2207,8 +2207,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-175226/workspace-core": {
@@ -2230,8 +2230,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-185235": {
@@ -2253,8 +2253,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-185235/workspace-core": {
@@ -2276,8 +2276,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-195243": {
@@ -2299,8 +2299,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-195243/workspace-core": {
@@ -2322,8 +2322,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-205252": {
@@ -2345,8 +2345,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-205252/workspace-core": {
@@ -2368,8 +2368,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-215301": {
@@ -2391,8 +2391,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-215301/workspace-core": {
@@ -2414,8 +2414,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-225310": {
@@ -2437,8 +2437,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-225310/workspace-core": {
@@ -2460,8 +2460,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-235321": {
@@ -2483,8 +2483,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
     ".agent-backups/20260627-235321/workspace-core": {
@@ -2506,8 +2506,1756 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |",
-        "critical_issues": "- README missing sections: ['Contents']"
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-005331": {
+      "name": "20260628-005331",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-005331",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-005331/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-015342": {
+      "name": "20260628-015342",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-015342",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-015342/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-025354": {
+      "name": "20260628-025354",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-025354",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-025354/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-035405": {
+      "name": "20260628-035405",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-035405",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-035405/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-045416": {
+      "name": "20260628-045416",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-045416",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-045416/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-055427": {
+      "name": "20260628-055427",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-055427",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-055427/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-065438": {
+      "name": "20260628-065438",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-065438",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-065438/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-075448": {
+      "name": "20260628-075448",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-075448",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-075448/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-085459": {
+      "name": "20260628-085459",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-085459",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-085459/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-095511": {
+      "name": "20260628-095511",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-095511",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-095511/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-105524": {
+      "name": "20260628-105524",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-105524",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-105524/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-115536": {
+      "name": "20260628-115536",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-115536",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-115536/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-125549": {
+      "name": "20260628-125549",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-125549",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-125549/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-135603": {
+      "name": "20260628-135603",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-135603",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-135603/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-145616": {
+      "name": "20260628-145616",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-145616",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-145616/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-155629": {
+      "name": "20260628-155629",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-155629",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-155629/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-165641": {
+      "name": "20260628-165641",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-165641",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-165641/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-175652": {
+      "name": "20260628-175652",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-175652",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-175652/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-185706": {
+      "name": "20260628-185706",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-185706",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-185706/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-195718": {
+      "name": "20260628-195718",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-195718",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-195718/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-205731": {
+      "name": "20260628-205731",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-205731",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-205731/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-215747": {
+      "name": "20260628-215747",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-215747",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-215747/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-225805": {
+      "name": "20260628-225805",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-225805",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-225805/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-235824": {
+      "name": "20260628-235824",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260628-235824",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260628-235824/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    ".agent-backups/20260629-005842": {
+      "name": "20260629-005842",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-005842",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-005842/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-015859": {
+      "name": "20260629-015859",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-015859",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-015859/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-025915": {
+      "name": "20260629-025915",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-025915",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-025915/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-035931": {
+      "name": "20260629-035931",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-035931",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-035931/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-045947": {
+      "name": "20260629-045947",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-045947",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-045947/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-060004": {
+      "name": "20260629-060004",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-060004",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-060004/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-070021": {
+      "name": "20260629-070021",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-070021",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-070021/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-080039": {
+      "name": "20260629-080039",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-080039",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-080039/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-090058": {
+      "name": "20260629-090058",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-090058",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-090058/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-100119": {
+      "name": "20260629-100119",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-100119",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-100119/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-110139": {
+      "name": "20260629-110139",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-110139",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-110139/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-120200": {
+      "name": "20260629-120200",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-120200",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-120200/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-130221": {
+      "name": "20260629-130221",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-130221",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-130221/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    ".agent-backups/20260629-171155": {
+      "name": "20260629-171155",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 20260629-171155",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
+      }
+    },
+    ".agent-backups/20260629-171155/workspace-core": {
+      "name": "workspace-core",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 workspace-core",
+        "purpose": "Workspace component",
+        "responsibilities": "- General workspace operations",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
       }
     },
     ".agents": {
@@ -3012,8 +4760,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     ".rtk": {
@@ -3279,7 +5027,7 @@
         "Test suite"
       ],
       "workspace_references": [],
-      "file_count": 152,
+      "file_count": 159,
       "has_readme": true,
       "health_score": 100,
       "gaps": [
@@ -3291,8 +5039,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Database storage\n- Scheduled automation\n- Test suite",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "blood": {
@@ -3313,8 +5061,8 @@
         "responsibilities": "- Telemetry logging\n- SQLite database management\n- Anomaly detection",
         "system_role": "Part of the **blood** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **60/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents\n- No test files detected"
       }
     },
     "blood/metrics": {
@@ -3407,8 +5155,8 @@
         "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
         "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe1 **70/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents"
       }
     },
     "brain/anticipation": {
@@ -3528,13 +5276,14 @@
       "organ": "brain",
       "purpose": "Vector memory search, context anticipation, and research aggregation",
       "capabilities": [],
-      "workspace_references": [],
-      "file_count": 7,
+      "workspace_references": [
+        "lab"
+      ],
+      "file_count": 8,
       "has_readme": true,
-      "health_score": 100,
+      "health_score": 90,
       "gaps": [
-        "No test coverage detected",
-        "No executable code found"
+        "No test coverage detected"
       ],
       "readme_sections": {
         "title": "\ud83d\udcc1 memory",
@@ -3542,8 +5291,8 @@
         "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
         "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "brain/memory/docs": {
@@ -3712,9 +5461,11 @@
       "name": "research",
       "organ": "brain",
       "purpose": "Vector memory search, context anticipation, and research aggregation",
-      "capabilities": [],
+      "capabilities": [
+        "Database storage"
+      ],
       "workspace_references": [],
-      "file_count": 2,
+      "file_count": 5,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -3725,9 +5476,9 @@
         "purpose": "Vector memory search, context anticipation, and research aggregation",
         "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
         "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
-        "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "capabilities": "- Database storage",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "brain/research/analyses": {
@@ -3874,8 +5625,11 @@
       "organ": "brain",
       "purpose": "Vector memory search, context anticipation, and research aggregation",
       "capabilities": [],
-      "workspace_references": [],
-      "file_count": 7,
+      "workspace_references": [
+        "brain",
+        "nervous"
+      ],
+      "file_count": 11,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -4210,6 +5964,29 @@
         "critical_issues": "- No test files detected"
       }
     },
+    "brain/vault/organs": {
+      "name": "organs",
+      "organ": "brain",
+      "purpose": "Vector memory search, context anticipation, and research aggregation",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 13,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 organs",
+        "purpose": "Vector memory search, context anticipation, and research aggregation",
+        "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
+        "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
+      }
+    },
     "brain/vault/projects": {
       "name": "projects",
       "organ": "brain",
@@ -4276,6 +6053,29 @@
         "capabilities": "- Basic workspace component",
         "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
         "critical_issues": "- No test files detected"
+      }
+    },
+    "brain/vault/sources": {
+      "name": "sources",
+      "organ": "brain",
+      "purpose": "Vector memory search, context anticipation, and research aggregation",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 sources",
+        "purpose": "Vector memory search, context anticipation, and research aggregation",
+        "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
+        "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
+        "critical_issues": "- README.md is missing"
       }
     },
     "brain/vault/system": {
@@ -4347,6 +6147,29 @@
         "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
+    "brain/vault/wiki": {
+      "name": "wiki",
+      "organ": "brain",
+      "purpose": "Vector memory search, context anticipation, and research aggregation",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 16,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 wiki",
+        "purpose": "Vector memory search, context anticipation, and research aggregation",
+        "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
+        "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
     "brain/vault/workflows": {
       "name": "workflows",
       "organ": "brain",
@@ -4370,6 +6193,28 @@
         "critical_issues": "None \u2014 folder is healthy \u2705"
       }
     },
+    "brain/wiki": {
+      "name": "wiki",
+      "organ": "brain",
+      "purpose": "Vector memory search, context anticipation, and research aggregation",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 4,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 wiki",
+        "purpose": "Vector memory search, context anticipation, and research aggregation",
+        "responsibilities": "- Vector memory search\n- Context anticipation\n- Research aggregation",
+        "system_role": "Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe1 **70/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |\n| no_tests | -10 |",
+        "critical_issues": "- README.md is missing\n- No test files detected"
+      }
+    },
     "dna": {
       "name": "dna",
       "organ": "dna",
@@ -4390,8 +6235,8 @@
         "responsibilities": "- Identity prompt management\n- Adapt loop scoring",
         "system_role": "Part of the **dna** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Database storage",
-        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
-        "critical_issues": "- README is older than folder contents\n- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- No test files detected"
       }
     },
     "dna/agents": {
@@ -4413,8 +6258,8 @@
         "responsibilities": "- Identity prompt management\n- Adapt loop scoring",
         "system_role": "Part of the **dna** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "dna/agents/hermes": {
@@ -4423,7 +6268,7 @@
       "purpose": "Identity prompt management and adapt loop scoring",
       "capabilities": [],
       "workspace_references": [],
-      "file_count": 3,
+      "file_count": 4,
       "has_readme": true,
       "health_score": 100,
       "gaps": [
@@ -4436,8 +6281,8 @@
         "responsibilities": "- Identity prompt management\n- Adapt loop scoring",
         "system_role": "Part of the **dna** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **80/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_missing | -20 |",
-        "critical_issues": "- README.md is missing"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "dna/feedback": {
@@ -4644,8 +6489,8 @@
         "responsibilities": "- Identity prompt management\n- Adapt loop scoring",
         "system_role": "Part of the **dna** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "dna/identity/reports": {
@@ -4690,8 +6535,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |",
+        "critical_issues": "- README missing sections: ['Purpose', 'Change Log']"
       }
     },
     "docs/superpowers": {
@@ -4758,8 +6603,8 @@
         "responsibilities": "- External RSS monitoring\n- GitHub event watching\n- Morning briefing build",
         "system_role": "Part of the **ears** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- No test files detected"
       }
     },
     "ears/monitor": {
@@ -4840,7 +6685,7 @@
       "workspace_references": [
         "ears"
       ],
-      "file_count": 4,
+      "file_count": 5,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -4896,8 +6741,8 @@
         "responsibilities": "- Web dashboard serving\n- Visual monitoring\n- Screenshot healing",
         "system_role": "Part of the **eyes** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- No test files detected"
       }
     },
     "eyes/agent-system": {
@@ -4946,8 +6791,8 @@
         "responsibilities": "- Web dashboard serving\n- Visual monitoring\n- Screenshot healing",
         "system_role": "Part of the **eyes** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- HTTP API",
-        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
-        "critical_issues": "- README is older than folder contents\n- No test files detected"
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
       }
     },
     "eyes/dashboard/execution": {
@@ -4990,8 +6835,8 @@
         "responsibilities": "- Web dashboard serving\n- Visual monitoring\n- Screenshot healing",
         "system_role": "Part of the **eyes** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
-        "critical_issues": "- README is older than folder contents\n- No test files detected"
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
       }
     },
     "eyes/dashboard/screenshots": {
@@ -5050,7 +6895,7 @@
       "workspace_references": [
         "heart"
       ],
-      "file_count": 10,
+      "file_count": 13,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -5087,8 +6932,8 @@
         "responsibilities": "- Web dashboard serving\n- Visual monitoring\n- Screenshot healing",
         "system_role": "Part of the **eyes** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "eyes/visual/screenshots": {
@@ -5132,8 +6977,8 @@
         "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
         "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **60/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Purpose', 'Contents', 'Change Log']\n- README is older than folder contents\n- No test files detected"
       }
     },
     "hands/automation": {
@@ -5156,8 +7001,8 @@
         "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
         "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Scheduled automation",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "hands/automation/ci": {
@@ -5205,6 +7050,29 @@
         "capabilities": "- Scheduled automation",
         "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
         "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "hands/automation/dag": {
+      "name": "dag",
+      "organ": "hands",
+      "purpose": "Script execution, LaunchD automation, and CI runner",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 1,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No test coverage detected",
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 dag",
+        "purpose": "Script execution, LaunchD automation, and CI runner",
+        "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
+        "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "hands/automation/doctor": {
@@ -5344,8 +7212,8 @@
         "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
         "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Database storage",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "hands/automation/repair": {
@@ -5405,7 +7273,7 @@
         "Test suite"
       ],
       "workspace_references": [],
-      "file_count": 168,
+      "file_count": 207,
       "has_readme": true,
       "health_score": 100,
       "gaps": [
@@ -5417,8 +7285,8 @@
         "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
         "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Database storage\n- Scheduled automation\n- Test suite",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "hands/codex": {
@@ -5463,8 +7331,8 @@
         "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
         "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
       }
     },
     "hands/projects/fine-tuning": {
@@ -5517,23 +7385,25 @@
       "organ": "hands",
       "purpose": "Script execution, LaunchD automation, and CI runner",
       "capabilities": [
-        "Database storage"
+        "Database storage",
+        "Test suite"
       ],
-      "workspace_references": [],
-      "file_count": 31,
+      "workspace_references": [
+        "brain",
+        "nervous"
+      ],
+      "file_count": 56,
       "has_readme": true,
       "health_score": 90,
-      "gaps": [
-        "No test coverage detected"
-      ],
+      "gaps": [],
       "readme_sections": {
         "title": "\ud83d\udcc1 scripts",
         "purpose": "Script execution, LaunchD automation, and CI runner",
         "responsibilities": "- Script execution\n- LaunchD automation\n- CI runner",
         "system_role": "Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.",
-        "capabilities": "- Database storage",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "capabilities": "- Database storage\n- Test suite",
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "hands/scripts/workflows": {
@@ -5576,8 +7446,8 @@
         "responsibilities": "- Goal scheduling\n- Task queue management\n- Model fallback routing",
         "system_role": "Part of the **heart** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **60/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents\n- No test files detected"
       }
     },
     "heart/goals": {
@@ -5768,12 +7638,13 @@
       "organ": "heart",
       "purpose": "Goal scheduling, task queue management, and model fallback routing",
       "capabilities": [
+        "Database storage",
         "Claude AI integration"
       ],
       "workspace_references": [
         "heart"
       ],
-      "file_count": 8,
+      "file_count": 9,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -5784,7 +7655,7 @@
         "purpose": "Goal scheduling, task queue management, and model fallback routing",
         "responsibilities": "- Goal scheduling\n- Task queue management\n- Model fallback routing",
         "system_role": "Part of the **heart** organ in the 12-organ SuneelWorkSpace architecture.",
-        "capabilities": "- Claude AI integration",
+        "capabilities": "- Database storage\n- Claude AI integration",
         "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
         "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
@@ -5807,8 +7678,8 @@
         "responsibilities": "- Goal scheduling\n- Task queue management\n- Model fallback routing",
         "system_role": "Part of the **heart** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "heart/orchestrator/dag": {
@@ -6011,8 +7882,8 @@
         "responsibilities": "- Autolab experiment execution\n- Self-evolution cycles",
         "system_role": "Part of the **lab** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Test suite",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **60/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents\n- No test files detected"
       }
     },
     "lab/autolab": {
@@ -6022,8 +7893,11 @@
       "capabilities": [
         "Database storage"
       ],
-      "workspace_references": [],
-      "file_count": 14,
+      "workspace_references": [
+        "lab",
+        "nervous"
+      ],
+      "file_count": 27,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -6035,8 +7909,8 @@
         "responsibilities": "- Autolab experiment execution\n- Self-evolution cycles",
         "system_role": "Part of the **lab** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Database storage",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
+        "critical_issues": "- README is older than folder contents\n- No test files detected"
       }
     },
     "lab/autolab/archive": {
@@ -6501,8 +8375,8 @@
         "responsibilities": "- General workspace operations",
         "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- HTTP API",
-        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
-        "critical_issues": "None \u2014 folder is healthy \u2705"
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |",
+        "critical_issues": "- README missing sections: ['Purpose', 'Change Log']"
       }
     },
     "mcp/server": {
@@ -6548,8 +8422,8 @@
         "responsibilities": "- Communication dispatch\n- Mail delivery\n- iMessage delivery",
         "system_role": "Part of the **mouth** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Event dispatch",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- No test files detected"
       }
     },
     "mouth/comms": {
@@ -6745,7 +8619,7 @@
       "workspace_references": [
         "spine"
       ],
-      "file_count": 6,
+      "file_count": 7,
       "has_readme": true,
       "health_score": 90,
       "gaps": [
@@ -6757,8 +8631,8 @@
         "responsibilities": "- Event propagation\n- MCP server connections\n- Nerve routing",
         "system_role": "Part of the **nervous** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- No test files detected"
       }
     },
     "nervous/gateway": {
@@ -7107,8 +8981,8 @@
         "responsibilities": "- Agent rules enforcement\n- Safety gate checks\n- Shared instructions",
         "system_role": "Part of the **skeleton** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
-        "critical_issues": "- No test files detected"
+        "health_score": "\ud83d\udfe1 **60/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents\n- No test files detected"
       }
     },
     "skeleton/rules": {
@@ -7151,8 +9025,8 @@
         "responsibilities": "- Health state tracking\n- Workspace index management",
         "system_role": "Part of the **spine** organ in the 12-organ SuneelWorkSpace architecture.",
         "capabilities": "- Basic workspace component",
-        "health_score": "\ud83d\udfe1 **75/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |\n| no_tests | -10 |",
-        "critical_issues": "- README is older than folder contents\n- No test files detected"
+        "health_score": "\ud83d\udfe1 **60/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |\n| no_tests | -10 |",
+        "critical_issues": "- README missing sections: ['Contents', 'Change Log']\n- README is older than folder contents\n- No test files detected"
       }
     },
     "spine/audit": {
@@ -7246,6 +9120,30 @@
         "capabilities": "- Event dispatch\n- Test suite",
         "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
         "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "spine/diagnostics": {
+      "name": "diagnostics",
+      "organ": "spine",
+      "purpose": "Health state tracking and workspace index management",
+      "capabilities": [
+        "Scheduled automation"
+      ],
+      "workspace_references": [],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 diagnostics",
+        "purpose": "Health state tracking and workspace index management",
+        "responsibilities": "- Health state tracking\n- Workspace index management",
+        "system_role": "Part of the **spine** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Scheduled automation",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
       }
     },
     "spine/docs": {
@@ -7402,6 +9300,483 @@
         "purpose": "Health state tracking and workspace index management",
         "responsibilities": "- Health state tracking\n- Workspace index management",
         "system_role": "Part of the **spine** organ in the 12-organ SuneelWorkSpace architecture.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests": {
+      "name": "tests",
+      "organ": null,
+      "purpose": "Test suite",
+      "capabilities": [
+        "Database storage",
+        "Test suite"
+      ],
+      "workspace_references": [
+        "blood",
+        "nervous"
+      ],
+      "file_count": 9,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 tests",
+        "purpose": "Test suite",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Database storage\n- Test suite",
+        "health_score": "\ud83d\udfe1 **70/100**\n\n| Category | Deduction |\n|----------|----------|\n| missing_sections | -10 |\n| readme_drift | -15 |\n| no_capabilities | -5 |",
+        "critical_issues": "- README missing sections: ['Purpose', 'Contents', 'Change Log']\n- README is older than folder contents"
+      }
+    },
+    "tests/dashboard": {
+      "name": "dashboard",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 dashboard",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/integration": {
+      "name": "integration",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [
+        "nervous"
+      ],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 integration",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/nerve_system": {
+      "name": "nerve_system",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [
+        "nervous"
+      ],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 nerve_system",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/ollama_engines": {
+      "name": "ollama_engines",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 ollama_engines",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/organs": {
+      "name": "organs",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 organs",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/blood": {
+      "name": "blood",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Database storage",
+        "Test suite"
+      ],
+      "workspace_references": [],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 blood",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Database storage\n- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/organs/brain": {
+      "name": "brain",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 brain",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/organs/dna": {
+      "name": "dna",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 dna",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/ears": {
+      "name": "ears",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 ears",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/eyes": {
+      "name": "eyes",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [
+        "eyes"
+      ],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 eyes",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/organs/hands": {
+      "name": "hands",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 hands",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/heart": {
+      "name": "heart",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [
+        "heart"
+      ],
+      "file_count": 3,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 heart",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **100/100**\n\n| Category | Deduction |\n|----------|----------|\n_No deductions_",
+        "critical_issues": "None \u2014 folder is healthy \u2705"
+      }
+    },
+    "tests/organs/lab": {
+      "name": "lab",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 lab",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/mouth": {
+      "name": "mouth",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 mouth",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/nervous": {
+      "name": "nervous",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 nervous",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/skeleton": {
+      "name": "skeleton",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 skeleton",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/organs/spine": {
+      "name": "spine",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 spine",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/performance": {
+      "name": "performance",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 performance",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Basic workspace component",
+        "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
+        "critical_issues": "- No test files detected"
+      }
+    },
+    "tests/reports": {
+      "name": "reports",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [
+        "Test suite"
+      ],
+      "workspace_references": [],
+      "file_count": 11,
+      "has_readme": true,
+      "health_score": 100,
+      "gaps": [
+        "No executable code found"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 reports",
+        "purpose": "Workspace component",
+        "responsibilities": "- Configuration management",
+        "system_role": "Supporting component within SuneelWorkSpace.",
+        "capabilities": "- Test suite",
+        "health_score": "\ud83d\udfe2 **85/100**\n\n| Category | Deduction |\n|----------|----------|\n| readme_drift | -15 |",
+        "critical_issues": "- README is older than folder contents"
+      }
+    },
+    "tests/security": {
+      "name": "security",
+      "organ": null,
+      "purpose": "Workspace component",
+      "capabilities": [],
+      "workspace_references": [],
+      "file_count": 2,
+      "has_readme": true,
+      "health_score": 90,
+      "gaps": [
+        "No test coverage detected"
+      ],
+      "readme_sections": {
+        "title": "\ud83d\udcc1 security",
+        "purpose": "Workspace component",
+        "responsibilities": "- Python module execution",
+        "system_role": "Supporting component within SuneelWorkSpace.",
         "capabilities": "- Basic workspace component",
         "health_score": "\ud83d\udfe2 **90/100**\n\n| Category | Deduction |\n|----------|----------|\n| no_tests | -10 |",
         "critical_issues": "- No test files detected"

@@ -16,6 +16,7 @@ Part of the **ears** organ in the 12-organ SuneelWorkSpace architecture.
 - `__init__.py`
 - `digest_builder.py`
 - `digest_formatter.py`
+- `personalized_brief.py`
 
 ## 🔄 Dependencies
 - `ears/`
@@ -47,11 +48,12 @@ Emits `readme_updated` events to nervous system on change.
 - No test files detected
 
 ## ✅ Runtime Status
-- Python files: 3 (3 valid, 0 broken)
+- Python files: 4 (4 valid, 0 broken)
 - Shell scripts: 0 (0 valid)
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
 - 2026-06-27: README auto-updated by README Intelligence System
 - 2026-06-26: README auto-updated by README Intelligence System
@@ -60,19 +62,22 @@ Emits `readme_updated` events to nervous system on change.
 
 **Status:** ⚠️ DRIFTED
 
+**Undocumented files on disk:**
+- `personalized_brief.py` *(not in README Contents)*
+
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
 **Wiring mismatches:**
 - README links ears/ but not in dep map
 
-*Last reconciled: 2026-06-28T00:00:06*
+*Last reconciled: 2026-06-30T00:12:22*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-28T00:00:06*
+*Last checked: 2026-06-30T00:12:22*
 
 ## 🌐 Failure Impact Map
 
@@ -80,9 +85,15 @@ Emits `readme_updated` events to nervous system on change.
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-06-28T00:00:06*
+*Computed: 2026-06-30T00:12:22*
 
 ## 📈 Trends
 
-**7-day trend:** ❓ INSUFFICIENT_DATA
-*0 day(s) of history | updated daily by nightly automation*
+**7-day trend:** ➡️ STABLE
+**Score change:** +0.2 (97.8 → 98.0)
+
+**Recent history (last 5 snapshots):**
+- `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
+- `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+
+*2 day(s) of history | updated daily by nightly automation*

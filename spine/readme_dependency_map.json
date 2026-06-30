@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-28T00:00:07.998195",
-  "folder_count": 321,
+  "generated": "2026-06-30T00:12:40.983479",
+  "folder_count": 424,
   "folders": {
     ".agent-backups": {
       "dependencies": [],
@@ -547,6 +547,386 @@
       "reverse_dependencies": [],
       "organ": null
     },
+    ".agent-backups/20260628-005331": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-005331/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-015342": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-015342/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-025354": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-025354/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-035405": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-035405/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-045416": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-045416/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-055427": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-055427/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-065438": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-065438/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-075448": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-075448/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-085459": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-085459/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-095511": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-095511/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-105524": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-105524/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-115536": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-115536/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-125549": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-125549/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-135603": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-135603/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-145616": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-145616/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-155629": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-155629/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-165641": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-165641/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-175652": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-175652/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-185706": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-185706/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-195718": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-195718/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-205731": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-205731/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-215747": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-215747/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-225805": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-225805/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-235824": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260628-235824/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-005842": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-005842/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-015859": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-015859/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-025915": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-025915/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-035931": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-035931/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-045947": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-045947/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-060004": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-060004/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-070021": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-070021/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-080039": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-080039/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-090058": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-090058/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-100119": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-100119/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-110139": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-110139/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-120200": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-120200/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-130221": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-130221/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-171155": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260629-171155/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
     ".agents": {
       "dependencies": [],
       "reverse_dependencies": [],
@@ -719,237 +1099,363 @@
     },
     "blood": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests"
+      ],
       "organ": "blood"
     },
     "blood/metrics": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests"
+      ],
       "organ": "blood"
     },
     "blood/telemetry": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests"
+      ],
       "organ": "blood"
     },
     "blood/telemetry/comparison": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests"
+      ],
       "organ": "blood"
     },
     "brain": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/anticipation": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/anticipation/reports": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/graph": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/graph/reports": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/injector": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory": {
-      "dependencies": [],
-      "reverse_dependencies": [],
+      "dependencies": [
+        "lab"
+      ],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/docs": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/memory": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/shared": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/state": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/tasks": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/templates": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/memory/vector": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/research": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/research/analyses": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/research/decisions": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/research/ideas": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/research/plans": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/research/scripts": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/system": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault": {
-      "dependencies": [],
-      "reverse_dependencies": [],
+      "dependencies": [
+        "nervous"
+      ],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/.obsidian": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/anticipation": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/archives": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/automations": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/daily-notes": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/decisions": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/experiments": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/graph": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/ideas": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/inbox": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/injector": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/knowledge": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/learning": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/memory": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
+      "organ": "brain"
+    },
+    "brain/vault/organs": {
+      "dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/projects": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/prompts": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/research": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
+      "organ": "brain"
+    },
+    "brain/vault/sources": {
+      "dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/system": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/templates": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/vault": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
+      "organ": "brain"
+    },
+    "brain/vault/wiki": {
+      "dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "brain/vault/workflows": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
+      "organ": "brain"
+    },
+    "brain/wiki": {
+      "dependencies": [],
+      "reverse_dependencies": [
+        "hands/scripts"
+      ],
       "organ": "brain"
     },
     "dna": {
@@ -1064,58 +1570,78 @@
     },
     "eyes": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/agent-system": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/dashboard": {
       "dependencies": [
         "heart"
       ],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/dashboard/execution": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/dashboard/pipeline": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/dashboard/screenshots": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/dashboard/static": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/dashboard/widgets": {
       "dependencies": [
         "heart"
       ],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/visual": {
       "dependencies": [
         "heart"
       ],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "eyes/visual/screenshots": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "tests/organs/eyes"
+      ],
       "organ": "eyes"
     },
     "hands": {
@@ -1134,6 +1660,11 @@
       "organ": "hands"
     },
     "hands/automation/cron": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": "hands"
+    },
+    "hands/automation/dag": {
       "dependencies": [],
       "reverse_dependencies": [],
       "organ": "hands"
@@ -1204,7 +1735,10 @@
       "organ": "hands"
     },
     "hands/scripts": {
-      "dependencies": [],
+      "dependencies": [
+        "brain",
+        "nervous"
+      ],
       "reverse_dependencies": [],
       "organ": "hands"
     },
@@ -1218,7 +1752,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1227,7 +1762,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1236,7 +1772,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1245,7 +1782,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1254,7 +1792,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1263,7 +1802,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1272,7 +1812,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1281,7 +1822,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1290,7 +1832,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1299,7 +1842,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1308,7 +1852,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1317,7 +1862,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1326,7 +1872,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1335,7 +1882,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1344,7 +1892,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1353,7 +1902,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1362,7 +1912,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1371,7 +1922,8 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
@@ -1380,113 +1932,158 @@
       "reverse_dependencies": [
         "eyes/dashboard",
         "eyes/dashboard/widgets",
-        "eyes/visual"
+        "eyes/visual",
+        "tests/organs/heart"
       ],
       "organ": "heart"
     },
     "lab": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab": {
-      "dependencies": [],
-      "reverse_dependencies": [],
+      "dependencies": [
+        "nervous"
+      ],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/archive": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/experiments": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/meta": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/patches": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/quarantine": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/reports": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/sandboxes": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/scripts": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/snapshots": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/state": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/templates": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/autolab/training_data": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/brain": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/brain/system": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/evolution": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/prompts": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/testing": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/testing/reports": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "lab/tests": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/memory"
+      ],
       "organ": "lab"
     },
     "mcp": {
@@ -1548,62 +2145,146 @@
       "dependencies": [
         "spine"
       ],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/gateway": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/gateway/clients": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/gateway/routes": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/mcp": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/mcp/config": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/mcp/docs": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/mcp/server": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/skills": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/skills/copilot-optimizer": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/skills/headroom-rtk": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "nervous/skills/self-repair": {
       "dependencies": [],
-      "reverse_dependencies": [],
+      "reverse_dependencies": [
+        "brain/vault",
+        "hands/scripts",
+        "lab/autolab",
+        "tests",
+        "tests/integration",
+        "tests/nerve_system"
+      ],
       "organ": "nervous"
     },
     "projects": {
@@ -1666,6 +2347,13 @@
       ],
       "organ": "spine"
     },
+    "spine/diagnostics": {
+      "dependencies": [],
+      "reverse_dependencies": [
+        "nervous"
+      ],
+      "organ": "spine"
+    },
     "spine/docs": {
       "dependencies": [],
       "reverse_dependencies": [
@@ -1714,6 +2402,122 @@
         "nervous"
       ],
       "organ": "spine"
+    },
+    "tests": {
+      "dependencies": [
+        "blood",
+        "nervous"
+      ],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/dashboard": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/integration": {
+      "dependencies": [
+        "nervous"
+      ],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/nerve_system": {
+      "dependencies": [
+        "nervous"
+      ],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/ollama_engines": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/blood": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/brain": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/dna": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/ears": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/eyes": {
+      "dependencies": [
+        "eyes"
+      ],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/hands": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/heart": {
+      "dependencies": [
+        "heart"
+      ],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/lab": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/mouth": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/nervous": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/skeleton": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/organs/spine": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/performance": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/reports": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "tests/security": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
     }
   }
 }

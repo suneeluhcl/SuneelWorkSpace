@@ -47,3 +47,16 @@ Record proactive maintenance events in `brain/anticipation/proactive_maintenance
 ## Hyper-Evolution Pattern
 Capture hyper-evolution ideas in `brain/hyper_evolution/ideas.json`. Use this pattern to store and connect concepts, entities, and relationships related to hyper-evolution.
 
+
+
+---
+*Added by memory curator — 2026-06-29*
+
+## Ollama Integration Pattern
+
+Use Ollama's repair and learning engines to anticipate potential issues and suggest next actions. Record command and workflow events in `brain/anticipation/prediction_memory.json` with consideration for Ollama's capabilities.
+
+## Automated Model Rotation and Versioning
+
+Implement automated model rotation and versioning in heart/ as suggested by the improvement ideas.
+

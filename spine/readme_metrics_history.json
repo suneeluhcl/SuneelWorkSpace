@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-28T00:00:09.692837",
+  "updated": "2026-06-30T00:12:49.425801",
   "snapshots": [
     {
       "timestamp": "2026-06-27T06:55:31.022479",
@@ -18,6 +18,17 @@
       "overall_score": 98.0,
       "total_folders": 321,
       "healthy": 320,
+      "warning": 1,
+      "critical": 0,
+      "min_score": 60,
+      "max_score": 100
+    },
+    {
+      "timestamp": "2026-06-30T00:12:49.425708",
+      "date": "2026-06-30",
+      "overall_score": 98.1,
+      "total_folders": 424,
+      "healthy": 423,
       "warning": 1,
       "critical": 0,
       "min_score": 60,

@@ -1,102 +1,113 @@
-# tests
+# 📁 tests
 
-103/103 tests passing. Autonomous repair loop. README sync. Full Ollama-powered CI.
+## 🧠 Purpose
+Test suite
 
-## Status
+## ⚙️ Responsibilities
+- Python module execution
 
-```
-✅ 103/103 PASSING (0.4s)
-```
+## 🔗 System Role
+Supporting component within SuneelWorkSpace.
 
-## Running Tests
+## 📂 Contents
+- `README.md`
+- `__init__.py`
+- `autonomous_repair_loop.py`
+- `chaos_monkey.py`
+- `conftest.py`
+- `readme_sync.py`
+- `scenario_runner.py`
+- `test_daemon.py`
+- `test_runner.py`
+- `dashboard/` *(directory)*
+- `integration/` *(directory)*
+- `nerve_system/` *(directory)*
+- `ollama_engines/` *(directory)*
+- `organs/` *(directory)*
+- `performance/` *(directory)*
+- `reports/` *(directory)*
+- `security/` *(directory)*
 
-```bash
-run-tests       # Full suite: pytest + JUnit XML + JSON report saved to tests/reports/
-repair-loop     # Autonomous repair: Ollama analyzes failures, applies SAFE fixes, retries up to 5x
-readme-sync     # Sync all READMEs with latest test results
-```
+## 🔄 Dependencies
+- `blood/`
+- `nervous/`
 
-## Test Structure
+## 🧩 Interactions
+Emits `readme_updated` events to nervous system on change.
 
-```
-tests/
-  conftest.py                          # Shared fixtures (WORKSPACE constant, organ paths)
-  test_runner.py                       # Master pytest runner (generates JUnit XML + JSON reports)
-  autonomous_repair_loop.py            # Ollama-powered repair loop
-  readme_sync.py                       # README test status updater
-  reports/                             # JSON test reports (latest + history)
-  organs/
-    brain/test_brain.py                # Memory, vector search, anticipation, curator
-    heart/test_heart.py                # Router, rotator, quota, goals
-    eyes/test_eyes.py                  # Dashboard routes, widgets, WebSocket
-    ears/test_ears.py                  # Monitors, digest builder, brief
-    mouth/test_mouth.py                # Intent dispatcher, comms adapters
-    hands/test_hands.py                # Symlink integrity (all 194 bin/ entries)
-    blood/test_blood.py                # Log files, telemetry, anomaly detector
-    dna/test_dna.py                    # Identity profiles, Modelfile, training data
-    spine/test_spine.py                # Health state, diagnostics
-  integration/
-    test_integration.py                # Cross-organ flows (nerve events, suggestion→task)
-  nerve_system/
-    test_nervous.py                    # nerve_propagator, nerve_healer, nerve_registry
-  ollama_engines/
-    test_ollama_engines.py             # Orchestrator, context_injector, repair engine
-  security/
-    test_security.py                   # Path traversal, injection, input validation
-  performance/
-    test_performance.py                # Import times, file count thresholds
-```
+## 📈 Current Capabilities
+- Database storage
+- Test suite
 
-## Autonomous Repair Loop
+## ⚠️ Gaps & Weaknesses
+None identified
 
-`tests/autonomous_repair_loop.py` — closes the test failure → fix → verify cycle:
+## 🚀 Suggested Enhancements
+- Add metrics collection
+- Add integration tests
 
-1. Run test suite via `test_runner.py`
-2. Parse failures from JUnit XML (using `defusedxml`, not stdlib ET)
-3. Send failure context to `suneelworkspace` Ollama model via context_injector
-4. Parse SAFE suggestions from response
-5. Validate all LLM-provided file paths with `_path_within_workspace()`
-6. Apply SAFE fixes (`append_to_file`, `create_file` to allowed dirs only)
-7. Queue `fix_symlink` to `blood/logs/repair_loop_controlled_queue.json` — NEVER auto-apply
-8. Re-run tests; repeat up to 5 iterations or until ≥95% pass
+## 🔗 Connected Modules
+- [`../blood/README.md`](../blood/README.md)
+- [`../nervous/README.md`](../nervous/README.md)
 
-**Security constraints**:
-- `_path_within_workspace(path)`: rejects absolute paths, `..`, NUL bytes, paths outside WORKSPACE
-- `create_file`: restricted to `_ALLOWED_CREATE_DIRS = ("tests/", "blood/logs/", "lab/autolab/experiments/")`
-- `fix_symlink`: ALWAYS queued, never auto-applied
 
-## Reports
+## 🏥 Health Score
+🟡 **70/100**
 
-After each run, saved to `tests/reports/`:
-- `latest.json` — most recent run (pass/fail counts, failures list, duration)
-- `run_YYYYMMDD_HHMMSS.json` — historical run archive
+| Category | Deduction |
+|----------|----------|
+| missing_sections | -10 |
+| readme_drift | -15 |
+| no_capabilities | -5 |
 
-Readable by the dashboard (`/api/tests/status`) and README sync script.
+## 🔥 Critical Issues
+- README missing sections: ['Purpose', 'Contents', 'Change Log']
+- README is older than folder contents
 
-## README Sync
+## ✅ Runtime Status
+- Python files: 8 (8 valid, 0 broken)
+- Shell scripts: 0 (0 valid)
+- Tests detected: ✅
 
-`tests/readme_sync.py` reads `tests/reports/latest.json` and updates:
-- Root `README.md` — test count and pass rate
-- Organ READMEs — test file references and current status
+## 📝 Change Log (Auto)
+- 2026-06-30: README auto-generated by README Intelligence System
 
-## Pre-Commit Hook Integration
+## 🧬 State Alignment
 
-`hands/scripts/pre_commit_hook.sh` runs `codellama` on every `git commit`:
-- Captures staged Python diff (`git diff --cached -- *.py`)
-- Sends to codellama (warn-only, commit is never blocked)
-- Logs to `blood/logs/pre_commit_review.jsonl`
-- Install: `install-git-hooks`
+**Status:** ❌ CRITICAL
 
-## Night Shift Integration
+**Undocumented files on disk:**
+- `__init__.py` *(not in README Contents)*
+- `autonomous_repair_loop.py` *(not in README Contents)*
+- `chaos_monkey.py` *(not in README Contents)*
+- `conftest.py` *(not in README Contents)*
+- `readme_sync.py` *(not in README Contents)*
 
-Tests are part of the nightly `night_shift.yaml` DAG:
-```yaml
-- name: run_tests        # Full suite
-  depends_on: ollama_learn
-- name: repair_loop      # Autonomous repair (only if TEST_FAILURES > 0)
-  depends_on: run_tests
-- name: readme_sync      # Update READMEs
-  depends_on: run_tests
-```
+*Last reconciled: 2026-06-30T00:12:24*
 
-*Updated: 2026-06-28*
+## 🎯 Intent Alignment
+
+**Alignment:** ❓ UNKNOWN (0/100)
+
+*No DECISIONS.md or ACTIVE_TASKS.md data available for comparison.*
+
+*Last checked: 2026-06-30T00:12:24*
+
+## 🌐 Failure Impact Map
+
+**Blast Radius:** 🟢 0 folders affected if this fails
+
+No downstream dependents. Failure is isolated.
+
+*Computed: 2026-06-30T00:12:24*
+
+## 📈 Trends
+
+**7-day trend:** ➡️ STABLE
+**Score change:** +0.2 (97.8 → 98.0)
+
+**Recent history (last 5 snapshots):**
+- `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
+- `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+
+*2 day(s) of history | updated daily by nightly automation*
