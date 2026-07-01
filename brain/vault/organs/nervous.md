@@ -1,7 +1,7 @@
 ---
 organ: "nervous"
-workspace_health: ?
-last_sync: "2026-07-01 04:26 UTC"
+workspace_health: 100
+last_sync: "2026-07-01 05:41 UTC"
 issues: 1
 tags:
   - organ/nervous
@@ -9,7 +9,7 @@ tags:
 ---
 # nervous
 
-> Synced from SuneelWorkSpace — 2026-07-01 04:26 UTC
+> Synced from SuneelWorkSpace — 2026-07-01 05:41 UTC
 
 ## Capabilities
 **Provides**: nerve_propagator, nerve_registry, mcp_server, gateway, skills
@@ -25,7 +25,7 @@ tags:
 
 ## Diagnostic Warnings
 
-- ⚠️ Scripts found outside canonical subsystem directories: scenario_runner.py, conftest.py, readme_sync.py, __init__.py, test_daemon.py, autonomous_repair_loop.py, test_runner.py, chaos_monkey.py, __init__.py, test_ollama_engines.py, __init__.py, test_full_pipeline.py, __init__.py, __init__.py, __init__.py, __init__.py, test_heart.py, __init__.py, __init__.py, __init__.py, __init__.py, test_blood.py, __init__.py, __init__.py, __init__.py, test_brain.py, __init__.py, __init__.py, __init__.py, test_eyes.py, __init__.py, __init__.py, test_nervous.py, __init__.py
+- ⚠️ Scripts found outside canonical subsystem directories: scenario_runner.py, conftest.py, readme_sync.py, __init__.py, test_daemon.py, autonomous_repair_loop.py, test_runner.py, chaos_monkey.py, __init__.py, test_ollama_engines.py, __init__.py, test_full_pipeline.py, __init__.py, __init__.py, __init__.py, __init__.py, test_nervous.py, __init__.py, __init__.py, __init__.py, test_heart.py, __init__.py, __init__.py, __init__.py, __init__.py, test_blood.py, __init__.py, __init__.py, __init__.py, test_brain.py, __init__.py, __init__.py, __init__.py, test_eyes.py
 
 ## Commands
 

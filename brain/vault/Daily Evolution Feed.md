@@ -30,7 +30,7 @@ touched file: hands/bin/gstack-verify
 ## 2026-06-29 02:41 UTC
 
 ✅ Auto-fix applied: `internal_script_duplication`
-skipped (already exists): eyes/dashboard/server.py
+skipped (already exists): [[eyes]]/dashboard/server.py
 
 ## 2026-06-29 02:41 UTC
 

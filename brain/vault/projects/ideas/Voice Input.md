@@ -13,7 +13,7 @@ updated: 2026-06-21
 🔵 Planned — not started
 
 ## Why It Matters
-Lets you prompt Adwi without typing. Especially useful when hands are occupied, during debugging sessions, or for quick queries. The M4 Max's CoreML support makes whisper.cpp fast on-device.
+Lets you prompt Adwi without typing. Especially useful when [[hands]] are occupied, during debugging sessions, or for quick queries. The M4 Max's CoreML support makes whisper.cpp fast on-device.
 
 ## Existing Related Files
 
