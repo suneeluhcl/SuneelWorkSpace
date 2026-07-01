@@ -1,7 +1,7 @@
 ---
 organ: "brain"
 workspace_health: ?
-last_sync: "2026-06-30 05:12 UTC"
+last_sync: "2026-07-01 04:26 UTC"
 issues: 1
 tags:
   - organ/brain
@@ -9,7 +9,7 @@ tags:
 ---
 # brain
 
-> Synced from SuneelWorkSpace — 2026-06-30 05:12 UTC
+> Synced from SuneelWorkSpace — 2026-07-01 04:26 UTC
 
 ## Capabilities
 **Provides**: memory_search, vector_memory, anticipation, research, knowledge_graph, session_handoff, decisions

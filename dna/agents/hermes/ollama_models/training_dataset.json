@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-06-29T07:00:36.963109+00:00",
-  "total_pairs": 316,
+  "generated_at": "2026-06-30T09:00:48.969530+00:00",
+  "total_pairs": 315,
   "source_counts": {
-    "git_commits": 286,
+    "git_commits": 285,
     "daily_improvements": 3,
     "repair_log": 0,
     "nerve_json": 0,
-    "decisions": 21,
+    "decisions": 23,
     "safety_rules": 8
   },
   "system_prompt": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable.",
@@ -5138,24 +5138,6 @@
         {
           "role": "assistant",
           "content": "feat: reliability-push Cycle 3 — fix_error + benchmark guard fixes\n\nFIX-REL-013: fix_error P2 weak-family coverage (synced to all 3 files)"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: reliability-push Cycle 1+2 — NLU regex + test coverage expansion'?",
-      "response": "feat: reliability-push Cycle 1+2 — NLU regex + test coverage expansion\n\nNLU fixes (FIX-REL-001 through REL-012) synced to all 3 files:",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: reliability-push Cycle 1+2 — NLU regex + test coverage expansion'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: reliability-push Cycle 1+2 — NLU regex + test coverage expansion\n\nNLU fixes (FIX-REL-001 through REL-012) synced to all 3 files:"
         }
       ]
     },

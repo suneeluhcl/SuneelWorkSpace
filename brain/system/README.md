@@ -37,14 +37,14 @@ Emits `readme_updated` events to nervous system on change.
 
 
 ## 🏥 Health Score
-🟢 **100/100**
+🟢 **85/100**
 
 | Category | Deduction |
 |----------|----------|
-_No deductions_
+| readme_drift | -15 |
 
 ## 🔥 Critical Issues
-None — folder is healthy ✅
+- README is older than folder contents
 
 ## ✅ Runtime Status
 - Python files: 0 (0 valid, 0 broken)
@@ -52,6 +52,7 @@ None — folder is healthy ✅
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-07-01: README auto-updated by README Intelligence System
 - 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
 - 2026-06-27: README auto-updated by README Intelligence System
@@ -64,29 +65,34 @@ None — folder is healthy ✅
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-06-30T00:12:21*
+*Last reconciled: 2026-07-01T00:01:41*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-06-30T00:12:21*
+*Last checked: 2026-07-01T00:01:41*
 
 ## 🌐 Failure Impact Map
 
-**Blast Radius:** 🟢 0 folders affected if this fails
+**Blast Radius:** 🟢 1 folders affected if this fails
 
-No downstream dependents. Failure is isolated.
+**Direct dependents:**
+- `hands/scripts/`
 
-*Computed: 2026-06-30T00:12:21*
+**Cascade (depth 1-1):**
+- Depth 1: `hands/scripts`
+
+*Computed: 2026-07-01T00:01:41*
 
 ## 📈 Trends
 
 **7-day trend:** ➡️ STABLE
-**Score change:** +0.2 (97.8 → 98.0)
+**Score change:** +0.3 (97.8 → 98.1)
 
 **Recent history (last 5 snapshots):**
 - `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
 - `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
+- `2026-06-30` — 98.1/100 (423 healthy, 0 critical)
 
-*2 day(s) of history | updated daily by nightly automation*
+*3 day(s) of history | updated daily by nightly automation*

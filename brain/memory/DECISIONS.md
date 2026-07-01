@@ -130,3 +130,16 @@ Develop a predictive maintenance system using blood/telemetry data to forecast p
 
 ... (include the entire section)
 
+
+
+---
+*Added by memory curator — 2026-06-30*
+
+## New Entry
+
+The Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines was implemented in the latest session handoff. This provides a new layer of proactive intelligence to the workspace.
+
+## New Entry
+
+Several Ollama repair suggestions need to be addressed, including `mcp-reindex`, `memory-reindex`, and `agent-doctor`. These should be prioritized for immediate attention.
+

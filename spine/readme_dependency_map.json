@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-30T00:12:40.983479",
-  "folder_count": 424,
+  "generated": "2026-07-01T00:01:55.666972",
+  "folder_count": 430,
   "folders": {
     ".agent-backups": {
       "dependencies": [],
@@ -923,6 +923,36 @@
       "organ": null
     },
     ".agent-backups/20260629-171155/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260630-041622": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260630-041622/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260630-130012": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260630-130012/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260630-193847": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260630-193847/workspace-core": {
       "dependencies": [],
       "reverse_dependencies": [],
       "organ": null

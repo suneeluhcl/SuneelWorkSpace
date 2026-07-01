@@ -60,3 +60,14 @@ Use Ollama's repair and learning engines to anticipate potential issues and sugg
 
 Implement automated model rotation and versioning in heart/ as suggested by the improvement ideas.
 
+
+
+---
+*Added by memory curator — 2026-06-30*
+
+## Ollama Integration Pattern Update
+Use Ollama's repair and learning engines to anticipate potential issues and suggest next actions. Record command and workflow events in `brain/anticipation/prediction_memory.json` with consideration for Ollama's capabilities.
+
+## Predictive Maintenance System Pattern
+Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.
+
