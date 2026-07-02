@@ -155,3 +155,29 @@ The recent nerve events suggest that Suneel has been actively working on various
 
 * Investigate and implement `mcp-reindex`, `memory-reindex`, and `agent-doctor` suggestions
 
+
+
+---
+*Added by memory curator — 2026-07-02*
+
+## Recent Activity
+
+Recent session handoff involved consolidating the workspace root by moving docs to spine/docs and deleting legacy directories. This should be reflected in the Environment Notes section.
+
+## Integration with Hands Organ
+
+The hands organ's CLI scripts are not integrated with the suneelworkspace model, which is a medium-priority improvement idea. This should be added to the Improvement Ideas section.
+
+
+
+---
+*Added by memory curator — 2026-07-02*
+
+## Recent Ollama Suggestions
+
+Ollama suggestions have been integrated into the workspace to provide proactive maintenance recommendations. These suggestions should be reviewed regularly to ensure timely action.
+
+## Agent Capabilities
+
+Each agent's capabilities and limitations should be documented in a separate section to facilitate better decision-making when choosing which agents to use for specific tasks.
+

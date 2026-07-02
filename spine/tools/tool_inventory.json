@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T23:47:01.779078-05:00",
+  "generated_at": "2026-07-02T00:28:20.831718-05:00",
   "tools": [
     {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/README.md",
@@ -261,6 +261,20 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/dev-projects-scan",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "dev-projects-scan",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/dev-stack",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "dev-stack",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/diagnostics-start",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "diagnostics-start",
@@ -499,6 +513,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/history-insights",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "history-insights",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/hypothesis-generate",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "hypothesis-generate",
@@ -628,6 +649,13 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/integrity-guard",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "integrity-guard",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/java-build",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "java-build",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -933,6 +961,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/pr-setup",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "pr-setup",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/prompt-eval",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "prompt-eval",
@@ -1146,6 +1181,13 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/sidecar-start",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "sidecar-start",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/spring-watch",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "spring-watch",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -1451,100 +1493,23 @@
       "safe_to_integrate": true
     },
     {
-      "install_location": "/Users/MAC/.local/bin/rtk",
-      "integration_potential": "Default shell output filter for agent commands.",
-      "name": "rtk",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/git",
+      "install_location": "/usr/bin/git",
       "integration_potential": "Useful when explicitly routed by a workspace command.",
       "name": "git",
       "purpose": "CLI or development capability",
       "safe_to_integrate": true
     },
     {
-      "install_location": "/opt/homebrew/bin/gh",
-      "integration_potential": "GitHub PR, issue, and CI inspection with explicit confirmation for writes.",
-      "name": "gh",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/Users/MAC/SuneelWorkSpace/.venv/bin/python3",
+      "install_location": "/usr/bin/python3",
       "integration_potential": "Local automation scripts and structured report generation.",
       "name": "python3",
       "purpose": "CLI or development capability",
       "safe_to_integrate": true
     },
     {
-      "install_location": "/Users/MAC/SuneelWorkSpace/.venv/bin/pip3",
+      "install_location": "/usr/bin/pip3",
       "integration_potential": "Useful when explicitly routed by a workspace command.",
       "name": "pip3",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/node",
-      "integration_potential": "Frontend/dev tooling and MCP helpers when project-local.",
-      "name": "node",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/npm",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "npm",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/Users/MAC/.hermes/bin/uv",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "uv",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/brew",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "brew",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": false
-    },
-    {
-      "install_location": "/Users/MAC/bin/codex",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "codex",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/claude",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "claude",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/gemini",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "gemini",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/opencode",
-      "integration_potential": "Useful when explicitly routed by a workspace command.",
-      "name": "opencode",
-      "purpose": "CLI or development capability",
-      "safe_to_integrate": true
-    },
-    {
-      "install_location": "/opt/homebrew/bin/rg",
-      "integration_potential": "Fast workspace search without broad private indexing.",
-      "name": "rg",
       "purpose": "CLI or development capability",
       "safe_to_integrate": true
     },

@@ -84,3 +84,29 @@ With the integration of Ollama and Hermes, we can now anticipate potential issue
 
 Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.
 
+
+
+---
+*Added by memory curator — 2026-07-02*
+
+## Ollama Integration Pattern Update
+
+With the recent integration of Ollama, we should update our patterns to reflect its capabilities. Specifically, we should use Ollama's repair and learning engines to anticipate potential issues and suggest next actions.
+
+## Predictive Maintenance System
+
+We should develop a predictive maintenance system using the lab organ's autolab capabilities to identify potential issues before they occur.
+
+
+
+---
+*Added by memory curator — 2026-07-02*
+
+## Proactive Maintenance Pattern Update
+
+Record proactive maintenance events in `brain/anticipation/proactive_maintenance.json` with consideration for Ollama's repair and learning engines. Use this pattern to anticipate potential issues before they occur.
+
+## Automated Model Rotation and Versioning
+
+Implement automated model rotation and versioning in heart/ as suggested by the improvement ideas.
+

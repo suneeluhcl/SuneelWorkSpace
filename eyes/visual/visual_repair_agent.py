@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 visual_repair_agent.py
 Processes the visual repair queue — auto-fixes safe issues, sends

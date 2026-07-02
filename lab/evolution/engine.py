@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 engine.py
 Autonomous Evolution Engine — orchestrates continuous workspace improvement

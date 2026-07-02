@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Model Router — selects best available model with automatic fallback."""
 import json
 import logging

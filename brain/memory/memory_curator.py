@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 memory_curator.py
 Uses local Ollama to curate brain/memory/ files.

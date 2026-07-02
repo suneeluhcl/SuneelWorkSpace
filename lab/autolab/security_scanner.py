@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 security_scanner.py
 Scans workspace for security issues:

@@ -5,8 +5,9 @@
       "created_at": "2026-06-25T23:23:44.143815-05:00",
       "id": "20260625-232344-bounded-self-upgrade-validation",
       "idea_path": "brain/research/ideas/20260625-232344-bounded-self-upgrade-validation.md",
-      "status": "captured",
-      "title": "Bounded self-upgrade validation"
+      "status": "needs_review",
+      "title": "Bounded self-upgrade validation",
+      "updated_at": "2026-07-02T05:47:14.685564+00:00"
     }
   ]
 }

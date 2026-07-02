@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 personalized_brief.py
 Generates a personalized morning brief by combining:

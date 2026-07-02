@@ -1,6 +1,6 @@
 # System Audit
 
-Generated: 2026-07-01T23:47:01.779078-05:00
+Generated: 2026-07-02T00:28:20.831718-05:00
 
 ## Scope
 
@@ -10,16 +10,16 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 ## Current Architecture
 
-- `agent-system`: present; files observed: 3
-- `mcp`: present; files observed: 4
+- `agent-system`: missing; files observed: 0
+- `mcp`: missing; files observed: 0
 - `orchestrator`: missing; files observed: 0
 - `goal-engine`: missing; files observed: 0
-- `autolab`: present; files observed: 4
+- `autolab`: present; files observed: 127
 - `comms`: missing; files observed: 0
-- `bin`: present; files observed: 209
+- `bin`: present; files observed: 215
 - `scripts`: missing; files observed: 0
 - `configs`: missing; files observed: 0
-- `docs`: present; files observed: 5
+- `docs`: missing; files observed: 0
 
 ## Strengths
 
@@ -50,17 +50,17 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 ## Command Surface
 
-- Workspace commands found: 207
+- Workspace commands found: 213
 - Non-executable bin files: 8
-- Tool inventory entries: 251
+- Tool inventory entries: 246
 
 ## System Introspection
 
 - CPU count: 16
 - Memory GB: 64.0
-- Home disk free GB: 569.9
+- Home disk free GB: 567.5
 - Installed application names captured: 25
-- Home top-level directory names captured: 61
+- Home top-level directory names captured: 62
 
 ## Upgrade Direction
 

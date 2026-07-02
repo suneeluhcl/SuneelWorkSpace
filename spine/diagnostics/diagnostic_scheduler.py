@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 diagnostic_scheduler.py
 Runs workspace diagnostics on a schedule.

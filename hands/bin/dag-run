@@ -122,6 +122,8 @@ def run(pipeline_path: str, inputs: dict | None = None, dry_run: bool = False) -
     step_outputs: dict[str, dict] = {}
     stats = {"completed": 0, "skipped": 0, "failed": 0}
 
+    steps_by_id = {s["id"]: s for s in steps if isinstance(s, dict) and "id" in s}
+
     for step in steps:
         sid = step["id"]
         sname = step.get("name", sid)
@@ -129,13 +131,18 @@ def run(pipeline_path: str, inputs: dict | None = None, dry_run: bool = False) -
         cmd = step.get("command", "")
         args = [_resolve(str(a), inputs, step_outputs) for a in step.get("args", [])]
         condition = step.get("condition", "")
+        tolerates = (step.get("on_failure") or {}).get("action") == "continue"
 
         print(f"\n── Step: {sname} [{level}]")
 
-        # Check dependencies succeeded (dry-run steps count as succeeded)
+        # Check dependencies succeeded (dry-run steps count as succeeded;
+        # a failed dep with on_failure: continue does not block dependents)
         dep_failed = False
         for dep in step.get("depends_on", []):
             dep_status = run_record["steps"].get(dep, {}).get("status")
+            dep_tolerates = (steps_by_id.get(dep, {}).get("on_failure") or {}).get("action") == "continue"
+            if dep_status == "fail" and dep_tolerates:
+                continue
             if dep_status not in ("success", "dry-run"):
                 print(f"   SKIP — dependency '{dep}' did not succeed")
                 run_record["steps"][sid] = {"status": "skipped", "reason": f"dep {dep} failed"}
@@ -196,6 +203,7 @@ def run(pipeline_path: str, inputs: dict | None = None, dry_run: bool = False) -
                 "returncode": result.returncode,
                 "stdout": stdout[:2000], "stderr": stderr[:500],
                 "outputs": step_outputs.get(sid, {}),
+                "tolerated": (not success) and tolerates,
             }
             stats["completed" if success else "failed"] += 1
             print(f"   {'✓' if success else '✗'} {status} ({duration_ms}ms)")
@@ -238,7 +246,13 @@ def main() -> None:
             k, _, v = kv.partition("=")
             inputs[k.strip()] = v.strip()
 
-    run(args.pipeline, inputs=inputs, dry_run=args.dry_run)
+    record = run(args.pipeline, inputs=inputs, dry_run=args.dry_run)
+    # Deterministic exit: launchd/callers must see step failures, not a false green.
+    # Failures declared tolerable via on_failure: continue do not fail the pipeline.
+    failed = [k for k, v in record.get("steps", {}).items()
+              if v.get("status") == "fail" and not v.get("tolerated")]
+    if failed:
+        sys.exit(1)
 
 
 if __name__ == "__main__":

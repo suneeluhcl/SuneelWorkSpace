@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ollama_learning_engine.py
 Uses Ollama to generate skill documents and learn from workspace patterns.

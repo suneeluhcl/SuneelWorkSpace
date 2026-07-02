@@ -18,5 +18,12 @@
   <string>/Users/MAC/SuneelWorkSpace/lab/autolab/reports/launchd-autolab.err.log</string>
   <key>WorkingDirectory</key>
   <string>/Users/MAC/SuneelWorkSpace</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/MAC/SuneelWorkSpace/hands/bin</string>
+    <key>SUNEEL_WORKSPACE</key>
+    <string>/Users/MAC/SuneelWorkSpace</string>
+  </dict>
 </dict>
 </plist>

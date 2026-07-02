@@ -1,0 +1,82 @@
+{
+  "pipeline": "night_shift",
+  "started_at": "2026-07-02T05:36:38.399094+00:00",
+  "dry_run": false,
+  "inputs": {},
+  "steps": {
+    "morning_brief": {
+      "status": "success",
+      "duration_ms": 29,
+      "returncode": 0,
+      "stdout": "Brief written \u2192 /Users/MAC/SuneelWorkSpace/blood/logs/morning_brief_2026-07-02.md (226 relevant / 1091 total items)\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "hermes_health_check": {
+      "status": "success",
+      "duration_ms": 70758,
+      "returncode": 0,
+      "stdout": "Your function definitions do not fully cover the aspects of this task. Please enhance them.\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "hermes_telegram_brief": {
+      "status": "success",
+      "duration_ms": 57072,
+      "returncode": 0,
+      "stdout": "The function definitions you have provided do not encapsulate the scope of this task. Please make necessary changes.\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "ollama_repair": {
+      "status": "fail",
+      "reason": "[Errno 8] Exec format error: '/Users/MAC/SuneelWorkSpace/hands/bin/ollama-repair'"
+    },
+    "ollama_learn": {
+      "status": "skipped",
+      "reason": "dep ollama_repair failed"
+    },
+    "hermes_night_check": {
+      "status": "skipped",
+      "reason": "dep ollama_learn failed"
+    },
+    "run_tests": {
+      "status": "skipped",
+      "reason": "dep ollama_learn failed"
+    },
+    "repair_loop": {
+      "status": "skipped",
+      "reason": "dep run_tests failed"
+    },
+    "readme_sync": {
+      "status": "skipped",
+      "reason": "dep run_tests failed"
+    },
+    "daily_evolve": {
+      "status": "skipped",
+      "reason": "dep readme_sync failed"
+    },
+    "vault_sync": {
+      "status": "skipped",
+      "reason": "dep daily_evolve failed"
+    },
+    "autoresearch": {
+      "status": "skipped",
+      "reason": "dep vault_sync failed"
+    },
+    "wiki_lint": {
+      "status": "skipped",
+      "reason": "dep autoresearch failed"
+    },
+    "chaos_test": {
+      "status": "skipped",
+      "reason": "dep wiki_lint failed"
+    }
+  },
+  "finished_at": "2026-07-02T05:38:46.261061+00:00",
+  "stats": {
+    "completed": 3,
+    "skipped": 10,
+    "failed": 1
+  }
+}

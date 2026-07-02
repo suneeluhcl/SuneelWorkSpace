@@ -9,7 +9,7 @@ Vector memory search, context anticipation, and research aggregation
 - Research aggregation
 
 ## 🔗 System Role
-Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.
+Part of the **[[brain]]** organ in the 12-organ SuneelWorkSpace architecture.
 
 ## 📂 Contents
 - `Agent Rules and Guardrails.md`
@@ -43,7 +43,7 @@ Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.
 None detected
 
 ## 🧩 Interactions
-Emits `readme_updated` events to nervous system on change.
+Emits `readme_updated` events to [[nervous]] system on change.
 
 ## 📈 Current Capabilities
 - Basic workspace component

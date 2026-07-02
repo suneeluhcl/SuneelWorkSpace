@@ -1,27 +1,27 @@
 # Ollama Repair Suggestions
 
-*Generated: 2026-06-28T15:34:54.270067+00:00*
+*Generated: 2026-07-02T05:52:23.562374+00:00*
 
 ## Suggestion 1
-**Fix**: `mcp-reindex`
+**Fix**: `Running mcp-reindex`
 **Confidence**: 0.9
 **Level**: SAFE
 
 ## Suggestion 2
-**Fix**: `memory-reindex`
+**Fix**: `Running memory-reindex`
 **Confidence**: 0.9
 **Level**: SAFE
 
 ## Suggestion 3
-**Fix**: `agent-doctor`
+**Fix**: `Running agent-doctor`
 **Confidence**: 0.9
 **Level**: SAFE
 
 
 ## Improvement Ideas
 
-- **heart** [medium]: Implement automated model rotation and versioning in heart/
-- **blood** [large]: Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies
-- **mouth** [medium]: Integrate a natural language processing (NLP) module in mouth/ to enhance ws command understanding and response accuracy
-- **brain** [large]: Create a knowledge graph in brain/ to store and connect concepts, entities, and relationships, enhancing vector search and anticipation capabilities
-- **spine** [medium]: Design and implement a self-healing mechanism in spine/ to automatically detect and recover from common faults and errors
+- **blood** [small]: Implement automated log rotation and archival for the blood organ's logs
+- **lab** [medium]: Develop a predictive maintenance system using the lab organ's autolab capabilities to anticipate and prevent potential workspace issues
+- **brain** [large]: Integrate a natural language processing (NLP) module into the brain organ to improve text analysis and understanding capabilities
+- **nervous** [medium]: Create a self-healing mechanism for the nervous organ's nerve propagator to automatically detect and repair broken connections
+- **lab** [small]: Establish a continuous learning loop using the ollama_learn engine to generate new skills and update existing ones based on experiment results and user feedback

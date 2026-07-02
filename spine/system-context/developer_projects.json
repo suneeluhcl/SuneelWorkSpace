@@ -1,5 +1,5 @@
 {
-  "scanned_at": "2026-07-02T05:21:41.059572+00:00",
+  "scanned_at": "2026-07-02T05:30:28.710976+00:00",
   "scanned_roots": [
     "/Users/MAC/SuneelWorkSpace/projects",
     "/Users/MAC/Documents",
@@ -8,7 +8,20 @@
     "/Users/MAC/workspace",
     "/Users/MAC/eclipse-workspace"
   ],
-  "project_count": 0,
-  "projects": [],
+  "project_count": 1,
+  "projects": [
+    {
+      "name": "demo-api",
+      "path": "/Users/MAC/SuneelWorkSpace/projects/demo-api",
+      "kinds": [
+        "maven"
+      ],
+      "git": false,
+      "spring_boot": true,
+      "has_wrapper": true,
+      "docker_compose": false,
+      "migrations": "src/main/resources/db/migration"
+    }
+  ],
   "rescan_command": "dev-projects-scan"
 }

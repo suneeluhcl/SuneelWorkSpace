@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 model_rotator.py
 Intelligent model rotation for SuneelWorkSpace.

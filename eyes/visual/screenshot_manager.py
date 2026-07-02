@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 screenshot_manager.py
 Takes, organizes, archives, and manages all workspace screenshots.

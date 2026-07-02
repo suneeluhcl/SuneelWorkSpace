@@ -1,0 +1,122 @@
+{
+  "pipeline": "night_shift",
+  "started_at": "2026-07-02T05:40:45.071325+00:00",
+  "dry_run": false,
+  "inputs": {},
+  "steps": {
+    "morning_brief": {
+      "status": "success",
+      "duration_ms": 34,
+      "returncode": 0,
+      "stdout": "Brief written \u2192 /Users/MAC/SuneelWorkSpace/blood/logs/morning_brief_2026-07-02.md (226 relevant / 1091 total items)\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "hermes_health_check": {
+      "status": "success",
+      "duration_ms": 5636,
+      "returncode": 0,
+      "stdout": "Your function definitions fall short of addressing this task. Please revise them to include necessary details.\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "hermes_telegram_brief": {
+      "status": "success",
+      "duration_ms": 95583,
+      "returncode": 0,
+      "stdout": "The provided function definitions do not align with the objectives of this task. The task requires reading a log file, summarizing its content, and sending that summary to Telegram. However, the functions at hand are designed for other purposes within a conversational AI or task management context. \n\nTo accomplish the task as described, you would typically follow these steps:\n\n1. **Read the Log File**: You need a function or method to read the contents of the log file. This could be a simple file reading operation if you know the path to the log file.\n\n2. **Summarize the Content**: After reading the log file, you might want to summarize its content. This could involve extracting key points such as any errors reported, notable events, or other significant information that would be useful in a morning brief summary.\n\n3. **Send Summary to Telegram**: Finally, to send this summary to Telegram, you would need an API or interface to interact with the Telegram messaging service. This involves having an account with access to the Telegram Bot API or using an existing integration that allows sending messages via Telegram.\n\nGiven the functions defined in your query, none directly achieve these steps. However, if we were to imagine a combination of operations that could get close to accomplishing this task within the constraints provided:\n\n- **Reading the Log File**: This might be achievable through the `read_file` function, but it's not explicitly listed among your options.\n  \n- **Summarizing Content**: While there's no direct \"summarize\" function provided, you could potentially manipulate text using combinations of other functions or processes outside these constraints.\n\n- **Sending to Telegram**: The closest functionality related to sending information externally might involve the `web_search` or other communication-oriented functions, but none are directly tailored for sending messages via Telegram.\n\nGiven the mismatch between the task requirements and the provided functio",
+      "stderr": "",
+      "outputs": {}
+    },
+    "ollama_repair": {
+      "status": "success",
+      "duration_ms": 98489,
+      "returncode": 0,
+      "stdout": "\ud83d\udd27 Ollama Repair Engine starting \u2014 00:42:26\n\ud83d\udd0d Analyzing telemetry anomalies...\n\ud83d\udc8a Analyzing health score...\n  Health score 0% \u2014 3 improvements suggested\n\ud83d\udca1 Generating self-improvement ideas...\n  Generated 5 improvement ideas\n\u2705 Repair cycle complete \u2014 3 suggestions written to blood/logs/ollama_suggestions.md\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "ollama_learn": {
+      "status": "success",
+      "duration_ms": 21041,
+      "returncode": 0,
+      "stdout": "\ud83e\udde0 Ollama Learning Engine starting \u2014 00:44:05\n\ud83d\udd0d Analyzing nerve system patterns...\n  \u2705 Pattern analysis saved to dna/agents/hermes/skills/workspace-patterns.md\n\ud83d\udcda Learning from repair history...\n  \u2705 Repair patterns saved to dna/agents/hermes/skills/repair-patterns.md\n\ud83d\uddfa\ufe0f  Generating workspace navigation skill...\n  \u2705 Navigation skill saved to dna/agents/hermes/skills/suneelworkspace-navigation.md\n\u2705 Learning cycle complete\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "hermes_night_check": {
+      "status": "success",
+      "duration_ms": 67968,
+      "returncode": 0,
+      "stdout": "Your function definitions do not fully cover the aspects of this task. Please enhance them.\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "run_tests": {
+      "status": "success",
+      "duration_ms": 2861,
+      "returncode": 0,
+      "stdout": "\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m [ 69%]\n\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m                                          [100%]\u001b[0m\n\u001b[32m\u001b[32m\u001b[1m103 passed\u001b[0m\u001b[32m in 2.57s\u001b[0m\u001b[0m\n\n============================================================\nSuneelWorkSpace Test Suite\n   Started: 00:45:33\n============================================================\n\n\n============================================================\nResults: 103/103 passed | 0 failed | 0 errors | 0 skipped\n   Duration: 2.8s | Report: /Users/MAC/SuneelWorkSpace/tests/reports/test_report_20260702_004533.json\n============================================================\n\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "repair_loop": {
+      "status": "success",
+      "duration_ms": 858,
+      "returncode": 0,
+      "stdout": "\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m [ 69%]\n\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m.\u001b[0m\u001b[32m                                          [100%]\u001b[0m\n\u001b[32m\u001b[32m\u001b[1m103 passed\u001b[0m\u001b[32m in 0.33s\u001b[0m\u001b[0m\n\nAutonomous Repair Loop\n   Max iterations: 3 | Target: 95%\n\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nIteration 1/3\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n============================================================\nSuneelWorkSpace Test Suite\n   Started: 00:45:37\n============================================================\n\n\n============================================================\nResults: 103/103 passed | 0 failed | 0 errors | 0 skipped\n   Duration: 0.5s | Report: /Users/MAC/SuneelWorkSpace/tests/reports/test_report_20260702_004537.json\n============================================================\n\n   103/103 passing (100.0%)\n\nTarget reached: 100.0%\n\n==================================================\nRepair Loop Complete\n   Iterations: 1 | Best pass rate: 100.0%\n============================================",
+      "stderr": "",
+      "outputs": {}
+    },
+    "readme_sync": {
+      "status": "success",
+      "duration_ms": 30,
+      "returncode": 0,
+      "stdout": "Syncing READMEs with test results...\n  README.md updated\n  brain/README.md updated\n  heart/README.md updated\n  eyes/README.md updated\n  ears/README.md updated\n  nervous/README.md updated\n  skeleton/README.md updated\n  blood/README.md updated\n  hands/README.md updated\n  mouth/README.md updated\n  dna/README.md updated\n  lab/README.md updated\n  spine/README.md updated\nAll READMEs synced\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "daily_evolve": {
+      "status": "success",
+      "duration_ms": 39343,
+      "returncode": 0,
+      "stdout": "[daily-evolve] starting evolution passes...\n  [log_learn] running... ok (0.03s)\n  [memory_curate] running... ok (33.7s)\n  [experiment_skills] running... ok (0.06s)\n  [vault_sync] running... ok (0.11s)\n  [autotrainer] running... ok (0.05s)\n  [scenario_runner] running... failed (1.09s)\n[daily-evolve] complete: 5/6 passes succeeded\n[daily-evolve] verify run-tests: PASS\n[daily-evolve] verify agent-doctor: PASS\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "vault_sync": {
+      "status": "success",
+      "duration_ms": 97,
+      "returncode": 0,
+      "stdout": "[vault-sync] wrote 12 organ notes: brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "autoresearch": {
+      "status": "success",
+      "duration_ms": 57694,
+      "returncode": 0,
+      "stdout": "\n[autoresearch] Starting research: 'Bounded self-upgrade validation'\n  id=20260625-232344-bounded-self-upgrade-validation\n  ollama=available\n  [phase-1] Searching arXiv\u2026\n  [phase-1] Wrote 20260625-232344-bounded-self-upgrade-validation-literature.md (5 papers)\n  [phase-2] Querying workspace RAG\u2026\n  [phase-2] Found 5 relevant workspace documents\n  [phase-3] Synthesizing with Ollama\u2026\n  [phase-3] Wrote prototype: temp_prototype_20260625-232344-bounded-self-upgrade-validation.py (806 chars)\n  [phase-4] SKIPPED \u2014 pass --allow-execute to run LLM-generated code\n            Review the script first:\n            cat '/Users/MAC/SuneelWorkSpace/brain/research/scripts/temp_prototype_20260625-232344-bounded-self-upgrade-validation.py'\n  [phase-5] Writing research report\u2026\n  [phase-5] Wrote report: 20260625-232344-bounded-self-upgrade-validation-report.md\n  [phase-5] Prototype did not pass \u2014 skipping DECISIONS.md promotion\n\n[autoresearch] Done in 57.6s \u2014 status=partial\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "wiki_lint": {
+      "status": "fail",
+      "duration_ms": 89,
+      "returncode": 1,
+      "stdout": "[wiki-lint] 13 notes | 2 broken | 7 orphans | 20 gaps\n[wiki-lint] Report: /Users/MAC/SuneelWorkSpace/brain/vault/wiki/Wiki Health.md\n",
+      "stderr": "",
+      "outputs": {}
+    },
+    "chaos_test": {
+      "status": "skipped",
+      "reason": "dep wiki_lint failed"
+    }
+  },
+  "finished_at": "2026-07-02T05:47:14.803386+00:00",
+  "stats": {
+    "completed": 12,
+    "skipped": 1,
+    "failed": 1
+  }
+}

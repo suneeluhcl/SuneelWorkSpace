@@ -136,3 +136,7 @@ tests/reports/test_report_*.json
 ears/monitor/cache/
 
 
+
+# Local service data — contains live credentials (HA auth tokens, SearXNG keys). Never commit.
+/local-ai-stack/
+/adwi/

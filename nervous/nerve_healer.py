@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 nerve_healer.py
 Monitors all nerve connections between organs.

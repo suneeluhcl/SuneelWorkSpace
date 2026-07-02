@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 experiment_skill_generator.py
 After each autolab experiment completes, generates a Hermes skill document

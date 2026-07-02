@@ -939,3 +939,19 @@
 ## 2026-07-02
 
 - Continuation: Java toolchain live (openjdk 26 + Maven 3.9.16, temurin needs interactive sudo), java-build proven end-to-end, night-shift hardened — deduplicated dag_validator (dag-run's copy was broken), fixed latent health_repair YAML/path bug, dry-run exit 0. 103/103 tests, 0 issues.
+
+## 2026-07-02
+
+- Consolidate workspace root by moving docs to spine/docs and deleting legacy directories
+
+## 2026-07-02 (00:29–00:56) — Claude Code — Live night-shift confirmation + arsenal test-drive
+
+- Night-shift live verification (kickstarted 3× under launchd instead of waiting for 22:00):
+  - Run 1 exposed the real launchd root cause: plist PATH lacked /opt/homebrew/bin → python3 = system 3.9 → `dict | None` TypeError. Fixed plist (PATH + SUNEEL_WORKSPACE); same fix applied to autolab plist (also failing, now exit 0).
+  - Discovered TWO different pipelines named night_shift.yaml; launchd runs hands/automation's 14-step one. Renamed the unscheduled heart/orchestrator variant to night_shift_aggressive_unscheduled.yaml.
+  - Run 2 (12/14): ollama_repair failed → found 16 core engine scripts with NO shebang (executed as shell, died at import): ollama-repair/-learn/-orchestrate/-review, nerve-heal, memory-curate, model-health/-rotate/-route, security-scan, screenshot-take, visual-repair, evolution-engine, experiment-skills, diagnostics-status, morning-brief-personal. All fixed + compile.
+  - dag-run hardening: exits 1 on non-tolerated step failures (was always 0 — false green); on_failure: continue now honored in dependency gating (failed-but-tolerated deps no longer skip dependents).
+  - Run 3: launchd exit 0, 14/14 steps executed, 0 hard fails, 0 skips (autoresearch/wiki_lint/chaos_test tolerated per pipeline design). Live confirmation complete — tonight's 22:00 run inherits this state.
+- Java arsenal test-drive (queue items 2+3): generated real Spring Boot 3.5.3 project projects/demo-api (web, JPA, postgres, flyway, actuator; mvnw wrapper). dev-projects-scan cataloged it (maven+spring-boot). dev-stack init postgres → health-checked compose; colima started; dev-stack up → postgres healthy; java-build build → ./mvnw clean install BUILD SUCCESS 14.5s incl. contextLoads against live DB with Flyway V1 applied; dev-stack down → graceful; colima stopped afterward (daemon was down pre-session).
+- Security review response: local-ai-stack/ (HA auth tokens, SearXNG key) and adwi/ confirmed untracked (0 files in git); both added to .gitignore so they can never be committed. HA token rotation left to Suneel (live service).
+- wiki_lint reports 2 broken links, 7 orphans, 20 gaps in brain/vault/wiki/ (see Wiki Health.md) — content cleanup queued.

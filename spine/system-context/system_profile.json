@@ -1,46 +1,46 @@
 {
   "development_environments": [
     {
-      "available": true,
+      "available": false,
       "name": "rtk",
-      "path": "/Users/MAC/.local/bin/rtk",
-      "version": "rtk 0.28.2"
-    },
-    {
-      "available": true,
-      "name": "git",
-      "path": "/opt/homebrew/bin/git",
-      "version": "git version 2.54.0"
-    },
-    {
-      "available": true,
-      "name": "gh",
-      "path": "/opt/homebrew/bin/gh",
-      "version": "gh version 2.94.0 (2026-06-10)"
-    },
-    {
-      "available": true,
-      "name": "python3",
-      "path": "/Users/MAC/SuneelWorkSpace/.venv/bin/python3",
-      "version": "Python 3.14.6"
-    },
-    {
-      "available": true,
-      "name": "pip3",
-      "path": "/Users/MAC/SuneelWorkSpace/.venv/bin/pip3",
+      "path": null,
       "version": null
     },
     {
       "available": true,
-      "name": "node",
-      "path": "/opt/homebrew/bin/node",
-      "version": "v26.3.0"
+      "name": "git",
+      "path": "/usr/bin/git",
+      "version": "git version 2.50.1 (Apple Git-155)"
+    },
+    {
+      "available": false,
+      "name": "gh",
+      "path": null,
+      "version": null
     },
     {
       "available": true,
+      "name": "python3",
+      "path": "/usr/bin/python3",
+      "version": "Python 3.9.6"
+    },
+    {
+      "available": true,
+      "name": "pip3",
+      "path": "/usr/bin/pip3",
+      "version": null
+    },
+    {
+      "available": false,
+      "name": "node",
+      "path": null,
+      "version": null
+    },
+    {
+      "available": false,
       "name": "npm",
-      "path": "/opt/homebrew/bin/npm",
-      "version": "11.16.0"
+      "path": null,
+      "version": null
     },
     {
       "available": false,
@@ -49,45 +49,45 @@
       "version": null
     },
     {
-      "available": true,
+      "available": false,
       "name": "uv",
-      "path": "/Users/MAC/.hermes/bin/uv",
-      "version": "uv 0.11.21 (5aa65dd7a 2026-06-11 aarch64-apple-darwin)"
-    },
-    {
-      "available": true,
-      "name": "brew",
-      "path": "/opt/homebrew/bin/brew",
+      "path": null,
       "version": null
     },
     {
-      "available": true,
+      "available": false,
+      "name": "brew",
+      "path": null,
+      "version": null
+    },
+    {
+      "available": false,
       "name": "codex",
-      "path": "/Users/MAC/bin/codex",
-      "version": "codex-cli 0.133.0-alpha.1"
+      "path": null,
+      "version": null
     },
     {
-      "available": true,
+      "available": false,
       "name": "claude",
-      "path": "/opt/homebrew/bin/claude",
-      "version": "2.1.198 (Claude Code)"
+      "path": null,
+      "version": null
     },
     {
-      "available": true,
+      "available": false,
       "name": "gemini",
-      "path": "/opt/homebrew/bin/gemini",
-      "version": "0.47.0"
+      "path": null,
+      "version": null
     },
     {
-      "available": true,
+      "available": false,
       "name": "opencode",
-      "path": "/opt/homebrew/bin/opencode",
-      "version": "1.17.10"
+      "path": null,
+      "version": null
     },
     {
-      "available": true,
+      "available": false,
       "name": "rg",
-      "path": "/opt/homebrew/bin/rg",
+      "path": null,
       "version": null
     },
     {
@@ -122,18 +122,18 @@
     }
   ],
   "disk": {
-    "home_free_gb": 569.9,
+    "home_free_gb": 567.5,
     "home_total_gb": 926.4,
-    "home_used_gb": 356.5
+    "home_used_gb": 358.8
   },
-  "generated_at": "2026-07-01T23:47:01.779078-05:00",
+  "generated_at": "2026-07-02T00:28:20.831718-05:00",
   "hardware": {
     "cpu_count": 16,
     "mac_model": "Mac16,5",
     "machine": "arm64",
     "memory_bytes": 68719476736,
     "memory_gb": 64.0,
-    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
     "processor": "arm"
   },
   "home_top_level_directories": [
@@ -164,6 +164,7 @@
     ".letta",
     ".local",
     ".logseq",
+    ".m2",
     ".matplotlib",
     ".mem0",
     ".npm",
@@ -308,7 +309,7 @@
     "private_file_contents": "not scanned"
   },
   "workspace": {
-    "bin_command_count": 207,
+    "bin_command_count": 213,
     "bin_commands": [
       "README.md",
       "agent-autoclose",
@@ -347,6 +348,8 @@
       "dag-validate",
       "daily-evolve",
       "deep-scan",
+      "dev-projects-scan",
+      "dev-stack",
       "diagnostics-start",
       "diagnostics-status",
       "diagnostics-stop",
@@ -381,6 +384,7 @@
       "hermes-continue",
       "hermes-night",
       "hermes-start",
+      "history-insights",
       "hypothesis-generate",
       "hypothesis-rank",
       "idea-run",
@@ -400,6 +404,7 @@
       "install-git-hooks",
       "install-imessage-plugin",
       "integrity-guard",
+      "java-build",
       "jupyter-mcp",
       "log-enhancement",
       "log-learn",
@@ -443,6 +448,7 @@
       "ollama-stack-start",
       "ollama-stack-status",
       "ollama-stack-stop",
+      "pr-setup",
       "prompt-eval",
       "prompt-new",
       "prompt-promote",
@@ -474,6 +480,7 @@
       "screenshot-take",
       "security-scan",
       "sidecar-start",
+      "spring-watch",
       "system-audit",
       "system-capabilities",
       "system-gaps",
@@ -519,26 +526,26 @@
       "ws"
     ],
     "expected_subsystems_present": {
-      "agent-system": true,
+      "agent-system": false,
       "autolab": true,
       "bin": true,
       "comms": false,
       "configs": false,
-      "docs": true,
+      "docs": false,
       "goal-engine": false,
-      "mcp": true,
+      "mcp": false,
       "orchestrator": false,
       "scripts": false
     },
     "files_by_subsystem": {
-      "agent-system": 3,
-      "autolab": 4,
-      "bin": 209,
+      "agent-system": 0,
+      "autolab": 127,
+      "bin": 215,
       "comms": 0,
       "configs": 0,
-      "docs": 5,
+      "docs": 0,
       "goal-engine": 0,
-      "mcp": 4,
+      "mcp": 0,
       "orchestrator": 0,
       "scripts": 0
     },
@@ -564,25 +571,19 @@
       ".serena",
       ".venv",
       ".vscode",
-      "agent-system",
-      "anticipation",
       "autolab",
-      "automation",
       "bin",
       "blood",
       "brain",
       "dna",
-      "docs",
       "ears",
       "eyes",
       "hands",
       "heart",
       "lab",
-      "mcp",
       "mouth",
       "nervous",
       "projects",
-      "server",
       "skeleton",
       "spine",
       "tests"

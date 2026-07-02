@@ -170,3 +170,30 @@ Several Ollama repair suggestions need to be addressed, including `mcp-reindex`,
 - eyes -> ?:
 - ears -> ?:
 
+
+
+---
+*Added by memory curator — 2026-07-02*
+
+## Recent Session Handoff
+
+Consolidated workspace root by moving docs to spine/docs and deleting legacy directories.
+
+## Lab Organ Autolab Capabilities
+
+Develop a predictive maintenance system using the lab organ's autolab capabilities to identify potential issues before they occur.
+
+
+
+---
+*Added by memory curator — 2026-07-02*
+
+## Recent Workspace Activity
+
+Recent session handoff: Consolidate workspace root by moving docs to spine/docs and deleting legacy directories.
+
+## New Decision
+
+Decision: Use the lab organ's autolab capabilities for predictive maintenance.
+Reason: This will improve the workspace's ability to anticipate and prevent potential issues.
+

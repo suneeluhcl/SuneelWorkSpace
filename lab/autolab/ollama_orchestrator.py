@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ollama_orchestrator.py
 Master coordinator for all Ollama-powered engines.

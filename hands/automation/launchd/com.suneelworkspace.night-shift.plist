@@ -27,7 +27,9 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/MAC/SuneelWorkSpace/hands/bin</string>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/MAC/SuneelWorkSpace/hands/bin</string>
+    <key>SUNEEL_WORKSPACE</key>
+    <string>/Users/MAC/SuneelWorkSpace</string>
   </dict>
 </dict>
 </plist>

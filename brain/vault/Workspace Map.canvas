@@ -3,7 +3,7 @@
     {
       "id": "title",
       "type": "text",
-      "text": "# SuneelWorkSpace Neural Map\nLast updated: 2026-07-01 09:10 UTC",
+      "text": "# SuneelWorkSpace Neural Map\nLast updated: 2026-07-02 05:54 UTC",
       "x": -60,
       "y": -380,
       "width": 340,
@@ -18,7 +18,7 @@
       "y": -260,
       "width": 180,
       "height": 80,
-      "color": "1"
+      "color": "4"
     },
     {
       "id": "organ_heart",
@@ -28,7 +28,7 @@
       "y": -260,
       "width": 180,
       "height": 80,
-      "color": "1"
+      "color": "4"
     },
     {
       "id": "organ_eyes",
@@ -38,7 +38,7 @@
       "y": -260,
       "width": 180,
       "height": 80,
-      "color": "1"
+      "color": "4"
     },
     {
       "id": "organ_ears",
@@ -58,7 +58,7 @@
       "y": -40,
       "width": 180,
       "height": 80,
-      "color": "1"
+      "color": "4"
     },
     {
       "id": "organ_skeleton",
@@ -78,7 +78,7 @@
       "y": -40,
       "width": 180,
       "height": 80,
-      "color": "1"
+      "color": "4"
     },
     {
       "id": "organ_hands",
@@ -118,7 +118,7 @@
       "y": 180,
       "width": 180,
       "height": 80,
-      "color": "4"
+      "color": "1"
     },
     {
       "id": "organ_spine",

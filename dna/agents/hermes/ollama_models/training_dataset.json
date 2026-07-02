@@ -1,16 +1,124 @@
 {
-  "generated_at": "2026-07-01T09:10:56.214569+00:00",
-  "total_pairs": 314,
+  "generated_at": "2026-07-02T05:54:38.071450+00:00",
+  "total_pairs": 318,
   "source_counts": {
-    "git_commits": 284,
+    "git_commits": 283,
     "daily_improvements": 3,
     "repair_log": 0,
     "nerve_json": 0,
-    "decisions": 24,
+    "decisions": 29,
     "safety_rules": 8
   },
   "system_prompt": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable.",
   "pairs": [
+    {
+      "instruction": "What workspace change does this commit represent: 'docs(session): log root directory cleanup and handoff details'?",
+      "response": "docs(session): log root directory cleanup and handoff details",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'docs(session): log root directory cleanup and handoff details'?"
+        },
+        {
+          "role": "assistant",
+          "content": "docs(session): log root directory cleanup and handoff details"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore(workspace): deduplicate dag-validate, fix night_shift.yaml step, move docs to spine/docs, and delete legacy root directories'?",
+      "response": "chore(workspace): deduplicate dag-validate, fix night_shift.yaml step, move docs to spine/docs, and delete legacy root directories",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore(workspace): deduplicate dag-validate, fix night_shift.yaml step, move docs to spine/docs, and delete legacy root directories'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore(workspace): deduplicate dag-validate, fix night_shift.yaml step, move docs to spine/docs, and delete legacy root directories"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'docs(handoff): update session handoff report'?",
+      "response": "docs(handoff): update session handoff report",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'docs(handoff): update session handoff report'?"
+        },
+        {
+          "role": "assistant",
+          "content": "docs(handoff): update session handoff report"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore(ears): fix ears monitor import path, update Anthropic RSS source, and ignore cache'?",
+      "response": "chore(ears): fix ears monitor import path, update Anthropic RSS source, and ignore cache",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore(ears): fix ears monitor import path, update Anthropic RSS source, and ignore cache'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore(ears): fix ears monitor import path, update Anthropic RSS source, and ignore cache"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'build(workspace): apply 2026-07-02 gap-healing fixes and add dev-automation utilities'?",
+      "response": "build(workspace): apply 2026-07-02 gap-healing fixes and add dev-automation utilities",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'build(workspace): apply 2026-07-02 gap-healing fixes and add dev-automation utilities'?"
+        },
+        {
+          "role": "assistant",
+          "content": "build(workspace): apply 2026-07-02 gap-healing fixes and add dev-automation utilities"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'fix: workspace health audit — restore dead automation, fix systemic path corruption'?",
+      "response": "fix: workspace health audit — restore dead automation, fix systemic path corruption\n\nFull 12-organ audit found the hourly maintenance/autolab launchd jobs had been",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'fix: workspace health audit — restore dead automation, fix systemic path corruption'?"
+        },
+        {
+          "role": "assistant",
+          "content": "fix: workspace health audit — restore dead automation, fix systemic path corruption\n\nFull 12-organ audit found the hourly maintenance/autolab launchd jobs had been"
+        }
+      ]
+    },
     {
       "instruction": "What workspace change does this commit represent: 'chore: untrack auto-generated files, fix upstream tracking branch'?",
       "response": "chore: untrack auto-generated files, fix upstream tracking branch\n\nTracking:",
@@ -4998,132 +5106,6 @@
       ]
     },
     {
-      "instruction": "What workspace change does this commit represent: 'feat: add /models and /watcher-status to Telegram bridge (v1 surface)'?",
-      "response": "feat: add /models and /watcher-status to Telegram bridge (v1 surface)\n\nBoth commands required new read-only routes in the Safe Command API:",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: add /models and /watcher-status to Telegram bridge (v1 surface)'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: add /models and /watcher-status to Telegram bridge (v1 surface)\n\nBoth commands required new read-only routes in the Safe Command API:"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Telegram bridge LaunchAgent template + operator setup guide'?",
-      "response": "feat: Telegram bridge LaunchAgent template + operator setup guide\n\nAdds adwi/config/launchagents/com.suneel.telegram-bridge.plist.template",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Telegram bridge LaunchAgent template + operator setup guide'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Telegram bridge LaunchAgent template + operator setup guide\n\nAdds adwi/config/launchagents/com.suneel.telegram-bridge.plist.template"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: Telegram long-polling bridge for Adwi — v1 read-only command channel'?",
-      "response": "feat: Telegram long-polling bridge for Adwi — v1 read-only command channel\n\nAdds adwi/services/telegram-bridge/bot.py: a stdlib-only long-polling bot",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: Telegram long-polling bridge for Adwi — v1 read-only command channel'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: Telegram long-polling bridge for Adwi — v1 read-only command channel\n\nAdds adwi/services/telegram-bridge/bot.py: a stdlib-only long-polling bot"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: add PRIMEFILE-005 test-count check + refresh system_manifest.json'?",
-      "response": "feat: add PRIMEFILE-005 test-count check + refresh system_manifest.json\n\nvalidate-docs now checks the test-count claims in LLM_SYSTEM_PRIMING.md",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: add PRIMEFILE-005 test-count check + refresh system_manifest.json'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: add PRIMEFILE-005 test-count check + refresh system_manifest.json\n\nvalidate-docs now checks the test-count claims in LLM_SYSTEM_PRIMING.md"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: add LLM_SYSTEM_PRIMING.md validation to validate-docs + fix stale 177→184'?",
-      "response": "feat: add LLM_SYSTEM_PRIMING.md validation to validate-docs + fix stale 177→184\n\nvalidate-docs now covers 24 checks (was 20). New PRIMEFILE group:",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: add LLM_SYSTEM_PRIMING.md validation to validate-docs + fix stale 177→184'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: add LLM_SYSTEM_PRIMING.md validation to validate-docs + fix stale 177→184\n\nvalidate-docs now covers 24 checks (was 20). New PRIMEFILE group:"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'docs: LLM_SYSTEM_PRIMING — 5 new sections + stale value fixes'?",
-      "response": "docs: LLM_SYSTEM_PRIMING — 5 new sections + stale value fixes\n\nAdded:",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'docs: LLM_SYSTEM_PRIMING — 5 new sections + stale value fixes'?"
-        },
-        {
-          "role": "assistant",
-          "content": "docs: LLM_SYSTEM_PRIMING — 5 new sections + stale value fixes\n\nAdded:"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'docs: comprehensive README update + source control cleanup (2026-06-20)'?",
-      "response": "docs: comprehensive README update + source control cleanup (2026-06-20)\n\nREADME §6 updated: added adwi/commands/, adwi/tests/, simlab/tests/test_nlu_regex.py,",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'docs: comprehensive README update + source control cleanup (2026-06-20)'?"
-        },
-        {
-          "role": "assistant",
-          "content": "docs: comprehensive README update + source control cleanup (2026-06-20)\n\nREADME §6 updated: added adwi/commands/, adwi/tests/, simlab/tests/test_nlu_regex.py,"
-        }
-      ]
-    },
-    {
       "instruction": "How was this workspace improvement implemented: '2026-06-29 02:40 UTC'?",
       "response": "**gstack_drift**: touched file: hands/bin/gstack-verify\nDiff:\n```\ndiff --git a/blood/logs/SESSION_LOG.md b/blood/logs/SESSION_LOG.md\nindex 3ebe156..c348151 100644\n--- a/blood/logs/SESSION_LOG.md\n+++ b/blood/logs/SESSION_LOG.md\n@@ -853,3 +853,7 @@\n ## 2026-06-28\n \n - Hermes Completion + Ollama integration: Ollama running, suneelworkspace model created, repair+learning engines in lab/autolab/, hands/bin/ollama-repair and ollama-learn wired, night_shift.yaml 3 new steps, dashboard Ollama panel + ro",
       "messages": [
@@ -5179,7 +5161,7 @@
     },
     {
       "instruction": "What is the architectural decision about '2026-06-26 - Adaptive identity loop'?",
-      "response": "- Decision: Add `dna/dna/identity/adaptive/` as a bounded learning layer over the base identity.\n- Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.\n- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/dna/identity/profile/identity_profile.md` or safety boundaries.",
+      "response": "- Decision: Add `dna/identity/adaptive/` as a bounded learning layer over the base identity.\n- Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.\n- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/identity/profile/identity_profile.md` or safety boundaries.",
       "messages": [
         {
           "role": "system",
@@ -5191,7 +5173,7 @@
         },
         {
           "role": "assistant",
-          "content": "- Decision: Add `dna/dna/identity/adaptive/` as a bounded learning layer over the base identity.\n- Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.\n- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/dna/identity/profile/identity_profile.md` or safety boundaries."
+          "content": "- Decision: Add `dna/identity/adaptive/` as a bounded learning layer over the base identity.\n- Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.\n- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/identity/profile/identity_profile.md` or safety boundaries."
         }
       ]
     },
@@ -5516,6 +5498,96 @@
         {
           "role": "assistant",
           "content": "* blood -> ?: ..."
+        }
+      ]
+    },
+    {
+      "instruction": "What is the architectural decision about '2026-07-02 - Internet intel: three adopted design patterns'?",
+      "response": "- Decision 1 — Deterministic verification gates (loop engineering): self-improvement loops never trust their own reporting; exit conditions come from deterministic checks. Implemented: `lab/autolab/daily_evolve.py` now ends with a `verify()` gate running `run-tests` + `agent-doctor`, exits non-zero on failure so launchd surfaces it. Sources: loop-engineering guides (explainx.ai, tosea.ai), Addy Osmani \"Self-Improving Coding Agents\".\n- Decision 2 — Summarization-based context compression, \"govern first, compress second\": the `suneelworkspace` Modelfile compiler reads governed durable facts (MEM",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What is the architectural decision about '2026-07-02 - Internet intel: three adopted design patterns'?"
+        },
+        {
+          "role": "assistant",
+          "content": "- Decision 1 — Deterministic verification gates (loop engineering): self-improvement loops never trust their own reporting; exit conditions come from deterministic checks. Implemented: `lab/autolab/daily_evolve.py` now ends with a `verify()` gate running `run-tests` + `agent-doctor`, exits non-zero on failure so launchd surfaces it. Sources: loop-engineering guides (explainx.ai, tosea.ai), Addy Osmani \"Self-Improving Coding Agents\".\n- Decision 2 — Summarization-based context compression, \"govern first, compress second\": the `suneelworkspace` Modelfile compiler reads governed durable facts (MEM"
+        }
+      ]
+    },
+    {
+      "instruction": "What is the architectural decision about 'Recent Session Handoff'?",
+      "response": "Consolidated workspace root by moving docs to spine/docs and deleting legacy directories.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What is the architectural decision about 'Recent Session Handoff'?"
+        },
+        {
+          "role": "assistant",
+          "content": "Consolidated workspace root by moving docs to spine/docs and deleting legacy directories."
+        }
+      ]
+    },
+    {
+      "instruction": "What is the architectural decision about 'Lab Organ Autolab Capabilities'?",
+      "response": "Develop a predictive maintenance system using the lab organ's autolab capabilities to identify potential issues before they occur.\n\n\n\n---\n*Added by memory curator — 2026-07-02*",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What is the architectural decision about 'Lab Organ Autolab Capabilities'?"
+        },
+        {
+          "role": "assistant",
+          "content": "Develop a predictive maintenance system using the lab organ's autolab capabilities to identify potential issues before they occur.\n\n\n\n---\n*Added by memory curator — 2026-07-02*"
+        }
+      ]
+    },
+    {
+      "instruction": "What is the architectural decision about 'Recent Workspace Activity'?",
+      "response": "Recent session handoff: Consolidate workspace root by moving docs to spine/docs and deleting legacy directories.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What is the architectural decision about 'Recent Workspace Activity'?"
+        },
+        {
+          "role": "assistant",
+          "content": "Recent session handoff: Consolidate workspace root by moving docs to spine/docs and deleting legacy directories."
+        }
+      ]
+    },
+    {
+      "instruction": "What is the architectural decision about 'New Decision'?",
+      "response": "Decision: Use the lab organ's autolab capabilities for predictive maintenance.\nReason: This will improve the workspace's ability to anticipate and prevent potential issues.",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What is the architectural decision about 'New Decision'?"
+        },
+        {
+          "role": "assistant",
+          "content": "Decision: Use the lab organ's autolab capabilities for predictive maintenance.\nReason: This will improve the workspace's ability to anticipate and prevent potential issues."
         }
       ]
     },

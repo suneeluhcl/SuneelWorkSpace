@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Model health checker — verifies which API providers are reachable."""
 import json
 import sys

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 ollama_repair_engine.py
 Uses local Ollama models to autonomously analyze and repair workspace issues.

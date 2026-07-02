@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 code_review_engine.py
 Uses local Ollama (codellama) to review every Python file in the workspace.
