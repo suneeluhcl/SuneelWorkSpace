@@ -4,20 +4,23 @@
 
 Date: 2026-07-02
 
-Summary: Workspace evolution: healed flat stale-path class (62 files — comms, system-intelligence, night-shift DAG, autolab, morning-brief all restored), upgraded Ollama learning stack (Modelfile --apply, LESSONS.md digest, promotion prompts, deterministic verify gate), built Java dev arsenal (java-build, dev-stack, spring-watch, pr-setup, dev-projects-scan) + history-insights. 103/103 tests, 0 health issues, night_shift 16/16.
+Summary: Continued the Evolution Session: staged, committed, and pushed all 2026-07-02 fixes and new development utilities to origin/main. Fixed a sys.path bug in ears monitor runner and replaced the dead Anthropic Feedburner RSS link with Hacker News RSS search. Ran the monitor successfully, generating a fresh morning briefing digest. Removed successfully promoted experiments (exp_002, exp_003) from TASK_QUEUE.md.
 
 Changed:
 
-- See `blood/logs/SESSION_LOG.md` for the session entry.
+- Configured ears RSS sources in `ears/monitor/config/monitor_config.json`.
+- Fixed import path in `ears/monitor/monitor_runner.py`.
+- Ignored transient monitor cache files in `.gitignore`.
+- Cleared completed items from `heart/tasks/TASK_QUEUE.md`.
 
 Verification:
 
 - Run `~/SuneelWorkSpace/hands/bin/agent-status` or `~/SuneelWorkSpace/hands/bin/agent-doctor`.
+- Run `rtk python3 ears/monitor/monitor_runner.py` to verify feed retrieval.
 
 Open Items:
 
-- Review `heart/tasks/ACTIVE_TASKS.md` and `heart/tasks/TASK_QUEUE.md`.
-- Nothing committed to git yet — review `git status` and commit this session's changes (backups in `.agent-backups/2026070{1,2}-*-fix/`).
-- 2 autolab promotion candidates queued in `heart/tasks/TASK_QUEUE.md` (exp_002, exp_003) — Suneel to approve/deny.
-- No JDK/Maven on this Mac: `brew install --cask temurin` + `brew install maven` when Java work starts (external install — needs approval).
-- Night-shift launchd job should pass tonight after the dag-run/dag-validate fixes — check `launchctl list | grep night-shift` exit code tomorrow.
+- Install the Java toolchain when ready: Suneel's confirmation is needed for `brew install --cask temurin` and `brew install maven`.
+- Check night-shift status: confirm exit code 0 on tomorrow's run of `launchctl list | grep night-shift`.
+- Add project-specific instructions as Java projects populate the workspace.
+
