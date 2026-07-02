@@ -18,6 +18,6 @@ Open Items:
 
 - Review `heart/tasks/ACTIVE_TASKS.md` and `heart/tasks/TASK_QUEUE.md`.
 - Tonight's scheduled 22:00 night-shift run should now pass hands-off; spot-check `launchctl list | grep night-shift` after 22:05 (exit 0 expected — live-verified 3× today).
-- Wiki content cleanup: `brain/vault/wiki/Wiki Health.md` reports 2 broken links, 7 orphans, 20 gaps (wiki_lint step is tolerated-fail until fixed).
+- ~~Wiki content cleanup~~ DONE 01:05: 0 broken links, 0 orphans, lint exit 0 (hub note filled, auto-generated README excluded from lint). 20 content gaps remain as future note suggestions.
 - Suneel decision: rotate live Home Assistant auth tokens in `local-ai-stack/homeassistant-data/.storage/auth` (security review flag; dir is untracked + now gitignored, so no repo exposure).
 - Session commit pushed to origin/main; demo-api project stays local (projects/ is gitignored).
