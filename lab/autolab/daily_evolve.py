@@ -142,5 +142,37 @@ def run() -> list[dict]:
     return results
 
 
+def verify() -> bool:
+    """Deterministic verification gate — the loop's exit condition is the test
+    suite and doctor, never the passes' own reporting (loop-engineering rule)."""
+    checks = [
+        ("run-tests", [str(WORKSPACE / "hands/bin/run-tests")]),
+        ("agent-doctor", [str(WORKSPACE / "hands/bin/agent-doctor"), "--quiet"]),
+    ]
+    all_ok = True
+    verdicts = []
+    for label, cmd in checks:
+        try:
+            proc = subprocess.run(cmd, cwd=str(WORKSPACE), capture_output=True,
+                                  text=True, timeout=300)
+            passed = proc.returncode == 0
+        except Exception:
+            passed = False
+        verdicts.append({"check": label, "passed": passed})
+        print(f"[daily-evolve] verify {label}: {'PASS' if passed else 'FAIL'}")
+        all_ok = all_ok and passed
+
+    with open(EVOLVE_LOG, "a") as f:
+        f.write(json.dumps({
+            "ts": datetime.now(timezone.utc).isoformat(),
+            "verification": verdicts,
+            "verified": all_ok,
+        }) + "\n")
+    return all_ok
+
+
 if __name__ == "__main__":
     run()
+    if not verify():
+        print("[daily-evolve] verification gate FAILED — surfacing via exit code")
+        sys.exit(1)

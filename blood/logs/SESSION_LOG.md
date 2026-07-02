@@ -893,3 +893,20 @@
 ## 2026-07-01
 
 - Fixed the systemic doubled-path corruption bug (heart/heart/, nervous/nervous/, etc.) across 54 live files + 4 stale permission-allowlist entries. Root cause: hands/scripts/update_all_paths.py rewrote its own source with its own rules on every run (no self-exclusion), escalating the corruption each time it was run during the reorg; deleted (no callers, job long done). Fix applied via a reviewed, dry-run-first, idempotent normalizer (not committed -- ran from scratchpad). Deliberately excluded historical/archival files (quarantine/snapshots, SESSION_LOG.md, COMPLETED_TASKS.md, hermes training data) and 2 false-positive matches. Also built hands/bin/hermes (symlinked to bin/hermes), a real CLI entrypoint wrapping the already-installed tirith agent, closing the last gap in the night_shift DAG -- dag-validate now passes all 14 steps. Verification: 103/103 tests pass, gstack-verify OK, health 0 issues, all touched JSON/Python/shell re-validated, MCP server module confirmed importable.
+
+## 2026-07-01
+
+- Committed and pushed all workspace audit fixes (309a66b9): doubled-path corruption resolved (54 files + culprit script removed), hermes CLI entrypoint built, pre_commit_hook.sh SIGPIPE-on-large-diff bug fixed. Pushed to origin/main successfully.
+
+## 2026-07-02 — Claude Code — Workspace evolution (master upgrader prompt)
+
+- Directive 1 (gap healing): fixed flat pre-organ stale paths in 30 hands/bin wrappers (system-audit/gaps/recommend/capabilities, improve-system, agent-repair, anticipate, idea-run/start, identity-*, route-execute, all comms/imsg/mail wrappers, use-claude-imessage) and 20 Python files (system_intelligence.py research_engine check → si ready:true, prediction_engine.py BASE, execution_engine.py, research_engine.py ENGINE, overnight_loop.py, workflow_composer.py, mcp_orchestrator.py, knowledge_bridge.py, daily_evolve.py sys.path, 12 workflow_*.py). Repaired 9 generated workflow scripts (unterminated print) + generator template bug. Archived stray top-level anticipation/ (root cause fixed). INDEX.json regenerated.
+- Directive 2 (Ollama): build_modelfile.py — health status fix, DECISIONS/LESSONS tail reads, live organ structure line, --apply (ollama create); orchestrator rebuild_context uses --apply. log_learn_engine.py — lessons digest → brain/memory/LESSONS.md + lab/autolab/meta/lessons.json. daily_evolve.py — promotion candidates → TASK_QUEUE.md + deterministic verify() gate.
+- Directive 3 (Java arsenal): new hands/scripts/dev/{java_build.sh,dev_stack.sh,spring_watch.py,pr_setup.sh,dev_projects_scan.py} symlinked as java-build, dev-stack, spring-watch, pr-setup, dev-projects-scan (+bin/ farm). Catalog at spine/system-context/developer_projects.json.
+- Directive 4 (macOS/life): morning-brief fixed (sys.path in ears digest_builder.py), night-shift DAG fixed (dag-run ROOT anchor + dag-validate shlex first-token check → 16/16 PASS), 12 lab/autolab/scripts remapped ($ROOT/autolab → $ROOT/lab/autolab), new history-insights (zsh history → spine/audit/shell_insights.md).
+- Directive 5 (intel): 3 patterns adopted + documented in DECISIONS.md 2026-07-02 (deterministic verification gates, summarization-based context compression, compose-first Spring Boot dev).
+- Verification: run-tests 103/103, agent-doctor healthy (0 issues), dag-validate 16/16, gstack-verify OK, daily_evolve.verify() PASS. Nerve notifications sent to hands, lab, brain, dna, ears, heart, spine.
+
+## 2026-07-02
+
+- Workspace evolution: healed flat stale-path class (62 files — comms, system-intelligence, night-shift DAG, autolab, morning-brief all restored), upgraded Ollama learning stack (Modelfile --apply, LESSONS.md digest, promotion prompts, deterministic verify gate), built Java dev arsenal (java-build, dev-stack, spring-watch, pr-setup, dev-projects-scan) + history-insights. 103/103 tests, 0 health issues, night_shift 16/16.

@@ -14,10 +14,13 @@ try:
 except ImportError:
     yaml = None  # type: ignore
 
+ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", Path.home() / "SuneelWorkSpace")).resolve()
+sys.path.insert(0, str(ROOT / "heart" / "orchestrator" / "dag"))
+
 from dag_validator import validate
 
-RUNS_DIR = Path(__file__).parent / "runs"
-BIN_DIR = Path(__file__).parent.parent.parent / "bin"
+RUNS_DIR = ROOT / "heart" / "orchestrator" / "dag" / "runs"
+BIN_DIR = ROOT / "hands" / "bin"
 VAR_RE = re.compile(r"\{\{\s*(.*?)\s*\}\}")
 
 

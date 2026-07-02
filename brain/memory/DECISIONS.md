@@ -145,6 +145,13 @@ Several Ollama repair suggestions need to be addressed, including `mcp-reindex`,
 
 
 
+## 2026-07-02 - Internet intel: three adopted design patterns
+
+- Decision 1 — Deterministic verification gates (loop engineering): self-improvement loops never trust their own reporting; exit conditions come from deterministic checks. Implemented: `lab/autolab/daily_evolve.py` now ends with a `verify()` gate running `run-tests` + `agent-doctor`, exits non-zero on failure so launchd surfaces it. Sources: loop-engineering guides (explainx.ai, tosea.ai), Addy Osmani "Self-Improving Coding Agents".
+- Decision 2 — Summarization-based context compression, "govern first, compress second": the `suneelworkspace` Modelfile compiler reads governed durable facts (MEMORY.md head) plus recent tails of DECISIONS.md/LESSONS.md instead of blind truncation, and the weekly `rebuild_context` engine now applies it with `ollama create --apply`. Textual compression chosen over soft-prompt methods because it is model-portable and inspectable. Sources: LLMLingua/RECOMP line of research, Atlan context-compression governance guidance.
+- Decision 3 — Compose-first Spring Boot local dev: standard services (postgres/mysql/redis) are defined in a health-checked `docker-compose.yml` and Spring Boot 3.1+ `spring-boot-docker-compose` (developmentOnly) auto-starts/stops them with the app. Implemented: `dev-stack init` generates the compose file + dependency snippet. Sources: Spring Boot docs, Baeldung docker-compose support guide.
+- Safety: all three patterns are local-only, reversible, and respect existing safety boundaries.
+
 ---
 *Added by memory curator — 2026-07-01*
 

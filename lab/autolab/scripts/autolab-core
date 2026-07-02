@@ -51,13 +51,13 @@ REQUIRED_FILES = [
     "bin/agent-doctor",
     "bin/agent-repair",
     "bin/agent-maintain",
-    "autolab/program.md",
-    "autolab/evaluator.md",
-    "autolab/mutation_policy.md",
-    "autolab/safeguards.md",
-    "autolab/meta/insights.md",
-    "autolab/meta/patterns.json",
-    "autolab/meta/failure_patterns.json",
+    "lab/autolab/program.md",
+    "lab/autolab/evaluator.md",
+    "lab/autolab/mutation_policy.md",
+    "lab/autolab/safeguards.md",
+    "lab/autolab/meta/insights.md",
+    "lab/autolab/meta/patterns.json",
+    "lab/autolab/meta/failure_patterns.json",
 ]
 
 JSON_FILES = [
@@ -65,12 +65,12 @@ JSON_FILES = [
     "agent-system/state/WORKSPACE_HEALTH.json",
     "agent-system/state/INDEX.json",
     "agent-system/state/ACTIVE_SESSION.json",
-    "autolab/state/frontier.json",
-    "autolab/state/latest_eval.json",
-    "autolab/state/loop_status.json",
-    "autolab/meta/patterns.json",
-    "autolab/meta/failure_patterns.json",
-    "autolab/meta/experiment_embeddings.json",
+    "lab/autolab/state/frontier.json",
+    "lab/autolab/state/latest_eval.json",
+    "lab/autolab/state/loop_status.json",
+    "lab/autolab/meta/patterns.json",
+    "lab/autolab/meta/failure_patterns.json",
+    "lab/autolab/meta/experiment_embeddings.json",
 ]
 
 SCRIPTS = [
@@ -86,15 +86,15 @@ _BIN_PROTECTED = {"bin", "bin/agent-start", "bin/agent-autoclose", "bin/agent-do
                   "bin/agent-repair", "bin/agent-maintain", "bin/agent-finish"}
 
 SNAPSHOT_PATHS = [
-    "autolab/program.md",
-    "autolab/evaluator.md",
-    "autolab/current_frontier.md",
-    "autolab/experiment_queue.md",
-    "autolab/reports",
-    "autolab/state",
-    "autolab/templates",
-    "autolab/scripts",
-    "autolab/meta",
+    "lab/autolab/program.md",
+    "lab/autolab/evaluator.md",
+    "lab/autolab/current_frontier.md",
+    "lab/autolab/experiment_queue.md",
+    "lab/autolab/reports",
+    "lab/autolab/state",
+    "lab/autolab/templates",
+    "lab/autolab/scripts",
+    "lab/autolab/meta",
     "agent-system/docs",
     "agent-system/shared",
     "automation/maintenance",
@@ -317,9 +317,9 @@ def check_eval():
         "agent-system/docs/HOW_IT_WORKS.md",
         "agent-system/docs/AUTOMATION.md",
         "agent-system/docs/OPERATOR_GUIDE.md",
-        "autolab/README.md",
-        "autolab/evaluator.md",
-        "autolab/safeguards.md",
+        "lab/autolab/README.md",
+        "lab/autolab/evaluator.md",
+        "lab/autolab/safeguards.md",
     ]
     present_docs = [d for d in docs if (ROOT / d).exists() and (ROOT / d).stat().st_size > 80]
     add("documentation_coverage", 8, round(8 * len(present_docs) / len(docs), 2), False, f"{len(present_docs)}/{len(docs)} docs present")

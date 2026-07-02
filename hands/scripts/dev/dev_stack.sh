@@ -4,7 +4,7 @@
 # a Java/Node service. Uses the project's compose file when present, otherwise
 # manages standalone dev containers (postgres/mysql/redis) with standard ports.
 #
-# Usage: dev-stack up|down|status|logs [postgres|mysql|redis ...] [--dir DIR]
+# Usage: dev-stack up|down|status|logs|init [postgres|mysql|redis ...] [--dir DIR]
 set -uo pipefail
 
 ACTION="${1:-status}"
@@ -19,6 +19,68 @@ while [ $# -gt 0 ]; do
   esac
 done
 [ ${#SERVICES[@]} -eq 0 ] && SERVICES=(postgres redis)
+
+# `init` writes a health-checked compose file — Spring Boot 3.1+ auto-starts it
+# via the spring-boot-docker-compose module, so no manual container management.
+if [ "$ACTION" = "init" ]; then
+  OUT="$DIR/docker-compose.yml"
+  [ -f "$OUT" ] && { echo "dev-stack: $OUT already exists — not overwriting"; exit 1; }
+  {
+    echo "services:"
+    for svc in "${SERVICES[@]}"; do
+      case "$svc" in
+        postgres) cat <<'YML'
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: devdb
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+YML
+          ;;
+        mysql) cat <<'YML'
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: devpass
+      MYSQL_DATABASE: devdb
+    ports: ["3306:3306"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+YML
+          ;;
+        redis) cat <<'YML'
+  redis:
+    image: redis:7
+    ports: ["6379:6379"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+YML
+          ;;
+        *) echo "# unknown service: $svc" ;;
+      esac
+    done
+  } > "$OUT"
+  echo "dev-stack: wrote $OUT (${SERVICES[*]})"
+  echo "Spring Boot 3.1+ tip — let the app manage this stack itself:"
+  echo '  <dependency>'
+  echo '    <groupId>org.springframework.boot</groupId>'
+  echo '    <artifactId>spring-boot-docker-compose</artifactId>'
+  echo '    <optional>true</optional>  <!-- gradle: developmentOnly -->'
+  echo '  </dependency>'
+  exit 0
+fi
 
 command -v docker >/dev/null || { echo "dev-stack: docker not installed"; exit 1; }
 docker info >/dev/null 2>&1 || { echo "dev-stack: docker daemon not running — start Docker Desktop/colima first"; exit 1; }

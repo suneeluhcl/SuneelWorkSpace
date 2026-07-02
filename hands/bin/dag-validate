@@ -2,6 +2,7 @@
 """P3.5 — Validate a pipeline YAML: deps, cycles, variable refs, commands, execution levels."""
 
 import re
+import shlex
 import shutil
 import sys
 from pathlib import Path
@@ -18,8 +19,14 @@ VAR_RE = re.compile(r"\{\{\s*(\w+)\.(\S+?)\s*\}\}")
 
 
 def _command_exists(cmd: str) -> bool:
-    """Check if command exists in bin/ or scripts/ (strips any leading path), or on PATH."""
-    name = Path(cmd).name
+    """Check the command's executable (first token, sans path) in bin/, scripts/, or PATH."""
+    try:
+        tokens = shlex.split(cmd)
+    except ValueError:
+        tokens = cmd.split()
+    if not tokens:
+        return False
+    name = Path(tokens[0]).name
     return (BIN_DIR / name).exists() or (SCRIPTS_DIR / name).exists() or shutil.which(name) is not None
 
 

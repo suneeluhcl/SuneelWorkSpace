@@ -43,6 +43,13 @@
 - **copilot-optimizer skill**: A GStack reasoning skill (`/copilot-optimizer`) to brainstorm and package raw ideas into structured prompts optimized for Microsoft 365 Copilot Chat.
 
 
+## 2026-07-02 - Java full-stack dev arsenal
+
+- Developer helpers live in `hands/scripts/dev/`, symlinked in `hands/bin/`: `java-build` (Maven/Gradle wrapper-aware compact builds), `dev-stack` (docker service orchestration + `init` compose generator), `spring-watch` (Spring Boot log anomaly detection, optional `--ollama`), `pr-setup` (gh PR checkout + build + migration report), `dev-projects-scan` (catalogs repos → `spine/system-context/developer_projects.json`).
+- `history-insights` analyzes `~/.zsh_history` (secrets-redacting) → `spine/audit/shell_insights.md`.
+- No JDK/Maven/Gradle installed on this Mac yet; helpers detect this and suggest installs rather than failing cryptically.
+- Structured lessons live in `brain/memory/LESSONS.md`, distilled nightly by `lab/autolab/log_learn_engine.py`; `lab/autolab/daily_evolve.py` ends with a deterministic verify() gate (run-tests + agent-doctor).
+
 ## Memory Rules
 
 - Store only stable, useful facts here.

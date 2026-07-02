@@ -1,0 +1,14 @@
+{
+  "scanned_at": "2026-07-02T05:00:16.875120+00:00",
+  "scanned_roots": [
+    "/Users/MAC/SuneelWorkSpace/projects",
+    "/Users/MAC/Documents",
+    "/Users/MAC/Developer",
+    "/Users/MAC/IdeaProjects",
+    "/Users/MAC/workspace",
+    "/Users/MAC/eclipse-workspace"
+  ],
+  "project_count": 0,
+  "projects": [],
+  "rescan_command": "dev-projects-scan"
+}

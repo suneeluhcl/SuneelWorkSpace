@@ -12,6 +12,9 @@ CONFIG_PATH = Path(__file__).resolve().parent.parent / "config" / "monitor_confi
 ACTIVE_TASKS_PATH = Path(__file__).resolve().parent.parent.parent.parent / "heart" / "tasks" / "ACTIVE_TASKS.md"
 BRAIN_LOGS = Path(__file__).resolve().parent.parent.parent.parent / "blood" / "logs"
 
+# Workspace root on sys.path so `ears.monitor.*` imports work when invoked via hands/bin symlink.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent.parent))
+
 
 def _goal_keywords() -> set[str]:
     """Extract keywords from ACTIVE_TASKS.md for relevance scoring."""
