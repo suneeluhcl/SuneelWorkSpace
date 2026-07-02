@@ -53,7 +53,7 @@ Resources are read-only views of authoritative workspace files. They are accesse
 |-----|--------|-------------|
 | `workspace://digest` | state + health + handoff + tasks | Compact one-page workspace summary |
 | `workspace://logs/recent` | `blood/logs/SESSION_LOG.md` | Last 200 lines of session log |
-| `workspace://nervous/mcp/state` | `nervous/nervous/mcp/server/state/mcp_state.json` | MCP subsystem state |
+| `workspace://nervous/mcp/state` | `nervous/mcp/server/state/mcp_state.json` | MCP subsystem state |
 
 ## Prompts (reusable context assembles)
 

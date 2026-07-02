@@ -1,6 +1,6 @@
 # System Audit
 
-Generated: 2026-06-26T18:49:09.990677-05:00
+Generated: 2026-07-01T19:27:35.675075-05:00
 
 ## Scope
 
@@ -10,16 +10,16 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 ## Current Architecture
 
-- `agent-system`: present; files observed: 105
-- `mcp`: present; files observed: 36
-- `orchestrator`: present; files observed: 34
-- `goal-engine`: present; files observed: 27
-- `autolab`: present; files observed: 185
-- `comms`: present; files observed: 35
-- `bin`: present; files observed: 145
-- `scripts`: present; files observed: 45
+- `agent-system`: present; files observed: 2
+- `mcp`: present; files observed: 4
+- `orchestrator`: missing; files observed: 0
+- `goal-engine`: missing; files observed: 0
+- `autolab`: present; files observed: 4
+- `comms`: missing; files observed: 0
+- `bin`: present; files observed: 209
+- `scripts`: missing; files observed: 0
 - `configs`: missing; files observed: 0
-- `docs`: present; files observed: 4
+- `docs`: present; files observed: 5
 
 ## Strengths
 
@@ -41,7 +41,7 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 - [P0] architecture: System-wide audit artifacts were missing or not first-class. Impact: Agents could inspect files ad hoc, but there was no durable overview for future sessions.
 - [P0] automation: Health checks did not summarize spine/audit/gap/research/tool readiness. Impact: Maintenance could report green while intelligence coverage was incomplete.
-- [P1] intelligence: Ideas, comparisons, and decisions had no dedicated pipeline. Impact: Research outcomes could remain in chat instead of becoming durable shared brain context.
+- [P0] intelligence: Ideas, comparisons, and decisions had no dedicated pipeline. Impact: Research outcomes could remain in chat instead of becoming durable shared brain context.
 - [P1] research: Tool discovery was not summarized into an inspectable inventory. Impact: Agents had to rediscover installed CLIs, apps, and integration candidates.
 - [P1] workflow: Email, messaging, downloads, and file organization support existed only as scattered commands. Impact: Daily workflows lacked a unified route from capture to execution to memory.
 - [P0] usability: There was no single command for capabilities, gaps, recommendations, or bounded self-upgrade. Impact: Suneel had to know internal paths and command names.
@@ -50,17 +50,17 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 ## Command Surface
 
-- Workspace commands found: 143
-- Non-executable bin files: 0
-- Tool inventory entries: 176
+- Workspace commands found: 207
+- Non-executable bin files: 8
+- Tool inventory entries: 240
 
 ## System Introspection
 
 - CPU count: 16
 - Memory GB: 64.0
-- Home disk free GB: 642.6
+- Home disk free GB: 575.6
 - Installed application names captured: 25
-- Home top-level directory names captured: 60
+- Home top-level directory names captured: 61
 
 ## Upgrade Direction
 

@@ -1,3 +1,0 @@
-#!/bin/sh
-ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-exec python3 "$ROOT/research-engine/research_engine.py" bootstrap "$@"

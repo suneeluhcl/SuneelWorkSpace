@@ -1,0 +1,11 @@
+{
+  "passed": 103,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "total": 103,
+  "failures": [],
+  "duration_seconds": 2.7,
+  "timestamp": "2026-07-02T00:29:39.039405+00:00",
+  "exit_code": 0
+}

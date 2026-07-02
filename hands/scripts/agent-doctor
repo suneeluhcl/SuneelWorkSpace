@@ -131,10 +131,13 @@ if zshrc.exists():
             issue("info", "missing_alias", f"Shell helper missing: {alias}", zshrc)
 else:
     issue("info", "missing_shell_config", "~/.zshrc not found", zshrc)
-if not launchd_user_plist.exists() and not launchd_user_plist.is_symlink():
+plist_present = launchd_user_plist.exists() or launchd_user_plist.is_symlink()
+if not plist_present:
     issue("info", "launchd_not_configured", "launchd maintenance plist is not installed", launchd_user_plist)
+if launchd_user_plist.is_symlink() and not launchd_user_plist.exists():
+    issue("error", "launchd_broken_symlink", "launchd maintenance plist is a broken symlink (target missing)", launchd_user_plist)
 loaded = os.environ.get("LAUNCHD_LOADED") == "true"
-if launchd_user_plist.exists() and not loaded:
+if plist_present and not loaded:
     issue("warning", "launchd_not_loaded", "launchd maintenance plist exists but is not loaded", launchd_user_plist)
 # 5. Check GStack integrity
 gverify = root / "bin" / "gstack-verify"
@@ -231,17 +234,17 @@ for p in root.rglob("*"):
             
     # Check bin/ non-symlinks
     if top_dir == "bin" and len(parts) == 2:
-        if not p.is_symlink() and filename not in core_runner_files and filename != "__pycache__":
+        if not p.is_symlink() and filename not in core_runner_files and filename != "__pycache__" and filename.lower() != "readme.md":
             non_symlink_bin.append(str(p))
-            
+
     # Check misplaced scripts
     ext = p.suffix.lower()
     is_script = ext in (".sh", ".py", ".bash", ".zsh") or (not ext and os.access(p, os.X_OK) and not p.is_symlink())
-    if is_script and top_dir not in subsystem_dirs and top_dir != "bin" and top_dir != "scripts":
+    if is_script and top_dir not in subsystem_dirs and top_dir not in ("bin", "scripts", "tests"):
         # Don't flag root level markdown files
         if ext != ".md":
             misplaced_scripts.append(str(p))
-            
+
     # Check internal duplication in workspace scripts
     if is_script and not p.is_symlink() and top_dir in subsystem_dirs:
         try:
@@ -249,12 +252,20 @@ for p in root.rglob("*"):
             if ext == ".py":
                 import ast
                 tree = ast.parse(content)
-                seen_names = set()
-                for node in ast.walk(tree):
-                    if isinstance(node, ast.FunctionDef):
-                        if node.name in seen_names:
-                            issue("warning", "internal_script_duplication", f"Script '{p.relative_to(root)}' contains duplicate definition for function '{node.name}' (line {node.lineno}).", p)
-                        seen_names.add(node.name)
+                # Only compare function names among direct siblings within the
+                # same scope (module/function/class body) — ast.walk() alone
+                # would also match same-named nested closures in different
+                # parent scopes, which is legal Python, not a duplicate.
+                for scope in ast.walk(tree):
+                    body = getattr(scope, "body", None)
+                    if not isinstance(body, list):
+                        continue
+                    seen_names = set()
+                    for node in body:
+                        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                            if node.name in seen_names:
+                                issue("warning", "internal_script_duplication", f"Script '{p.relative_to(root)}' contains duplicate definition for function '{node.name}' (line {node.lineno}).", p)
+                            seen_names.add(node.name)
         except Exception:
             pass
         

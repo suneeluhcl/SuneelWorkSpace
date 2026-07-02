@@ -19,8 +19,8 @@ import tarfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-WORKSPACE = Path(__file__).resolve().parent.parent
-CONFIG = WORKSPACE / "mcp" / "config" / "gstack_version.json"
+WORKSPACE = Path(__file__).resolve().parent.parent.parent
+CONFIG = WORKSPACE / "nervous" / "mcp" / "config" / "gstack_version.json"
 GSTACK = Path.home() / ".claude" / "skills" / "gstack"
 SNAPSHOTS = WORKSPACE / "snapshots" / "gstack"
 LOG = WORKSPACE / "agent-system" / "logs" / "MAINTENANCE_LOG.md"
@@ -71,7 +71,7 @@ def _save_config(cfg: dict):
 
 
 def _save_status(now: str, status: str, commit: str, version: str):
-    status_file = WORKSPACE / "mcp" / "server" / "state" / "gstack_verify_status.json"
+    status_file = WORKSPACE / "nervous" / "mcp" / "server" / "state" / "gstack_verify_status.json"
     status_file.parent.mkdir(parents=True, exist_ok=True)
     status_data = {
         "last_verified": now,

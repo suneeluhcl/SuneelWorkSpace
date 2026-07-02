@@ -55,7 +55,7 @@
     },
     {
       "id": "health_repair",
-      "path": "eyes/eyes/dashboard/execution/health_repair_pipeline.py",
+      "path": "eyes/dashboard/execution/health_repair_pipeline.py",
       "desc": "Health repair pipeline",
       "status": "missing",
       "priority": "high"
@@ -76,14 +76,14 @@
     },
     {
       "id": "mcp_server",
-      "path": "nervous/nervous/mcp/server/main.py",
+      "path": "nervous/mcp/server/main.py",
       "desc": "MCP server",
       "status": "missing",
       "priority": "high"
     },
     {
       "id": "orchestrator",
-      "path": "heart/heart/orchestrator/router/router.py",
+      "path": "heart/orchestrator/router/router.py",
       "desc": "Task orchestrator",
       "status": "missing",
       "priority": "high"

@@ -2,6 +2,7 @@
 """P3.5 — Validate a pipeline YAML: deps, cycles, variable refs, commands, execution levels."""
 
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -11,15 +12,15 @@ except ImportError:
     yaml = None  # type: ignore
 
 BIN_DIR = Path(__file__).parent.parent.parent / "bin"
-SCRIPTS_DIR = Path(__file__).parent.parent.parent / "scripts"
+SCRIPTS_DIR = Path(__file__).parent.parent / "scripts"
 VALID_LEVELS = {"SAFE", "CONTROLLED", "RESTRICTED"}
 VAR_RE = re.compile(r"\{\{\s*(\w+)\.(\S+?)\s*\}\}")
 
 
 def _command_exists(cmd: str) -> bool:
-    """Check if command exists in bin/ or scripts/ (strips any leading path)."""
+    """Check if command exists in bin/ or scripts/ (strips any leading path), or on PATH."""
     name = Path(cmd).name
-    return (BIN_DIR / name).exists() or (SCRIPTS_DIR / name).exists()
+    return (BIN_DIR / name).exists() or (SCRIPTS_DIR / name).exists() or shutil.which(name) is not None
 
 
 def validate(path: str) -> tuple[bool, list[str]]:

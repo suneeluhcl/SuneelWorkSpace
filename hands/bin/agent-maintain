@@ -54,11 +54,11 @@ fi
 
 "$ROOT/bin/workspace-index" --quiet >/dev/null 2>&1 || true
 "$ROOT/bin/workspace-report" --quiet >/dev/null 2>&1 || true
-if [ -x "$ROOT/autolab/scripts/autolab-watch" ]; then
-  "$ROOT/autolab/scripts/autolab-watch" >/dev/null 2>&1 || true
+if [ -x "$ROOT/lab/autolab/scripts/autolab-watch" ]; then
+  "$ROOT/lab/autolab/scripts/autolab-watch" >/dev/null 2>&1 || true
 fi
-if [ -x "$ROOT/autolab/scripts/autolab-once" ]; then
-  RUN_AUTOLAB_ONCE="$(python3 - "$ROOT/autolab/state/latest_eval.json" "$ROOT/autolab/state/loop_status.json" <<'PY'
+if [ -x "$ROOT/lab/autolab/scripts/autolab-once" ]; then
+  RUN_AUTOLAB_ONCE="$(python3 - "$ROOT/lab/autolab/state/latest_eval.json" "$ROOT/lab/autolab/state/loop_status.json" <<'PY'
 import json, pathlib, sys, time
 eval_path = pathlib.Path(sys.argv[1])
 status_path = pathlib.Path(sys.argv[2])
@@ -85,18 +85,20 @@ print("yes" if score < 100 and old_enough else "no")
 PY
 )"
   if [ "$RUN_AUTOLAB_ONCE" = "yes" ]; then
-    "$ROOT/autolab/scripts/autolab-once" >/dev/null 2>&1 || true
+    "$ROOT/lab/autolab/scripts/autolab-once" >/dev/null 2>&1 || true
   fi
 fi
 "$ROOT/bin/workspace-backup" --maintenance --quiet >/dev/null 2>&1 || true
+prune_backups 7 || true
+python3 "$ROOT/hands/scripts/nerve_inbox_drain.py" >/dev/null 2>&1 || true
 
 # MCP subsystem: lightweight health check and conditional reindex
-if [ -x "$ROOT/mcp/server/scripts/mcp-doctor" ]; then
-  "$ROOT/mcp/server/scripts/mcp-doctor" >/dev/null 2>&1 || true
+if [ -x "$ROOT/nervous/mcp/server/scripts/mcp-doctor" ]; then
+  "$ROOT/nervous/mcp/server/scripts/mcp-doctor" >/dev/null 2>&1 || true
 fi
-if [ -x "$ROOT/mcp/server/scripts/mcp-reindex" ]; then
+if [ -x "$ROOT/nervous/mcp/server/scripts/mcp-reindex" ]; then
   # Reindex if index is missing or older than 24 hours
-  DB="$ROOT/mcp/server/storage/memory_index.db"
+  DB="$ROOT/nervous/mcp/server/storage/memory_index.db"
   SHOULD_REINDEX="$(python3 - "$DB" <<'MCPPY'
 import pathlib, sys, time
 db = pathlib.Path(sys.argv[1])
@@ -109,7 +111,7 @@ else:
 MCPPY
 )"
   if [ "$SHOULD_REINDEX" = "yes" ]; then
-    "$ROOT/mcp/server/scripts/mcp-reindex" >/dev/null 2>&1 || true
+    "$ROOT/nervous/mcp/server/scripts/mcp-reindex" >/dev/null 2>&1 || true
   fi
 fi
 
@@ -119,7 +121,7 @@ if [ -f "$ROOT/bin/gstack-verify" ]; then
   if [ "$GSTACK_STATUS" != "ok" ]; then
     # Log drift as a warning but do NOT auto-repair — requires human confirmation
     DRIFT_MSG="gstack integrity drift detected (status: $GSTACK_STATUS) — run bin/gstack-repair to inspect"
-    python3 - "$ROOT/agent-system/logs/MAINTENANCE_LOG.md" "$DRIFT_MSG" <<'GSTACKPY'
+    python3 - "$ROOT/blood/logs/MAINTENANCE_LOG.md" "$DRIFT_MSG" <<'GSTACKPY'
 import sys, pathlib
 from datetime import datetime, timezone
 log = pathlib.Path(sys.argv[1])
@@ -134,7 +136,7 @@ fi
 
 # headroom proxy running check
 if ! nc -z 127.0.0.1 8787 >/dev/null 2>&1; then
-  python3 - "$ROOT/agent-system/logs/MAINTENANCE_LOG.md" "Headroom proxy is not running on port 8787 — context compression is inactive" <<'HEADROOMWARPY'
+  python3 - "$ROOT/blood/logs/MAINTENANCE_LOG.md" "Headroom proxy is not running on port 8787 — context compression is inactive" <<'HEADROOMWARPY'
 import sys, pathlib
 from datetime import datetime, timezone
 log = pathlib.Path(sys.argv[1])
@@ -148,10 +150,10 @@ fi
 
 
 # Communications subsystem: lightweight health check
-if [ -f "$ROOT/comms/imessage/scripts/imessage-status" ]; then
-  IMSG_STATUS="$(python3 "$ROOT/comms/imessage/scripts/imessage-status" 2>/dev/null | grep "Full Disk Access" | head -1 || echo "")"
+if [ -f "$ROOT/mouth/comms/imessage/scripts/imessage-status" ]; then
+  IMSG_STATUS="$(python3 "$ROOT/mouth/comms/imessage/scripts/imessage-status" 2>/dev/null | grep "Full Disk Access" | head -1 || echo "")"
   if echo "$IMSG_STATUS" | grep -q "DENIED"; then
-    python3 - "$ROOT/agent-system/logs/MAINTENANCE_LOG.md" "iMessage FDA denied — grant Full Disk Access in System Settings" <<'COMMSWARPY'
+    python3 - "$ROOT/blood/logs/MAINTENANCE_LOG.md" "iMessage FDA denied — grant Full Disk Access in System Settings" <<'COMMSWARPY'
 import sys, pathlib
 from datetime import datetime, timezone
 log = pathlib.Path(sys.argv[1])
@@ -165,9 +167,9 @@ COMMSWARPY
 fi
 
 # Orchestrator: run route-learn to update patterns from history + autolab
-if [ -f "$ROOT/orchestrator/scripts/route-learn" ]; then
+if [ -f "$ROOT/heart/orchestrator/scripts/route-learn" ]; then
   # Only run if there is routing history to learn from
-  HISTORY_COUNT="$(python3 - "$ROOT/orchestrator/router/history.json" <<'ORCHPY'
+  HISTORY_COUNT="$(python3 - "$ROOT/heart/orchestrator/router/history.json" <<'ORCHPY'
 import json, pathlib, sys
 p = pathlib.Path(sys.argv[1])
 try:
@@ -178,13 +180,13 @@ except Exception:
 ORCHPY
 )"
   if [ "${HISTORY_COUNT:-0}" -gt 0 ] 2>/dev/null; then
-    python3 "$ROOT/orchestrator/scripts/route-learn" --summary >/dev/null 2>&1 || true
+    python3 "$ROOT/heart/orchestrator/scripts/route-learn" --summary >/dev/null 2>&1 || true
   fi
 fi
 
 # Goal engine: lightweight monitor (no agent launch, safe)
-if [ -f "$ROOT/goal-engine/graph/task_graph.json" ]; then
-  python3 "$ROOT/goal-engine/scripts/goal-monitor" --quiet >/dev/null 2>&1 || true
+if [ -f "$ROOT/heart/goals/graph/task_graph.json" ]; then
+  python3 "$ROOT/heart/goals/scripts/goal-monitor" --quiet >/dev/null 2>&1 || true
 fi
 
 python3 - "$STATE_JSON" "$(now_stamp)" <<'PY'
@@ -204,7 +206,7 @@ tmp.replace(path)
 PY
 
 log_maintenance "Maintenance ran."
-if [ -f "$ROOT/scripts/system_intelligence.py" ]; then
-  python3 "$ROOT/scripts/system_intelligence.py" improve >/dev/null 2>&1 || true
+if [ -f "$ROOT/hands/scripts/system_intelligence.py" ]; then
+  python3 "$ROOT/hands/scripts/system_intelligence.py" improve >/dev/null 2>&1 || true
 fi
 echo "Maintenance completed."

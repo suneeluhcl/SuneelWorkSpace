@@ -226,7 +226,7 @@ def update_learning() -> None:
         prediction_engine.record("bin/next", context="overnight_test_loop", exit_code=0)
         
         # Log to adaptive identity loop
-        feedback_path = ROOT / "dna/dna/identity/adaptive/feedback_log.json"
+        feedback_path = ROOT / "dna/identity/adaptive/feedback_log.json"
         logs = load_json(feedback_path, [])
         logs.append({
             "timestamp": now_iso(),

@@ -8,9 +8,9 @@
 
 ## 2026-06-26 - Adaptive identity loop
 
-- Decision: Add `dna/dna/identity/adaptive/` as a bounded learning layer over the base identity.
+- Decision: Add `dna/identity/adaptive/` as a bounded learning layer over the base identity.
 - Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.
-- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/dna/identity/profile/identity_profile.md` or safety boundaries.
+- Safety: Adaptation requires repeated signals, applies only small adjustments, and never overrides `dna/identity/profile/identity_profile.md` or safety boundaries.
 
 ## 2026-06-26 - Predictive self-documenting workspace
 
@@ -142,4 +142,24 @@ The Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and que
 ## New Entry
 
 Several Ollama repair suggestions need to be addressed, including `mcp-reindex`, `memory-reindex`, and `agent-doctor`. These should be prioritized for immediate attention.
+
+
+
+---
+*Added by memory curator — 2026-07-01*
+
+## Recent Nerve Events
+
+- nervous -> ?:
+- skeleton -> ?:
+- blood -> ?:
+- hands -> ?:
+- mouth -> ?:
+- dna -> ?:
+- lab -> ?:
+- spine -> ?:
+- brain -> ?:
+- heart -> ?:
+- eyes -> ?:
+- ears -> ?:
 

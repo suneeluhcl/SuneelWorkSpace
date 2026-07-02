@@ -9,13 +9,13 @@ from pathlib import Path
 from datetime import datetime
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-RESOURCE_MAP = WORKSPACE / 'nervous/nervous/mcp/server/config/resource_map.json'
+RESOURCE_MAP = WORKSPACE / 'nervous/mcp/server/config/resource_map.json'
 
 SCAN_PATTERNS = [
     ('**/*.md', ['MEMORY', 'DECISIONS', 'SESSION_HANDOFF', 'ACTIVE_TASKS', 'MAINTENANCE', 'HANDOFF']),
     ('spine/state/*.json', None),
     ('brain/system/*.json', None),
-    ('heart/heart/orchestrator/mesh/*.json', None),
+    ('heart/orchestrator/mesh/*.json', None),
     ('brain/graph/knowledge_graph.json', None),
 ]
 

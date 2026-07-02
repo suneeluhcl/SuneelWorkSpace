@@ -2,4 +2,4 @@
 set -euo pipefail
 
 WORKSPACE="${WORKSPACE:-$HOME/SuneelWorkSpace}"
-python3 "$WORKSPACE/lab/lab/autolab/runner.py" "$@"
+python3 "$WORKSPACE/lab/autolab/runner.py" "$@"

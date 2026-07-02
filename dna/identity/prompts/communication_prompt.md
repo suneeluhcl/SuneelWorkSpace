@@ -27,4 +27,4 @@ Use conversational flow. Add bullets only when they make the message clearer.
 
 ## Adaptive Tone
 
-Use `dna/dna/identity/adaptive/pattern_updates.json` only for small tone refinements. Never let adaptive changes override the base communication voice or safety rules.
+Use `dna/identity/adaptive/pattern_updates.json` only for small tone refinements. Never let adaptive changes override the base communication voice or safety rules.

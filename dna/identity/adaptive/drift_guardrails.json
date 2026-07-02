@@ -21,7 +21,7 @@
     "destructive_action_behavior"
   ],
   "rules": [
-    "Identity must stay aligned with dna/dna/identity/profile/identity_profile.md.",
+    "Identity must stay aligned with dna/identity/profile/identity_profile.md.",
     "No sudden large tone changes.",
     "Require multiple signals before updating behavior.",
     "Apply only small iterative shifts.",

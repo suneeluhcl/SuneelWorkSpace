@@ -1,10 +1,25 @@
 {
   "resources": {
+    "brain_memory": {
+      "path": "brain/memory/",
+      "type": "directory",
+      "uri": "workspace://brain_memory"
+    },
     "dashboard_v3": {
       "description": "Control Center v3.0 with evolution engine, visual monitor, model status, and approval queue panels",
       "path": "eyes/dashboard/",
       "type": "webapp",
       "uri": "workspace://dashboard_v3"
+    },
+    "dna_identity": {
+      "path": "dna/identity/",
+      "type": "directory",
+      "uri": "workspace://dna_identity"
+    },
+    "ears_monitor": {
+      "path": "ears/monitor/",
+      "type": "directory",
+      "uri": "workspace://ears_monitor"
     },
     "evolution_engine": {
       "description": "Autonomous evolution engine with gap scanning and challenge generation",
@@ -18,17 +33,52 @@
       "type": "python_module",
       "uri": "workspace://evolution_gap_finder"
     },
+    "eyes_dashboard": {
+      "path": "eyes/dashboard/",
+      "type": "webapp",
+      "uri": "workspace://eyes_dashboard"
+    },
+    "heart_tasks": {
+      "path": "heart/tasks/",
+      "type": "directory",
+      "uri": "workspace://heart_tasks"
+    },
+    "lab_autolab": {
+      "path": "lab/autolab/",
+      "type": "directory",
+      "uri": "workspace://lab_autolab"
+    },
+    "lab_evolution": {
+      "path": "lab/evolution/",
+      "type": "directory",
+      "uri": "workspace://lab_evolution"
+    },
     "model_router": {
       "description": "Routes tasks to optimal model with quota-aware fallback chain",
       "path": "heart/model_router/router.py",
       "type": "python_module",
       "uri": "workspace://model_router"
     },
+    "nerve_registry": {
+      "path": "nervous/nerve_registry.json",
+      "type": "json",
+      "uri": "workspace://nerve_registry"
+    },
+    "nervous_system": {
+      "path": "nervous/",
+      "type": "directory",
+      "uri": "workspace://nervous_system"
+    },
     "night_shift_pipeline": {
       "description": "15-step nightly autonomous evolution pipeline",
       "path": "hands/automation/dag/pipelines/night_shift.yaml",
       "type": "dag_pipeline",
       "uri": "workspace://night_shift_pipeline"
+    },
+    "spine_state": {
+      "path": "spine/state/",
+      "type": "directory",
+      "uri": "workspace://spine_state"
     },
     "visual_repair_agent": {
       "description": "Auto-applies safe fixes and queues complex issues for approval",
@@ -68,38 +118,6 @@
       "file": "brain/anticipation/action_suggestions.md",
       "label": "Current suggested next actions"
     },
-    "workspace://spine/audit/gaps": "spine/audit/gap_analysis.md",
-    "workspace://spine/audit/improvement-plan": "spine/audit/improvement_plan.md",
-    "workspace://spine/audit/system": "spine/audit/system_audit.md",
-    "workspace://lab/autolab/adaptive-identity-strategy": {
-      "file": "lab/autolab/meta/adaptive_identity_strategy.md",
-      "label": "Autolab adaptive identity strategy"
-    },
-    "workspace://lab/autolab/failures": {
-      "file": "lab/autolab/meta/failure_patterns.json",
-      "label": "Autolab failure patterns"
-    },
-    "workspace://lab/autolab/frontier": {
-      "file": "lab/autolab/current_frontier.md",
-      "label": "Autolab current frontier"
-    },
-    "workspace://lab/autolab/insights": {
-      "file": "lab/autolab/meta/insights.md",
-      "label": "Autolab insights"
-    },
-    "workspace://lab/autolab/learning": {
-      "file": "lab/autolab/meta/learning_log.md",
-      "label": "Autolab learning log"
-    },
-    "workspace://lab/autolab/patterns": {
-      "file": "lab/autolab/meta/patterns.json",
-      "label": "Autolab patterns"
-    },
-    "workspace://lab/autolab/program": {
-      "file": "lab/autolab/program.md",
-      "label": "Autolab program/strategy"
-    },
-    "workspace://lab/autolab/system-improvement-strategy": "lab/autolab/meta/system_improvement_strategy.md",
     "workspace://context/active": {
       "file": "spine/state/ACTIVE_CONTEXT.json",
       "label": "Active session context"
@@ -107,6 +125,70 @@
     "workspace://decisions": {
       "file": "brain/memory/DECISIONS.md",
       "label": "Important decisions"
+    },
+    "workspace://dna/identity/adaptive/drift-guardrails": {
+      "file": "dna/identity/adaptive/drift_guardrails.json",
+      "label": "Adaptive identity drift guardrails"
+    },
+    "workspace://dna/identity/adaptive/feedback-log": {
+      "file": "dna/identity/adaptive/feedback_log.json",
+      "label": "Adaptive identity feedback log"
+    },
+    "workspace://dna/identity/adaptive/pattern-updates": {
+      "file": "dna/identity/adaptive/pattern_updates.json",
+      "label": "Adaptive identity pattern updates"
+    },
+    "workspace://dna/identity/adaptive/report": {
+      "file": "dna/identity/adaptive/reports/adaptation_report.md",
+      "label": "Adaptive identity report"
+    },
+    "workspace://dna/identity/adaptive/signal-weights": {
+      "file": "dna/identity/adaptive/signal_weights.json",
+      "label": "Adaptive identity signal weights"
+    },
+    "workspace://dna/identity/adaptive/signals": {
+      "file": "dna/identity/adaptive/signal_memory.json",
+      "label": "Adaptive identity signal memory"
+    },
+    "workspace://dna/identity/adaptive/state": {
+      "file": "dna/identity/adaptive/adaptation_state.json",
+      "label": "Adaptive identity state"
+    },
+    "workspace://dna/identity/behavioral-patterns": {
+      "file": "dna/identity/profile/behavioral_patterns.json",
+      "label": "Suneel behavioral patterns"
+    },
+    "workspace://dna/identity/communication-prompt": {
+      "file": "dna/identity/prompts/communication_prompt.md",
+      "label": "Communication voice prompt"
+    },
+    "workspace://dna/identity/decision": {
+      "file": "dna/identity/profile/decision_profile.md",
+      "label": "Suneel decision profile"
+    },
+    "workspace://dna/identity/preferences": {
+      "file": "dna/identity/profile/preferences.json",
+      "label": "Suneel identity preferences"
+    },
+    "workspace://dna/identity/profile": {
+      "file": "dna/identity/profile/identity_profile.md",
+      "label": "Suneel identity profile"
+    },
+    "workspace://dna/identity/prompt": {
+      "file": "dna/identity/prompts/identity_prompt.md",
+      "label": "Identity behavior prompt"
+    },
+    "workspace://dna/identity/routing": {
+      "file": "dna/identity/integration/routing_identity.json",
+      "label": "Identity routing rules"
+    },
+    "workspace://dna/identity/signals": {
+      "file": "dna/identity/interview/extracted_signals.json",
+      "label": "Identity interview extracted signals"
+    },
+    "workspace://dna/identity/tone": {
+      "file": "dna/identity/profile/tone_profile.md",
+      "label": "Suneel tone profile"
     },
     "workspace://filesystem/status": {
       "file": "spine/tools/mcp_filesystem_status.md",
@@ -138,7 +220,7 @@
       "label": "gstack integrity last verified status"
     },
     "workspace://gstack/policy": {
-      "file": "heart/heart/orchestrator/router/gstack_policy.json",
+      "file": "heart/orchestrator/router/gstack_policy.json",
       "label": "gstack task-to-skill policy"
     },
     "workspace://gstack/skills": {
@@ -157,81 +239,43 @@
       "file": "spine/state/WORKSPACE_HEALTH.json",
       "label": "Workspace health JSON"
     },
+    "workspace://heart/orchestrator/system-intelligence-policy": "heart/orchestrator/router/system_intelligence_policy.md",
     "workspace://identity": {
       "file": "skeleton/rules/IDENTITY.md",
       "label": "Agent identity and context"
     },
-    "workspace://dna/dna/identity/adaptive/drift-guardrails": {
-      "file": "dna/dna/identity/adaptive/drift_guardrails.json",
-      "label": "Adaptive identity drift guardrails"
+    "workspace://lab/autolab/adaptive-identity-strategy": {
+      "file": "lab/autolab/meta/adaptive_identity_strategy.md",
+      "label": "Autolab adaptive identity strategy"
     },
-    "workspace://dna/dna/identity/adaptive/feedback-log": {
-      "file": "dna/dna/identity/adaptive/feedback_log.json",
-      "label": "Adaptive identity feedback log"
+    "workspace://lab/autolab/failures": {
+      "file": "lab/autolab/meta/failure_patterns.json",
+      "label": "Autolab failure patterns"
     },
-    "workspace://dna/dna/identity/adaptive/pattern-updates": {
-      "file": "dna/dna/identity/adaptive/pattern_updates.json",
-      "label": "Adaptive identity pattern updates"
+    "workspace://lab/autolab/frontier": {
+      "file": "lab/autolab/current_frontier.md",
+      "label": "Autolab current frontier"
     },
-    "workspace://dna/dna/identity/adaptive/report": {
-      "file": "dna/dna/identity/adaptive/reports/adaptation_report.md",
-      "label": "Adaptive identity report"
+    "workspace://lab/autolab/insights": {
+      "file": "lab/autolab/meta/insights.md",
+      "label": "Autolab insights"
     },
-    "workspace://dna/dna/identity/adaptive/signal-weights": {
-      "file": "dna/dna/identity/adaptive/signal_weights.json",
-      "label": "Adaptive identity signal weights"
+    "workspace://lab/autolab/learning": {
+      "file": "lab/autolab/meta/learning_log.md",
+      "label": "Autolab learning log"
     },
-    "workspace://dna/dna/identity/adaptive/signals": {
-      "file": "dna/dna/identity/adaptive/signal_memory.json",
-      "label": "Adaptive identity signal memory"
+    "workspace://lab/autolab/patterns": {
+      "file": "lab/autolab/meta/patterns.json",
+      "label": "Autolab patterns"
     },
-    "workspace://dna/dna/identity/adaptive/state": {
-      "file": "dna/dna/identity/adaptive/adaptation_state.json",
-      "label": "Adaptive identity state"
+    "workspace://lab/autolab/program": {
+      "file": "lab/autolab/program.md",
+      "label": "Autolab program/strategy"
     },
-    "workspace://dna/identity/behavioral-patterns": {
-      "file": "dna/dna/identity/profile/behavioral_patterns.json",
-      "label": "Suneel behavioral patterns"
-    },
-    "workspace://dna/identity/communication-prompt": {
-      "file": "dna/dna/identity/prompts/communication_prompt.md",
-      "label": "Communication voice prompt"
-    },
-    "workspace://dna/identity/decision": {
-      "file": "dna/dna/identity/profile/decision_profile.md",
-      "label": "Suneel decision profile"
-    },
-    "workspace://dna/identity/preferences": {
-      "file": "dna/dna/identity/profile/preferences.json",
-      "label": "Suneel identity preferences"
-    },
-    "workspace://dna/identity/profile": {
-      "file": "dna/dna/identity/profile/identity_profile.md",
-      "label": "Suneel identity profile"
-    },
-    "workspace://dna/identity/prompt": {
-      "file": "dna/dna/identity/prompts/identity_prompt.md",
-      "label": "Identity behavior prompt"
-    },
-    "workspace://dna/identity/routing": {
-      "file": "dna/identity/integration/routing_identity.json",
-      "label": "Identity routing rules"
-    },
-    "workspace://dna/identity/signals": {
-      "file": "dna/identity/interview/extracted_signals.json",
-      "label": "Identity interview extracted signals"
-    },
-    "workspace://dna/identity/tone": {
-      "file": "dna/dna/identity/profile/tone_profile.md",
-      "label": "Suneel tone profile"
-    },
+    "workspace://lab/autolab/system-improvement-strategy": "lab/autolab/meta/system_improvement_strategy.md",
     "workspace://logs/recent": {
       "file": "blood/logs/SESSION_LOG.md",
       "label": "Recent session log"
-    },
-    "workspace://nervous/mcp/state": {
-      "file": "nervous/nervous/mcp/server/state/mcp_state.json",
-      "label": "MCP subsystem state"
     },
     "workspace://memory": {
       "file": "brain/memory/MEMORY.md",
@@ -247,11 +291,14 @@
       "file": "brain/memory/vector/semantic_search.py",
       "label": "Semantic search query endpoint"
     },
+    "workspace://nervous/mcp/state": {
+      "file": "nervous/mcp/server/state/mcp_state.json",
+      "label": "MCP subsystem state"
+    },
     "workspace://notes": {
       "file": "brain/memory/NOTES.md",
       "label": "Temporary notes"
     },
-    "workspace://heart/orchestrator/system-intelligence-policy": "heart/heart/orchestrator/router/system_intelligence_policy.md",
     "workspace://overview": {
       "file": "skeleton/rules/AGENT_SYSTEM.md",
       "label": "Canonical workspace instructions"
@@ -264,11 +311,11 @@
     "workspace://research/decisions": "brain/research/decisions/README.md",
     "workspace://research/index": "brain/research/ideas/index.json",
     "workspace://routing/history": {
-      "file": "heart/heart/orchestrator/router/history.json",
+      "file": "heart/orchestrator/router/history.json",
       "label": "Routing decision history"
     },
     "workspace://routing/logs": {
-      "file": "heart/heart/orchestrator/router/routing_logs.md",
+      "file": "heart/orchestrator/router/routing_logs.md",
       "label": "Routing decision logs"
     },
     "workspace://routing/patterns": {
@@ -280,7 +327,7 @@
       "label": "Agent performance report"
     },
     "workspace://routing/profiles": {
-      "file": "heart/heart/orchestrator/router/agent_profiles.json",
+      "file": "heart/orchestrator/router/agent_profiles.json",
       "label": "Agent capability profiles"
     },
     "workspace://routing/state": {
@@ -299,6 +346,11 @@
       "file": "spine/tools/mcp_shortcuts_status.md",
       "label": "macOS Shortcuts MCP integration status and summary"
     },
+    "workspace://spine/audit/gaps": "spine/audit/gap_analysis.md",
+    "workspace://spine/audit/improvement-plan": "spine/audit/improvement_plan.md",
+    "workspace://spine/audit/system": "spine/audit/system_audit.md",
+    "workspace://spine/tools/inventory": "spine/tools/tool_inventory.json",
+    "workspace://spine/tools/recommendations": "spine/tools/recommendations.md",
     "workspace://startup-checklist": {
       "file": "skeleton/rules/STARTUP_CHECKLIST.md",
       "label": "Startup checklist"
@@ -320,61 +372,9 @@
       "file": "heart/tasks/TASK_QUEUE.md",
       "label": "Task queue"
     },
-    "workspace://spine/tools/inventory": "spine/tools/tool_inventory.json",
-    "workspace://spine/tools/recommendations": "spine/tools/recommendations.md",
     "workspace://workflow-rules": {
       "file": "skeleton/rules/WORKFLOW_RULES.md",
       "label": "Workflow rules"
-    },
-    "brain_memory": {
-      "path": "brain/memory/",
-      "type": "directory",
-      "uri": "workspace://brain_memory"
-    },
-    "heart_tasks": {
-      "path": "heart/tasks/",
-      "type": "directory",
-      "uri": "workspace://heart_tasks"
-    },
-    "eyes_dashboard": {
-      "path": "eyes/eyes/dashboard/",
-      "type": "webapp",
-      "uri": "workspace://eyes_dashboard"
-    },
-    "ears_monitor": {
-      "path": "ears/ears/monitor/",
-      "type": "directory",
-      "uri": "workspace://ears_monitor"
-    },
-    "nervous_system": {
-      "path": "nervous/",
-      "type": "directory",
-      "uri": "workspace://nervous_system"
-    },
-    "spine_state": {
-      "path": "spine/state/",
-      "type": "directory",
-      "uri": "workspace://spine_state"
-    },
-    "lab_autolab": {
-      "path": "lab/lab/autolab/",
-      "type": "directory",
-      "uri": "workspace://lab_autolab"
-    },
-    "lab_evolution": {
-      "path": "lab/lab/evolution/",
-      "type": "directory",
-      "uri": "workspace://lab_evolution"
-    },
-    "dna_identity": {
-      "path": "dna/dna/identity/",
-      "type": "directory",
-      "uri": "workspace://dna_identity"
-    },
-    "nerve_registry": {
-      "path": "nervous/nerve_registry.json",
-      "type": "json",
-      "uri": "workspace://nerve_registry"
     }
   },
   "workspace://automation/evolution_scores": {
@@ -389,49 +389,49 @@
     "description": "Notes with no connections",
     "file": "brain/graph/reports/orphan_notes.md"
   },
-  "workspace://mouth/comms/imessage/recent": "mouth/comms/imessage/logs/imessage_access.log",
-  "workspace://mouth/comms/imessage/status": "mouth/comms/imessage/state/imessage_state.json",
-  "workspace://mouth/comms/mail/recent": "mouth/comms/mail/logs/mail_access.log",
-  "workspace://mouth/comms/mail/status": "mouth/mouth/comms/config/mail_config.json",
-  "workspace://mouth/comms/policy": "mouth/mouth/comms/config/outbound_policy.json",
-  "workspace://mouth/comms/reports/latest": "mouth/comms/reports/latest_comms_report.md",
-  "workspace://mouth/comms/status": "mouth/mouth/comms/config/comms_config.json",
   "workspace://docker/status": {
     "description": "Docker container connector",
     "file": "bin/docker-mcp"
   },
-  "workspace://nervous/gateway/api": {
-    "description": "Agent REST API gateway (port 8888)",
-    "file": "nervous/gateway/api.py"
-  },
-  "workspace://jupyter/notebooks": {
-    "description": "Jupyter notebook connector",
-    "file": "bin/jupyter-mcp"
-  },
-  "workspace://ollama/status": {
-    "description": "Ollama local model connector",
-    "file": "bin/ollama-mcp"
-  },
-  "workspace://heart/heart/orchestrator/mesh/agents": {
+  "workspace://heart/orchestrator/mesh/agents": {
     "description": "Multi-agent registry",
-    "file": "heart/heart/orchestrator/mesh/agent_registry.json"
+    "file": "heart/orchestrator/mesh/agent_registry.json"
   },
-  "workspace://heart/heart/orchestrator/mesh/queue": {
+  "workspace://heart/orchestrator/mesh/queue": {
     "description": "Active multi-agent task queue",
-    "file": "heart/heart/orchestrator/mesh/task_queue.json"
+    "file": "heart/orchestrator/mesh/task_queue.json"
   },
-  "workspace://research/arxiv": {
-    "description": "Arxiv research paper connector",
-    "file": "bin/arxiv-mcp"
+  "workspace://hermes/skills": {
+    "description": "Hermes Agent learned skill documents",
+    "path": "dna/agents/hermes/skills/",
+    "type": "resource"
   },
   "workspace://hermes/status": {
     "description": "Hermes Agent status and skill count",
     "path": "dna/agents/hermes/",
     "type": "resource"
   },
-  "workspace://hermes/skills": {
-    "description": "Hermes Agent learned skill documents",
-    "path": "dna/agents/hermes/skills/",
-    "type": "resource"
+  "workspace://jupyter/notebooks": {
+    "description": "Jupyter notebook connector",
+    "file": "bin/jupyter-mcp"
+  },
+  "workspace://mouth/comms/imessage/recent": "mouth/comms/imessage/logs/imessage_access.log",
+  "workspace://mouth/comms/imessage/status": "mouth/comms/imessage/state/imessage_state.json",
+  "workspace://mouth/comms/mail/recent": "mouth/comms/mail/logs/mail_access.log",
+  "workspace://mouth/comms/mail/status": "mouth/comms/config/mail_config.json",
+  "workspace://mouth/comms/policy": "mouth/comms/config/outbound_policy.json",
+  "workspace://mouth/comms/reports/latest": "mouth/comms/reports/latest_comms_report.md",
+  "workspace://mouth/comms/status": "mouth/comms/config/comms_config.json",
+  "workspace://nervous/gateway/api": {
+    "description": "Agent REST API gateway (port 8888)",
+    "file": "nervous/gateway/api.py"
+  },
+  "workspace://ollama/status": {
+    "description": "Ollama local model connector",
+    "file": "bin/ollama-mcp"
+  },
+  "workspace://research/arxiv": {
+    "description": "Arxiv research paper connector",
+    "file": "bin/arxiv-mcp"
   }
 }

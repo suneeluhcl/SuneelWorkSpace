@@ -39,8 +39,8 @@ def main():
         "brain/memory/PATTERNS.md",
         "brain/memory/INSIGHTS.md",
         "brain/memory/SESSION_HANDOFF.md",
-        "dna/dna/identity/profile/identity_profile.md",
-        "dna/dna/identity/profile/decision_profile.md"
+        "dna/identity/profile/identity_profile.md",
+        "dna/identity/profile/decision_profile.md"
     ]
     
     # Find all files in brain/research/decisions/

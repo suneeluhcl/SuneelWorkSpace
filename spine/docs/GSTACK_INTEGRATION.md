@@ -3,8 +3,8 @@
 gstack is a collection of specialist reasoning modes (skills) for Claude Code. Each skill activates a domain-expert persona with a structured methodology.
 
 Installed at: `~/.claude/skills/gstack/`  
-Policy file: `heart/heart/orchestrator/router/gstack_policy.json`  
-Task types enhanced: `heart/heart/orchestrator/router/task_types.json`
+Policy file: `heart/orchestrator/router/gstack_policy.json`  
+Task types enhanced: `heart/orchestrator/router/task_types.json`
 
 ## What gstack adds
 

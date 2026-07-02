@@ -17,7 +17,7 @@
     {
       "after": "mail-draft-reply",
       "suggest": [
-        "Review draft tone against dna/dna/identity/profile/tone_profile.md",
+        "Review draft tone against dna/identity/profile/tone_profile.md",
         "Send only after explicit approval"
       ]
     },

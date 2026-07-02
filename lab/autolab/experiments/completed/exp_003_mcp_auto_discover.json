@@ -6,13 +6,13 @@
   "actions": [
     {
       "type": "script_run",
-      "target": "nervous/nervous/mcp/server/scripts/auto_discover.py",
+      "target": "nervous/mcp/server/scripts/auto_discover.py",
       "description": "Scans workspace for unregistered files and proposes additions",
-      "command": "python3 nervous/nervous/mcp/server/scripts/auto_discover.py --propose"
+      "command": "python3 nervous/mcp/server/scripts/auto_discover.py --propose"
     }
   ],
   "success_metric": "Number of proposed new MCP resources",
-  "measurement_command": "python3 nervous/nervous/mcp/server/scripts/auto_discover.py 2>/dev/null | grep 'Unregistered:' | grep -o '[0-9]*' || echo 0",
+  "measurement_command": "python3 nervous/mcp/server/scripts/auto_discover.py 2>/dev/null | grep 'Unregistered:' | grep -o '[0-9]*' || echo 0",
   "baseline_value": "126",
   "result_value": "126",
   "score_delta": 0.0,

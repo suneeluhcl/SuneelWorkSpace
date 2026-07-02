@@ -15,13 +15,13 @@
   },
   "identity": {
     "adaptive": {
-      "drift_guardrails": "dna/dna/identity/adaptive/drift_guardrails.json",
+      "drift_guardrails": "dna/identity/adaptive/drift_guardrails.json",
       "enabled": true,
-      "pattern_updates": "dna/dna/identity/adaptive/pattern_updates.json",
+      "pattern_updates": "dna/identity/adaptive/pattern_updates.json",
       "scope": "small tone refinements only",
       "send_requires_explicit_approval": true
     },
-    "communication_prompt": "dna/dna/identity/prompts/communication_prompt.md",
+    "communication_prompt": "dna/identity/prompts/communication_prompt.md",
     "enabled": true,
     "rules": [
       "short_direct_casual",
@@ -29,7 +29,7 @@
       "never_condescending",
       "do_not_send_without_explicit_approval"
     ],
-    "tone_profile": "dna/dna/identity/profile/tone_profile.md"
+    "tone_profile": "dna/identity/profile/tone_profile.md"
   },
   "imessage": {
     "automation_permission_required": true,

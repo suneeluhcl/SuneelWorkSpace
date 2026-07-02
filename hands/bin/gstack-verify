@@ -11,8 +11,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-WORKSPACE = Path(__file__).resolve().parent.parent
-CONFIG = WORKSPACE / "mcp" / "config" / "gstack_version.json"
+WORKSPACE = Path(__file__).resolve().parent.parent.parent
+CONFIG = WORKSPACE / "nervous" / "mcp" / "config" / "gstack_version.json"
 GSTACK = Path.home() / ".claude" / "skills" / "gstack"
 
 
@@ -113,7 +113,7 @@ def main(json_out: bool = False) -> int:
 
 
 def _update_verified(cfg: dict, now: str, status: str):
-    status_file = WORKSPACE / "mcp" / "server" / "state" / "gstack_verify_status.json"
+    status_file = WORKSPACE / "nervous" / "mcp" / "server" / "state" / "gstack_verify_status.json"
     status_file.parent.mkdir(parents=True, exist_ok=True)
     status_data = {
         "last_verified": now,

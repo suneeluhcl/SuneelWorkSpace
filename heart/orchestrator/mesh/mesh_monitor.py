@@ -8,8 +8,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 WORKSPACE = Path(os.environ.get('WORKSPACE', Path.home() / 'SuneelWorkSpace'))
-QUEUE_FILE = WORKSPACE / 'heart/heart/orchestrator/mesh/task_queue.json'
-REGISTRY_FILE = WORKSPACE / 'heart/heart/orchestrator/mesh/agent_registry.json'
+QUEUE_FILE = WORKSPACE / 'heart/orchestrator/mesh/task_queue.json'
+REGISTRY_FILE = WORKSPACE / 'heart/orchestrator/mesh/agent_registry.json'
 LOG_FILE = WORKSPACE / 'blood/logs/mesh_monitor.log'
 
 

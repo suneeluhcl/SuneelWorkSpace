@@ -7,7 +7,7 @@
   "nerve_propagator": "nervous/nerve_propagator.py",
   "provides": {
     "memory_search": "brain/memory/",
-    "vector_memory": "brain/memory/vector_store/",
+    "vector_memory": "brain/memory/vector/",
     "anticipation": "brain/anticipation/",
     "research": "brain/research/",
     "knowledge_graph": "brain/graph/",
@@ -23,8 +23,12 @@
     "brain/memory/MEMORY.md",
     "brain/memory/DECISIONS.md",
     "brain/memory/SESSION_HANDOFF.md",
-    "brain/anticipation/anticipation_engine.py",
+    "brain/anticipation/prediction_engine.py",
     "brain/memory/logs/vector_embed.log"
   ],
-  "cli_commands": ["memory-search", "memory-store", "anticipate"]
+  "cli_commands": [
+    "memory-search",
+    "memory-store",
+    "anticipate"
+  ]
 }

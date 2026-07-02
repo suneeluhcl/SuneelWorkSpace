@@ -46,5 +46,5 @@ This document outlines the directory structure and organization of Suneel's work
 - `system_audit.md` — Full metadata, gap analyses, and improvement plans.
 
 ### `bin/`
-- The CLI command layer. Subsystem scripts (e.g. goal commands, MCP controls, orchestrator routers) are defined as relative symlinks to their source directories (`heart/goals/scripts/`, `nervous/nervous/mcp/server/scripts/`, `heart/orchestrator/scripts/`) to eliminate file duplication while maintaining CLI invocation compatibility.
+- The CLI command layer. Subsystem scripts (e.g. goal commands, MCP controls, orchestrator routers) are defined as relative symlinks to their source directories (`heart/goals/scripts/`, `nervous/mcp/server/scripts/`, `heart/orchestrator/scripts/`) to eliminate file duplication while maintaining CLI invocation compatibility.
 

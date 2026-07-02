@@ -1,10 +1,10 @@
 {
   "adaptive_identity": {
     "apply_style": "small_bounded_adjustments_only",
-    "drift_guardrails": "dna/dna/identity/adaptive/drift_guardrails.json",
+    "drift_guardrails": "dna/identity/adaptive/drift_guardrails.json",
     "enabled": true,
     "never_override_base_identity": true,
-    "pattern_updates": "dna/dna/identity/adaptive/pattern_updates.json"
+    "pattern_updates": "dna/identity/adaptive/pattern_updates.json"
   },
   "automation": {
     "approval_required_for": [

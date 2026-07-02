@@ -18,11 +18,11 @@ Claude should apply Suneel's identity profile during workspace sessions.
 - Ask only for serious system risk or safety-gated actions.
 - Never wipe the system or delete important files automatically.
 
-Full source: `dna/dna/identity/prompts/identity_prompt.md`.
+Full source: `dna/identity/prompts/identity_prompt.md`.
 
-Adaptive source: `dna/dna/identity/adaptive/pattern_updates.json`.
+Adaptive source: `dna/identity/adaptive/pattern_updates.json`.
 
-Guardrails: `dna/dna/identity/adaptive/drift_guardrails.json`.
+Guardrails: `dna/identity/adaptive/drift_guardrails.json`.
 
 <!-- adaptive-identity:start -->
 ## Adaptive Identity Loop

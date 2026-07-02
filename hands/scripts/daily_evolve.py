@@ -526,10 +526,10 @@ def run_life_automation(phrase: str):
 # ---------------------------------------------------------------------------
 def run_self_training():
     print("📈 Running Self-Training & Model Optimization Loop...")
-    feedback_path = ROOT / "dna/dna/dna/identity/adaptive/feedback_log.json"
+    feedback_path = ROOT / "dna/identity/adaptive/feedback_log.json"
     failure_path = ROOT / "lab/testing/failure_log.json"
-    state_path = ROOT / "dna/dna/dna/identity/adaptive/adaptation_state.json"
-    patterns_path = ROOT / "dna/dna/dna/identity/adaptive/pattern_updates.json"
+    state_path = ROOT / "dna/identity/adaptive/adaptation_state.json"
+    patterns_path = ROOT / "dna/identity/adaptive/pattern_updates.json"
     
     feedback = read_json(feedback_path, {})
     events = feedback.get("events", []) if isinstance(feedback, dict) else feedback
@@ -573,7 +573,7 @@ def run_self_training():
     write_json(patterns_path, pattern_updates)
     
     # Update anticipation engine records
-    pred_memory_path = ROOT / "brain/brain/anticipation/prediction_memory.json"
+    pred_memory_path = ROOT / "brain/anticipation/prediction_memory.json"
     if pred_memory_path.exists():
         try:
             pred_mem = json.loads(pred_memory_path.read_text())

@@ -42,7 +42,7 @@ mcp-doctor
 
 If `comms_*` tools not found:
 1. MCP server needs restart: `mcp-stop && mcp-start`
-2. Check: `grep -c "comms_" ~/SuneelWorkSpace/nervous/nervous/mcp/server/main.py`
+2. Check: `grep -c "comms_" ~/SuneelWorkSpace/nervous/mcp/server/main.py`
    - Should return ~20
 
 ---
@@ -64,7 +64,7 @@ If `comms_*` tools not found:
 | `mouth/comms/imessage/state/drafts/` | Individual draft JSON files |
 | `mouth/comms/imessage/logs/imessage_outbound.log` | Send audit log |
 | `mouth/comms/mail/state/mail_state.json` | Mail subsystem state |
-| `mouth/mouth/comms/config/comms_config.json` | Main config |
+| `mouth/comms/config/comms_config.json` | Main config |
 
 ---
 

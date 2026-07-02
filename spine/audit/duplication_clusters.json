@@ -25,16 +25,16 @@
       "type": "exact_copy",
       "resolution": "symlink",
       "files": [
-        {"path": "bin/mcp-doctor", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-doctor"},
-        {"path": "bin/mcp-reindex", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-reindex"},
-        {"path": "bin/mcp-repair", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-repair"},
-        {"path": "bin/mcp-report", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-report"},
-        {"path": "bin/mcp-start", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-start"},
-        {"path": "bin/mcp-status", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-status"},
-        {"path": "bin/mcp-stop", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-stop"},
-        {"path": "bin/mcp-test", "role": "symlink -> ../nervous/nervous/mcp/server/scripts/mcp-test"}
+        {"path": "bin/mcp-doctor", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-doctor"},
+        {"path": "bin/mcp-reindex", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-reindex"},
+        {"path": "bin/mcp-repair", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-repair"},
+        {"path": "bin/mcp-report", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-report"},
+        {"path": "bin/mcp-start", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-start"},
+        {"path": "bin/mcp-status", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-status"},
+        {"path": "bin/mcp-stop", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-stop"},
+        {"path": "bin/mcp-test", "role": "symlink -> ../nervous/mcp/server/scripts/mcp-test"}
       ],
-      "canonical": "nervous/nervous/mcp/server/scripts/",
+      "canonical": "nervous/mcp/server/scripts/",
       "reason": "bin/ is the CLI entrypoint layer; subsystem scripts/ hold the source of truth"
     },
     {

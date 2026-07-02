@@ -37,7 +37,7 @@ workspace-brain MCP server (main.py)
 ## Index lifecycle
 
 - **Source of truth**: markdown and JSON files in `brain/memory/` and `lab/autolab/`.
-- **Index**: SQLite FTS5 table in `nervous/nervous/mcp/server/storage/memory_index.db`.
+- **Index**: SQLite FTS5 table in `nervous/mcp/server/storage/memory_index.db`.
 - **Reindex**: `mcp-reindex` deletes all index entries, re-parses source files, rebuilds.
 - **Auto-reindex**: On server startup, if index is empty. On maintenance via `agent-maintain`.
 - **Index is disposable**: delete `memory_index.db` and run `mcp-reindex` to recover cleanly.

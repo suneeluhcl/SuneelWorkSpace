@@ -132,7 +132,7 @@ async def run_health_repair(broadcast: Broadcaster, job_id: str) -> dict:
     # ── Stage 3: MCP server health ──────────────────────────────────────────
     await broadcast("info", "🧠 Stage 3/8: Checking MCP server health…")
     code, out = _run_cmd(
-        "python3 nervous/nervous/mcp/server/main.py --health-check 2>&1 || echo 'ok'", timeout=12
+        "python3 nervous/mcp/server/main.py --health-check 2>&1 || echo 'ok'", timeout=12
     )
     await broadcast("success", "  ✓ MCP check complete")
     stages["3"] = {"mcp_checked": True}
@@ -148,7 +148,7 @@ async def run_health_repair(broadcast: Broadcaster, job_id: str) -> dict:
 
     # ── Stage 5: Pipeline state recovery ────────────────────────────────────
     await broadcast("info", "🔄 Stage 5/8: Recovering interrupted pipeline state…")
-    state_path = os.path.join(WORKSPACE_ROOT, "eyes/eyes/dashboard/execution/pipeline_state.json")
+    state_path = os.path.join(WORKSPACE_ROOT, "eyes/dashboard/execution/pipeline_state.json")
     if os.path.exists(state_path):
         try:
             state = json.loads(Path(state_path).read_text())

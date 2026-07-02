@@ -15,8 +15,10 @@ if ! curl -sf "$OLLAMA_BASE/api/tags" -o /dev/null 2>/dev/null; then
   exit 0
 fi
 
-# Get the staged diff (Python files only)
-DIFF=$(git diff --cached --diff-filter=ACM -- "*.py" 2>/dev/null | head -200)
+# Get the staged diff (Python files only). head closing the pipe early on a
+# large diff sends SIGPIPE back to git diff; under pipefail that would abort
+# the whole hook, so fall back to an empty diff instead of failing the commit.
+DIFF=$(git diff --cached --diff-filter=ACM -- "*.py" 2>/dev/null | head -200) || DIFF=""
 
 if [ -z "$DIFF" ] || [ "$(echo "$DIFF" | wc -l)" -lt "$MIN_DIFF_LINES" ]; then
   exit 0

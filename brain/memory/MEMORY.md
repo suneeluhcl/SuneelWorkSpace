@@ -63,8 +63,8 @@
 - Suneel prefers autopilot by default, with questions only for serious system risk or safety-gated actions.
 - Suneel chooses tools by simplicity, cost, power, speed, then reliability.
 - Hard boundary: never wipe the system or delete important files automatically.
-- Adaptive identity loop lives in `dna/dna/identity/adaptive/` and learns slowly from accepted, edited, rejected, and adjusted outputs while preserving the original identity profile.
-- Adaptive identity now uses weighted signals from `dna/dna/identity/adaptive/signal_weights.json` so rejected/manual/heavy-edit feedback influences learning more than simple acceptance.
+- Adaptive identity loop lives in `dna/identity/adaptive/` and learns slowly from accepted, edited, rejected, and adjusted outputs while preserving the original identity profile.
+- Adaptive identity now uses weighted signals from `dna/identity/adaptive/signal_weights.json` so rejected/manual/heavy-edit feedback influences learning more than simple acceptance.
 
 ## 2026-06-26 - Anticipatory intelligence
 
@@ -134,4 +134,17 @@ The recent Ollama suggestions indicate a need for memory reindexing and agent do
 ## Recent Nerve Events
 
 The recent nerve events suggest that Suneel has been actively working on various projects, including skeleton, blood, hands, mouth, dna, lab, spine, brain, heart, eyes, ears, nervous, and lab.
+
+
+
+---
+*Added by memory curator — 2026-07-01*
+
+## Recent Projects
+
+* Implemented Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines
+
+## Ollama Suggestions
+
+* Investigate and implement `mcp-reindex`, `memory-reindex`, and `agent-doctor` suggestions
 

@@ -3,8 +3,8 @@ import os
 import json
 import socket
 
-MCP_STATE = "/Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/state/mcp_state.json"
-LAST_INDEX = "/Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/state/last_index.json"
+MCP_STATE = "/Users/MAC/SuneelWorkSpace/nervous/mcp/server/state/mcp_state.json"
+LAST_INDEX = "/Users/MAC/SuneelWorkSpace/nervous/mcp/server/state/last_index.json"
 
 def get_mcp_status():
     status = {

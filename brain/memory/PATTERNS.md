@@ -14,7 +14,7 @@ For user-facing output, use Suneel's voice: short, direct, casual, conversationa
 
 ## Adaptive Identity Pattern
 
-Record meaningful accept/edit/reject/adjust signals in `dna/dna/identity/adaptive/feedback_log.json`. Extract repeated patterns into `signal_memory.json`, propose small updates in `pattern_updates.json`, and enforce `drift_guardrails.json` before any behavior shift.
+Record meaningful accept/edit/reject/adjust signals in `dna/identity/adaptive/feedback_log.json`. Extract repeated patterns into `signal_memory.json`, propose small updates in `pattern_updates.json`, and enforce `drift_guardrails.json` before any behavior shift.
 
 ## Anticipation Pattern
 
@@ -69,5 +69,18 @@ Implement automated model rotation and versioning in heart/ as suggested by the 
 Use Ollama's repair and learning engines to anticipate potential issues and suggest next actions. Record command and workflow events in `brain/anticipation/prediction_memory.json` with consideration for Ollama's capabilities.
 
 ## Predictive Maintenance System Pattern
+Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.
+
+
+
+---
+*Added by memory curator — 2026-07-01*
+
+## Ollama Integration Pattern Update
+
+With the integration of Ollama and Hermes, we can now anticipate potential issues and suggest next actions more accurately. This pattern should be updated to reflect this new capability.
+
+## Predictive Maintenance System
+
 Develop a predictive maintenance system using blood/telemetry data to forecast potential anomalies.
 

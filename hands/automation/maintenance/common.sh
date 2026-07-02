@@ -75,6 +75,42 @@ backup_item() {
   printf '%s\n' "$dest"
 }
 
+# Delete .agent-backups/<timestamp> snapshot dirs older than N days (default 7).
+# Age is parsed from the YYYYMMDD-HHMMSS directory name itself, not filesystem
+# mtime — snapshot dir mtimes get touched after creation and don't reflect age.
+# Only removes directories matching that naming pattern; leaves README.md and
+# any other non-snapshot files untouched.
+prune_backups() {
+  retention_days="${1:-7}"
+  [ -d "$BACKUP_ROOT" ] || return 0
+  python3 - "$BACKUP_ROOT" "$retention_days" "$MAINT_LOG" <<'PY' || true
+import sys, re, shutil
+from pathlib import Path
+from datetime import datetime, timedelta
+
+root = Path(sys.argv[1])
+retention_days = float(sys.argv[2])
+log_path = Path(sys.argv[3])
+cutoff = datetime.now() - timedelta(days=retention_days)
+pattern = re.compile(r"^(\d{8})-(\d{6})$")
+
+for entry in sorted(root.iterdir()):
+    if not entry.is_dir():
+        continue
+    m = pattern.match(entry.name)
+    if not m:
+        continue
+    try:
+        created = datetime.strptime(entry.name, "%Y%m%d-%H%M%S")
+    except ValueError:
+        continue
+    if created < cutoff:
+        shutil.rmtree(entry, ignore_errors=True)
+        with open(log_path, "a") as f:
+            f.write(f"- Pruned backup snapshot older than {retention_days:g}d: {entry.name}\n")
+PY
+}
+
 is_json_valid() {
   [ -f "$1" ] && python3 -m json.tool "$1" >/dev/null 2>&1
 }

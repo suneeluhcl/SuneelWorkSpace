@@ -9,7 +9,7 @@ Vector memory search, context anticipation, and research aggregation
 - Research aggregation
 
 ## 🔗 System Role
-Part of the **brain** organ in the 12-organ SuneelWorkSpace architecture.
+Part of the **[[brain]]** organ in the 12-organ SuneelWorkSpace architecture.
 
 ## 📂 Contents
 - `Adwi Home.md`

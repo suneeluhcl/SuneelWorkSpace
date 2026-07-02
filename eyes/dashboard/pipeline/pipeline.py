@@ -319,7 +319,7 @@ class Pipeline:
 
 def _write_telemetry(task_type: str, outcome: str, duration_ms: int) -> None:
     try:
-        sys.path.insert(0, os.path.join(WORKSPACE, "agent-system", "telemetry"))
+        sys.path.insert(0, os.path.join(WORKSPACE, "blood", "telemetry"))
         from telemetry_writer import write_trace
         write_trace("control_center", task_type, outcome, duration_ms)
     except Exception:

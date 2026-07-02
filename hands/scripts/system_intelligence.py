@@ -56,9 +56,9 @@ SAFE_CLI_TOOLS = [
 ]
 
 REPORT_RESOURCES = {
-    "workspace://spine/spine/audit/system": "spine/spine/audit/system_audit.md",
-    "workspace://spine/spine/audit/gaps": "spine/spine/audit/gap_analysis.md",
-    "workspace://spine/spine/audit/improvement-plan": "spine/spine/audit/improvement_plan.md",
+    "workspace://spine/audit/system": "spine/audit/system_audit.md",
+    "workspace://spine/audit/gaps": "spine/audit/gap_analysis.md",
+    "workspace://spine/audit/improvement-plan": "spine/audit/improvement_plan.md",
     "workspace://system/profile": "spine/system-context/system_profile.json",
     "workspace://spine/tools/inventory": "spine/tools/tool_inventory.json",
     "workspace://spine/tools/recommendations": "spine/tools/recommendations.md",
@@ -67,9 +67,9 @@ REPORT_RESOURCES = {
     "workspace://memory/patterns": "brain/memory/PATTERNS.md",
     "workspace://memory/insights": "brain/memory/INSIGHTS.md",
     "workspace://policy/bounded-self-upgrade": "skeleton/rules/BOUNDED_SELF_UPGRADE.md",
-    "workspace://heart/orchestrator/system-intelligence-policy": "heart/heart/heart/orchestrator/router/system_intelligence_policy.md",
+    "workspace://heart/orchestrator/system-intelligence-policy": "heart/orchestrator/router/system_intelligence_policy.md",
     "workspace://goals/idea-pipeline": "heart/goals/planner/idea_execution_pipeline.md",
-    "workspace://lab/lab/autolab/system-improvement-strategy": "lab/lab/autolab/meta/system_improvement_strategy.md",
+    "workspace://lab/autolab/system-improvement-strategy": "lab/autolab/meta/system_improvement_strategy.md",
 }
 
 
@@ -293,7 +293,7 @@ def gap_items() -> list[dict[str, str]]:
         },
         {
             "category": "automation",
-            "gap": "Health checks did not summarize spine/spine/audit/gap/research/tool readiness.",
+            "gap": "Health checks did not summarize spine/audit/gap/research/tool readiness.",
             "impact": "Maintenance could report green while intelligence coverage was incomplete.",
             "fix": "Add system-intelligence status and health update hooks.",
             "priority": "P0",
@@ -330,7 +330,7 @@ def gap_items() -> list[dict[str, str]]:
             "category": "architecture",
             "gap": "MCP resource coverage did not include audit, research, profile, and tool artifacts.",
             "impact": "Connected agents could miss the new intelligence surfaces.",
-            "fix": "Register new resources in nervous/nervous/nervous/mcp/server/config/resource_map.json.",
+            "fix": "Register new resources in nervous/mcp/server/config/resource_map.json.",
             "priority": "P1",
         },
         {
@@ -344,7 +344,7 @@ def gap_items() -> list[dict[str, str]]:
 
 
 def write_markdown_reports(profile: dict[str, Any], inventory: dict[str, Any]) -> None:
-    audit_dir = ROOT / "audit"
+    audit_dir = ROOT / "spine" / "audit"
     audit_dir.mkdir(parents=True, exist_ok=True)
     subsystems = profile["workspace"]["expected_subsystems_present"]
     file_counts = profile["workspace"]["files_by_subsystem"]
@@ -482,7 +482,7 @@ def write_recommendations(profile: dict[str, Any], inventory: dict[str, Any]) ->
         "",
         "## 5. System Management",
         "",
-        "- Add retention summaries for `.agent-backups`, `snapshots`, `lab/lab/autolab/quarantine`, and logs.",
+        "- Add retention summaries for `.agent-backups`, `snapshots`, `lab/autolab/quarantine`, and logs.",
         "- Keep system awareness metadata-only unless Suneel explicitly asks for deeper indexing.",
         "",
         "## 6. Data Organization",
@@ -492,7 +492,7 @@ def write_recommendations(profile: dict[str, Any], inventory: dict[str, Any]) ->
         "",
         "## 7. Assistant Intelligence",
         "",
-        "- Treat `spine/spine/audit/gap_analysis.md` as an input to autolab and goal planning.",
+        "- Treat `spine/audit/gap_analysis.md` as an input to autolab and goal planning.",
         "- Register new durable knowledge files in MCP resource maps.",
         "- Use `idea-run` to transform rough ideas into plans, tradeoffs, and decisions.",
         "",
@@ -508,7 +508,7 @@ def write_recommendations(profile: dict[str, Any], inventory: dict[str, Any]) ->
 
 
 def update_mcp_resource_map() -> None:
-    path = ROOT / "nervous/nervous/nervous/mcp/server/config/resource_map.json"
+    path = ROOT / "nervous/mcp/server/config/resource_map.json"
     data = read_json(path, {})
     if "resources" in data and isinstance(data["resources"], dict):
         data["resources"].update(REPORT_RESOURCES)
@@ -521,15 +521,15 @@ def update_health() -> dict[str, Any]:
     health_path = ROOT / "spine/state/WORKSPACE_HEALTH.json"
     health = read_json(health_path, {})
     checks = {
-        "system_audit": (ROOT / "spine/spine/audit/system_audit.md").exists(),
-        "gap_analysis": (ROOT / "spine/spine/audit/gap_analysis.md").exists(),
-        "improvement_plan": (ROOT / "spine/spine/audit/improvement_plan.md").exists(),
+        "system_audit": (ROOT / "spine/audit/system_audit.md").exists(),
+        "gap_analysis": (ROOT / "spine/audit/gap_analysis.md").exists(),
+        "improvement_plan": (ROOT / "spine/audit/improvement_plan.md").exists(),
         "system_profile": (ROOT / "spine/system-context/system_profile.json").exists(),
         "tool_inventory": (ROOT / "spine/tools/tool_inventory.json").exists(),
         "tool_recommendations": (ROOT / "spine/tools/recommendations.md").exists(),
         "research_engine": (ROOT / "research-engine").exists(),
         "mcp_resource_coverage": all(
-            str(v) in json.dumps(read_json(ROOT / "nervous/nervous/nervous/mcp/server/config/resource_map.json", {}))
+            str(v) in json.dumps(read_json(ROOT / "nervous/mcp/server/config/resource_map.json", {}))
             for v in REPORT_RESOURCES.values()
         ),
     }
@@ -594,9 +594,9 @@ def main() -> int:
     elif args.command in {"audit", "gaps", "recommend", "improve"}:
         generate_all(update_resources=True)
         if args.command == "audit":
-            print(ROOT / "spine/spine/audit/system_audit.md")
+            print(ROOT / "spine/audit/system_audit.md")
         elif args.command == "gaps":
-            print(ROOT / "spine/spine/audit/gap_analysis.md")
+            print(ROOT / "spine/audit/gap_analysis.md")
         elif args.command == "recommend":
             print(ROOT / "spine/tools/recommendations.md")
         else:

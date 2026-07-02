@@ -1,6 +1,13 @@
 {
-  "generated_at": "2026-06-26T18:49:09.990677-05:00",
+  "generated_at": "2026-07-01T19:27:35.675075-05:00",
   "tools": [
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/README.md",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "README.md",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
     {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/agent-autoclose",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
@@ -107,6 +114,20 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/autoresearch-run",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "autoresearch-run",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/autotrainer",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "autotrainer",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/brain-graph-build",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "brain-graph-build",
@@ -131,6 +152,20 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/brain-inject",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "brain-inject",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/brain-staleness",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "brain-staleness",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/brain-synthesize",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "brain-synthesize",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -177,6 +212,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/consume-suggestions",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "consume-suggestions",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/context-reset",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "context-reset",
@@ -212,6 +254,34 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/deep-scan",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "deep-scan",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/diagnostics-start",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "diagnostics-start",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/diagnostics-status",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "diagnostics-status",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/diagnostics-stop",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "diagnostics-stop",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/docker-mcp",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "docker-mcp",
@@ -222,6 +292,13 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/duplication-guard",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "duplication-guard",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/evolution-engine",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "evolution-engine",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -247,9 +324,23 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/experiment-skills",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "experiment-skills",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/feedback-ingest",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "feedback-ingest",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/feedback-status",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "feedback-status",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -285,6 +376,13 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/gateway-token",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "gateway-token",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/git-safe-push",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "git-safe-push",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -373,9 +471,44 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/hermes",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "hermes",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/hermes-continue",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "hermes-continue",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/hermes-night",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "hermes-night",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/hermes-start",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "hermes-start",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/hypothesis-generate",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "hypothesis-generate",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/hypothesis-rank",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "hypothesis-rank",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -478,6 +611,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/install-git-hooks",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "install-git-hooks",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/install-imessage-plugin",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "install-imessage-plugin",
@@ -495,6 +635,20 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/jupyter-mcp",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "jupyter-mcp",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/log-enhancement",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "log-enhancement",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/log-learn",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "log-learn",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -597,6 +751,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/memory-curate",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "memory-curate",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/memory-reindex",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "memory-reindex",
@@ -646,6 +807,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/model-rotate",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "model-rotate",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/model-route",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "model-route",
@@ -674,6 +842,34 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/morning-brief",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "morning-brief",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/morning-brief-personal",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "morning-brief-personal",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/nerve-heal",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "nerve-heal",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/nerve-status",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "nerve-status",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/next",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "next",
@@ -681,9 +877,58 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-learn",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-learn",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-mcp",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "ollama-mcp",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-orchestrate",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-orchestrate",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-repair",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-repair",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-review",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-review",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-stack-start",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-stack-start",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-stack-status",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-stack-status",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/ollama-stack-stop",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "ollama-stack-stop",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -716,6 +961,132 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-autocommit",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-autocommit",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-impact",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-impact",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-index",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-index",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-overnight-loop",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-overnight-loop",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-priority",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-priority",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-reconcile",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-reconcile",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-reflect",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-reflect",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-repair",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-repair",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-root-build",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-root-build",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-score",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-score",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-sync",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-sync",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-trends",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-trends",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-update",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-update",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-update-all",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-update-all",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-validate",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-validate",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/readme-watch-start",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "readme-watch-start",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/rebuild-model",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "rebuild-model",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/repair-loop",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "repair-loop",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/route-analyze",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "route-analyze",
@@ -744,9 +1115,37 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/run-tests",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "run-tests",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/scenario-runner",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "scenario-runner",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/screenshot-take",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "screenshot-take",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/security-scan",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "security-scan",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/sidecar-start",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "sidecar-start",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -800,6 +1199,13 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/test-daemon-start",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "test-daemon-start",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/use-claude",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "use-claude",
@@ -842,6 +1248,20 @@
       "safe_to_integrate": true
     },
     {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/vault-graph",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "vault-graph",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/vault-sync",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "vault-sync",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/visual-monitor",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "visual-monitor",
@@ -852,6 +1272,27 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/visual-repair",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "visual-repair",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/wiki-ingest",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "wiki-ingest",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/wiki-lint",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "wiki-lint",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/wiki-query",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "wiki-query",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },
@@ -985,6 +1426,13 @@
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/workspace-index",
       "integration_potential": "Can be routed through agent workflows and maintenance checks.",
       "name": "workspace-index",
+      "purpose": "Workspace command",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/bin/workspace-rag",
+      "integration_potential": "Can be routed through agent workflows and maintenance checks.",
+      "name": "workspace-rag",
       "purpose": "Workspace command",
       "safe_to_integrate": true
     },

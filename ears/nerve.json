@@ -24,5 +24,9 @@
     "ears/monitor/digest/personalized_brief.py",
     "ears/monitor/digest/digest_formatter.py"
   ],
-  "cli_commands": ["morning-brief", "morning-brief-personal", "world-monitor"]
+  "cli_commands": [
+    "morning-brief",
+    "morning-brief-personal",
+    "monitor-run"
+  ]
 }

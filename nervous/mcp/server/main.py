@@ -2,7 +2,7 @@
 """
 workspace-brain MCP server
 Local MCP server exposing SuneelWorkSpace agent-system intelligence.
-Run via: uv run --with mcp python3 /Users/MAC/SuneelWorkSpace/nervous/nervous/mcp/server/main.py
+Run via: uv run --with mcp python3 /Users/MAC/SuneelWorkSpace/nervous/mcp/server/main.py
 """
 
 import json
@@ -255,10 +255,10 @@ def build_index() -> dict:
         ("lab/autolab/meta/learning_log.md",               "autolab",      "autolab-learning"),
         ("lab/autolab/results.tsv",                        "autolab",      "autolab-results"),
         ("blood/logs/SESSION_LOG.md",                       "logs",         "session-log"),
-        ("heart/heart/orchestrator/router/router.md",                          "orchestrator", "router-guide"),
-        ("heart/heart/orchestrator/router/decision_policy.md",                 "orchestrator", "decision-policy"),
-        ("heart/heart/orchestrator/router/agent_profiles.json",                "orchestrator", "agent-profiles"),
-        ("heart/heart/orchestrator/router/task_types.json",                    "orchestrator", "task-types"),
+        ("heart/orchestrator/router/router.md",                          "orchestrator", "router-guide"),
+        ("heart/orchestrator/router/decision_policy.md",                 "orchestrator", "decision-policy"),
+        ("heart/orchestrator/router/agent_profiles.json",                "orchestrator", "agent-profiles"),
+        ("heart/orchestrator/router/task_types.json",                    "orchestrator", "task-types"),
         ("heart/orchestrator/models/routing_patterns.json",              "orchestrator", "routing-patterns"),
         ("heart/orchestrator/reports/agent_performance.md",              "orchestrator", "agent-performance"),
         ("heart/orchestrator/state/current_routing_state.json",          "orchestrator", "routing-state"),

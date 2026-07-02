@@ -873,3 +873,23 @@
 ## 2026-06-28
 
 - Implemented Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines
+
+## 2026-07-01
+
+- Fixed gstack-verify/gstack-repair path bug (stale post-reorg paths to nervous/mcp/config); fixed 3 false-positive health checks in agent-doctor (nested-closure duplicate detection, bin/README.md symlink requirement, tests/ misplaced-script flag); relocated dna/agents/hermes/workspace_config.yaml into config/. Workspace health improved from 7 issues to 1 (remaining: spine/readme_policy.json misplaced_config, deferred — moving it touches 3 live scripts including the pre-push git guard, flagged for user review rather than auto-fixed).
+
+## 2026-07-01
+
+- Completed readme_policy.json relocation to spine/config/ — updated the 3 referencing scripts (pre_push_guard.sh, auto_commit.py, run_nightly.sh) and verified the policy file loads correctly at the new path. Workspace health now 0/0 issues (was 7 at session start).
+
+## 2026-07-01
+
+- Ran full 6-agent parallel audit of all 12 organs + self-healing loop + Ollama usage. Root cause found: 2 broken LaunchAgent symlinks from the reorg killed the hourly maintenance and 6-hourly autolab jobs, invisible to agent-doctor due to a launchd-check blind spot (now fixed). Applied safe fixes: 3 more agent-doctor false positives, agent-maintain's ~10 legacy path references (approved), telemetry-write copy->symlink (approved), pipeline.py telemetry import fix, dna identity doc doubled-path fix, 3 nerve.json manifest corrections. Wrote full findings + scorecard + proposed direction to spine/audit/2026-07-01-architecture-audit.md. Flagged and left untouched pending explicit approval: the 2 broken launchd symlinks themselves, a failing codex-env plist, .agent-backups 93GB unbounded growth, nerve_inbox 4400+ unread files, brain/vault self-duplicate, never-scheduled night_shift DAG, and 47 orphaned hands/bin scripts missing bin/ symlinks.
+
+## 2026-07-01
+
+- Full 12-organ audit complete (6 parallel research agents). Root cause: 2 broken LaunchAgent symlinks from the Jun 26 reorg killed the hourly maintenance and 6-hourly autolab jobs for 5 days, invisible to agent-doctor due to a broken-symlink detection blind spot (fixed). With explicit approval, fixed and verified all 8 flagged items: re-pointed+reloaded the 2 broken launchd symlinks, fixed codex-env.plist (exit 127->0), reconciled daily-evolve.plist drift, scheduled the night_shift DAG (22:00 daily, one real gap flagged: no hermes CLI entrypoint exists yet), added .agent-backups retention (94GB->16GB, 7-day rolling window going forward), added nerve_inbox hourly auto-drain (cleared 4479-file backlog), removed brain/vault/vault self-duplicate + stale research_engine.py duplicate, restored 47 orphaned hands/bin scripts to bin/ symlinks. Verification: 103/103 tests pass, gstack-verify OK, pre_push_guard.sh OK, health 0 issues. Verification testing surfaced 3 more doubled-path bugs (fixed) plus discovery of a much larger systemic doubled-path corruption pattern across dozens of files workspace-wide, likely caused by a non-idempotent hands/scripts/update_all_paths.py migration run multiple times during the reorg -- flagged in spine/audit/2026-07-01-architecture-audit.md as top priority for a dedicated future session, deliberately not attempted at scale today.
+
+## 2026-07-01
+
+- Fixed the systemic doubled-path corruption bug (heart/heart/, nervous/nervous/, etc.) across 54 live files + 4 stale permission-allowlist entries. Root cause: hands/scripts/update_all_paths.py rewrote its own source with its own rules on every run (no self-exclusion), escalating the corruption each time it was run during the reorg; deleted (no callers, job long done). Fix applied via a reviewed, dry-run-first, idempotent normalizer (not committed -- ran from scratchpad). Deliberately excluded historical/archival files (quarantine/snapshots, SESSION_LOG.md, COMPLETED_TASKS.md, hermes training data) and 2 false-positive matches. Also built hands/bin/hermes (symlinked to bin/hermes), a real CLI entrypoint wrapping the already-installed tirith agent, closing the last gap in the night_shift DAG -- dag-validate now passes all 14 steps. Verification: 103/103 tests pass, gstack-verify OK, health 0 issues, all touched JSON/Python/shell re-validated, MCP server module confirmed importable.

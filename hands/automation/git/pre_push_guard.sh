@@ -6,13 +6,13 @@
 #   1. Detect changed files vs remote
 #   2. Update READMEs for affected folders (rule-based, fast)
 #   3. Rebuild root README
-#   4. Apply smart push policy (spine/readme_policy.json)
+#   4. Apply smart push policy (spine/config/readme_policy.json)
 #   5. Run validator — exit 1 to block push if failed
 set -uo pipefail
 
 WORKSPACE="$(git rev-parse --show-toplevel 2>/dev/null || echo "$HOME/SuneelWorkSpace")"
 VENV_PY="$WORKSPACE/.venv/bin/python3"
-POLICY_FILE="$WORKSPACE/spine/readme_policy.json"
+POLICY_FILE="$WORKSPACE/spine/config/readme_policy.json"
 LOG="$WORKSPACE/blood/logs/readme_intelligence.log"
 TIMESTAMP="$(date '+%Y-%m-%d %H:%M:%S')"
 

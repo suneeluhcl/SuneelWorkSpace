@@ -114,9 +114,9 @@ else
   log "  ⚠️  Auto-commit failed (non-fatal — changes preserved locally)"
 fi
 
-# Step 12: Auto-push (only if auto_push=true in spine/readme_policy.json)
+# Step 12: Auto-push (only if auto_push=true in spine/config/readme_policy.json)
 AUTO_PUSH=$(python3 -c \
-  "import json; d=json.load(open('$WORKSPACE/spine/readme_policy.json')); print(str(d.get('auto_push',False)).lower())" \
+  "import json; d=json.load(open('$WORKSPACE/spine/config/readme_policy.json')); print(str(d.get('auto_push',False)).lower())" \
   2>/dev/null || echo "false")
 log "Step 12/12: Auto-push check (enabled=$AUTO_PUSH)..."
 if [[ "$AUTO_PUSH" == "true" ]]; then
@@ -126,7 +126,7 @@ if [[ "$AUTO_PUSH" == "true" ]]; then
     log "  ⚠️  Auto-push failed (commit preserved — check pre-push guard log)"
   fi
 else
-  log "  ℹ️  Auto-push disabled (set auto_push=true in spine/readme_policy.json to enable)"
+  log "  ℹ️  Auto-push disabled (set auto_push=true in spine/config/readme_policy.json to enable)"
 fi
 
 # Notify nervous system

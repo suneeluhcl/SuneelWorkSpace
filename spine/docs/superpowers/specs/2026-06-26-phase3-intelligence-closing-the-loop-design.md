@@ -72,7 +72,7 @@ blood/telemetry/comparison/
 
 **CLI:** `agent-compare --task-type code_review` → side-by-side table (Claude / Codex / Gemini) with success rate, avg tokens, avg duration, capability score.
 
-**Router integration:** `heart/heart/orchestrator/router/` reads `leaderboard.json` when routing; picks agent with highest capability score for matched task type.
+**Router integration:** `heart/orchestrator/router/` reads `leaderboard.json` when routing; picks agent with highest capability score for matched task type.
 
 ### P3.4 — Brain Context Injector
 
@@ -232,12 +232,12 @@ lab/autolab/
 - `lab/autolab/training_data/`
 - `blood/telemetry/comparison/`
 - `brain/` + `brain/logs/`
-- `ears/monitor/` + `ears/ears/monitor/sources/` + `ears/digest/` + `ears/monitor/cache/`
+- `ears/monitor/` + `ears/monitor/sources/` + `ears/digest/` + `ears/monitor/cache/`
 - `hands/automation/dag/` + `dag/pipelines/` + `dag/runs/`
 - `mouth/dispatcher/`
 
 ## Files Modified
-- `heart/heart/orchestrator/router/` — reads `leaderboard.json` for routing
+- `heart/orchestrator/router/` — reads `leaderboard.json` for routing
 - `lab/autolab/experiment_queue.md` — hypothesis_generator appends here
 - `hands/automation/dag/pipelines/morning_brief.yaml` — adds hypothesis-generate step
 

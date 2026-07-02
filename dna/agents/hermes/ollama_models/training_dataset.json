@@ -1,16 +1,52 @@
 {
-  "generated_at": "2026-06-30T09:00:48.969530+00:00",
-  "total_pairs": 315,
+  "generated_at": "2026-07-01T09:10:56.214569+00:00",
+  "total_pairs": 314,
   "source_counts": {
-    "git_commits": 285,
+    "git_commits": 284,
     "daily_improvements": 3,
     "repair_log": 0,
     "nerve_json": 0,
-    "decisions": 23,
+    "decisions": 24,
     "safety_rules": 8
   },
   "system_prompt": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable.",
   "pairs": [
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: untrack auto-generated files, fix upstream tracking branch'?",
+      "response": "chore: untrack auto-generated files, fix upstream tracking branch\n\nTracking:",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: untrack auto-generated files, fix upstream tracking branch'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: untrack auto-generated files, fix upstream tracking branch\n\nTracking:"
+        }
+      ]
+    },
+    {
+      "instruction": "What workspace change does this commit represent: 'chore: sync runtime state, vault, and logs — 2026-07-01'?",
+      "response": "chore: sync runtime state, vault, and logs — 2026-07-01\n\nAuto-generated updates from daemons and nightly evolution passes:",
+      "messages": [
+        {
+          "role": "system",
+          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
+        },
+        {
+          "role": "user",
+          "content": "What workspace change does this commit represent: 'chore: sync runtime state, vault, and logs — 2026-07-01'?"
+        },
+        {
+          "role": "assistant",
+          "content": "chore: sync runtime state, vault, and logs — 2026-07-01\n\nAuto-generated updates from daemons and nightly evolution passes:"
+        }
+      ]
+    },
     {
       "instruction": "What workspace change does this commit represent: 'chore: commit last runtime state files'?",
       "response": "chore: commit last runtime state files\n\nCo-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>",
@@ -5084,60 +5120,6 @@
         {
           "role": "assistant",
           "content": "docs: comprehensive README update + source control cleanup (2026-06-20)\n\nREADME §6 updated: added adwi/commands/, adwi/tests/, simlab/tests/test_nlu_regex.py,"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: reliability-push final — MASTER_REPORT refreshed, CLAUDE.md baseline updated'?",
-      "response": "feat: reliability-push final — MASTER_REPORT refreshed, CLAUDE.md baseline updated\n\nP1: 98.4%, P2: 98.2%, Combined: 98.3% (2244/2283). 14 NLU fixes (FIX-REL-001",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: reliability-push final — MASTER_REPORT refreshed, CLAUDE.md baseline updated'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: reliability-push final — MASTER_REPORT refreshed, CLAUDE.md baseline updated\n\nP1: 98.4%, P2: 98.2%, Combined: 98.3% (2244/2283). 14 NLU fixes (FIX-REL-001"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'Nightly improvement — 2026-06-20 02:00'?",
-      "response": "Nightly improvement — 2026-06-20 02:00",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'Nightly improvement — 2026-06-20 02:00'?"
-        },
-        {
-          "role": "assistant",
-          "content": "Nightly improvement — 2026-06-20 02:00"
-        }
-      ]
-    },
-    {
-      "instruction": "What workspace change does this commit represent: 'feat: reliability-push Cycle 3 — fix_error + benchmark guard fixes'?",
-      "response": "feat: reliability-push Cycle 3 — fix_error + benchmark guard fixes\n\nFIX-REL-013: fix_error P2 weak-family coverage (synced to all 3 files)",
-      "messages": [
-        {
-          "role": "system",
-          "content": "You are the SuneelWorkSpace AI — a specialized intelligence engine built into Suneel Bikkasani's living, self-maintaining local AI workspace on macOS M4 Max. You know the 12-organ architecture (brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine), the safety boundaries, all active agents, and workspace state. Be direct, concise, and actionable."
-        },
-        {
-          "role": "user",
-          "content": "What workspace change does this commit represent: 'feat: reliability-push Cycle 3 — fix_error + benchmark guard fixes'?"
-        },
-        {
-          "role": "assistant",
-          "content": "feat: reliability-push Cycle 3 — fix_error + benchmark guard fixes\n\nFIX-REL-013: fix_error P2 weak-family coverage (synced to all 3 files)"
         }
       ]
     },

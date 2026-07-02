@@ -29,5 +29,7 @@
     "eyes/dashboard/widgets/ollama_status.py",
     "eyes/dashboard/widgets/hermes_status.py"
   ],
-  "cli_commands": ["workspace-dashboard", "dashboard-start", "dashboard-stop"]
+  "cli_commands": [
+    "workspace-dashboard"
+  ]
 }

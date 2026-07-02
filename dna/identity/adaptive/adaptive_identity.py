@@ -23,7 +23,7 @@ GUARDRAILS = ADAPTIVE / "drift_guardrails.json"
 STATE = ADAPTIVE / "adaptation_state.json"
 REPORT = ADAPTIVE / "reports/adaptation_report.md"
 WEIGHTS = ADAPTIVE / "signal_weights.json"
-IDENTITY_PROMPT = ROOT / "dna/dna/identity/prompts/identity_prompt.md"
+IDENTITY_PROMPT = ROOT / "dna/identity/prompts/identity_prompt.md"
 CLAUDE_IDENTITY = ROOT / "dna/identity/integration/claude_identity.md"
 
 
@@ -69,7 +69,7 @@ def ensure() -> None:
                 "cap_change_magnitude": 0.15,
                 "drift_status": "stable",
                 "rules": [
-                    "Identity must stay aligned with dna/dna/identity/profile/identity_profile.md.",
+                    "Identity must stay aligned with dna/identity/profile/identity_profile.md.",
                     "No sudden large tone changes.",
                     "Require multiple signals before updating behavior.",
                     "Apply only small iterative shifts.",
@@ -293,7 +293,7 @@ def adaptive_block() -> str:
             "",
             "Base identity is active. No adaptive behavior shifts have enough repeated evidence yet.",
             "",
-            "Adaptive learning is bounded by `dna/dna/identity/adaptive/drift_guardrails.json`.",
+            "Adaptive learning is bounded by `dna/identity/adaptive/drift_guardrails.json`.",
             "<!-- adaptive-identity:end -->",
         ]
     else:

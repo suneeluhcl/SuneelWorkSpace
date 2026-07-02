@@ -16,7 +16,7 @@ from datetime import datetime
 from pathlib import Path
 
 WORKSPACE = Path(os.environ.get("WORKSPACE", Path(__file__).resolve().parents[3]))
-POLICY_FILE = WORKSPACE / "spine/readme_policy.json"
+POLICY_FILE = WORKSPACE / "spine/config/readme_policy.json"
 HEALTH_CACHE = WORKSPACE / "spine/readme_health_cache.json"
 LOG_FILE = WORKSPACE / "blood/logs/auto_commit.log"
 GIT_SAFE_PUSH = WORKSPACE / "hands/bin/git-safe-push"
@@ -220,7 +220,7 @@ def auto_commit(dry_run: bool = False, force_push: bool = False) -> int:
         else:
             _log(f"⚠️  git-safe-push not found at {GIT_SAFE_PUSH} — push skipped.")
     else:
-        _log("Auto-push disabled (set auto_push=true in spine/readme_policy.json to enable).")
+        _log("Auto-push disabled (set auto_push=true in spine/config/readme_policy.json to enable).")
 
     return 0
 

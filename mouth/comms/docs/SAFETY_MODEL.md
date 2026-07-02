@@ -40,7 +40,7 @@
 The outbound allowlist is empty by default (`outbound_policy.json: allowlist_enforced: false`).
 
 To restrict sends to known contacts only:
-1. Edit `mouth/mouth/comms/config/access_policy.json`
+1. Edit `mouth/comms/config/access_policy.json`
 2. Set `allowlist.enabled: true`
 3. Add phone numbers/emails to `allowlist.recipients`
 

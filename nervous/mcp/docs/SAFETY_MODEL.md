@@ -24,8 +24,8 @@ brain/memory/SESSION_HANDOFF.md
 heart/tasks/ACTIVE_TASKS.md
 heart/tasks/TASK_QUEUE.md
 blood/logs/SESSION_LOG.md
-nervous/nervous/mcp/server/state/mcp_state.json
-nervous/nervous/mcp/server/logs/
+nervous/mcp/server/state/mcp_state.json
+nervous/mcp/server/logs/
 ```
 
 ## Protected area (tools never write here)
@@ -53,9 +53,9 @@ Summary:
 
 ## Access logging
 
-Every tool call writes a JSONL line to `nervous/nervous/mcp/server/logs/mcp_access.log`:
+Every tool call writes a JSONL line to `nervous/mcp/server/logs/mcp_access.log`:
 ```json
 {"ts": "2026-06-24T...", "tool": "search_memory", "args": {"query": "NLU"}}
 ```
 
-Mutating operations are also logged to `nervous/nervous/mcp/server/logs/mcp_server.log`.
+Mutating operations are also logged to `nervous/mcp/server/logs/mcp_server.log`.
