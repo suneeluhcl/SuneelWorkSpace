@@ -281,7 +281,7 @@ def integration_potential(name: str) -> str:
 
 def gap_items() -> list[dict[str, str]]:
     profile_exists = (ROOT / "spine/system-context/system_profile.json").exists()
-    research_exists = (ROOT / "research-engine").exists()
+    research_exists = (ROOT / "brain" / "research").exists()
     inventory_exists = (ROOT / "spine/tools/tool_inventory.json").exists()
     return [
         {
@@ -527,7 +527,7 @@ def update_health() -> dict[str, Any]:
         "system_profile": (ROOT / "spine/system-context/system_profile.json").exists(),
         "tool_inventory": (ROOT / "spine/tools/tool_inventory.json").exists(),
         "tool_recommendations": (ROOT / "spine/tools/recommendations.md").exists(),
-        "research_engine": (ROOT / "research-engine").exists(),
+        "research_engine": (ROOT / "brain" / "research").exists(),
         "mcp_resource_coverage": all(
             str(v) in json.dumps(read_json(ROOT / "nervous/mcp/server/config/resource_map.json", {}))
             for v in REPORT_RESOURCES.values()

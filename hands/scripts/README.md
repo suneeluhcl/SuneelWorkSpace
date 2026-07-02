@@ -46,6 +46,7 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `memory_write_hook.sh`
 - `model_status.sh`
 - `morning_brief.sh`
+- `nerve_inbox_drain.py`
 - `ollama_stack_start.sh`
 - `ollama_stack_status.sh`
 - `ollama_stack_stop.sh`
@@ -59,7 +60,6 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `run_tests.sh`
 - `system_intelligence.py`
 - `test-daemon-start.sh`
-- `update_all_paths.py`
 - `visual_monitor_start.sh`
 - `wiki_ingest.py`
 - `wiki_lint.py`
@@ -68,6 +68,7 @@ Part of the **hands** organ in the 12-organ SuneelWorkSpace architecture.
 - `workflow_outcome_evaluator.py`
 - `workflow_priority_engine.py`
 - `workspace-dashboard`
+- `dev/` *(directory)*
 - `workflows/` *(directory)*
 
 ## 🔄 Dependencies
@@ -94,13 +95,17 @@ None identified
 
 
 ## 🏥 Health Score
-🟢 **90/100**
+🟡 **65/100**
 
 | Category | Deduction |
 |----------|----------|
+| readme_drift | -15 |
+| stale_refs | -10 |
 | no_tests | -10 |
 
 ## 🔥 Critical Issues
+- README is older than folder contents
+- Stale file references: ['update_all_paths.py']
 - No test files detected
 
 ## ✅ Runtime Status
@@ -109,6 +114,7 @@ None identified
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-07-02: README auto-updated by README Intelligence System
 - 2026-07-01: README auto-updated by README Intelligence System
 - 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
@@ -124,18 +130,19 @@ None identified
 - `agent-finish` *(not in README Contents)*
 - `agent-start` *(not in README Contents)*
 - `daily-evolve` *(not in README Contents)*
-- `workspace-dashboard` *(not in README Contents)*
+- `nerve_inbox_drain.py` *(not in README Contents)*
 
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
+- `update_all_paths.py` *(referenced but missing)*
 
-*Last reconciled: 2026-07-01T00:01:42*
+*Last reconciled: 2026-07-02T00:00:05*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-07-01T00:01:42*
+*Last checked: 2026-07-02T00:00:05*
 
 ## 🌐 Failure Impact Map
 
@@ -143,16 +150,17 @@ None identified
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-07-01T00:01:42*
+*Computed: 2026-07-02T00:00:05*
 
 ## 📈 Trends
 
 **7-day trend:** ➡️ STABLE
-**Score change:** +0.3 (97.8 → 98.1)
+**Score change:** +0.4 (97.8 → 98.2)
 
 **Recent history (last 5 snapshots):**
 - `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
 - `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
 - `2026-06-30` — 98.1/100 (423 healthy, 0 critical)
+- `2026-07-01` — 98.2/100 (429 healthy, 0 critical)
 
-*3 day(s) of history | updated daily by nightly automation*
+*4 day(s) of history | updated daily by nightly automation*

@@ -13,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", Path.home() / "SuneelWorkSpace")).resolve()
 sys.path.append(str(ROOT))
-sys.path.append(str(ROOT / "anticipation"))
+sys.path.append(str(ROOT / "brain" / "anticipation"))
 
 TESTING_DIR = ROOT / "testing"
 PLAN_FILE = TESTING_DIR / "test_plan.json"

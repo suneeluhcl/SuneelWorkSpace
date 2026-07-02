@@ -86,7 +86,7 @@ ENGINES = {
         "requires_model": None,
     },
     "rebuild_context": {
-        "command": "python3 dna/agents/hermes/ollama_models/build_modelfile.py",
+        "command": "python3 dna/agents/hermes/ollama_models/build_modelfile.py --apply",
         "interval_day_hours": 168,
         "interval_night_hours": 168,
         "priority": 8,

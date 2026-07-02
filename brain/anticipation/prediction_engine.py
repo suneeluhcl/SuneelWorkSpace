@@ -13,7 +13,7 @@ from typing import Any
 
 
 ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", Path.home() / "SuneelWorkSpace")).resolve()
-BASE = ROOT / "anticipation"
+BASE = ROOT / "brain" / "anticipation"
 MEMORY = BASE / "prediction_memory.json"
 PATTERNS = BASE / "behavior_patterns.json"
 CURRENT_CONTEXT = BASE / "current_context.json"

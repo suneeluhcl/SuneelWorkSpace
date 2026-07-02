@@ -11,7 +11,7 @@ from datetime import datetime, timezone
 
 # Ensure scripts directory is in path for importing guards
 ROOT = pathlib.Path(os.environ.get("SUNEEL_WORKSPACE", str(pathlib.Path.home() / "SuneelWorkSpace"))).resolve()
-sys.path.append(str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "hands" / "scripts"))
 
 try:
     import duplication_guard
@@ -24,8 +24,8 @@ except ImportError:
 
 BRAIN_DIR = ROOT / "brain"
 GEN_DIR = BRAIN_DIR / "workflows/generated"
-SCRIPTS_DIR = ROOT / "scripts/workflows"
-BIN_DIR = ROOT / "bin"
+SCRIPTS_DIR = ROOT / "hands/scripts/workflows"
+BIN_DIR = ROOT / "hands/bin"
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).astimezone().isoformat()
@@ -185,7 +185,7 @@ import os
 import pathlib
 
 ROOT = pathlib.Path("{str(ROOT)}")
-sys.path.append(str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "hands" / "scripts"))
 
 try:
     from mcp_orchestrator import parse_and_run_md_workflow
@@ -295,7 +295,7 @@ def main():
         ok, stdout, stderr = run_command(cmd)
         steps_outputs.append(stdout)
         
-        print("\n[RESULT]")
+        print("\\n[RESULT]")
         preview = stdout[:200] + "..." if len(stdout) > 200 else stdout
         indented_preview = "\\n".join("  " + line for line in preview.splitlines())
         print(f"→\\n{{indented_preview}}\\n")
@@ -311,7 +311,7 @@ def main():
     # Record outcome
     quality_score = 1.0
     try:
-        sys.path.append(str(ROOT / "scripts"))
+        sys.path.append(str(ROOT / "hands" / "scripts"))
         from workflow_outcome_evaluator import record_outcome
         quality_score = record_outcome(
             workflow_slug="{workflow_slug}",

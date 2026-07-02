@@ -14,7 +14,7 @@ from typing import Any
 
 
 ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", Path.home() / "SuneelWorkSpace")).resolve()
-ENGINE = ROOT / "research-engine"
+ENGINE = ROOT / "brain" / "research"
 IDEAS = ENGINE / "ideas"
 PLANS = ENGINE / "plans"
 ANALYSES = ENGINE / "analyses"

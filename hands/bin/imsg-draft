@@ -1,4 +1,4 @@
 #!/bin/sh
 # Create an iMessage draft (no send). Usage: imsg-draft "+15551234567" "message text"
 ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-exec python3 "$ROOT/comms/imessage/scripts/imessage-send-draft" "$@"
+exec python3 "$ROOT/mouth/comms/imessage/scripts/imessage-send-draft" "$@"

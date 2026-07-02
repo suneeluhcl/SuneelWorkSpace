@@ -21,6 +21,9 @@ from pathlib import Path
 
 WORKSPACE = Path(os.path.expanduser("~/SuneelWorkSpace"))
 EVOLVE_LOG = WORKSPACE / "blood/logs/daily_evolve.jsonl"
+COMPLETED_DIR = WORKSPACE / "lab/autolab/experiments/completed"
+PROMPTED_JSON = WORKSPACE / "lab/autolab/meta/promotion_prompts.json"
+TASK_QUEUE = WORKSPACE / "heart/tasks/TASK_QUEUE.md"
 _VENV_PY = str(WORKSPACE / ".venv/bin/python3")
 PYTHON = _VENV_PY if os.path.exists(_VENV_PY) else sys.executable
 
@@ -49,6 +52,46 @@ def _run_pass(label: str, module_path: str, args: list[str] | None = None) -> di
         return {"pass": label, "status": "timeout", "elapsed_s": 300}
     except Exception as e:
         return {"pass": label, "status": "error", "error": str(e)}
+
+
+def surface_promotion_candidates() -> int:
+    """Queue a task for each completed experiment not yet surfaced, so Suneel is
+    prompted to promote successful experimental skills to primary skills."""
+    if not COMPLETED_DIR.exists():
+        return 0
+    prompted: set[str] = set()
+    if PROMPTED_JSON.exists():
+        try:
+            prompted = set(json.loads(PROMPTED_JSON.read_text()).get("experiment_ids", []))
+        except Exception:
+            prompted = set()
+
+    new_lines: list[str] = []
+    for exp_file in sorted(COMPLETED_DIR.glob("*.json")):
+        try:
+            exp = json.loads(exp_file.read_text())
+        except Exception:
+            continue
+        exp_id = exp.get("experiment_id", exp_file.stem)
+        if exp_id in prompted:
+            continue
+        name = exp.get("name", exp_file.stem)
+        new_lines.append(
+            f"- [autolab] Promote completed experiment `{exp_id}` ({name}) "
+            "to a primary skill if it earned its keep — review via `autolab-promote --status`."
+        )
+        prompted.add(exp_id)
+
+    if not new_lines:
+        return 0
+    if TASK_QUEUE.exists():
+        content = TASK_QUEUE.read_text().rstrip() + "\n" + "\n".join(new_lines) + "\n"
+        TASK_QUEUE.write_text(content)
+    PROMPTED_JSON.parent.mkdir(parents=True, exist_ok=True)
+    PROMPTED_JSON.write_text(json.dumps(
+        {"experiment_ids": sorted(prompted),
+         "updated_at": datetime.now(timezone.utc).isoformat()}, indent=2))
+    return len(new_lines)
 
 
 def run() -> list[dict]:
@@ -88,6 +131,10 @@ def run() -> list[dict]:
     }
     with open(EVOLVE_LOG, "a") as f:
         f.write(json.dumps(record) + "\n")
+
+    promoted = surface_promotion_candidates()
+    if promoted:
+        print(f"[daily-evolve] queued {promoted} promotion candidate(s) in TASK_QUEUE.md")
 
     ok = record["ok"]
     total = len([r for r in results if r["status"] != "skipped"])

@@ -1,4 +1,4 @@
 #!/bin/sh
 # Send a confirmed iMessage draft. Usage: imsg-send-confirmed draft_20260624_143000
 ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-exec python3 "$ROOT/comms/imessage/scripts/imessage-send-confirmed" "$@"
+exec python3 "$ROOT/mouth/comms/imessage/scripts/imessage-send-confirmed" "$@"

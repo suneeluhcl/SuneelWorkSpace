@@ -1,918 +1,8 @@
 {
-  "generated": "2026-07-01T00:01:55.666972",
-  "folder_count": 430,
+  "generated": "2026-07-02T00:00:06.558582",
+  "folder_count": 293,
   "folders": {
     ".agent-backups": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-005629": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-005629/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-010016": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-010016/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-010355": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-010355/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-011542": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-011542/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-014821": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-014821/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-024823": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-024823/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-034825": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-034825/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-044827": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-044827/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-054828": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-054828/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-064830": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-064830/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-074832": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-074832/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-084834": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-084834/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-093715": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-093715/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-094306": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-094306/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-094556": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-094556/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-094837": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-094837/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-104840": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-104840/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-114842": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-114842/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-124843": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-124843/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-134845": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-134845/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-144847": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-144847/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-154853": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-154853/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-164858": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-164858/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-174903": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-174903/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-184909": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-184909/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-190107": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-190107/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-204912": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-204912/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-214954": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-214954/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-225042": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-225042/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-235046": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260626-235046/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-005050": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-005050/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-015054": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-015054/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-025058": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-025058/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-035102": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-035102/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-045107": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-045107/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-055111": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-055111/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-065116": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-065116/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-075121": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-075121/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-085126": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-085126/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-095131": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-095131/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-105137": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-105137/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-115143": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-115143/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-125149": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-125149/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-135155": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-135155/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-145202": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-145202/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-155210": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-155210/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-165218": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-165218/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-175226": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-175226/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-185235": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-185235/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-195243": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-195243/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-205252": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-205252/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-215301": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-215301/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-225310": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-225310/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-235321": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260627-235321/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-005331": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-005331/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-015342": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-015342/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-025354": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-025354/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-035405": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-035405/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-045416": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-045416/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-055427": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-055427/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-065438": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-065438/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-075448": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-075448/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-085459": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-085459/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-095511": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-095511/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-105524": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-105524/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-115536": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-115536/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-125549": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-125549/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-135603": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-135603/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-145616": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-145616/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-155629": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-155629/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-165641": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-165641/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-175652": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-175652/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-185706": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-185706/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-195718": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-195718/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-205731": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-205731/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-215747": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-215747/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-225805": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-225805/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-235824": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260628-235824/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-005842": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-005842/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-015859": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-015859/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-025915": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-025915/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-035931": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-035931/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-045947": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-045947/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-060004": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-060004/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-070021": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-070021/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-080039": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-080039/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-090058": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-090058/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-100119": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-100119/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-110139": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-110139/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-120200": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-120200/workspace-core": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-130221": {
-      "dependencies": [],
-      "reverse_dependencies": [],
-      "organ": null
-    },
-    ".agent-backups/20260629-130221/workspace-core": {
       "dependencies": [],
       "reverse_dependencies": [],
       "organ": null
@@ -953,6 +43,221 @@
       "organ": null
     },
     ".agent-backups/20260630-193847/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-005235": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-005235/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-085143": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-085143/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-112553": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-112553/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-122606": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-122606/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-132620": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-132620/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-142637": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-142637/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-152654": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-152654/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-162712": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-162712/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-172719": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-172719/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-182725": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-182725/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-192732": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-192732/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-202739": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-202739/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-212745": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-212745/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-222751": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-222751/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-232757": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-232757/workspace-core": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234547-stale-path-fix": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234547-stale-path-fix/hands": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234625-comms-path-fix": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234625-comms-path-fix/hands": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234644-comms-path-fix": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234644-comms-path-fix/hands": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234904-py-stale-path-fix": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234904-py-stale-path-fix/brain": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234904-py-stale-path-fix/hands": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234904-py-stale-path-fix/heart": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234904-py-stale-path-fix/lab": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234916-stray-anticipation": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    ".agent-backups/20260701-234916-stray-anticipation/reports": {
       "dependencies": [],
       "reverse_dependencies": [],
       "organ": null
@@ -1098,6 +403,11 @@
       "organ": null
     },
     "agent-system": {
+      "dependencies": [],
+      "reverse_dependencies": [],
+      "organ": null
+    },
+    "agent-system/state": {
       "dependencies": [],
       "reverse_dependencies": [],
       "organ": null
@@ -1460,13 +770,6 @@
       ],
       "organ": "brain"
     },
-    "brain/vault/vault": {
-      "dependencies": [],
-      "reverse_dependencies": [
-        "hands/scripts"
-      ],
-      "organ": "brain"
-    },
     "brain/vault/wiki": {
       "dependencies": [],
       "reverse_dependencies": [
@@ -1769,6 +1072,11 @@
         "brain",
         "nervous"
       ],
+      "reverse_dependencies": [],
+      "organ": "hands"
+    },
+    "hands/scripts/dev": {
+      "dependencies": [],
       "reverse_dependencies": [],
       "organ": "hands"
     },
@@ -2371,6 +1679,13 @@
       "organ": "spine"
     },
     "spine/backups/pre-restructure-20260626": {
+      "dependencies": [],
+      "reverse_dependencies": [
+        "nervous"
+      ],
+      "organ": "spine"
+    },
+    "spine/config": {
       "dependencies": [],
       "reverse_dependencies": [
         "nervous"

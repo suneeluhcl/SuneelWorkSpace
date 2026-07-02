@@ -1,15 +1,23 @@
 # Action Suggestions
 
-Generated: 2026-06-26T08:50:07.478545-05:00
+Generated: 2026-07-01T23:49:16.665584-05:00
 
-After: `daily-evolve`
+After: `system-audit`
 Intent: `system_improvement`
 
 ## Suggested Next Actions
 
-1. [HIGH | CONTROLLED | 0.95]
-   Based on repeated workflow: run daily-evolve
-   → Run now? (y/n)
+1. [MED | SAFE | 0.7]
+   Review spine/audit/gap_analysis.md
+   → Ready to run
+
+2. [MED | CONTROLLED | 0.7]
+   Pick one high-impact fix
+   → Prerequisites missing or manual action required
+
+3. [MED | SAFE | 0.7]
+   Run agent-doctor after changes
+   → Ready to run
 
 
 Safety: suggestions are not auto-executed.

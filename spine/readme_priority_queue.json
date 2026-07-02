@@ -1,21 +1,11 @@
 {
-  "generated": "2026-07-01T00:02:04.839905",
-  "total": 430,
-  "p0_count": 1,
+  "generated": "2026-07-02T00:00:07.928642",
+  "total": 293,
+  "p0_count": 0,
   "p1_count": 0,
   "p2_count": 18,
-  "p3_count": 411,
+  "p3_count": 275,
   "queue": [
-    {
-      "priority": "P0",
-      "priority_score": 80,
-      "folder": "hands/scripts/workflows",
-      "health_score": 60,
-      "blast_radius": 0,
-      "critical_issues": [],
-      "days_since_update": 0,
-      "readme_missing": false
-    },
     {
       "priority": "P2",
       "priority_score": 50,
@@ -220,6 +210,16 @@
       "priority": "P3",
       "priority_score": 30,
       "folder": "spine/backups/pre-restructure-20260626",
+      "health_score": 100,
+      "blast_radius": 10,
+      "critical_issues": [],
+      "days_since_update": 0,
+      "readme_missing": false
+    },
+    {
+      "priority": "P3",
+      "priority_score": 30,
+      "folder": "spine/config",
       "health_score": 100,
       "blast_radius": 10,
       "critical_issues": [],
@@ -510,16 +510,6 @@
       "priority": "P3",
       "priority_score": 23,
       "folder": "brain/vault/memory",
-      "health_score": 90,
-      "blast_radius": 1,
-      "critical_issues": [],
-      "days_since_update": 0,
-      "readme_missing": false
-    },
-    {
-      "priority": "P3",
-      "priority_score": 23,
-      "folder": "brain/vault/research",
       "health_score": 90,
       "blast_radius": 1,
       "critical_issues": [],
@@ -859,6 +849,26 @@
     {
       "priority": "P3",
       "priority_score": 20,
+      "folder": "hands/scripts/dev",
+      "health_score": 90,
+      "blast_radius": 0,
+      "critical_issues": [],
+      "days_since_update": 0,
+      "readme_missing": false
+    },
+    {
+      "priority": "P3",
+      "priority_score": 20,
+      "folder": "hands/scripts/workflows",
+      "health_score": 90,
+      "blast_radius": 0,
+      "critical_issues": [],
+      "days_since_update": 0,
+      "readme_missing": false
+    },
+    {
+      "priority": "P3",
+      "priority_score": 20,
       "folder": "mouth",
       "health_score": 90,
       "blast_radius": 0,
@@ -990,16 +1000,6 @@
       "priority": "P3",
       "priority_score": 20,
       "folder": "tests/organs/skeleton",
-      "health_score": 90,
-      "blast_radius": 0,
-      "critical_issues": [],
-      "days_since_update": 0,
-      "readme_missing": false
-    },
-    {
-      "priority": "P3",
-      "priority_score": 20,
-      "folder": "tests/organs/spine",
       "health_score": 90,
       "blast_radius": 0,
       "critical_issues": [],

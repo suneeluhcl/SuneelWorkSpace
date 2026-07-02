@@ -6,17 +6,17 @@ echo "Communications Subsystem Status"
 echo "==============================="
 echo
 echo "--- iMessage ---"
-python3 "$ROOT/comms/imessage/scripts/imessage-status" 2>&1
+python3 "$ROOT/mouth/comms/imessage/scripts/imessage-status" 2>&1
 
 echo
 echo "--- Mail ---"
-python3 "$ROOT/comms/mail/scripts/mail-status" 2>&1
+python3 "$ROOT/mouth/comms/mail/scripts/mail-status" 2>&1
 
 echo
 echo "--- Plugin inventory ---"
 python3 -c "
 import json, pathlib
-p = pathlib.Path('$ROOT/comms/config/plugin_inventory.json')
+p = pathlib.Path('$ROOT/mouth/comms/config/plugin_inventory.json')
 if p.exists():
     d = json.loads(p.read_text())
     for k, v in d.items():

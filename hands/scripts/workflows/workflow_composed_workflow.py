@@ -6,7 +6,7 @@ import os
 import pathlib
 
 ROOT = pathlib.Path("/Users/MAC/SuneelWorkSpace")
-sys.path.append(str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "hands" / "scripts"))
 
 try:
     from mcp_orchestrator import parse_and_run_md_workflow

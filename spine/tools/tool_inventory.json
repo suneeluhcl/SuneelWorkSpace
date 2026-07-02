@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T19:27:35.675075-05:00",
+  "generated_at": "2026-07-01T23:47:01.779078-05:00",
   "tools": [
     {
       "install_location": "/Users/MAC/SuneelWorkSpace/bin/README.md",
@@ -1451,23 +1451,100 @@
       "safe_to_integrate": true
     },
     {
-      "install_location": "/usr/bin/git",
+      "install_location": "/Users/MAC/.local/bin/rtk",
+      "integration_potential": "Default shell output filter for agent commands.",
+      "name": "rtk",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/git",
       "integration_potential": "Useful when explicitly routed by a workspace command.",
       "name": "git",
       "purpose": "CLI or development capability",
       "safe_to_integrate": true
     },
     {
-      "install_location": "/usr/bin/python3",
+      "install_location": "/opt/homebrew/bin/gh",
+      "integration_potential": "GitHub PR, issue, and CI inspection with explicit confirmation for writes.",
+      "name": "gh",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/SuneelWorkSpace/.venv/bin/python3",
       "integration_potential": "Local automation scripts and structured report generation.",
       "name": "python3",
       "purpose": "CLI or development capability",
       "safe_to_integrate": true
     },
     {
-      "install_location": "/usr/bin/pip3",
+      "install_location": "/Users/MAC/SuneelWorkSpace/.venv/bin/pip3",
       "integration_potential": "Useful when explicitly routed by a workspace command.",
       "name": "pip3",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/node",
+      "integration_potential": "Frontend/dev tooling and MCP helpers when project-local.",
+      "name": "node",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/npm",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "npm",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/Users/MAC/.hermes/bin/uv",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "uv",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/brew",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "brew",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": false
+    },
+    {
+      "install_location": "/Users/MAC/bin/codex",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "codex",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/claude",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "claude",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/gemini",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "gemini",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/opencode",
+      "integration_potential": "Useful when explicitly routed by a workspace command.",
+      "name": "opencode",
+      "purpose": "CLI or development capability",
+      "safe_to_integrate": true
+    },
+    {
+      "install_location": "/opt/homebrew/bin/rg",
+      "integration_potential": "Fast workspace search without broad private indexing.",
+      "name": "rg",
       "purpose": "CLI or development capability",
       "safe_to_integrate": true
     },

@@ -2077,9 +2077,524 @@
       "notes": "",
       "outcome": "success",
       "timestamp": "2026-06-26T08:50:07.474554-05:00"
+    },
+    {
+      "command": "system-audit",
+      "context": "system",
+      "exit_code": 0,
+      "intent": "system_improvement",
+      "intent_confidence": 0.9,
+      "notes": "",
+      "outcome": "success",
+      "timestamp": "2026-07-01T23:49:16.661764-05:00"
     }
   ],
   "last_evolved_stamp": "2026-06-26T09:08:04.430297-05:00",
+  "last_updated": "2026-06-26T09:56:58.827109",
+  "patterns": [
+    {
+      "added_at": "2026-06-26T09:56:58.827052",
+      "confidence": 0.72,
+      "next": "idea-run",
+      "sequence": [
+        "idea-start"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827058",
+      "confidence": 0.65,
+      "next": "goal-create",
+      "sequence": [
+        "idea-run"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827060",
+      "confidence": 0.68,
+      "next": "goal-execute",
+      "sequence": [
+        "goal-create"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827062",
+      "confidence": 0.65,
+      "next": "idea-start",
+      "sequence": [
+        "arxiv-mcp"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827063",
+      "confidence": 0.62,
+      "next": "idea-start",
+      "sequence": [
+        "memory-search"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827064",
+      "confidence": 0.63,
+      "next": "memory-search",
+      "sequence": [
+        "brain-graph-query"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827065",
+      "confidence": 0.75,
+      "next": "agent-repair",
+      "sequence": [
+        "agent-doctor"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827066",
+      "confidence": 0.7,
+      "next": "agent-doctor",
+      "sequence": [
+        "agent-repair"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827067",
+      "confidence": 0.65,
+      "next": "agent-maintain",
+      "sequence": [
+        "workspace-backup"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827068",
+      "confidence": 0.68,
+      "next": "agent-doctor",
+      "sequence": [
+        "agent-maintain"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827069",
+      "confidence": 0.8,
+      "next": "next",
+      "sequence": [
+        "agent-start"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827070",
+      "confidence": 0.75,
+      "next": "agent-finish",
+      "sequence": [
+        "next"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827071",
+      "confidence": 0.65,
+      "next": "agent-start",
+      "sequence": [
+        "agent-finish"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827073",
+      "confidence": 0.65,
+      "next": "memory-search",
+      "sequence": [
+        "workspace-index"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827074",
+      "confidence": 0.78,
+      "next": "mcp-status",
+      "sequence": [
+        "mcp-reindex"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827075",
+      "confidence": 0.62,
+      "next": "mcp-reindex",
+      "sequence": [
+        "mcp-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827076",
+      "confidence": 0.7,
+      "next": "workspace-ci",
+      "sequence": [
+        "agent-doctor"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827077",
+      "confidence": 0.65,
+      "next": "agent-repair",
+      "sequence": [
+        "workspace-ci"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827078",
+      "confidence": 0.72,
+      "next": "integrity-guard",
+      "sequence": [
+        "duplication-guard"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827079",
+      "confidence": 0.65,
+      "next": "next",
+      "sequence": [
+        "workspace-dashboard"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827080",
+      "confidence": 0.62,
+      "next": "mesh-assign",
+      "sequence": [
+        "mesh-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827081",
+      "confidence": 0.68,
+      "next": "mesh-status",
+      "sequence": [
+        "mesh-monitor-start"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827082",
+      "confidence": 0.75,
+      "next": "brain-graph-query",
+      "sequence": [
+        "brain-graph-build"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827083",
+      "confidence": 0.65,
+      "next": "idea-start",
+      "sequence": [
+        "brain-graph-query"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827084",
+      "confidence": 0.65,
+      "next": "brain-graph-build",
+      "sequence": [
+        "brain-graph-orphans"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827085",
+      "confidence": 0.78,
+      "next": "autolab-status",
+      "sequence": [
+        "autolab-run"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827086",
+      "confidence": 0.65,
+      "next": "autolab-run",
+      "sequence": [
+        "autolab-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827087",
+      "confidence": 0.7,
+      "next": "agent-doctor",
+      "sequence": [
+        "autolab-promote"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827088",
+      "confidence": 0.72,
+      "next": "gateway-status",
+      "sequence": [
+        "gateway-start"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827089",
+      "confidence": 0.65,
+      "next": "gateway-token",
+      "sequence": [
+        "gateway-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827091",
+      "confidence": 0.75,
+      "next": "git-commit",
+      "sequence": [
+        "git-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827092",
+      "confidence": 0.8,
+      "next": "git-push",
+      "sequence": [
+        "git-commit"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827093",
+      "confidence": 0.7,
+      "next": "evolution-trend",
+      "sequence": [
+        "daily-evolve"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827094",
+      "confidence": 0.65,
+      "next": "agent-doctor",
+      "sequence": [
+        "evolution-trend"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827095",
+      "confidence": 0.65,
+      "next": "agent-finish",
+      "sequence": [
+        "build-training-data"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827096",
+      "confidence": 0.65,
+      "next": "memory-search",
+      "sequence": [
+        "ollama-mcp"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827097",
+      "confidence": 0.65,
+      "next": "brain-graph-build",
+      "sequence": [
+        "arxiv-mcp"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827098",
+      "confidence": 0.72,
+      "next": "next",
+      "sequence": [
+        "agent-start",
+        "agent-doctor"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827099",
+      "confidence": 0.68,
+      "next": "goal-execute",
+      "sequence": [
+        "next",
+        "goal-create"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827100",
+      "confidence": 0.7,
+      "next": "goal-create",
+      "sequence": [
+        "idea-start",
+        "idea-run"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827101",
+      "confidence": 0.65,
+      "next": "mcp-reindex",
+      "sequence": [
+        "agent-doctor",
+        "agent-repair"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827102",
+      "confidence": 0.68,
+      "next": "next",
+      "sequence": [
+        "mcp-reindex",
+        "mcp-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827103",
+      "confidence": 0.67,
+      "next": "agent-doctor",
+      "sequence": [
+        "workspace-backup",
+        "agent-maintain"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827104",
+      "confidence": 0.63,
+      "next": "memory-search",
+      "sequence": [
+        "brain-graph-build",
+        "brain-graph-query"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827104",
+      "confidence": 0.62,
+      "next": "autolab-promote",
+      "sequence": [
+        "autolab-run",
+        "autolab-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827105",
+      "confidence": 0.65,
+      "next": "next",
+      "sequence": [
+        "gateway-start",
+        "gateway-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827106",
+      "confidence": 0.7,
+      "next": "agent-finish",
+      "sequence": [
+        "workspace-ci",
+        "agent-doctor"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827107",
+      "confidence": 0.65,
+      "next": "next",
+      "sequence": [
+        "mesh-monitor-start",
+        "mesh-status"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    },
+    {
+      "added_at": "2026-06-26T09:56:58.827108",
+      "confidence": 0.67,
+      "next": "agent-finish",
+      "sequence": [
+        "daily-evolve",
+        "evolution-trend"
+      ],
+      "source": "bootstrap",
+      "uses": 0
+    }
+  ],
   "preferred_workflows": [
     {
       "count": 102,
@@ -2090,7 +2605,7 @@
       "intent_or_context": "development"
     },
     {
-      "count": 3,
+      "count": 4,
       "intent_or_context": "system_improvement"
     }
   ],
@@ -2128,6 +2643,11 @@
       "success_count": 102
     },
     {
+      "command": "system-audit",
+      "failure_count": 0,
+      "success_count": 1
+    },
+    {
       "command": "system-gaps",
       "failure_count": 0,
       "success_count": 1
@@ -2137,510 +2657,5 @@
     "implicit_workflow": 0.1,
     "maintenance": 1.0
   },
-  "version": "1.0",
-  "patterns": [
-    {
-      "sequence": [
-        "idea-start"
-      ],
-      "next": "idea-run",
-      "confidence": 0.72,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827052",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "idea-run"
-      ],
-      "next": "goal-create",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827058",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "goal-create"
-      ],
-      "next": "goal-execute",
-      "confidence": 0.68,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827060",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "arxiv-mcp"
-      ],
-      "next": "idea-start",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827062",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "memory-search"
-      ],
-      "next": "idea-start",
-      "confidence": 0.62,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827063",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "brain-graph-query"
-      ],
-      "next": "memory-search",
-      "confidence": 0.63,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827064",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-doctor"
-      ],
-      "next": "agent-repair",
-      "confidence": 0.75,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827065",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-repair"
-      ],
-      "next": "agent-doctor",
-      "confidence": 0.7,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827066",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "workspace-backup"
-      ],
-      "next": "agent-maintain",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827067",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-maintain"
-      ],
-      "next": "agent-doctor",
-      "confidence": 0.68,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827068",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-start"
-      ],
-      "next": "next",
-      "confidence": 0.8,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827069",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "next"
-      ],
-      "next": "agent-finish",
-      "confidence": 0.75,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827070",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-finish"
-      ],
-      "next": "agent-start",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827071",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "workspace-index"
-      ],
-      "next": "memory-search",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827073",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "mcp-reindex"
-      ],
-      "next": "mcp-status",
-      "confidence": 0.78,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827074",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "mcp-status"
-      ],
-      "next": "mcp-reindex",
-      "confidence": 0.62,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827075",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-doctor"
-      ],
-      "next": "workspace-ci",
-      "confidence": 0.7,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827076",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "workspace-ci"
-      ],
-      "next": "agent-repair",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827077",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "duplication-guard"
-      ],
-      "next": "integrity-guard",
-      "confidence": 0.72,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827078",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "workspace-dashboard"
-      ],
-      "next": "next",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827079",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "mesh-status"
-      ],
-      "next": "mesh-assign",
-      "confidence": 0.62,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827080",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "mesh-monitor-start"
-      ],
-      "next": "mesh-status",
-      "confidence": 0.68,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827081",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "brain-graph-build"
-      ],
-      "next": "brain-graph-query",
-      "confidence": 0.75,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827082",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "brain-graph-query"
-      ],
-      "next": "idea-start",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827083",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "brain-graph-orphans"
-      ],
-      "next": "brain-graph-build",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827084",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "autolab-run"
-      ],
-      "next": "autolab-status",
-      "confidence": 0.78,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827085",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "autolab-status"
-      ],
-      "next": "autolab-run",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827086",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "autolab-promote"
-      ],
-      "next": "agent-doctor",
-      "confidence": 0.7,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827087",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "gateway-start"
-      ],
-      "next": "gateway-status",
-      "confidence": 0.72,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827088",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "gateway-status"
-      ],
-      "next": "gateway-token",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827089",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "git-status"
-      ],
-      "next": "git-commit",
-      "confidence": 0.75,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827091",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "git-commit"
-      ],
-      "next": "git-push",
-      "confidence": 0.8,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827092",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "daily-evolve"
-      ],
-      "next": "evolution-trend",
-      "confidence": 0.7,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827093",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "evolution-trend"
-      ],
-      "next": "agent-doctor",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827094",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "build-training-data"
-      ],
-      "next": "agent-finish",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827095",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "ollama-mcp"
-      ],
-      "next": "memory-search",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827096",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "arxiv-mcp"
-      ],
-      "next": "brain-graph-build",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827097",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-start",
-        "agent-doctor"
-      ],
-      "next": "next",
-      "confidence": 0.72,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827098",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "next",
-        "goal-create"
-      ],
-      "next": "goal-execute",
-      "confidence": 0.68,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827099",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "idea-start",
-        "idea-run"
-      ],
-      "next": "goal-create",
-      "confidence": 0.7,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827100",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "agent-doctor",
-        "agent-repair"
-      ],
-      "next": "mcp-reindex",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827101",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "mcp-reindex",
-        "mcp-status"
-      ],
-      "next": "next",
-      "confidence": 0.68,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827102",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "workspace-backup",
-        "agent-maintain"
-      ],
-      "next": "agent-doctor",
-      "confidence": 0.67,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827103",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "brain-graph-build",
-        "brain-graph-query"
-      ],
-      "next": "memory-search",
-      "confidence": 0.63,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827104",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "autolab-run",
-        "autolab-status"
-      ],
-      "next": "autolab-promote",
-      "confidence": 0.62,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827104",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "gateway-start",
-        "gateway-status"
-      ],
-      "next": "next",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827105",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "workspace-ci",
-        "agent-doctor"
-      ],
-      "next": "agent-finish",
-      "confidence": 0.7,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827106",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "mesh-monitor-start",
-        "mesh-status"
-      ],
-      "next": "next",
-      "confidence": 0.65,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827107",
-      "uses": 0
-    },
-    {
-      "sequence": [
-        "daily-evolve",
-        "evolution-trend"
-      ],
-      "next": "agent-finish",
-      "confidence": 0.67,
-      "source": "bootstrap",
-      "added_at": "2026-06-26T09:56:58.827108",
-      "uses": 0
-    }
-  ],
-  "last_updated": "2026-06-26T09:56:58.827109"
+  "version": "1.0"
 }

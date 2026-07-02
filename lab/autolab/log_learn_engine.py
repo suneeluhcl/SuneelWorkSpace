@@ -19,6 +19,9 @@ EXEC_HISTORY = WORKSPACE / "blood/logs/execution_history.jsonl"
 REPAIR_LOG = WORKSPACE / "blood/logs/repair_loop.jsonl"
 TRAINING_DATA = WORKSPACE / "dna/agents/hermes/ollama_models/training_data.jsonl"
 LEARN_LOG = WORKSPACE / "blood/logs/log_learn_engine.jsonl"
+EVOLVE_LOG = WORKSPACE / "blood/logs/daily_evolve.jsonl"
+LESSONS_MD = WORKSPACE / "brain/memory/LESSONS.md"
+LESSONS_JSON = WORKSPACE / "lab/autolab/meta/lessons.json"
 
 
 def _read_jsonl(path: Path) -> list[dict]:
@@ -152,6 +155,75 @@ def _append_new_pairs(new_pairs: list[dict], existing_keys: set[str]) -> int:
     return added
 
 
+def _extract_lessons(repair_pairs: list[dict], evolve_records: list[dict]) -> list[dict]:
+    """Distill durable lessons: recurring error types and repeatedly failing evolve passes."""
+    lessons: list[dict] = []
+
+    error_counts: dict[str, int] = {}
+    for pair in repair_pairs:
+        et = pair.get("error_type", "general_error")
+        if et != "none":
+            error_counts[et] = error_counts.get(et, 0) + 1
+    for et, count in sorted(error_counts.items(), key=lambda x: -x[1]):
+        if count >= 2:
+            lessons.append({
+                "key": f"recurring_error:{et}",
+                "lesson": (
+                    f"`{et}` was auto-repaired {count} times. Recurring repairs "
+                    "signal a root cause worth a permanent fix instead of re-healing."
+                ),
+            })
+
+    pass_failures: dict[str, int] = {}
+    for rec in evolve_records:
+        for p in rec.get("passes", []):
+            if p.get("status") in ("failed", "timeout", "error"):
+                name = p.get("pass", "unknown")
+                pass_failures[name] = pass_failures.get(name, 0) + 1
+    for name, count in sorted(pass_failures.items(), key=lambda x: -x[1]):
+        if count >= 2:
+            lessons.append({
+                "key": f"failing_pass:{name}",
+                "lesson": (
+                    f"Nightly pass `{name}` failed {count} times in daily_evolve. "
+                    "Inspect its script and last output before the next cycle."
+                ),
+            })
+    return lessons
+
+
+def _write_lessons(lessons: list[dict]) -> int:
+    """Append only-new lessons to LESSONS.md, deduplicated via LESSONS_JSON keys."""
+    known: dict = {}
+    if LESSONS_JSON.exists():
+        try:
+            known = json.loads(LESSONS_JSON.read_text())
+        except Exception:
+            known = {}
+    seen: set[str] = set(known.get("keys", []))
+    fresh = [l for l in lessons if l["key"] not in seen]
+    if not fresh:
+        return 0
+
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    LESSONS_MD.parent.mkdir(parents=True, exist_ok=True)
+    header = "" if LESSONS_MD.exists() else (
+        "# Lessons\n\nStructured lessons distilled nightly from logs by "
+        "`lab/autolab/log_learn_engine.py`. Append-only.\n"
+    )
+    with open(LESSONS_MD, "a") as f:
+        f.write(header + f"\n## {today} — log-learn digest\n\n")
+        for l in fresh:
+            f.write(f"- {l['lesson']}\n")
+            seen.add(l["key"])
+
+    LESSONS_JSON.parent.mkdir(parents=True, exist_ok=True)
+    known["keys"] = sorted(seen)
+    known["updated_at"] = datetime.now(timezone.utc).isoformat()
+    LESSONS_JSON.write_text(json.dumps(known, indent=2))
+    return len(fresh)
+
+
 def run() -> dict:
     existing_keys = _load_existing_pairs()
     before = len(existing_keys)
@@ -165,6 +237,10 @@ def run() -> dict:
 
     added = _append_new_pairs(all_pairs, existing_keys)
 
+    evolve_records = _read_jsonl(EVOLVE_LOG)
+    lessons = _extract_lessons(repair_pairs, evolve_records)
+    lessons_added = _write_lessons(lessons)
+
     result = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "repair_records_scanned": len(repair_records),
@@ -172,6 +248,7 @@ def run() -> dict:
         "candidates": len(all_pairs),
         "new_pairs_added": added,
         "total_training_pairs": before + added,
+        "lessons_added": lessons_added,
     }
 
     # Append to learn log

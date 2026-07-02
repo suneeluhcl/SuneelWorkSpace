@@ -7,11 +7,11 @@ echo "====================="
 echo
 
 echo "[iMessage]"
-python3 "$ROOT/comms/imessage/scripts/imessage-permissions-check" 2>&1
+python3 "$ROOT/mouth/comms/imessage/scripts/imessage-permissions-check" 2>&1
 echo
 
 echo "[Mail]"
-python3 "$ROOT/comms/mail/scripts/mail-permissions-check" 2>&1
+python3 "$ROOT/mouth/comms/mail/scripts/mail-permissions-check" 2>&1
 echo
 
 echo "[MCP tools]"
@@ -20,11 +20,11 @@ echo
 
 echo "[Scripts executable]"
 for s in \
-  "$ROOT/comms/imessage/scripts/imessage-status" \
-  "$ROOT/comms/imessage/scripts/imessage-recent" \
-  "$ROOT/comms/imessage/scripts/imessage-search" \
-  "$ROOT/comms/imessage/scripts/imessage-send-draft" \
-  "$ROOT/comms/imessage/scripts/imessage-send-confirmed" \
+  "$ROOT/mouth/comms/imessage/scripts/imessage-status" \
+  "$ROOT/mouth/comms/imessage/scripts/imessage-recent" \
+  "$ROOT/mouth/comms/imessage/scripts/imessage-search" \
+  "$ROOT/mouth/comms/imessage/scripts/imessage-send-draft" \
+  "$ROOT/mouth/comms/imessage/scripts/imessage-send-confirmed" \
   "$ROOT/bin/imsg-recent" \
   "$ROOT/bin/imsg-search" \
   "$ROOT/bin/imsg-draft"

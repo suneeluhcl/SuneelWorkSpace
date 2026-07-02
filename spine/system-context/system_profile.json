@@ -1,46 +1,46 @@
 {
   "development_environments": [
     {
-      "available": false,
+      "available": true,
       "name": "rtk",
-      "path": null,
-      "version": null
+      "path": "/Users/MAC/.local/bin/rtk",
+      "version": "rtk 0.28.2"
     },
     {
       "available": true,
       "name": "git",
-      "path": "/usr/bin/git",
-      "version": "git version 2.50.1 (Apple Git-155)"
+      "path": "/opt/homebrew/bin/git",
+      "version": "git version 2.54.0"
     },
     {
-      "available": false,
+      "available": true,
       "name": "gh",
-      "path": null,
-      "version": null
+      "path": "/opt/homebrew/bin/gh",
+      "version": "gh version 2.94.0 (2026-06-10)"
     },
     {
       "available": true,
       "name": "python3",
-      "path": "/usr/bin/python3",
-      "version": "Python 3.9.6"
+      "path": "/Users/MAC/SuneelWorkSpace/.venv/bin/python3",
+      "version": "Python 3.14.6"
     },
     {
       "available": true,
       "name": "pip3",
-      "path": "/usr/bin/pip3",
+      "path": "/Users/MAC/SuneelWorkSpace/.venv/bin/pip3",
       "version": null
     },
     {
-      "available": false,
+      "available": true,
       "name": "node",
-      "path": null,
-      "version": null
+      "path": "/opt/homebrew/bin/node",
+      "version": "v26.3.0"
     },
     {
-      "available": false,
+      "available": true,
       "name": "npm",
-      "path": null,
-      "version": null
+      "path": "/opt/homebrew/bin/npm",
+      "version": "11.16.0"
     },
     {
       "available": false,
@@ -49,45 +49,45 @@
       "version": null
     },
     {
-      "available": false,
+      "available": true,
       "name": "uv",
-      "path": null,
-      "version": null
+      "path": "/Users/MAC/.hermes/bin/uv",
+      "version": "uv 0.11.21 (5aa65dd7a 2026-06-11 aarch64-apple-darwin)"
     },
     {
-      "available": false,
+      "available": true,
       "name": "brew",
-      "path": null,
+      "path": "/opt/homebrew/bin/brew",
       "version": null
     },
     {
-      "available": false,
+      "available": true,
       "name": "codex",
-      "path": null,
-      "version": null
+      "path": "/Users/MAC/bin/codex",
+      "version": "codex-cli 0.133.0-alpha.1"
     },
     {
-      "available": false,
+      "available": true,
       "name": "claude",
-      "path": null,
-      "version": null
+      "path": "/opt/homebrew/bin/claude",
+      "version": "2.1.198 (Claude Code)"
     },
     {
-      "available": false,
+      "available": true,
       "name": "gemini",
-      "path": null,
-      "version": null
+      "path": "/opt/homebrew/bin/gemini",
+      "version": "0.47.0"
     },
     {
-      "available": false,
+      "available": true,
       "name": "opencode",
-      "path": null,
-      "version": null
+      "path": "/opt/homebrew/bin/opencode",
+      "version": "1.17.10"
     },
     {
-      "available": false,
+      "available": true,
       "name": "rg",
-      "path": null,
+      "path": "/opt/homebrew/bin/rg",
       "version": null
     },
     {
@@ -122,18 +122,18 @@
     }
   ],
   "disk": {
-    "home_free_gb": 575.6,
+    "home_free_gb": 569.9,
     "home_total_gb": 926.4,
-    "home_used_gb": 350.7
+    "home_used_gb": 356.5
   },
-  "generated_at": "2026-07-01T19:27:35.675075-05:00",
+  "generated_at": "2026-07-01T23:47:01.779078-05:00",
   "hardware": {
     "cpu_count": 16,
     "mac_model": "Mac16,5",
     "machine": "arm64",
     "memory_bytes": 68719476736,
     "memory_gb": 64.0,
-    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "platform": "macOS-26.5.2-arm64-arm-64bit-Mach-O",
     "processor": "arm"
   },
   "home_top_level_directories": [
@@ -531,7 +531,7 @@
       "scripts": false
     },
     "files_by_subsystem": {
-      "agent-system": 2,
+      "agent-system": 3,
       "autolab": 4,
       "bin": 209,
       "comms": 0,
@@ -565,6 +565,7 @@
       ".venv",
       ".vscode",
       "agent-system",
+      "anticipation",
       "autolab",
       "automation",
       "bin",

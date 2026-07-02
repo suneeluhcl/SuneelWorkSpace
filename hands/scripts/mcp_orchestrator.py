@@ -255,7 +255,7 @@ class McpOrchestrator:
         quality_score = 1.0
         try:
             import sys
-            sys.path.append(str(ROOT / "scripts"))
+            sys.path.append(str(ROOT / "hands" / "scripts"))
             from workflow_outcome_evaluator import record_outcome
             slug = self.workflow_name.replace(" ", "_").lower()
             quality_score = record_outcome(

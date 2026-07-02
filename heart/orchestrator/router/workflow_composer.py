@@ -146,7 +146,7 @@ def compose_workflows(slugs: list[str], output_slug: str = "composed_workflow") 
     # Run knowledge bridge to compile it to bin/workflow-composed-workflow
     try:
         import sys
-        sys.path.append(str(ROOT / "scripts"))
+        sys.path.append(str(ROOT / "hands" / "scripts"))
         import knowledge_bridge
         knowledge_bridge.scan_and_generate_workflows()
     except Exception as e:

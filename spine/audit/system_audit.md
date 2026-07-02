@@ -1,6 +1,6 @@
 # System Audit
 
-Generated: 2026-07-01T19:27:35.675075-05:00
+Generated: 2026-07-01T23:47:01.779078-05:00
 
 ## Scope
 
@@ -10,7 +10,7 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 ## Current Architecture
 
-- `agent-system`: present; files observed: 2
+- `agent-system`: present; files observed: 3
 - `mcp`: present; files observed: 4
 - `orchestrator`: missing; files observed: 0
 - `goal-engine`: missing; files observed: 0
@@ -41,7 +41,7 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 - [P0] architecture: System-wide audit artifacts were missing or not first-class. Impact: Agents could inspect files ad hoc, but there was no durable overview for future sessions.
 - [P0] automation: Health checks did not summarize spine/audit/gap/research/tool readiness. Impact: Maintenance could report green while intelligence coverage was incomplete.
-- [P0] intelligence: Ideas, comparisons, and decisions had no dedicated pipeline. Impact: Research outcomes could remain in chat instead of becoming durable shared brain context.
+- [P1] intelligence: Ideas, comparisons, and decisions had no dedicated pipeline. Impact: Research outcomes could remain in chat instead of becoming durable shared brain context.
 - [P1] research: Tool discovery was not summarized into an inspectable inventory. Impact: Agents had to rediscover installed CLIs, apps, and integration candidates.
 - [P1] workflow: Email, messaging, downloads, and file organization support existed only as scattered commands. Impact: Daily workflows lacked a unified route from capture to execution to memory.
 - [P0] usability: There was no single command for capabilities, gaps, recommendations, or bounded self-upgrade. Impact: Suneel had to know internal paths and command names.
@@ -52,13 +52,13 @@ No private home-directory file contents were ingested. Home awareness is limited
 
 - Workspace commands found: 207
 - Non-executable bin files: 8
-- Tool inventory entries: 240
+- Tool inventory entries: 251
 
 ## System Introspection
 
 - CPU count: 16
 - Memory GB: 64.0
-- Home disk free GB: 575.6
+- Home disk free GB: 569.9
 - Installed application names captured: 25
 - Home top-level directory names captured: 61
 

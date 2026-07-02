@@ -46,31 +46,24 @@ Emits `readme_updated` events to nervous system on change.
 
 
 ## 🏥 Health Score
-🟡 **60/100**
+🟡 **75/100**
 
 | Category | Deduction |
 |----------|----------|
-| broken_python | -30 |
+| readme_drift | -15 |
 | no_tests | -10 |
 
 ## 🔥 Critical Issues
-- Syntax error in workflow_claude_headroom_setup.py: workflow_claude_headroom_setup.py:88: unterminated string li
-- Syntax error in workflow_eval_and_reliability_map.py: workflow_eval_and_reliability_map.py:88: unterminated string
-- Syntax error in workflow_implementation_workflow.py: workflow_implementation_workflow.py:88: unterminated string 
-- Syntax error in workflow_local_ai_stack_overview.py: workflow_local_ai_stack_overview.py:88: unterminated string 
-- Syntax error in workflow_obsidian_maintenance.py: workflow_obsidian_maintenance.py:88: unterminated string lit
-- Syntax error in workflow_obsidian_upgrade_handoff.py: workflow_obsidian_upgrade_handoff.py:88: unterminated string
-- Syntax error in workflow_rollback-and-recovery.py: workflow_rollback-and-recovery.py:88: unterminated string li
-- Syntax error in workflow_telegram_control_plane.py: workflow_telegram_control_plane.py:88: unterminated string l
-- Syntax error in workflow_voice_input.py: workflow_voice_input.py:88: unterminated string literal (det
+- README is older than folder contents
 - No test files detected
 
 ## ✅ Runtime Status
-- Python files: 12 (3 valid, 9 broken)
+- Python files: 12 (12 valid, 0 broken)
 - Shell scripts: 0 (0 valid)
 - Tests detected: ❌
 
 ## 📝 Change Log (Auto)
+- 2026-07-02: README auto-updated by README Intelligence System
 - 2026-07-01: README auto-updated by README Intelligence System
 - 2026-06-30: README auto-updated by README Intelligence System
 - 2026-06-28: README auto-updated by README Intelligence System
@@ -84,13 +77,13 @@ Emits `readme_updated` events to nervous system on change.
 **Ghost references (in README, not on disk):**
 - `README.md` *(referenced but missing)*
 
-*Last reconciled: 2026-07-01T00:01:42*
+*Last reconciled: 2026-07-02T00:00:05*
 
 ## 🎯 Intent Alignment
 
 **Alignment:** ⚠️ PARTIAL (60/100)
 
-*Last checked: 2026-07-01T00:01:42*
+*Last checked: 2026-07-02T00:00:05*
 
 ## 🌐 Failure Impact Map
 
@@ -98,16 +91,17 @@ Emits `readme_updated` events to nervous system on change.
 
 No downstream dependents. Failure is isolated.
 
-*Computed: 2026-07-01T00:01:42*
+*Computed: 2026-07-02T00:00:05*
 
 ## 📈 Trends
 
 **7-day trend:** ➡️ STABLE
-**Score change:** +0.3 (97.8 → 98.1)
+**Score change:** +0.4 (97.8 → 98.2)
 
 **Recent history (last 5 snapshots):**
 - `2026-06-27` — 97.8/100 (284 healthy, 0 critical)
 - `2026-06-28` — 98.0/100 (320 healthy, 0 critical)
 - `2026-06-30` — 98.1/100 (423 healthy, 0 critical)
+- `2026-07-01` — 98.2/100 (429 healthy, 0 critical)
 
-*3 day(s) of history | updated daily by nightly automation*
+*4 day(s) of history | updated daily by nightly automation*

@@ -1,6 +1,6 @@
 #!/bin/sh
 ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-python3 "$ROOT/scripts/system_intelligence.py" recommend "$@"
+python3 "$ROOT/hands/scripts/system_intelligence.py" recommend "$@"
 STATUS="$?"
-python3 "$ROOT/anticipation/prediction_engine.py" record --command system-recommend --context system --exit-code "$STATUS" 2>/dev/null || true
+python3 "$ROOT/brain/anticipation/prediction_engine.py" record --command system-recommend --context system --exit-code "$STATUS" 2>/dev/null || true
 exit "$STATUS"

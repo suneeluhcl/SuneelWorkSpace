@@ -134,9 +134,10 @@ Stop researching and act when:
 
 ---
 
-## CURRENT WORKSPACE STATE (built 2026-06-28)
+## CURRENT WORKSPACE STATE (built 2026-07-02)
 
-**Health Score**: unknown/100
+**Health**: healthy (0 issues)
+**Organs on disk: brain, heart, eyes, ears, nervous, skeleton, blood, hands, mouth, dna, lab, spine**
 
 ### Active Memory
 # Shared Memory
@@ -166,21 +167,69 @@ Stop researching and act when:
 - Background maintenance is local, lightweight, implemented with launchd calling workspace scripts.
 
 ## Agent 
+...
+cent Ollama suggestions indicate a need for memory reindexing and agent doctoring.
 
-### Key Decisions
-# Decisions
+## Recent Nerve Events
 
-## 2026-06-26 - Identity system integration
+The recent nerve events suggest that Suneel has been actively working on various projects, including skeleton, blood, hands, mouth, dna, lab, spine, brain, heart, eyes, ears, nervous, and lab.
 
-- Decision: Use `dna/identity/` as the source of truth for Suneel's voice, decision style, workflow preferences, and assistant feel.
-- Reason: Future Claude, Codex, MCP, orchestrator, goal-engine, and comms behavior needs a shared plain-file identity source.
-- Safety: Identity preferences do not override safety boundaries around destructive actions, money/account changes, external installs, private deep indexing, or outbound communication.
 
-## 2026-06-26 - Adaptive identity loop
 
-- Decision: Add `dna/dna/identity/adaptive/` as a bounded learning layer over the base identity.
-- Reason: Suneel wants identity to improve from real behavior without becoming generic or drifting away from explicit preferences.
-- Safety: Adaptation requires
+---
+*Added by memory curator — 2026-07-01*
+
+## Recent Projects
+
+* Implemented Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines
+
+## Ollama Suggestions
+
+* Investigate and implement `mcp-reindex`, `memory-reindex`, and `agent-doctor` suggestions
+
+
+
+### Recent Decisions
+ggestions
+
+*Generated: 2026-06-28T15:34:54.270067+00:00*
+
+... (include the entire section)
+
+
+
+---
+*Added by memory curator — 2026-06-30*
+
+## New Entry
+
+The Karpathy-style LLM-Wiki persistent knowledge base with ingest, lint, and query compounding pipelines was implemented in the latest session handoff. This provides a new layer of proactive intelligence to the workspace.
+
+## New Entry
+
+Several Ollama repair suggestions need to be addressed, including `mcp-reindex`, `memory-reindex`, and `agent-doctor`. These should be prioritized for immediate attention.
+
+
+
+---
+*Added by memory curator — 2026-07-01*
+
+## Recent Nerve Events
+
+- nervous -> ?:
+- skeleton -> ?:
+- blood -> ?:
+- hands -> ?:
+- mouth -> ?:
+- dna -> ?:
+- lab -> ?:
+- spine -> ?:
+- brain -> ?:
+- heart -> ?:
+- eyes -> ?:
+- ears -> ?:
+
+
 
 ### Active Patterns
 # Patterns
@@ -196,6 +245,9 @@ Use `idea-run` for rough ideas that need planning. It creates capture, research-
 ## Identity Voice Pattern
 
 For user-facing output, use Suneel's voice: short, direct, casual, conversatio
+
+### Recent Lessons
+
 
 ### Active Tasks
 # Active Tasks
@@ -216,9 +268,9 @@ For user-facing output, use Suneel's voice: short, direct, casual, conversatio
 
 ## Latest Handoff
 
-Date: 2026-06-28
+Date: 2026-07-01
 
-Summary: Hermes Completion + Ollama integration: Ollama running, suneelworkspace model created, repair+learning engines in lab/autolab/, hands/bin/ollama-repair and ollama-learn wired, night_shift.yaml 3 new steps, dashboard Ollama panel + routes, model_registry.json 6 Ollama models added, Hermes configured for Ollama
+Summary: Committed and pushed all workspace audit fixes (309a66b9): doubled-path corruption resolved (54 files + culprit script removed), hermes CLI entrypoint built, pre_commit_hook.sh SIGPIPE-on-large-diff bug fixed. Pushed to origin/main successfully.
 
 Changed:
 
@@ -230,7 +282,8 @@ Verification:
 
 Open Items:
 
-- Review `heart/tasks/ACTIVE_T
+- Review `heart/tasks/ACTIVE_TASKS.md` and `heart/tasks/TASK_QUEUE.md`.
+
 
 ---
 

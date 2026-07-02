@@ -73,7 +73,7 @@ CONFIDENCE="$(echo "$DECISION" | python3 -c 'import json,sys; print(json.load(sy
 CONF_NUM="$(echo "$DECISION" | python3 -c 'import json,sys; print(json.load(sys.stdin)["confidence"])' 2>/dev/null)"
 HYBRID="$(echo "$DECISION" | python3 -c 'import json,sys; v=json.load(sys.stdin).get("hybrid_suggestion"); print(v or "")' 2>/dev/null)"
 REASONING="$(echo "$DECISION" | python3 -c 'import json,sys; print(json.load(sys.stdin)["reasoning"])' 2>/dev/null)"
-WRAPPER="$ROOT/bin/use-$AGENT"
+WRAPPER="$ROOT/hands/bin/use-$AGENT"
 
 # JSON output: print decision only, no launch
 if [ "$JSON_OUT" -eq 1 ]; then
@@ -119,7 +119,7 @@ if [ "$AUTO" -eq 0 ]; then
 fi
 
 # Log the launch
-LAUNCH_LOG="$ROOT/orchestrator/router/routing_logs.md"
+LAUNCH_LOG="$ROOT/heart/orchestrator/router/routing_logs.md"
 STAMP="$(date '+%Y-%m-%dT%H:%M:%S')"
 echo "$STAMP | LAUNCH  | $AGENT | $TASK_TYPE | $TASK" >> "$LAUNCH_LOG" 2>/dev/null || true
 
@@ -140,7 +140,7 @@ STAMP2="$(date '+%Y-%m-%dT%H:%M:%S')"
 echo "$STAMP2 | DONE    | $AGENT | $TASK_TYPE | outcome=$OUTCOME | $TASK" >> "$LAUNCH_LOG" 2>/dev/null || true
 
 # Record outcome in history.json for learning
-python3 - "$ROOT/orchestrator/router/history.json" "$AGENT" "$TASK_TYPE" "$EXIT_CODE" "$TASK" <<'PY'
+python3 - "$ROOT/heart/orchestrator/router/history.json" "$AGENT" "$TASK_TYPE" "$EXIT_CODE" "$TASK" <<'PY'
 import json, pathlib, sys
 from datetime import datetime, timezone
 path = pathlib.Path(sys.argv[1])
@@ -191,12 +191,12 @@ except Exception:
     pass
 PY
 
-python3 "$ROOT/identity/adaptive/adaptive_identity.py" hook \
+python3 "$ROOT/dna/identity/adaptive/adaptive_identity.py" hook \
   --output-id "route-execute-$(date '+%Y%m%d%H%M%S')" \
   --context "route_execute:$TASK_TYPE" \
   --agent "$AGENT" \
   --notes "route execution cycle completed with exit code $EXIT_CODE" >/dev/null 2>&1 || true
-python3 "$ROOT/anticipation/prediction_engine.py" record \
+python3 "$ROOT/brain/anticipation/prediction_engine.py" record \
   --command route-execute \
   --context "orchestrator:$TASK_TYPE" \
   --exit-code "$EXIT_CODE" 2>/dev/null || true

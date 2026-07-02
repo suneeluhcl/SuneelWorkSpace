@@ -85,8 +85,7 @@ def main():
         ok, stdout, stderr = run_command(cmd)
         steps_outputs.append(stdout)
         
-        print("
-[RESULT]")
+        print("\n[RESULT]")
         preview = stdout[:200] + "..." if len(stdout) > 200 else stdout
         indented_preview = "\n".join("  " + line for line in preview.splitlines())
         print(f"→\n{indented_preview}\n")
@@ -102,7 +101,7 @@ def main():
     # Record outcome
     quality_score = 1.0
     try:
-        sys.path.append(str(ROOT / "scripts"))
+        sys.path.append(str(ROOT / "hands" / "scripts"))
         from workflow_outcome_evaluator import record_outcome
         quality_score = record_outcome(
             workflow_slug="rollback-and-recovery",

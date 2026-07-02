@@ -55,13 +55,22 @@
       "missed_updates": 0,
       "missed_folders": [],
       "accuracy_estimate": 100.0
+    },
+    {
+      "timestamp": "2026-07-02T00:00:08.643631",
+      "total_folders": 476,
+      "healthy_folders": 476,
+      "critical_folders": 0,
+      "missed_updates": 0,
+      "missed_folders": [],
+      "accuracy_estimate": 100.0
     }
   ],
   "total_updates": 0,
   "total_missed": 9,
   "total_repairs": 0,
-  "last_run": "2026-07-01T00:02:08.494902",
+  "last_run": "2026-07-02T00:00:08.643631",
   "latest_accuracy": 100.0,
   "latest_missed_count": 0,
-  "accuracy_trend": 0.7
+  "accuracy_trend": 0.0
 }

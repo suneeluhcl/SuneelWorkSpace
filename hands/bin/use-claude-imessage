@@ -10,12 +10,12 @@ echo
 
 # Light health check
 if [ -x "$ROOT/bin/comms-doctor" ]; then
-    python3 "$ROOT/comms/imessage/scripts/imessage-permissions-check" 2>/dev/null | grep -E "^\s+\[(OK|FAIL)\]" || true
+    python3 "$ROOT/mouth/comms/imessage/scripts/imessage-permissions-check" 2>/dev/null | grep -E "^\s+\[(OK|FAIL)\]" || true
     echo
 fi
 
 # Check plugin installed
-INV="$ROOT/comms/config/plugin_inventory.json"
+INV="$ROOT/mouth/comms/config/plugin_inventory.json"
 PLUGIN_STATUS="$(python3 -c "
 import json, pathlib
 p = pathlib.Path('$INV')

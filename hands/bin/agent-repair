@@ -18,10 +18,10 @@ for p in "$ROOT/AGENTS.md" "$ROOT/CLAUDE.md" "$HOME/.codex/AGENTS.md" "$HOME/.cl
 done
 
 for s in agent-status agent-start agent-finish agent-doctor agent-repair agent-maintain agent-autoclose use-codex use-claude workspace-context workspace-backup workspace-index workspace-report workspace-changes agent-test-loop workflow-audit gstack-create; do
-  [ -f "$ROOT/bin/$s" ] && chmod 755 "$ROOT/bin/$s"
+  [ -f "$ROOT/hands/bin/$s" ] && chmod 755 "$ROOT/hands/bin/$s"
 done
 [ -f "$ROOT/hands/automation/maintenance/common.sh" ] && chmod 755 "$ROOT/hands/automation/maintenance/common.sh"
-if [ -d "$ROOT/autolab/scripts" ]; then
+if [ -d "$ROOT/lab/autolab/scripts" ]; then
   chmod 755 "$ROOT"/autolab/scripts/autolab-* 2>/dev/null || true
 fi
 
@@ -109,8 +109,8 @@ for path, default in defaults.items():
         tmp.replace(path)
 PY
 
-"$ROOT/bin/workspace-index" --quiet >/dev/null 2>&1 || true
-"$ROOT/bin/agent-doctor" --quiet >/dev/null 2>&1 || true
+"$ROOT/hands/bin/workspace-index" --quiet >/dev/null 2>&1 || true
+"$ROOT/hands/bin/agent-doctor" --quiet >/dev/null 2>&1 || true
 python3 "$ROOT/hands/scripts/auto_repair_extensions.py" >/dev/null 2>&1 || true
 python3 - "$HEALTH_JSON" <<'PY' >/dev/null 2>&1 || true
 import json, pathlib, sys

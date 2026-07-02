@@ -6,7 +6,7 @@
 # because plugin installation requires a live Claude session.
 
 ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-INV="$ROOT/comms/config/plugin_inventory.json"
+INV="$ROOT/mouth/comms/config/plugin_inventory.json"
 
 echo "iMessage Plugin Installation Guide"
 echo "==================================="

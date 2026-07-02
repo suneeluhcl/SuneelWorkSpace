@@ -1,13 +1,13 @@
 #!/bin/sh
 ROOT="${SUNEEL_WORKSPACE:-$HOME/SuneelWorkSpace}"
-python3 "$ROOT/comms/mail/scripts/mail-draft-reply" "$@"
+python3 "$ROOT/mouth/comms/mail/scripts/mail-draft-reply" "$@"
 STATUS="$?"
-python3 "$ROOT/identity/adaptive/adaptive_identity.py" hook \
+python3 "$ROOT/dna/identity/adaptive/adaptive_identity.py" hook \
   --output-id "mail-draft-$(date '+%Y%m%d%H%M%S')" \
   --context "comms_mail_draft" \
   --agent "Codex" \
   --notes "mail draft flow completed with exit code $STATUS" >/dev/null 2>&1 || true
-python3 "$ROOT/anticipation/prediction_engine.py" record \
+python3 "$ROOT/brain/anticipation/prediction_engine.py" record \
   --command mail-draft-reply \
   --context comms \
   --exit-code "$STATUS" 2>/dev/null || true

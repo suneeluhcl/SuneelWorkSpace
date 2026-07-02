@@ -18,19 +18,41 @@ def _read(rel: str, max_chars: int = 1000) -> str:
     return open(p).read()[:max_chars] if os.path.exists(p) else ""
 
 
+def _read_tail(rel: str, max_chars: int = 1000) -> str:
+    """Read the END of a file — recent entries in append-style logs/decision files."""
+    p = os.path.join(WORKSPACE, rel)
+    return open(p).read()[-max_chars:] if os.path.exists(p) else ""
+
+
+def _organ_structure() -> str:
+    """One-line live snapshot of organs present on disk, so the model knows the real layout."""
+    organs = ["brain", "heart", "eyes", "ears", "nervous", "skeleton",
+              "blood", "hands", "mouth", "dna", "lab", "spine"]
+    present = [o for o in organs if os.path.isdir(os.path.join(WORKSPACE, o))]
+    missing = [o for o in organs if o not in present]
+    line = f"Organs on disk: {', '.join(present)}"
+    if missing:
+        line += f" | MISSING: {', '.join(missing)}"
+    return line
+
+
 def build_system_prompt() -> str:
     identity = _read("dna/identity/profile/identity_profile.md", 1200)
     tone = _read("dna/identity/profile/tone_profile.md", 600)
     decision = _read("dna/identity/profile/decision_profile.md", 600)
-    memory = _read("brain/memory/MEMORY.md", 1500)
-    decisions = _read("brain/memory/DECISIONS.md", 800)
+    # MEMORY.md: durable facts live at the top, curator additions at the bottom.
+    memory = _read("brain/memory/MEMORY.md", 1500) + "\n...\n" + _read_tail("brain/memory/MEMORY.md", 600)
+    # DECISIONS.md is append-only — the newest decisions are at the end.
+    decisions = _read_tail("brain/memory/DECISIONS.md", 800)
     patterns = _read("brain/memory/PATTERNS.md", 600)
+    lessons = _read_tail("brain/memory/LESSONS.md", 600)
     tasks = _read("heart/tasks/ACTIVE_TASKS.md", 400)
     handoff = _read("brain/memory/SESSION_HANDOFF.md", 600)
     health = json.load(open(os.path.join(WORKSPACE, "spine/state/WORKSPACE_HEALTH.json"))) \
         if os.path.exists(os.path.join(WORKSPACE, "spine/state/WORKSPACE_HEALTH.json")) else {}
 
-    score = health.get("health_score", "unknown")
+    issues = health.get("issue_count", "?")
+    score = f"{health.get('status', 'unknown')} ({issues} issues)"
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     prompt = f"""You are the SuneelWorkSpace AI — a specialized intelligence engine embedded inside a living, self-maintaining local AI workspace on macOS. You are NOT a generic assistant. You know this workspace deeply.
@@ -81,16 +103,20 @@ def build_system_prompt() -> str:
 
 ## CURRENT WORKSPACE STATE (built {ts})
 
-**Health Score**: {score}/100
+**Health**: {score}
+**{_organ_structure()}**
 
 ### Active Memory
 {memory}
 
-### Key Decisions
+### Recent Decisions
 {decisions}
 
 ### Active Patterns
 {patterns}
+
+### Recent Lessons
+{lessons}
 
 ### Active Tasks
 {tasks}
@@ -140,6 +166,9 @@ PARAMETER repeat_penalty 1.1
 
 
 if __name__ == "__main__":
+    import subprocess
+    import sys
+
     print("Building Modelfile from live workspace state...")
     content = build_modelfile()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
@@ -147,5 +176,25 @@ if __name__ == "__main__":
         f.write(content)
     prompt_len = len(content)
     print(f"Wrote {prompt_len:,} chars → {OUT}")
-    print("\nTo rebuild the model run:")
-    print(f"  ollama create suneelworkspace -f {OUT}")
+
+    if "--apply" in sys.argv:
+        print("Applying: ollama create suneelworkspace ...")
+        try:
+            r = subprocess.run(
+                ["ollama", "create", "suneelworkspace", "-f", OUT],
+                capture_output=True, text=True, timeout=600,
+            )
+            if r.returncode == 0:
+                print("Model suneelworkspace rebuilt from fresh context.")
+            else:
+                print(f"ollama create failed (rc={r.returncode}): {r.stderr[-300:]}")
+                sys.exit(1)
+        except FileNotFoundError:
+            print("ollama binary not found on PATH — skipped apply.")
+            sys.exit(1)
+        except subprocess.TimeoutExpired:
+            print("ollama create timed out after 10 minutes.")
+            sys.exit(1)
+    else:
+        print("\nTo rebuild the model run:")
+        print(f"  ollama create suneelworkspace -f {OUT}")

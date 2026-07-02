@@ -14,16 +14,16 @@ from typing import Any
 
 ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", Path.home() / "SuneelWorkSpace")).resolve()
 sys.path.append(str(ROOT))
-sys.path.append(str(ROOT / "anticipation"))
+sys.path.append(str(ROOT / "brain" / "anticipation"))
 
 try:
     import prediction_engine
 except ImportError:
     prediction_engine = None
 
-STATE_FILE = ROOT / "anticipation" / "execution_state.json"
-CONTEXT_FILE = ROOT / "anticipation" / "current_context.json"
-SUGGESTIONS_MD = ROOT / "anticipation" / "action_suggestions.md"
+STATE_FILE = ROOT / "brain" / "anticipation" / "execution_state.json"
+CONTEXT_FILE = ROOT / "brain" / "anticipation" / "current_context.json"
+SUGGESTIONS_MD = ROOT / "brain" / "anticipation" / "action_suggestions.md"
 
 
 def now() -> str:

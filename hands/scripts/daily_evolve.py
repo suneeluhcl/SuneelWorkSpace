@@ -10,7 +10,7 @@ import sys
 from datetime import datetime, timezone
 
 ROOT = pathlib.Path(os.environ.get("SUNEEL_WORKSPACE", str(pathlib.Path.home() / "SuneelWorkSpace"))).resolve()
-sys.path.append(str(ROOT / "scripts"))
+sys.path.append(str(ROOT / "hands" / "scripts"))
 
 import system_intelligence
 
@@ -126,7 +126,7 @@ def run_daily_evolution():
     print("  - Updating workflow priority scores...")
     try:
         import sys
-        sys.path.append(str(ROOT / "scripts"))
+        sys.path.append(str(ROOT / "hands" / "scripts"))
         import workflow_priority_engine
         workflow_priority_engine.decay_and_boost_workflows()
     except Exception as e:
