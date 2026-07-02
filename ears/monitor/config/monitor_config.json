@@ -1,7 +1,7 @@
 {
   "rss_feeds": [
     {"url": "https://hnrss.org/frontpage", "label": "Hacker News", "tags": ["tech", "ai"]},
-    {"url": "https://feeds.feedburner.com/anthropic-blog", "label": "Anthropic Blog", "tags": ["ai", "claude"]},
+    {"url": "https://hnrss.org/newest?q=Anthropic", "label": "Anthropic Stories (HN)", "tags": ["ai", "claude"]},
     {"url": "https://openai.com/blog/rss.xml", "label": "OpenAI Blog", "tags": ["ai", "llm"]}
   ],
   "github_repos": [

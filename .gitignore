@@ -133,4 +133,6 @@ blood/logs/dev/
 blood/logs/morning_brief_*.md
 blood/logs/night-shift.*.log
 tests/reports/test_report_*.json
+ears/monitor/cache/
+
 

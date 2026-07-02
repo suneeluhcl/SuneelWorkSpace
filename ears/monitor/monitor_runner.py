@@ -5,7 +5,8 @@ import sys
 from pathlib import Path
 
 # Allow running from any directory
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
 
 from ears.monitor.sources.rss_monitor import run as run_rss
 from ears.monitor.sources.github_monitor import run as run_github
