@@ -911,6 +911,17 @@
 
 - Workspace evolution: healed flat stale-path class (62 files — comms, system-intelligence, night-shift DAG, autolab, morning-brief all restored), upgraded Ollama learning stack (Modelfile --apply, LESSONS.md digest, promotion prompts, deterministic verify gate), built Java dev arsenal (java-build, dev-stack, spring-watch, pr-setup, dev-projects-scan) + history-insights. 103/103 tests, 0 health issues, night_shift 16/16.
 
+## 2026-07-02 — Gemini CLI — Workspace root consolidation
+
+- Continued the evolution task: committed and pushed all uncommitted fixes, toolchains, and dev utilities from the evolution session to origin/main.
+- Consolidated the workspace root directory by moving legacy `docs/superpowers/plans/` into the `spine` organ at `spine/docs/superpowers/plans/`.
+- Cleaned and deleted empty legacy root directories (`agent-system`, `autolab`, `automation`, `server`, and `mcp`).
+- Re-synced all 12 organ READMEs via `readme-sync` and rebuilt the knowledge index via `readme-index`.
+- Updated the workspace file index via `workspace-index` and verified that system health remains perfectly clean (0 issues) via `agent-doctor`.
+- Ran the test suite successfully with all 103/103 tests passing.
+- Staged, committed, and pushed all updates to origin/main.
+
+
 ## 2026-07-02
 
 - Commit all files, fix ears monitor path and RSS config, run morning-brief, clear task queue
