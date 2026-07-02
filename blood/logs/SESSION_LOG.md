@@ -955,3 +955,14 @@
 - Java arsenal test-drive (queue items 2+3): generated real Spring Boot 3.5.3 project projects/demo-api (web, JPA, postgres, flyway, actuator; mvnw wrapper). dev-projects-scan cataloged it (maven+spring-boot). dev-stack init postgres → health-checked compose; colima started; dev-stack up → postgres healthy; java-build build → ./mvnw clean install BUILD SUCCESS 14.5s incl. contextLoads against live DB with Flyway V1 applied; dev-stack down → graceful; colima stopped afterward (daemon was down pre-session).
 - Security review response: local-ai-stack/ (HA auth tokens, SearXNG key) and adwi/ confirmed untracked (0 files in git); both added to .gitignore so they can never be committed. HA token rotation left to Suneel (live service).
 - wiki_lint reports 2 broken links, 7 orphans, 20 gaps in brain/vault/wiki/ (see Wiki Health.md) — content cleanup queued.
+
+## 2026-07-02
+
+- Night-shift live-green under launchd (3 kickstarted runs; final: 14/14 executed, 0 hard fails, exit 0) — fixed plist PATH, 16 missing shebangs, dag-run failure policy. Java arsenal test-driven end-to-end on real Spring Boot project. Secrets dirs gitignored. Committed + pushed to origin/main.
+
+## 2026-07-02 (01:00–01:05) — Claude Code — Wiki link health cleanup
+
+- Broken links: both were [[brain]]/[[nervous]] organ references inside brain/vault/wiki/README.md — an auto-generated organ README rewritten nightly, not a wiki note. Added README.md to wiki_lint _SKIP_FILES (same class as index.md/log.md) instead of editing text that regenerates.
+- Orphans (7): root cause was the hub note llm-wiki-concept.md being an empty stub — every satellite links to it, it linked to nothing. Filled it with real Facts + a Related section linking all satellites (ChatGPT, Karpathy, LLM, LLM-Wiki, NotebookLM, Obsidian, OpenAI-Codex, Personal-Knowledge-Base, RAG, Research, synthesis note).
+- Result: wiki-lint 12 notes | 0 broken | 0 orphans | exit 0 → night-shift wiki_lint step now a true success (was tolerated-fail). 20 content gaps remain (suggestions for future notes).
+- run-tests still green.

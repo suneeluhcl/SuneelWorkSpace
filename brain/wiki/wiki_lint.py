@@ -32,7 +32,9 @@ WORKSPACE  = Path(os.path.expanduser("~/SuneelWorkSpace"))
 WIKI_DIR   = WORKSPACE / "brain/vault/wiki"
 REPORT_PATH = WIKI_DIR / "Wiki Health.md"
 
-_SKIP_FILES = {"index.md", "log.md", "Wiki Health.md"}
+# README.md is the auto-generated organ README (rewritten nightly by the README
+# Intelligence System) — it is workspace machinery, not a wiki note.
+_SKIP_FILES = {"index.md", "log.md", "Wiki Health.md", "README.md"}
 _LINK_RE    = re.compile(r"\[\[([^\]|#]+?)(?:[|#][^\]]*?)?\]\]")
 
 # Only slugs that are entirely safe single-path-components may become filenames.
