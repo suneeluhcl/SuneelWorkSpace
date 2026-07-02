@@ -1,5 +1,8 @@
 # 📁 ears
 
+
+**Test Status:** All tests passing (last run: 2026-07-02)
+
 ## 🧠 Purpose
 External RSS monitoring, GitHub event watching, and morning briefing build
 

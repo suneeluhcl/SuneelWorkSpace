@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """P3.5 — Validate a pipeline YAML: deps, cycles, variable refs, commands, execution levels."""
 
+import os
 import re
+import shlex
+import shutil
 import sys
 from pathlib import Path
 
@@ -10,16 +13,23 @@ try:
 except ImportError:
     yaml = None  # type: ignore
 
-BIN_DIR = Path(__file__).parent.parent.parent / "bin"
-SCRIPTS_DIR = Path(__file__).parent.parent.parent / "scripts"
+ROOT = Path(os.environ.get("SUNEEL_WORKSPACE", Path.home() / "SuneelWorkSpace")).resolve()
+BIN_DIR = ROOT / "hands" / "bin"
+SCRIPTS_DIR = ROOT / "hands" / "scripts"
 VALID_LEVELS = {"SAFE", "CONTROLLED", "RESTRICTED"}
 VAR_RE = re.compile(r"\{\{\s*(\w+)\.(\S+?)\s*\}\}")
 
 
 def _command_exists(cmd: str) -> bool:
-    """Check if command exists in bin/ or scripts/ (strips any leading path)."""
-    name = Path(cmd).name
-    return (BIN_DIR / name).exists() or (SCRIPTS_DIR / name).exists()
+    """Check the command's executable (first token, sans path) in bin/, scripts/, or PATH."""
+    try:
+        tokens = shlex.split(cmd)
+    except ValueError:
+        tokens = cmd.split()
+    if not tokens:
+        return False
+    name = Path(tokens[0]).name
+    return (BIN_DIR / name).exists() or (SCRIPTS_DIR / name).exists() or shutil.which(name) is not None
 
 
 def validate(path: str) -> tuple[bool, list[str]]:

@@ -910,3 +910,21 @@
 ## 2026-07-02
 
 - Workspace evolution: healed flat stale-path class (62 files — comms, system-intelligence, night-shift DAG, autolab, morning-brief all restored), upgraded Ollama learning stack (Modelfile --apply, LESSONS.md digest, promotion prompts, deterministic verify gate), built Java dev arsenal (java-build, dev-stack, spring-watch, pr-setup, dev-projects-scan) + history-insights. 103/103 tests, 0 health issues, night_shift 16/16.
+
+## 2026-07-02
+
+- Commit all files, fix ears monitor path and RSS config, run morning-brief, clear task queue
+
+## 2026-07-02 (00:17–00:25) — Claude Code — Continuation: toolchain + night-shift hardening
+
+- Java toolchain: `brew install --cask temurin` failed (pkg needs interactive sudo — impossible non-interactively); installed instead: Maven 3.9.16 + brew `openjdk` 26.0.1 registered via user-level symlink `~/Library/Java/JavaVirtualMachines/openjdk.jdk` (no sudo needed). `/usr/libexec/java_home`, `java -version`, `mvn -version` all resolve. End-to-end proof: `java-build build` on a minimal Maven project → BUILD SUCCESS (6.3s), compact output + full log in blood/logs/dev/.
+- dev-projects-scan rerun: catalog refreshed, still 0 Java/Node projects on machine (expected).
+- Night-shift deep verification (queue item 3, done early via dry-run instead of waiting for 22:00):
+  - Found dag-run imports `heart/orchestrator/dag/dag_validator.py` — a diverged DUPLICATE of hands/bin/dag-validate's logic with the old broken whole-string command check and wrong BIN_DIR anchor (heart/bin). Fixed the module (ROOT-anchored dirs, shlex first-token, PATH fallback) and deduplicated: hands/bin/dag-validate is now a thin CLI over the module (single source of truth).
+  - Found latent `health_repair` step bug that validation could not catch: YAML folded block collapsed a multiline `python3 -c` into invalid Python, and it referenced stale `dashboard` (now `eyes/dashboard`). Fixed with semicolon-joined statements + correct path; payload ast-parses, `run_health_repair` imports, `dag-run --dry-run` exits 0, dag-validate 16/16 PASS.
+- Verification: run-tests 103/103, agent-doctor healthy (0 issues). Nerve notified heart + hands.
+- Note: last night's 22:00 night-shift failure predates all fixes; tonight's 22:00 run is the live confirmation.
+
+## 2026-07-02
+
+- Continuation: Java toolchain live (openjdk 26 + Maven 3.9.16, temurin needs interactive sudo), java-build proven end-to-end, night-shift hardened — deduplicated dag_validator (dag-run's copy was broken), fixed latent health_repair YAML/path bug, dry-run exit 0. 103/103 tests, 0 issues.

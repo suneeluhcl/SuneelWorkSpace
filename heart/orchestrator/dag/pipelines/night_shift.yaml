@@ -56,11 +56,9 @@ steps:
   - id: health_repair
     name: "Health Repair (target 98%)"
     command: >
-      python3 -c "
-      import asyncio, sys; sys.path.insert(0,'dashboard')
-      from execution.health_repair_pipeline import run_health_repair
-      asyncio.run(run_health_repair(lambda l,c: print(f'{l}: {c}'), 'night_shift'))
-      "
+      python3 -c "import asyncio, sys; sys.path.insert(0,'eyes/dashboard');
+      from execution.health_repair_pipeline import run_health_repair;
+      asyncio.run(run_health_repair(lambda l,c: print(f'{l}: {c}'), 'night_shift'))"
     depends_on: [autolab_run]
     execution_level: SAFE
 
